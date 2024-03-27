@@ -1,0 +1,203 @@
+       age  workclass  fnlwgt  ...  hoursperweek  native-country  target
+0        6          0       1  ...             4               0   <=50K
+1        7          0       1  ...             0               0   <=50K
+2        6          0       6  ...             4               0   <=50K
+3        7          0       7  ...             4               0   <=50K
+4        3          0       8  ...             4               0   <=50K
+...    ...        ...     ...  ...           ...             ...     ...
+48837    6          0       6  ...             4               0   <=50K
+48838   10          0       8  ...             4               0   <=50K
+48839    6          0       9  ...             8               0   <=50K
+48840    6          0       1  ...             4               0   <=50K
+48841    3          0       5  ...             8               0    >50K
+
+[48842 rows x 15 columns]
+MLLITE_MODEL_SET_OPTIONS RidgeClassifier None
+MLLITE_MODEL_OPTIONS_DEFAULT RidgeClassifier { }
+MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeClassifier { ,   }
+MLLITE_MODEL_JSON_AFTER_SETTING RidgeClassifier None
+('OPERATION_START', 'TRAINING')
+[[6. 0. 1. 0. 8. 0. 0. 0. 0. 0. 9. 0. 4. 0.]
+ [7. 0. 1. 0. 8. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [6. 0. 6. 0. 3. 0. 0. 0. 0. 0. 0. 0. 4. 0.]
+ [7. 0. 7. 0. 1. 0. 0. 0. 0. 0. 0. 0. 4. 0.]
+ [3. 0. 8. 0. 8. 0. 0. 0. 0. 0. 0. 0. 4. 0.]] ['<=50K' '<=50K' '<=50K' '<=50K' '<=50K']
+MLLITE_FIT_USING_MODEL mllite_ridge_class.RidgeClassifier_ff4_OO8
+PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 1 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 3 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 1 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 2 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 3 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 4 4
+('OPERATION_END_ELAPSED', 0.201, 'TRAINING')
+{ ,   }
+{ ,   }
+{
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_OO8"},
+	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
+	"dataset" : { "dataset_rows" : 48842, "dataset_features" : 14 },
+	"classes" : [ "<=50K", ">50K" ],
+	"equations" : {
+		"class_1" : {
+			"intercept" : -1.838778,
+			"coeffs" : [ 0.025835, 0.000000, 0.002276, 0.000000, 0.046985, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.209869, 0.039601, 0.183518, 0.000000 ]
+		}
+	}
+}
+WRITING_JSON_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_census_quantized.json'
+
+MLLITE_MODEL_SET_OPTIONS RidgeClassifier None
+MLLITE_MODEL_OPTIONS_DEFAULT RidgeClassifier { }
+MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeClassifier { ,   }
+MLLITE_MODEL_JSON_AFTER_SETTING RidgeClassifier None
+MLLITE_RELOADING_MODEL mllite_ridge_class.RidgeClassifier_ff4_OO8
+{
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_OO8"},
+	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
+	"dataset" : { "dataset_rows" : 48842, "dataset_features" : 14 },
+	"classes" : [ "<=50K", ">50K" ],
+	"equations" : {
+		"class_1" : {
+			"intercept" : -1.838778,
+			"coeffs" : [ 0.025835, 0.000000, 0.002276, 0.000000, 0.046985, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.209869, 0.039601, 0.183518, 0.000000 ]
+		}
+	}
+}
+BEAUTIFIED_JSON_START
+{
+	"classes" : [ "<=50K", ">50K" ],
+	"dataset" : 	{
+		"dataset_features" : 14,
+		"dataset_rows" : 48842
+	},
+	"equations" : 	{
+		"class_1" : 	{
+			"coeffs" : [ 0.025835, 0.0, 0.002276, 0.0, 0.046985, 0.0, 0.0, 0.0, 0.0, 0.0, 0.209869, 0.039601, 0.183518, 0.0 ],
+			"intercept" : -1.838778
+		}
+	},
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_OO8", "version" : "2024-W12" },
+	"options" :  { "alpha" : 1.0, "random_state" : 1789 }
+}
+BEAUTIFIED_JSON_END
+('OPERATION_START', 'PREDICT')
+('OPERATION_END_ELAPSED', 0.017, 'PREDICT')
+('OPERATION_START', 'PREDICT')
+('OPERATION_END_ELAPSED', 0.017, 'PREDICT')
+[[0.0669 0.9331]
+ [0.9282 0.0718]
+ [0.8306 0.1694]
+ ...
+ [0.4106 0.5894]
+ [0.0669 0.9331]
+ [0.4531 0.5469]]
+(48842, 2)
+(48842,) float32
+MODEL_PERFS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'census_quantized', 'size': 48842, 'accuracy': 0.7663691085541132, 'auc': 0.7823292346690031}
+WRITING_PERF_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_census_quantized.perf'
+
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'census_quantized', 'training_time_in_sec': 0.201, 'prediction_time_in_sec': 0.017}
+WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_census_quantized.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT model_input."index" AS "index",
+   -1.838778 + 0.025835 * X_0 + 0.000000 * X_1 + 0.002276 * X_2 + 0.000000 * X_3 + 0.046985 * X_4 + 0.000000 * X_5 + 0.000000 * X_6 + 0.000000 * X_7 + 0.000000 * X_8 + 0.000000 * X_9 + 0.209869 * X_10 + 0.039601 * X_11 + 0.183518 * X_12 + 0.000000 * X_13 AS "Score_1", CAST(NULL AS FLOAT) AS "Proba_1", CAST(NULL AS FLOAT) AS "LogProba
+SQL_OUT_PUT_FIRST_LINES_END
+SQL_OUT_PUT_LAST_LINES_START
+ax."index" AS "index_Score",
+     max(union_with_max.class) AS "arg_max_Score"
+    FROM union_with_max
+    WHERE union_with_max."max_Score" <= union_with_max."Score"
+    GROUP BY union_with_max."index"
+   ) AS "arg_max_t_Score"
+   ON score_max."index" = "arg_max_t_Score"."index_Score"
+ )
+SELECT arg_max_cte."index" AS "index",
+  arg_max_cte."Score_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."arg_max_Score" AS "Decision",
+  CASE
+   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
+   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
+ END AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+        X_0  X_1  X_2  X_3  X_4  X_5  ...  X_9  X_10  X_11  X_12  X_13    KEY
+0       6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0   9.0   0.0   4.0   0.0      0
+1       7.0  0.0  1.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   0.0   0.0      1
+2       6.0  0.0  6.0  0.0  3.0  0.0  ...  0.0   0.0   0.0   4.0   0.0      2
+3       7.0  0.0  7.0  0.0  1.0  0.0  ...  0.0   0.0   0.0   4.0   0.0      3
+4       3.0  0.0  8.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   4.0   0.0      4
+...     ...  ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...    ...
+48837   6.0  0.0  6.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   4.0   0.0  48837
+48838  10.0  0.0  8.0  0.0  3.0  0.0  ...  0.0   0.0   0.0   4.0   0.0  48838
+48839   6.0  0.0  9.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   8.0   0.0  48839
+48840   6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0   9.0   0.0   4.0   0.0  48840
+48841   3.0  0.0  5.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   8.0   0.0  48841
+
+[48842 rows x 15 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+       index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
+0          0 -1.317281  0.066947  ...   -0.069293         1       0.933053
+1          1  1.279777  0.928213  ...   -2.634048         0       0.928213
+2          2  0.795085  0.830640  ...   -1.775729         0       0.830640
+3          3  0.860944  0.848372  ...   -1.886324         0       0.848372
+4          4  0.633113  0.780096  ...   -1.514564         0       0.780096
+...      ...       ...       ...  ...         ...       ...            ...
+48837  48837  0.560160  0.754048  ...   -1.402619         0       0.754048
+48838  48838  0.687193  0.798088  ...   -1.599923         0       0.798088
+48839  48839 -0.180740  0.410601  ...   -0.528652         1       0.589399
+48840  48840 -1.317281  0.066947  ...   -0.069293         1       0.933053
+48841  48841 -0.094131  0.453073  ...   -0.603440         1       0.546927
+
+[48842 rows x 9 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
+       'LogProba_1', 'Decision', 'DecisionProba'],
+      dtype='object')
+       index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
+48826  48826  0.494168     0.728759  ...    0.728760    0.271240        <=50K
+48827  48827  1.317528     0.933084  ...    0.933084    0.066916        <=50K
+48828  48828  0.604869     0.770253  ...    0.770253    0.229747        <=50K
+48829  48829  0.499253     0.730765  ...    0.730766    0.269234        <=50K
+48830  48830  0.877142     0.852492  ...    0.852492    0.147508        <=50K
+48831  48831  0.764698     0.821918  ...    0.821918    0.178082        <=50K
+48832  48832 -0.030947     0.484531  ...    0.484532    0.515468         >50K
+48833  48833  0.865762     0.849607  ...    0.849607    0.150393        <=50K
+48834  48834  0.945543     0.868879  ...    0.868879    0.131121        <=50K
+48835  48835  0.482788     0.724237  ...    0.724238    0.275762        <=50K
+48836  48836  0.635389     0.780876  ...    0.780876    0.219124        <=50K
+48837  48837  0.560160     0.754048  ...    0.754049    0.245951        <=50K
+48838  48838  0.687193     0.798088  ...    0.798088    0.201912        <=50K
+48839  48839 -0.180740     0.410601  ...    0.410601    0.589399         >50K
+48840  48840 -1.317281     0.066947  ...    0.066948    0.933052         >50K
+48841  48841 -0.094131     0.453073  ...    0.453073    0.546927         >50K
+
+[16 rows x 12 columns]
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

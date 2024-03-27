@@ -1,0 +1,218 @@
+    age  workclass     fnlwgt  ...  hoursperweek  native-country  target
+0   2.0        0.0   188950.0  ...           3.0             0.0    >50K
+1   1.0        0.0  1033222.0  ...           2.0             0.0   <=50K
+2   1.0        0.0   129707.0  ...           1.0             0.0    >50K
+3   1.0        0.0    78530.0  ...           4.0             0.0    >50K
+4   1.0        0.0   159537.0  ...           2.0             0.0   <=50K
+5   3.0        0.0    96586.0  ...           2.0             0.0    >50K
+6   2.0        0.0   165346.0  ...           4.0             0.0   <=50K
+7   1.0        0.0   142712.0  ...           2.0             0.0   <=50K
+8   4.0        0.0   175964.0  ...           2.0             0.0   <=50K
+9   1.0        0.0   229656.0  ...           2.0             0.0    >50K
+10  2.0        0.0    25806.0  ...           2.0             0.0   <=50K
+11  0.0        0.0   340543.0  ...           2.0             0.0   <=50K
+12  4.0        0.0    31781.0  ...           1.0             0.0   <=50K
+13  1.0        0.0    56121.0  ...           3.0             0.0   <=50K
+14  3.0        0.0   126840.0  ...           2.0             0.0   <=50K
+15  2.0        0.0    67187.0  ...           2.0             0.0   <=50K
+
+[16 rows x 15 columns]
+SKLEARN_MODEL_SET_OPTIONS XGBClassifier {"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }
+('OPERATION_START', 'TRAINING')
+[[2.000000e+00 0.000000e+00 1.889500e+05 0.000000e+00 1.400000e+01
+  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
+  0.000000e+00 0.000000e+00 3.000000e+00 0.000000e+00]
+ [1.000000e+00 0.000000e+00 1.033222e+06 0.000000e+00 1.000000e+01
+  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
+  0.000000e+00 0.000000e+00 2.000000e+00 0.000000e+00]
+ [1.000000e+00 0.000000e+00 1.297070e+05 0.000000e+00 1.300000e+01
+  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
+  4.000000e+00 0.000000e+00 1.000000e+00 0.000000e+00]
+ [1.000000e+00 0.000000e+00 7.853000e+04 0.000000e+00 9.000000e+00
+  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
+  0.000000e+00 0.000000e+00 4.000000e+00 0.000000e+00]
+ [1.000000e+00 0.000000e+00 1.595370e+05 0.000000e+00 1.200000e+01
+  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
+  0.000000e+00 0.000000e+00 2.000000e+00 0.000000e+00]] [1 0 1 1 0]
+('OPERATION_END_ELAPSED', 0.007, 'TRAINING')
+CONVERT_MODEL  <class 'xgboost.sklearn.XGBClassifier'>
+{
+    "learner": {
+        "generic_param": {
+            "device": "cpu",
+            "fail_on_invalid_gpu_id": "0",
+            "n_jobs": "0",
+            "nthread": "0",
+            "random_state": "1789",
+            "seed": "1789",
+            "seed_per_iteration": "0",
+            "validate_parameters": "1"
+        },
+        "gradient_booster": {
+            "gbtree_model_param": {
+                "num_parallel_tree": "1",
+                "num_trees": "5"
+            },
+            "gbtree_train_param": {
+                "process_type": "default",
+                "tree_method": "hist",
+                "updater": "grow_quantile_histmaker",
+                "updater_seq": "grow_quantile_histmaker"
+            },
+            "name": "gbtree",
+            "specified_updater": false,
+            "tree_train_param": {
+                "alpha": "0",
+                "cache_opt": "1",
+                "colsample_bylevel": "1",
+                "colsample_bynode": "1",
+                "colsample_bytree": "1",
+                "eta": "0.300000012",
+                "gamma": "0",
+                "grow_policy": "depthwise",
+                "interaction_constraints": "",
+                "lambda": "1",
+                "learning_rate": "0.300000012",
+                "max_bin": "10",
+                "max_cat_threshold": "64",
+                "max_cat_to_onehot": "4",
+                "max_delta_step": "0",
+                "max_depth": "6",
+                "max_leaves": "32",
+                "min_child_weight": "5",
+                "min_split_loss": "0",
+                "monotone_constraints": "()",
+                "refresh_leaf": "1",
+                "reg_alpha": "0",
+                "reg_lambda": "1",
+                "sampling_method": "uniform",
+                "sketch_ratio": "2",
+                "sparse_threshold": "0.20000000000000001",
+                "subsample": "1"
+            },
+            "updater": [
+                {
+                    "hist_train_param": {
+                        "debug_synchronize": "0",
+                        "max_cached_hist_node": "65536"
+                    },
+                    "name": "grow_quantile_histmaker"
+                }
+            ]
+        },
+        "learner_model_param": {
+            "base_score": "3.208213E-1",
+            "boost_from_average": "1",
+            "num_class": "0",
+            "num_feature": "14",
+            "num_target": "1"
+        },
+        "learner_train_param": {
+            "booster": "gbtree",
+            "disable_default_eval_metric": "0",
+            "multi_strategy": "one_output_per_tree",
+            "objective": "binary:logistic"
+        },
+        "metrics": [
+            {
+                "name": "logloss"
+            }
+        ],
+        "objective": {
+            "name": "binary:logistic",
+            "reg_loss_param": {
+                "scale_pos_weight": "1"
+            }
+        }
+    },
+    "version": [
+        2,
+        0,
+        3
+    ]
+}
+{'learner': {'generic_param': {'device': 'cpu', 'fail_on_invalid_gpu_id': '0', 'n_jobs': '0', 'nthread': '0', 'random_state': '1789', 'seed': '1789', 'seed_per_iteration': '0', 'validate_parameters': '1'}, 'gradient_booster': {'gbtree_model_param': {'num_parallel_tree': '1', 'num_trees': '5'}, 'gbtree_train_param': {'process_type': 'default', 'tree_method': 'hist', 'updater': 'grow_quantile_histmaker', 'updater_seq': 'grow_quantile_histmaker'}, 'name': 'gbtree', 'specified_updater': False, 'tree_train_param': {'alpha': '0', 'cache_opt': '1', 'colsample_bylevel': '1', 'colsample_bynode': '1', 'colsample_bytree': '1', 'eta': '0.300000012', 'gamma': '0', 'grow_policy': 'depthwise', 'interaction_constraints': '', 'lambda': '1', 'learning_rate': '0.300000012', 'max_bin': '10', 'max_cat_threshold': '64', 'max_cat_to_onehot': '4', 'max_delta_step': '0', 'max_depth': '6', 'max_leaves': '32', 'min_child_weight': '5', 'min_split_loss': '0', 'monotone_constraints': '()', 'refresh_leaf': '1', 'reg_alpha': '0', 'reg_lambda': '1', 'sampling_method': 'uniform', 'sketch_ratio': '2', 'sparse_threshold': '0.20000000000000001', 'subsample': '1'}, 'updater': [{'hist_train_param': {'debug_synchronize': '0', 'max_cached_hist_node': '65536'}, 'name': 'grow_quantile_histmaker'}]}, 'learner_model_param': {'base_score': '3.208213E-1', 'boost_from_average': '1', 'num_class': '0', 'num_feature': '14', 'num_target': '1'}, 'learner_train_param': {'booster': 'gbtree', 'disable_default_eval_metric': '0', 'multi_strategy': 'one_output_per_tree', 'objective': 'binary:logistic'}, 'metrics': [{'name': 'logloss'}], 'objective': {'name': 'binary:logistic', 'reg_loss_param': {'scale_pos_weight': '1'}}}, 'version': [2, 0, 3]}
+BEAUTIFIED_JSON_START
+{
+	"booster" : 	{
+		"BaseSCore" : "3.208213E-1",
+		"Tree_0" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [ 0 ],
+				"left" : null,
+				"parent" : null,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_1" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [ 0 ],
+				"left" : null,
+				"parent" : null,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_2" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [ 0 ],
+				"left" : null,
+				"parent" : null,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_3" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [ 0 ],
+				"left" : null,
+				"parent" : null,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_4" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [ 0 ],
+				"left" : null,
+				"parent" : null,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		}
+	},
+	"classes" : [ 0, 1 ],
+	"metadata" :  { "model" : "xgboost.sklearn.XGBClassifier", "version" : "1.4.1.post1" },
+	"options" :  { "alpha" : "0", "base_score" : "3.208213E-1", "boost_from_average" : "1", "booster" : "gbtree", "cache_opt" : "1", "colsample_bylevel" : "1", "colsample_bynode" : "1", "colsample_bytree" : "1", "device" : "cpu", "disable_default_eval_metric" : "0", "eta" : "0.300000012", "fail_on_invalid_gpu_id" : "0", "gamma" : "0", "grow_policy" : "depthwise", "hist_train_param" : "name", "interaction_constraints" : "", "lambda" : "1", "learning_rate" : "0.300000012", "max_bin" : "10", "max_cat_threshold" : "64", "max_cat_to_onehot" : "4", "max_delta_step" : "0", "max_depth" : "6", "max_leaves" : "32", "min_child_weight" : "5", "min_split_loss" : "0", "monotone_constraints" : "()", "multi_strategy" : "one_output_per_tree", "n_jobs" : "0", "name" : "binary:logistic", "nthread" : "0", "num_class" : "0", "num_feature" : "14", "num_parallel_tree" : "1", "num_target" : "1", "num_trees" : "5", "objective" : "binary:logistic", "process_type" : "default", "random_state" : "1789", "refresh_leaf" : "1", "reg_alpha" : "0", "reg_lambda" : "1", "reg_loss_param" : { "scale_pos_weight" : "1" }, "sampling_method" : "uniform", "seed" : "1789", "seed_per_iteration" : "0", "sketch_ratio" : "2", "sparse_threshold" : "0.20000000000000001", "subsample" : "1", "tree_method" : "hist", "updater" : "grow_quantile_histmaker", "updater_seq" : "grow_quantile_histmaker", "validate_parameters" : "1" }
+}
+BEAUTIFIED_JSON_END
+('OPERATION_START', 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
+[[0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]
+ [0.6792 0.3208]]
+(16, 2)
+(16,) float32
+MODEL_PERFS {'class_name': 'xgboost.sklearn.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'census_tiny', 'size': 16, 'accuracy': 0.6875, 'auc': 0.5}
+WRITING_PERF_CODE 'logs/auto_tests/classification/XGBClassifier/xgboost.sklearn.XGBClassifier_census_tiny_option_1.perf'
+
+MODEL_PERFS_TIMINGS {'class_name': 'xgboost.sklearn.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'census_tiny', 'training_time_in_sec': 0.007, 'prediction_time_in_sec': 0.001}

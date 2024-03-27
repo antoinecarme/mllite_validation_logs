@@ -1,0 +1,615 @@
+     mean radius  mean texture  ...  worst fractal dimension  target
+0              8             0  ...                        9       0
+1              9             3  ...                        7       0
+2              8             7  ...                        6       0
+3              2             6  ...                        9       0
+4              9             1  ...                        4       0
+..           ...           ...  ...                      ...     ...
+564            9             7  ...                        2       0
+565            9             9  ...                        1       0
+566            7             9  ...                        4       0
+567            9             9  ...                        9       0
+568            0             8  ...                        2       1
+
+[569 rows x 31 columns]
+SKLEARN_MODEL_SET_OPTIONS XGBClassifier {"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }
+('OPERATION_START', 'TRAINING')
+[[ 8.  0.  8.  8.  8.  9.  9.  9.  9.  9.  9.  3.  9.  9.  5.  8.  8.  7.
+   8.  8.  9.  0.  9.  9.  8.  9.  9.  9.  9.  9.]
+ [ 9.  3.  8.  9.  2.  3.  6.  7.  5.  1.  7.  1.  7.  8.  2.  2.  3.  6.
+   1.  5.  9.  3.  8.  9.  3.  4.  5.  8.  4.  7.]
+ [ 8.  7.  8.  8.  8.  8.  8.  9.  8.  3.  8.  2.  8.  8.  4.  8.  7.  8.
+   7.  7.  8.  5.  8.  8.  7.  8.  8.  9.  8.  6.]
+ [ 2.  6.  3.  1.  9.  9.  9.  8.  9. 10.  7.  5.  7.  5.  8.  9.  8.  8.
+   9.  9.  4.  5.  5.  3.  9.  9.  9.  9. 10.  9.]
+ [ 9.  1.  9.  9.  6.  7.  8.  8.  5.  3.  8.  2.  8.  8.  8.  5.  8.  8.
+   4.  8.  8.  0.  8.  8.  5.  4.  7.  7.  1.  4.]] [0 0 0 0 0]
+('OPERATION_END_ELAPSED', 0.017, 'TRAINING')
+CONVERT_MODEL  <class 'xgboost.sklearn.XGBClassifier'>
+{
+    "learner": {
+        "generic_param": {
+            "device": "cpu",
+            "fail_on_invalid_gpu_id": "0",
+            "n_jobs": "0",
+            "nthread": "0",
+            "random_state": "1789",
+            "seed": "1789",
+            "seed_per_iteration": "0",
+            "validate_parameters": "1"
+        },
+        "gradient_booster": {
+            "gbtree_model_param": {
+                "num_parallel_tree": "1",
+                "num_trees": "5"
+            },
+            "gbtree_train_param": {
+                "process_type": "default",
+                "tree_method": "hist",
+                "updater": "grow_quantile_histmaker",
+                "updater_seq": "grow_quantile_histmaker"
+            },
+            "name": "gbtree",
+            "specified_updater": false,
+            "tree_train_param": {
+                "alpha": "0",
+                "cache_opt": "1",
+                "colsample_bylevel": "1",
+                "colsample_bynode": "1",
+                "colsample_bytree": "1",
+                "eta": "0.300000012",
+                "gamma": "0",
+                "grow_policy": "depthwise",
+                "interaction_constraints": "",
+                "lambda": "1",
+                "learning_rate": "0.300000012",
+                "max_bin": "10",
+                "max_cat_threshold": "64",
+                "max_cat_to_onehot": "4",
+                "max_delta_step": "0",
+                "max_depth": "6",
+                "max_leaves": "32",
+                "min_child_weight": "5",
+                "min_split_loss": "0",
+                "monotone_constraints": "()",
+                "refresh_leaf": "1",
+                "reg_alpha": "0",
+                "reg_lambda": "1",
+                "sampling_method": "uniform",
+                "sketch_ratio": "2",
+                "sparse_threshold": "0.20000000000000001",
+                "subsample": "1"
+            },
+            "updater": [
+                {
+                    "hist_train_param": {
+                        "debug_synchronize": "0",
+                        "max_cached_hist_node": "65536"
+                    },
+                    "name": "grow_quantile_histmaker"
+                }
+            ]
+        },
+        "learner_model_param": {
+            "base_score": "6.247282E-1",
+            "boost_from_average": "1",
+            "num_class": "0",
+            "num_feature": "30",
+            "num_target": "1"
+        },
+        "learner_train_param": {
+            "booster": "gbtree",
+            "disable_default_eval_metric": "0",
+            "multi_strategy": "one_output_per_tree",
+            "objective": "binary:logistic"
+        },
+        "metrics": [
+            {
+                "name": "logloss"
+            }
+        ],
+        "objective": {
+            "name": "binary:logistic",
+            "reg_loss_param": {
+                "scale_pos_weight": "1"
+            }
+        }
+    },
+    "version": [
+        2,
+        0,
+        3
+    ]
+}
+{'learner': {'generic_param': {'device': 'cpu', 'fail_on_invalid_gpu_id': '0', 'n_jobs': '0', 'nthread': '0', 'random_state': '1789', 'seed': '1789', 'seed_per_iteration': '0', 'validate_parameters': '1'}, 'gradient_booster': {'gbtree_model_param': {'num_parallel_tree': '1', 'num_trees': '5'}, 'gbtree_train_param': {'process_type': 'default', 'tree_method': 'hist', 'updater': 'grow_quantile_histmaker', 'updater_seq': 'grow_quantile_histmaker'}, 'name': 'gbtree', 'specified_updater': False, 'tree_train_param': {'alpha': '0', 'cache_opt': '1', 'colsample_bylevel': '1', 'colsample_bynode': '1', 'colsample_bytree': '1', 'eta': '0.300000012', 'gamma': '0', 'grow_policy': 'depthwise', 'interaction_constraints': '', 'lambda': '1', 'learning_rate': '0.300000012', 'max_bin': '10', 'max_cat_threshold': '64', 'max_cat_to_onehot': '4', 'max_delta_step': '0', 'max_depth': '6', 'max_leaves': '32', 'min_child_weight': '5', 'min_split_loss': '0', 'monotone_constraints': '()', 'refresh_leaf': '1', 'reg_alpha': '0', 'reg_lambda': '1', 'sampling_method': 'uniform', 'sketch_ratio': '2', 'sparse_threshold': '0.20000000000000001', 'subsample': '1'}, 'updater': [{'hist_train_param': {'debug_synchronize': '0', 'max_cached_hist_node': '65536'}, 'name': 'grow_quantile_histmaker'}]}, 'learner_model_param': {'base_score': '6.247282E-1', 'boost_from_average': '1', 'num_class': '0', 'num_feature': '30', 'num_target': '1'}, 'learner_train_param': {'booster': 'gbtree', 'disable_default_eval_metric': '0', 'multi_strategy': 'one_output_per_tree', 'objective': 'binary:logistic'}, 'metrics': [{'name': 'logloss'}], 'objective': {'name': 'binary:logistic', 'reg_loss_param': {'scale_pos_weight': '1'}}}, 'version': [2, 0, 3]}
+BEAUTIFIED_JSON_START
+{
+	"booster" : 	{
+		"BaseSCore" : "6.247282E-1",
+		"Tree_0" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [  ],
+				"left" : 1,
+				"parent" : null,
+				"right" : 2,
+				"sindex" : 22,
+				"svalue" : 6.0
+			},
+			"Node_01" : 	{
+				"leaf_value" : [  ],
+				"left" : 3,
+				"parent" : 0,
+				"right" : 4,
+				"sindex" : 27,
+				"svalue" : 6.0
+			},
+			"Node_02" : 	{
+				"leaf_value" : [  ],
+				"left" : 5,
+				"parent" : 0,
+				"right" : 6,
+				"sindex" : 22,
+				"svalue" : 7.0
+			},
+			"Node_03" : 	{
+				"leaf_value" : [ 0.457619518 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_04" : 	{
+				"leaf_value" : [ -0.0414920636 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_05" : 	{
+				"leaf_value" : [  ],
+				"left" : 7,
+				"parent" : 2,
+				"right" : 8,
+				"sindex" : 24,
+				"svalue" : 6.0
+			},
+			"Node_06" : 	{
+				"leaf_value" : [ -0.763946116 ],
+				"left" : null,
+				"parent" : 2,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_07" : 	{
+				"leaf_value" : [ 0.125712305 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_08" : 	{
+				"leaf_value" : [ -0.633511126 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_1" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [  ],
+				"left" : 1,
+				"parent" : null,
+				"right" : 2,
+				"sindex" : 22,
+				"svalue" : 6.0
+			},
+			"Node_01" : 	{
+				"leaf_value" : [  ],
+				"left" : 3,
+				"parent" : 0,
+				"right" : 4,
+				"sindex" : 25,
+				"svalue" : 8.0
+			},
+			"Node_02" : 	{
+				"leaf_value" : [  ],
+				"left" : 5,
+				"parent" : 0,
+				"right" : 6,
+				"sindex" : 21,
+				"svalue" : 2.0
+			},
+			"Node_03" : 	{
+				"leaf_value" : [  ],
+				"left" : 7,
+				"parent" : 1,
+				"right" : 8,
+				"sindex" : 1,
+				"svalue" : 7.0
+			},
+			"Node_04" : 	{
+				"leaf_value" : [ -0.153261006 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_05" : 	{
+				"leaf_value" : [ 0.0984300897 ],
+				"left" : null,
+				"parent" : 2,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_06" : 	{
+				"leaf_value" : [  ],
+				"left" : 9,
+				"parent" : 2,
+				"right" : 10,
+				"sindex" : 7,
+				"svalue" : 6.0
+			},
+			"Node_07" : 	{
+				"leaf_value" : [ 0.404578269 ],
+				"left" : null,
+				"parent" : 3,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_08" : 	{
+				"leaf_value" : [  ],
+				"left" : 11,
+				"parent" : 3,
+				"right" : 12,
+				"sindex" : 18,
+				"svalue" : 5.0
+			},
+			"Node_09" : 	{
+				"leaf_value" : [ -0.173043072 ],
+				"left" : null,
+				"parent" : 6,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_10" : 	{
+				"leaf_value" : [ -0.510704696 ],
+				"left" : null,
+				"parent" : 6,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_11" : 	{
+				"leaf_value" : [ 0.125581458 ],
+				"left" : null,
+				"parent" : 8,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_12" : 	{
+				"leaf_value" : [ 0.360851824 ],
+				"left" : null,
+				"parent" : 8,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_2" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [  ],
+				"left" : 1,
+				"parent" : null,
+				"right" : 2,
+				"sindex" : 7,
+				"svalue" : 6.0
+			},
+			"Node_01" : 	{
+				"leaf_value" : [  ],
+				"left" : 3,
+				"parent" : 0,
+				"right" : 4,
+				"sindex" : 23,
+				"svalue" : 6.0
+			},
+			"Node_02" : 	{
+				"leaf_value" : [  ],
+				"left" : 5,
+				"parent" : 0,
+				"right" : 6,
+				"sindex" : 27,
+				"svalue" : 7.0
+			},
+			"Node_03" : 	{
+				"leaf_value" : [  ],
+				"left" : 7,
+				"parent" : 1,
+				"right" : 8,
+				"sindex" : 10,
+				"svalue" : 6.0
+			},
+			"Node_04" : 	{
+				"leaf_value" : [ 0.0363474041 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_05" : 	{
+				"leaf_value" : [  ],
+				"left" : 9,
+				"parent" : 2,
+				"right" : 10,
+				"sindex" : 1,
+				"svalue" : 6.0
+			},
+			"Node_06" : 	{
+				"leaf_value" : [ -0.437765896 ],
+				"left" : null,
+				"parent" : 2,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_07" : 	{
+				"leaf_value" : [ 0.368871212 ],
+				"left" : null,
+				"parent" : 3,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_08" : 	{
+				"leaf_value" : [ 0.227060899 ],
+				"left" : null,
+				"parent" : 3,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_09" : 	{
+				"leaf_value" : [ 0.216438293 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_10" : 	{
+				"leaf_value" : [ -0.345521361 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_3" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [  ],
+				"left" : 1,
+				"parent" : null,
+				"right" : 2,
+				"sindex" : 22,
+				"svalue" : 6.0
+			},
+			"Node_01" : 	{
+				"leaf_value" : [  ],
+				"left" : 3,
+				"parent" : 0,
+				"right" : 4,
+				"sindex" : 27,
+				"svalue" : 6.0
+			},
+			"Node_02" : 	{
+				"leaf_value" : [  ],
+				"left" : 5,
+				"parent" : 0,
+				"right" : 6,
+				"sindex" : 23,
+				"svalue" : 7.0
+			},
+			"Node_03" : 	{
+				"leaf_value" : [ 0.32262361 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_04" : 	{
+				"leaf_value" : [ -0.0344152786 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_05" : 	{
+				"leaf_value" : [  ],
+				"left" : 7,
+				"parent" : 2,
+				"right" : 8,
+				"sindex" : 24,
+				"svalue" : 6.0
+			},
+			"Node_06" : 	{
+				"leaf_value" : [  ],
+				"left" : 9,
+				"parent" : 2,
+				"right" : 10,
+				"sindex" : 28,
+				"svalue" : 3.0
+			},
+			"Node_07" : 	{
+				"leaf_value" : [ 0.181603342 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_08" : 	{
+				"leaf_value" : [ -0.31555739 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_09" : 	{
+				"leaf_value" : [ -0.232969597 ],
+				"left" : null,
+				"parent" : 6,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_10" : 	{
+				"leaf_value" : [ -0.398914278 ],
+				"left" : null,
+				"parent" : 6,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_4" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [  ],
+				"left" : 1,
+				"parent" : null,
+				"right" : 2,
+				"sindex" : 27,
+				"svalue" : 7.0
+			},
+			"Node_01" : 	{
+				"leaf_value" : [  ],
+				"left" : 3,
+				"parent" : 0,
+				"right" : 4,
+				"sindex" : 23,
+				"svalue" : 7.0
+			},
+			"Node_02" : 	{
+				"leaf_value" : [  ],
+				"left" : 5,
+				"parent" : 0,
+				"right" : 6,
+				"sindex" : 1,
+				"svalue" : 4.0
+			},
+			"Node_03" : 	{
+				"leaf_value" : [  ],
+				"left" : 7,
+				"parent" : 1,
+				"right" : 8,
+				"sindex" : 1,
+				"svalue" : 7.0
+			},
+			"Node_04" : 	{
+				"leaf_value" : [ -0.251973957 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_05" : 	{
+				"leaf_value" : [ -0.157703057 ],
+				"left" : null,
+				"parent" : 2,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_06" : 	{
+				"leaf_value" : [ -0.365051836 ],
+				"left" : null,
+				"parent" : 2,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_07" : 	{
+				"leaf_value" : [  ],
+				"left" : 9,
+				"parent" : 3,
+				"right" : 10,
+				"sindex" : 13,
+				"svalue" : 6.0
+			},
+			"Node_08" : 	{
+				"leaf_value" : [  ],
+				"left" : 11,
+				"parent" : 3,
+				"right" : 12,
+				"sindex" : 22,
+				"svalue" : 4.0
+			},
+			"Node_09" : 	{
+				"leaf_value" : [ 0.338652909 ],
+				"left" : null,
+				"parent" : 7,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_10" : 	{
+				"leaf_value" : [ 0.184752941 ],
+				"left" : null,
+				"parent" : 7,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_11" : 	{
+				"leaf_value" : [ 0.249327227 ],
+				"left" : null,
+				"parent" : 8,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_12" : 	{
+				"leaf_value" : [ -0.170871288 ],
+				"left" : null,
+				"parent" : 8,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		}
+	},
+	"classes" : [ 0, 1 ],
+	"metadata" :  { "model" : "xgboost.sklearn.XGBClassifier", "version" : "1.4.1.post1" },
+	"options" :  { "alpha" : "0", "base_score" : "6.247282E-1", "boost_from_average" : "1", "booster" : "gbtree", "cache_opt" : "1", "colsample_bylevel" : "1", "colsample_bynode" : "1", "colsample_bytree" : "1", "device" : "cpu", "disable_default_eval_metric" : "0", "eta" : "0.300000012", "fail_on_invalid_gpu_id" : "0", "gamma" : "0", "grow_policy" : "depthwise", "hist_train_param" : "name", "interaction_constraints" : "", "lambda" : "1", "learning_rate" : "0.300000012", "max_bin" : "10", "max_cat_threshold" : "64", "max_cat_to_onehot" : "4", "max_delta_step" : "0", "max_depth" : "6", "max_leaves" : "32", "min_child_weight" : "5", "min_split_loss" : "0", "monotone_constraints" : "()", "multi_strategy" : "one_output_per_tree", "n_jobs" : "0", "name" : "binary:logistic", "nthread" : "0", "num_class" : "0", "num_feature" : "30", "num_parallel_tree" : "1", "num_target" : "1", "num_trees" : "5", "objective" : "binary:logistic", "process_type" : "default", "random_state" : "1789", "refresh_leaf" : "1", "reg_alpha" : "0", "reg_lambda" : "1", "reg_loss_param" : { "scale_pos_weight" : "1" }, "sampling_method" : "uniform", "seed" : "1789", "seed_per_iteration" : "0", "sketch_ratio" : "2", "sparse_threshold" : "0.20000000000000001", "subsample" : "1", "tree_method" : "hist", "updater" : "grow_quantile_histmaker", "updater_seq" : "grow_quantile_histmaker", "validate_parameters" : "1" }
+}
+BEAUTIFIED_JSON_END
+('OPERATION_START', 'PREDICT')
+('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+[[0.7596 0.2404]
+ [0.8531 0.1469]
+ [0.8773 0.1227]
+ ...
+ [0.8314 0.1686]
+ [0.8773 0.1227]
+ [0.1065 0.8935]]
+(569, 2)
+(569,) float32
+MODEL_PERFS {'class_name': 'xgboost.sklearn.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'BreastCancer_quantized', 'size': 569, 'accuracy': 0.9736379613356766, 'auc': 0.9954019343586491}
+WRITING_PERF_CODE 'logs/auto_tests/classification/XGBClassifier/xgboost.sklearn.XGBClassifier_BreastCancer_quantized_option_1.perf'
+
+MODEL_PERFS_TIMINGS {'class_name': 'xgboost.sklearn.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'BreastCancer_quantized', 'training_time_in_sec': 0.017, 'prediction_time_in_sec': 0.002}

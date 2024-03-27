@@ -1,0 +1,1015 @@
+          X_0       X_1       X_2  ...       X_8       X_9  target
+0   -0.044962  1.210300  0.837871  ... -0.036524  0.927011       0
+1   -0.899949  1.417506  0.234098  ...  1.065277 -0.527426       1
+2    0.210234  0.615278 -0.232967  ... -0.159713  0.429757       0
+3    1.372308 -0.697183  1.020035  ... -0.034774 -1.017369       1
+4    0.739356  0.040085 -0.293706  ... -0.883563  0.285353       1
+..        ...       ...       ...  ...       ...       ...     ...
+507 -1.371079 -0.448472  2.455614  ... -0.836368  0.570578       1
+508  1.140010 -0.836796  0.169285  ... -0.338076  1.167627       1
+509  1.632208 -2.034283  0.818088  ... -0.256977  0.896508       0
+510 -3.195565  1.571081 -0.291694  ...  0.663319 -0.701417       0
+511  0.095037 -0.527445  0.090365  ... -0.948822  0.514737       1
+
+[512 rows x 11 columns]
+SKLEARN_MODEL_SET_OPTIONS XGBClassifier {"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }
+('OPERATION_START', 'TRAINING')
+[[-0.04496161  1.2103002   0.83787066  0.0368216   0.9801959   0.28167102
+   0.77735424  0.49240956 -0.03652414  0.927011  ]
+ [-0.8999486   1.4175057   0.23409756  0.05489743  0.9185508  -0.756675
+  -0.02763553  0.20107657  1.0652769  -0.5274255 ]
+ [ 0.21023437  0.6152782  -0.23296675  2.4819782   1.2316058  -2.0273561
+  -0.7873507   0.38282165 -0.15971345  0.42975688]
+ [ 1.3723081  -0.69718254  1.0200353  -0.1598945   0.9574759   0.64849085
+   1.0359191   0.16233616 -0.03477355 -1.0173686 ]
+ [ 0.73935616  0.04008485 -0.29370642 -1.0730926  -0.6452065   0.2920823
+  -0.1579546   1.3678225  -0.8835631   0.28535333]] [0 1 0 1 1]
+('OPERATION_END_ELAPSED', 0.015, 'TRAINING')
+CONVERT_MODEL  <class 'xgboost.sklearn.XGBClassifier'>
+{
+    "learner": {
+        "generic_param": {
+            "device": "cpu",
+            "fail_on_invalid_gpu_id": "0",
+            "n_jobs": "0",
+            "nthread": "0",
+            "random_state": "1789",
+            "seed": "1789",
+            "seed_per_iteration": "0",
+            "validate_parameters": "1"
+        },
+        "gradient_booster": {
+            "gbtree_model_param": {
+                "num_parallel_tree": "1",
+                "num_trees": "5"
+            },
+            "gbtree_train_param": {
+                "process_type": "default",
+                "tree_method": "hist",
+                "updater": "grow_quantile_histmaker",
+                "updater_seq": "grow_quantile_histmaker"
+            },
+            "name": "gbtree",
+            "specified_updater": false,
+            "tree_train_param": {
+                "alpha": "0",
+                "cache_opt": "1",
+                "colsample_bylevel": "1",
+                "colsample_bynode": "1",
+                "colsample_bytree": "1",
+                "eta": "0.300000012",
+                "gamma": "0",
+                "grow_policy": "depthwise",
+                "interaction_constraints": "",
+                "lambda": "1",
+                "learning_rate": "0.300000012",
+                "max_bin": "10",
+                "max_cat_threshold": "64",
+                "max_cat_to_onehot": "4",
+                "max_delta_step": "0",
+                "max_depth": "6",
+                "max_leaves": "32",
+                "min_child_weight": "5",
+                "min_split_loss": "0",
+                "monotone_constraints": "()",
+                "refresh_leaf": "1",
+                "reg_alpha": "0",
+                "reg_lambda": "1",
+                "sampling_method": "uniform",
+                "sketch_ratio": "2",
+                "sparse_threshold": "0.20000000000000001",
+                "subsample": "1"
+            },
+            "updater": [
+                {
+                    "hist_train_param": {
+                        "debug_synchronize": "0",
+                        "max_cached_hist_node": "65536"
+                    },
+                    "name": "grow_quantile_histmaker"
+                }
+            ]
+        },
+        "learner_model_param": {
+            "base_score": "4.980469E-1",
+            "boost_from_average": "1",
+            "num_class": "0",
+            "num_feature": "10",
+            "num_target": "1"
+        },
+        "learner_train_param": {
+            "booster": "gbtree",
+            "disable_default_eval_metric": "0",
+            "multi_strategy": "one_output_per_tree",
+            "objective": "binary:logistic"
+        },
+        "metrics": [
+            {
+                "name": "logloss"
+            }
+        ],
+        "objective": {
+            "name": "binary:logistic",
+            "reg_loss_param": {
+                "scale_pos_weight": "1"
+            }
+        }
+    },
+    "version": [
+        2,
+        0,
+        3
+    ]
+}
+{'learner': {'generic_param': {'device': 'cpu', 'fail_on_invalid_gpu_id': '0', 'n_jobs': '0', 'nthread': '0', 'random_state': '1789', 'seed': '1789', 'seed_per_iteration': '0', 'validate_parameters': '1'}, 'gradient_booster': {'gbtree_model_param': {'num_parallel_tree': '1', 'num_trees': '5'}, 'gbtree_train_param': {'process_type': 'default', 'tree_method': 'hist', 'updater': 'grow_quantile_histmaker', 'updater_seq': 'grow_quantile_histmaker'}, 'name': 'gbtree', 'specified_updater': False, 'tree_train_param': {'alpha': '0', 'cache_opt': '1', 'colsample_bylevel': '1', 'colsample_bynode': '1', 'colsample_bytree': '1', 'eta': '0.300000012', 'gamma': '0', 'grow_policy': 'depthwise', 'interaction_constraints': '', 'lambda': '1', 'learning_rate': '0.300000012', 'max_bin': '10', 'max_cat_threshold': '64', 'max_cat_to_onehot': '4', 'max_delta_step': '0', 'max_depth': '6', 'max_leaves': '32', 'min_child_weight': '5', 'min_split_loss': '0', 'monotone_constraints': '()', 'refresh_leaf': '1', 'reg_alpha': '0', 'reg_lambda': '1', 'sampling_method': 'uniform', 'sketch_ratio': '2', 'sparse_threshold': '0.20000000000000001', 'subsample': '1'}, 'updater': [{'hist_train_param': {'debug_synchronize': '0', 'max_cached_hist_node': '65536'}, 'name': 'grow_quantile_histmaker'}]}, 'learner_model_param': {'base_score': '4.980469E-1', 'boost_from_average': '1', 'num_class': '0', 'num_feature': '10', 'num_target': '1'}, 'learner_train_param': {'booster': 'gbtree', 'disable_default_eval_metric': '0', 'multi_strategy': 'one_output_per_tree', 'objective': 'binary:logistic'}, 'metrics': [{'name': 'logloss'}], 'objective': {'name': 'binary:logistic', 'reg_loss_param': {'scale_pos_weight': '1'}}}, 'version': [2, 0, 3]}
+BEAUTIFIED_JSON_START
+{
+	"booster" : 	{
+		"BaseSCore" : "4.980469E-1",
+		"Tree_0" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [  ],
+				"left" : 1,
+				"parent" : null,
+				"right" : 2,
+				"sindex" : 5,
+				"svalue" : -0.00938911643
+			},
+			"Node_01" : 	{
+				"leaf_value" : [  ],
+				"left" : 3,
+				"parent" : 0,
+				"right" : 4,
+				"sindex" : 6,
+				"svalue" : -0.853996813
+			},
+			"Node_02" : 	{
+				"leaf_value" : [  ],
+				"left" : 5,
+				"parent" : 0,
+				"right" : 6,
+				"sindex" : 5,
+				"svalue" : 0.481414109
+			},
+			"Node_03" : 	{
+				"leaf_value" : [ -0.575111687 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_04" : 	{
+				"leaf_value" : [  ],
+				"left" : 7,
+				"parent" : 1,
+				"right" : 8,
+				"sindex" : 4,
+				"svalue" : 1.02258575
+			},
+			"Node_05" : 	{
+				"leaf_value" : [  ],
+				"left" : 9,
+				"parent" : 2,
+				"right" : 10,
+				"sindex" : 8,
+				"svalue" : -0.322155446
+			},
+			"Node_06" : 	{
+				"leaf_value" : [  ],
+				"left" : 11,
+				"parent" : 2,
+				"right" : 12,
+				"sindex" : 5,
+				"svalue" : 0.88763237
+			},
+			"Node_07" : 	{
+				"leaf_value" : [  ],
+				"left" : 13,
+				"parent" : 4,
+				"right" : 14,
+				"sindex" : 3,
+				"svalue" : 0.0379653536
+			},
+			"Node_08" : 	{
+				"leaf_value" : [ -0.549851537 ],
+				"left" : null,
+				"parent" : 4,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_09" : 	{
+				"leaf_value" : [ 0.259155184 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_10" : 	{
+				"leaf_value" : [ -0.0379692689 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_11" : 	{
+				"leaf_value" : [  ],
+				"left" : 15,
+				"parent" : 6,
+				"right" : 16,
+				"sindex" : 4,
+				"svalue" : 0.890802503
+			},
+			"Node_12" : 	{
+				"leaf_value" : [ 0.541915476 ],
+				"left" : null,
+				"parent" : 6,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_13" : 	{
+				"leaf_value" : [  ],
+				"left" : 17,
+				"parent" : 7,
+				"right" : 18,
+				"sindex" : 9,
+				"svalue" : 0.244524002
+			},
+			"Node_14" : 	{
+				"leaf_value" : [  ],
+				"left" : 19,
+				"parent" : 7,
+				"right" : 20,
+				"sindex" : 7,
+				"svalue" : -0.18560423
+			},
+			"Node_15" : 	{
+				"leaf_value" : [ 0.169970915 ],
+				"left" : null,
+				"parent" : 11,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_16" : 	{
+				"leaf_value" : [ 0.48591873 ],
+				"left" : null,
+				"parent" : 11,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_17" : 	{
+				"leaf_value" : [ -0.397922099 ],
+				"left" : null,
+				"parent" : 13,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_18" : 	{
+				"leaf_value" : [ -0.182634592 ],
+				"left" : null,
+				"parent" : 13,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_19" : 	{
+				"leaf_value" : [ -0.184188858 ],
+				"left" : null,
+				"parent" : 14,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_20" : 	{
+				"leaf_value" : [ 0.0354171321 ],
+				"left" : null,
+				"parent" : 14,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_1" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [  ],
+				"left" : 1,
+				"parent" : null,
+				"right" : 2,
+				"sindex" : 5,
+				"svalue" : -0.00938911643
+			},
+			"Node_01" : 	{
+				"leaf_value" : [  ],
+				"left" : 3,
+				"parent" : 0,
+				"right" : 4,
+				"sindex" : 2,
+				"svalue" : -0.642895162
+			},
+			"Node_02" : 	{
+				"leaf_value" : [  ],
+				"left" : 5,
+				"parent" : 0,
+				"right" : 6,
+				"sindex" : 5,
+				"svalue" : 0.481414109
+			},
+			"Node_03" : 	{
+				"leaf_value" : [ -0.456517786 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_04" : 	{
+				"leaf_value" : [  ],
+				"left" : 7,
+				"parent" : 1,
+				"right" : 8,
+				"sindex" : 4,
+				"svalue" : 0.396462888
+			},
+			"Node_05" : 	{
+				"leaf_value" : [  ],
+				"left" : 9,
+				"parent" : 2,
+				"right" : 10,
+				"sindex" : 4,
+				"svalue" : 0.890802503
+			},
+			"Node_06" : 	{
+				"leaf_value" : [  ],
+				"left" : 11,
+				"parent" : 2,
+				"right" : 12,
+				"sindex" : 4,
+				"svalue" : 0.890802503
+			},
+			"Node_07" : 	{
+				"leaf_value" : [  ],
+				"left" : 13,
+				"parent" : 4,
+				"right" : 14,
+				"sindex" : 3,
+				"svalue" : 0.271415561
+			},
+			"Node_08" : 	{
+				"leaf_value" : [  ],
+				"left" : 15,
+				"parent" : 4,
+				"right" : 16,
+				"sindex" : 4,
+				"svalue" : 1.02258575
+			},
+			"Node_09" : 	{
+				"leaf_value" : [ -0.0386133268 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_10" : 	{
+				"leaf_value" : [ 0.234744802 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_11" : 	{
+				"leaf_value" : [  ],
+				"left" : 17,
+				"parent" : 6,
+				"right" : 18,
+				"sindex" : 5,
+				"svalue" : 0.88763237
+			},
+			"Node_12" : 	{
+				"leaf_value" : [ 0.448022217 ],
+				"left" : null,
+				"parent" : 6,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_13" : 	{
+				"leaf_value" : [ -0.202638268 ],
+				"left" : null,
+				"parent" : 7,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_14" : 	{
+				"leaf_value" : [ 0.175592408 ],
+				"left" : null,
+				"parent" : 7,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_15" : 	{
+				"leaf_value" : [  ],
+				"left" : 19,
+				"parent" : 8,
+				"right" : 20,
+				"sindex" : 4,
+				"svalue" : 0.890802503
+			},
+			"Node_16" : 	{
+				"leaf_value" : [ -0.435103238 ],
+				"left" : null,
+				"parent" : 8,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_17" : 	{
+				"leaf_value" : [ 0.127928749 ],
+				"left" : null,
+				"parent" : 11,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_18" : 	{
+				"leaf_value" : [  ],
+				"left" : 21,
+				"parent" : 11,
+				"right" : 22,
+				"sindex" : 1,
+				"svalue" : -0.560561836
+			},
+			"Node_19" : 	{
+				"leaf_value" : [ -0.365229249 ],
+				"left" : null,
+				"parent" : 15,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_20" : 	{
+				"leaf_value" : [ 0.0124777332 ],
+				"left" : null,
+				"parent" : 15,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_21" : 	{
+				"leaf_value" : [ 0.212303475 ],
+				"left" : null,
+				"parent" : 18,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_22" : 	{
+				"leaf_value" : [ 0.396641821 ],
+				"left" : null,
+				"parent" : 18,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_2" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [  ],
+				"left" : 1,
+				"parent" : null,
+				"right" : 2,
+				"sindex" : 5,
+				"svalue" : -0.00938911643
+			},
+			"Node_01" : 	{
+				"leaf_value" : [  ],
+				"left" : 3,
+				"parent" : 0,
+				"right" : 4,
+				"sindex" : 2,
+				"svalue" : -0.642895162
+			},
+			"Node_02" : 	{
+				"leaf_value" : [  ],
+				"left" : 5,
+				"parent" : 0,
+				"right" : 6,
+				"sindex" : 5,
+				"svalue" : 0.481414109
+			},
+			"Node_03" : 	{
+				"leaf_value" : [ -0.392085701 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_04" : 	{
+				"leaf_value" : [  ],
+				"left" : 7,
+				"parent" : 1,
+				"right" : 8,
+				"sindex" : 4,
+				"svalue" : 0.970699012
+			},
+			"Node_05" : 	{
+				"leaf_value" : [  ],
+				"left" : 9,
+				"parent" : 2,
+				"right" : 10,
+				"sindex" : 8,
+				"svalue" : -0.322155446
+			},
+			"Node_06" : 	{
+				"leaf_value" : [  ],
+				"left" : 11,
+				"parent" : 2,
+				"right" : 12,
+				"sindex" : 4,
+				"svalue" : 0.890802503
+			},
+			"Node_07" : 	{
+				"leaf_value" : [  ],
+				"left" : 13,
+				"parent" : 4,
+				"right" : 14,
+				"sindex" : 5,
+				"svalue" : -0.902167201
+			},
+			"Node_08" : 	{
+				"leaf_value" : [ -0.364325285 ],
+				"left" : null,
+				"parent" : 4,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_09" : 	{
+				"leaf_value" : [ 0.17366448 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_10" : 	{
+				"leaf_value" : [ -0.0427746177 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_11" : 	{
+				"leaf_value" : [  ],
+				"left" : 15,
+				"parent" : 6,
+				"right" : 16,
+				"sindex" : 5,
+				"svalue" : 0.88763237
+			},
+			"Node_12" : 	{
+				"leaf_value" : [ 0.381516784 ],
+				"left" : null,
+				"parent" : 6,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_13" : 	{
+				"leaf_value" : [  ],
+				"left" : 17,
+				"parent" : 7,
+				"right" : 18,
+				"sindex" : 0,
+				"svalue" : -0.0323684327
+			},
+			"Node_14" : 	{
+				"leaf_value" : [  ],
+				"left" : 19,
+				"parent" : 7,
+				"right" : 20,
+				"sindex" : 8,
+				"svalue" : 0.34673515
+			},
+			"Node_15" : 	{
+				"leaf_value" : [ 0.0970984772 ],
+				"left" : null,
+				"parent" : 11,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_16" : 	{
+				"leaf_value" : [  ],
+				"left" : 21,
+				"parent" : 11,
+				"right" : 22,
+				"sindex" : 1,
+				"svalue" : -0.560561836
+			},
+			"Node_17" : 	{
+				"leaf_value" : [ -0.287667513 ],
+				"left" : null,
+				"parent" : 13,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_18" : 	{
+				"leaf_value" : [ -0.0743249729 ],
+				"left" : null,
+				"parent" : 13,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_19" : 	{
+				"leaf_value" : [ -0.0910665616 ],
+				"left" : null,
+				"parent" : 14,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_20" : 	{
+				"leaf_value" : [ 0.130509764 ],
+				"left" : null,
+				"parent" : 14,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_21" : 	{
+				"leaf_value" : [ 0.169336751 ],
+				"left" : null,
+				"parent" : 16,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_22" : 	{
+				"leaf_value" : [ 0.333079875 ],
+				"left" : null,
+				"parent" : 16,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_3" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [  ],
+				"left" : 1,
+				"parent" : null,
+				"right" : 2,
+				"sindex" : 5,
+				"svalue" : -0.00938911643
+			},
+			"Node_01" : 	{
+				"leaf_value" : [  ],
+				"left" : 3,
+				"parent" : 0,
+				"right" : 4,
+				"sindex" : 6,
+				"svalue" : -0.853996813
+			},
+			"Node_02" : 	{
+				"leaf_value" : [  ],
+				"left" : 5,
+				"parent" : 0,
+				"right" : 6,
+				"sindex" : 5,
+				"svalue" : 0.481414109
+			},
+			"Node_03" : 	{
+				"leaf_value" : [ -0.354970962 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_04" : 	{
+				"leaf_value" : [  ],
+				"left" : 7,
+				"parent" : 1,
+				"right" : 8,
+				"sindex" : 4,
+				"svalue" : 1.02258575
+			},
+			"Node_05" : 	{
+				"leaf_value" : [  ],
+				"left" : 9,
+				"parent" : 2,
+				"right" : 10,
+				"sindex" : 7,
+				"svalue" : 0.0558695644
+			},
+			"Node_06" : 	{
+				"leaf_value" : [  ],
+				"left" : 11,
+				"parent" : 2,
+				"right" : 12,
+				"sindex" : 4,
+				"svalue" : 0.970699012
+			},
+			"Node_07" : 	{
+				"leaf_value" : [  ],
+				"left" : 13,
+				"parent" : 4,
+				"right" : 14,
+				"sindex" : 6,
+				"svalue" : -0.205763265
+			},
+			"Node_08" : 	{
+				"leaf_value" : [ -0.332786143 ],
+				"left" : null,
+				"parent" : 4,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_09" : 	{
+				"leaf_value" : [ -0.0544551089 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_10" : 	{
+				"leaf_value" : [ 0.140030175 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_11" : 	{
+				"leaf_value" : [  ],
+				"left" : 15,
+				"parent" : 6,
+				"right" : 16,
+				"sindex" : 4,
+				"svalue" : -0.805336952
+			},
+			"Node_12" : 	{
+				"leaf_value" : [ 0.352591902 ],
+				"left" : null,
+				"parent" : 6,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_13" : 	{
+				"leaf_value" : [  ],
+				"left" : 17,
+				"parent" : 7,
+				"right" : 18,
+				"sindex" : 1,
+				"svalue" : -0.0298718084
+			},
+			"Node_14" : 	{
+				"leaf_value" : [ 0.0459444635 ],
+				"left" : null,
+				"parent" : 7,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_15" : 	{
+				"leaf_value" : [  ],
+				"left" : 19,
+				"parent" : 11,
+				"right" : 20,
+				"sindex" : 3,
+				"svalue" : -0.450056911
+			},
+			"Node_16" : 	{
+				"leaf_value" : [ 0.011117206 ],
+				"left" : null,
+				"parent" : 11,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_17" : 	{
+				"leaf_value" : [ -0.254341573 ],
+				"left" : null,
+				"parent" : 13,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_18" : 	{
+				"leaf_value" : [ -0.0368765891 ],
+				"left" : null,
+				"parent" : 13,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_19" : 	{
+				"leaf_value" : [ 0.173745394 ],
+				"left" : null,
+				"parent" : 15,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_20" : 	{
+				"leaf_value" : [ 0.329175353 ],
+				"left" : null,
+				"parent" : 15,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		},
+		"Tree_4" : 	{
+			"Node_00" : 	{
+				"leaf_value" : [  ],
+				"left" : 1,
+				"parent" : null,
+				"right" : 2,
+				"sindex" : 5,
+				"svalue" : -0.00938911643
+			},
+			"Node_01" : 	{
+				"leaf_value" : [  ],
+				"left" : 3,
+				"parent" : 0,
+				"right" : 4,
+				"sindex" : 2,
+				"svalue" : -0.642895162
+			},
+			"Node_02" : 	{
+				"leaf_value" : [  ],
+				"left" : 5,
+				"parent" : 0,
+				"right" : 6,
+				"sindex" : 5,
+				"svalue" : 0.88763237
+			},
+			"Node_03" : 	{
+				"leaf_value" : [ -0.330669641 ],
+				"left" : null,
+				"parent" : 1,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_04" : 	{
+				"leaf_value" : [  ],
+				"left" : 7,
+				"parent" : 1,
+				"right" : 8,
+				"sindex" : 4,
+				"svalue" : 0.396462888
+			},
+			"Node_05" : 	{
+				"leaf_value" : [  ],
+				"left" : 9,
+				"parent" : 2,
+				"right" : 10,
+				"sindex" : 4,
+				"svalue" : 0.890802503
+			},
+			"Node_06" : 	{
+				"leaf_value" : [  ],
+				"left" : 11,
+				"parent" : 2,
+				"right" : 12,
+				"sindex" : 1,
+				"svalue" : -0.863473296
+			},
+			"Node_07" : 	{
+				"leaf_value" : [  ],
+				"left" : 13,
+				"parent" : 4,
+				"right" : 14,
+				"sindex" : 2,
+				"svalue" : -0.349473655
+			},
+			"Node_08" : 	{
+				"leaf_value" : [  ],
+				"left" : 15,
+				"parent" : 4,
+				"right" : 16,
+				"sindex" : 6,
+				"svalue" : -0.205763265
+			},
+			"Node_09" : 	{
+				"leaf_value" : [  ],
+				"left" : 17,
+				"parent" : 5,
+				"right" : 18,
+				"sindex" : 7,
+				"svalue" : 0.0558695644
+			},
+			"Node_10" : 	{
+				"leaf_value" : [ 0.213402763 ],
+				"left" : null,
+				"parent" : 5,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_11" : 	{
+				"leaf_value" : [ 0.142675489 ],
+				"left" : null,
+				"parent" : 6,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_12" : 	{
+				"leaf_value" : [ 0.30752328 ],
+				"left" : null,
+				"parent" : 6,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_13" : 	{
+				"leaf_value" : [ -0.0249380022 ],
+				"left" : null,
+				"parent" : 7,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_14" : 	{
+				"leaf_value" : [ 0.0946035385 ],
+				"left" : null,
+				"parent" : 7,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_15" : 	{
+				"leaf_value" : [ -0.275552511 ],
+				"left" : null,
+				"parent" : 8,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_16" : 	{
+				"leaf_value" : [ -0.0939676762 ],
+				"left" : null,
+				"parent" : 8,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_17" : 	{
+				"leaf_value" : [ -0.17014958 ],
+				"left" : null,
+				"parent" : 9,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			},
+			"Node_18" : 	{
+				"leaf_value" : [ 0.117205746 ],
+				"left" : null,
+				"parent" : 9,
+				"right" : null,
+				"sindex" : 0,
+				"svalue" : 0
+			}
+		}
+	},
+	"classes" : [ 0, 1 ],
+	"metadata" :  { "model" : "xgboost.sklearn.XGBClassifier", "version" : "1.4.1.post1" },
+	"options" :  { "alpha" : "0", "base_score" : "4.980469E-1", "boost_from_average" : "1", "booster" : "gbtree", "cache_opt" : "1", "colsample_bylevel" : "1", "colsample_bynode" : "1", "colsample_bytree" : "1", "device" : "cpu", "disable_default_eval_metric" : "0", "eta" : "0.300000012", "fail_on_invalid_gpu_id" : "0", "gamma" : "0", "grow_policy" : "depthwise", "hist_train_param" : "name", "interaction_constraints" : "", "lambda" : "1", "learning_rate" : "0.300000012", "max_bin" : "10", "max_cat_threshold" : "64", "max_cat_to_onehot" : "4", "max_delta_step" : "0", "max_depth" : "6", "max_leaves" : "32", "min_child_weight" : "5", "min_split_loss" : "0", "monotone_constraints" : "()", "multi_strategy" : "one_output_per_tree", "n_jobs" : "0", "name" : "binary:logistic", "nthread" : "0", "num_class" : "0", "num_feature" : "10", "num_parallel_tree" : "1", "num_target" : "1", "num_trees" : "5", "objective" : "binary:logistic", "process_type" : "default", "random_state" : "1789", "refresh_leaf" : "1", "reg_alpha" : "0", "reg_lambda" : "1", "reg_loss_param" : { "scale_pos_weight" : "1" }, "sampling_method" : "uniform", "seed" : "1789", "seed_per_iteration" : "0", "sketch_ratio" : "2", "sparse_threshold" : "0.20000000000000001", "subsample" : "1", "tree_method" : "hist", "updater" : "grow_quantile_histmaker", "updater_seq" : "grow_quantile_histmaker", "validate_parameters" : "1" }
+}
+BEAUTIFIED_JSON_END
+('OPERATION_START', 'PREDICT')
+('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+[[0.3776 0.6224]
+ [0.4694 0.5306]
+ [0.8771 0.1229]
+ ...
+ [0.8562 0.1438]
+ [0.8821 0.1179]
+ [0.1487 0.8513]]
+(512, 2)
+(512,) float32
+MODEL_PERFS {'class_name': 'xgboost.sklearn.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'BinaryClass_10_medium', 'size': 512, 'accuracy': 0.88671875, 'auc': 0.9668802929732204}
+WRITING_PERF_CODE 'logs/auto_tests/classification/XGBClassifier/xgboost.sklearn.XGBClassifier_BinaryClass_10_medium_option_1.perf'
+
+MODEL_PERFS_TIMINGS {'class_name': 'xgboost.sklearn.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'BinaryClass_10_medium', 'training_time_in_sec': 0.015, 'prediction_time_in_sec': 0.001}
