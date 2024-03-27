@@ -1,0 +1,860 @@
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup_0" AS 
+ (SELECT
+    t."index" AS "index",
+    COALESCE( t1."Leaf_6", t1."Leaf_9", t1."Leaf_11", t1."Leaf_15", t1."Leaf_16", t1."Leaf_17", t1."Leaf_18", t1."Leaf_19", t1."Leaf_20", t1."Leaf_23", t1."Leaf_24", t1."Leaf_25", t1."Leaf_26", t1."Leaf_31", t1."Leaf_34", t1."Leaf_37", t1."Leaf_38", t1."Leaf_39", t1."Leaf_40", t1."Leaf_45", t1."Leaf_47", t1."Leaf_48", t1."Leaf_49", t1."Leaf_50", t1."Leaf_53", t1."Leaf_54", t1."Leaf_55", t1."Leaf_56", t1."Leaf_57", t1."Leaf_59", t1."Leaf_60" ) AS node_id
+  FROM
+    model_input t
+    LEFT OUTER JOIN
+   (SELECT
+      t."index" AS "index",
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" <= 4.500000) AND (t."X_7" > 7.500000)) THEN 6 ELSE NULL END AS Leaf_6,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" > 4.500000) AND (t."X_5" <= 1.500000)) THEN 9 ELSE NULL END AS Leaf_9,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" > 4.500000) AND (t."X_5" > 1.500000) AND (t."X_5" <= 2.500000)) THEN 11 ELSE NULL END AS Leaf_11,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" > 4.500000) AND (t."X_5" > 1.500000) AND (t."X_5" > 2.500000) AND (t."X_7" <= 4.500000) AND (t."X_4" <= 1.500000)) THEN 15 ELSE NULL END AS Leaf_15,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" > 4.500000) AND (t."X_5" > 1.500000) AND (t."X_5" > 2.500000) AND (t."X_7" <= 4.500000) AND (t."X_4" > 1.500000)) THEN 16 ELSE NULL END AS Leaf_16,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" > 4.500000) AND (t."X_5" > 1.500000) AND (t."X_5" > 2.500000) AND (t."X_7" > 4.500000) AND (t."X_7" <= 6.500000)) THEN 17 ELSE NULL END AS Leaf_17,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" > 4.500000) AND (t."X_5" > 1.500000) AND (t."X_5" > 2.500000) AND (t."X_7" > 4.500000) AND (t."X_7" > 6.500000)) THEN 18 ELSE NULL END AS Leaf_18,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" <= 4.500000) AND (t."X_7" <= 7.500000) AND (t."X_9" <= 1.500000) AND (t."X_2" <= 3.500000)) THEN 19 ELSE NULL END AS Leaf_19,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" <= 4.500000) AND (t."X_7" <= 7.500000) AND (t."X_9" <= 1.500000) AND (t."X_2" > 3.500000)) THEN 20 ELSE NULL END AS Leaf_20,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" <= 4.500000) AND (t."X_7" <= 7.500000) AND (t."X_9" > 1.500000) AND (t."X_7" <= 3.500000) AND (t."X_4" <= 1.500000)) THEN 23 ELSE NULL END AS Leaf_23,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" <= 4.500000) AND (t."X_7" <= 7.500000) AND (t."X_9" > 1.500000) AND (t."X_7" <= 3.500000) AND (t."X_4" > 1.500000)) THEN 24 ELSE NULL END AS Leaf_24,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" <= 4.500000) AND (t."X_7" <= 7.500000) AND (t."X_9" > 1.500000) AND (t."X_7" > 3.500000) AND (t."X_8" <= 2.500000)) THEN 25 ELSE NULL END AS Leaf_25,
+      CASE WHEN((t."X_4" <= 3.500000) AND (t."X_8" <= 4.500000) AND (t."X_7" <= 7.500000) AND (t."X_9" > 1.500000) AND (t."X_7" > 3.500000) AND (t."X_8" > 2.500000)) THEN 26 ELSE NULL END AS Leaf_26,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" > 6.500000) AND (t."X_7" > 5.500000) AND (t."X_8" <= 3.500000)) THEN 31 ELSE NULL END AS Leaf_31,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" > 6.500000) AND (t."X_7" <= 5.500000) AND (t."X_2" > 7.500000)) THEN 34 ELSE NULL END AS Leaf_34,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" > 6.500000) AND (t."X_7" <= 5.500000) AND (t."X_2" <= 7.500000) AND (t."X_8" <= 1.500000) AND (t."X_5" <= 3.500000)) THEN 37 ELSE NULL END AS Leaf_37,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" > 6.500000) AND (t."X_7" <= 5.500000) AND (t."X_2" <= 7.500000) AND (t."X_8" <= 1.500000) AND (t."X_5" > 3.500000)) THEN 38 ELSE NULL END AS Leaf_38,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" > 6.500000) AND (t."X_7" <= 5.500000) AND (t."X_2" <= 7.500000) AND (t."X_8" > 1.500000) AND (t."X_8" <= 5.500000)) THEN 39 ELSE NULL END AS Leaf_39,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" > 6.500000) AND (t."X_7" <= 5.500000) AND (t."X_2" <= 7.500000) AND (t."X_8" > 1.500000) AND (t."X_8" > 5.500000)) THEN 40 ELSE NULL END AS Leaf_40,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" <= 6.500000) AND (t."X_2" > 1.500000) AND (t."X_7" > 5.500000) AND (t."X_8" <= 4.500000)) THEN 45 ELSE NULL END AS Leaf_45,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" <= 6.500000) AND (t."X_2" <= 1.500000) AND (t."X_5" <= 3.500000)) THEN 47 ELSE NULL END AS Leaf_47,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" <= 6.500000) AND (t."X_2" <= 1.500000) AND (t."X_5" > 3.500000)) THEN 48 ELSE NULL END AS Leaf_48,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" <= 6.500000) AND (t."X_2" > 1.500000) AND (t."X_7" > 5.500000) AND (t."X_8" > 4.500000) AND (t."X_4" <= 4.500000)) THEN 49 ELSE NULL END AS Leaf_49,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" <= 6.500000) AND (t."X_2" > 1.500000) AND (t."X_7" > 5.500000) AND (t."X_8" > 4.500000) AND (t."X_4" > 4.500000)) THEN 50 ELSE NULL END AS Leaf_50,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" <= 6.500000) AND (t."X_2" > 1.500000) AND (t."X_7" <= 5.500000) AND (t."X_5" <= 5.500000) AND (t."X_8" <= 7.500000)) THEN 53 ELSE NULL END AS Leaf_53,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" <= 6.500000) AND (t."X_2" > 1.500000) AND (t."X_7" <= 5.500000) AND (t."X_5" <= 5.500000) AND (t."X_8" > 7.500000)) THEN 54 ELSE NULL END AS Leaf_54,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" <= 6.500000) AND (t."X_2" > 1.500000) AND (t."X_7" <= 5.500000) AND (t."X_5" > 5.500000) AND (t."X_4" <= 4.500000)) THEN 55 ELSE NULL END AS Leaf_55,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" <= 6.500000) AND (t."X_2" > 1.500000) AND (t."X_7" <= 5.500000) AND (t."X_5" > 5.500000) AND (t."X_4" > 4.500000)) THEN 56 ELSE NULL END AS Leaf_56,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" > 6.500000) AND (t."X_7" > 5.500000) AND (t."X_8" > 3.500000) AND (t."X_5" <= 3.500000)) THEN 57 ELSE NULL END AS Leaf_57,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" > 6.500000) AND (t."X_7" > 5.500000) AND (t."X_8" > 3.500000) AND (t."X_5" > 3.500000) AND (t."X_8" <= 6.500000)) THEN 59 ELSE NULL END AS Leaf_59,
+      CASE WHEN((t."X_4" > 3.500000) AND (t."X_4" > 6.500000) AND (t."X_7" > 5.500000) AND (t."X_8" > 3.500000) AND (t."X_5" > 3.500000) AND (t."X_8" > 6.500000)) THEN 60 ELSE NULL END AS Leaf_60
+    FROM model_input t
+    ) AS t1
+    ON(t."index" == t1."index")
+ ),
+"DT_node_data_0" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."P_0" AS "P_0", "Values"."P_1" AS "P_1", "Values"."P_2" AS "P_2", "Values"."P_3" AS "P_3", 
+    "Values"."D" AS "D",
+    "Values"."DP" AS "DP"
+  FROM (
+    SELECT 0 AS nid,  0.234375 AS "P_0", 0.250000 AS "P_1", 0.262695 AS "P_2", 0.252930 AS "P_3", 2 AS "D", 0.262695 AS "DP"
+    UNION ALL
+    SELECT 1 AS nid,  0.281553 AS "P_0", 0.216019 AS "P_1", 0.300971 AS "P_2", 0.201456 AS "P_3", 2 AS "D", 0.300971 AS "DP"
+    UNION ALL
+    SELECT 2 AS nid,  0.202614 AS "P_0", 0.272876 AS "P_1", 0.236928 AS "P_2", 0.287582 AS "P_3", 3 AS "D", 0.287582 AS "DP"
+    UNION ALL
+    SELECT 3 AS nid,  0.285714 AS "P_0", 0.033333 AS "P_1", 0.490476 AS "P_2", 0.190476 AS "P_3", 2 AS "D", 0.490476 AS "DP"
+    UNION ALL
+    SELECT 4 AS nid,  0.277228 AS "P_0", 0.405941 AS "P_1", 0.103960 AS "P_2", 0.212871 AS "P_3", 1 AS "D", 0.405941 AS "DP"
+    UNION ALL
+    SELECT 5 AS nid,  0.314286 AS "P_0", 0.028571 AS "P_1", 0.434286 AS "P_2", 0.222857 AS "P_3", 2 AS "D", 0.434286 AS "DP"
+    UNION ALL
+    SELECT 6 AS nid,  0.142857 AS "P_0", 0.057143 AS "P_1", 0.771429 AS "P_2", 0.028571 AS "P_3", 2 AS "D", 0.771429 AS "DP"
+    UNION ALL
+    SELECT 7 AS nid,  0.195652 AS "P_0", 0.021739 AS "P_1", 0.608696 AS "P_2", 0.173913 AS "P_3", 2 AS "D", 0.608696 AS "DP"
+    UNION ALL
+    SELECT 8 AS nid,  0.356589 AS "P_0", 0.031008 AS "P_1", 0.372093 AS "P_2", 0.240310 AS "P_3", 2 AS "D", 0.372093 AS "DP"
+    UNION ALL
+    SELECT 9 AS nid,  0.166667 AS "P_0", 0.633333 AS "P_1", 0.033333 AS "P_2", 0.166667 AS "P_3", 1 AS "D", 0.633333 AS "DP"
+    UNION ALL
+    SELECT 10 AS nid,  0.296512 AS "P_0", 0.366279 AS "P_1", 0.116279 AS "P_2", 0.220930 AS "P_3", 1 AS "D", 0.366279 AS "DP"
+    UNION ALL
+    SELECT 11 AS nid,  0.560000 AS "P_0", 0.240000 AS "P_1", 0.080000 AS "P_2", 0.120000 AS "P_3", 0 AS "D", 0.560000 AS "DP"
+    UNION ALL
+    SELECT 12 AS nid,  0.251701 AS "P_0", 0.387755 AS "P_1", 0.122449 AS "P_2", 0.238095 AS "P_3", 1 AS "D", 0.387755 AS "DP"
+    UNION ALL
+    SELECT 13 AS nid,  0.376623 AS "P_0", 0.090909 AS "P_1", 0.142857 AS "P_2", 0.389610 AS "P_3", 3 AS "D", 0.389610 AS "DP"
+    UNION ALL
+    SELECT 14 AS nid,  0.114286 AS "P_0", 0.714286 AS "P_1", 0.100000 AS "P_2", 0.071429 AS "P_3", 1 AS "D", 0.714286 AS "DP"
+    UNION ALL
+    SELECT 15 AS nid,  0.268293 AS "P_0", 0.024390 AS "P_1", 0.146341 AS "P_2", 0.560976 AS "P_3", 3 AS "D", 0.560976 AS "DP"
+    UNION ALL
+    SELECT 16 AS nid,  0.500000 AS "P_0", 0.166667 AS "P_1", 0.138889 AS "P_2", 0.194444 AS "P_3", 0 AS "D", 0.500000 AS "DP"
+    UNION ALL
+    SELECT 17 AS nid,  0.103448 AS "P_0", 0.551724 AS "P_1", 0.172414 AS "P_2", 0.172414 AS "P_3", 1 AS "D", 0.551724 AS "DP"
+    UNION ALL
+    SELECT 18 AS nid,  0.121951 AS "P_0", 0.829268 AS "P_1", 0.048780 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.829268 AS "DP"
+    UNION ALL
+    SELECT 19 AS nid,  0.208333 AS "P_0", 0.000000 AS "P_1", 0.541667 AS "P_2", 0.250000 AS "P_3", 2 AS "D", 0.541667 AS "DP"
+    UNION ALL
+    SELECT 20 AS nid,  0.181818 AS "P_0", 0.045455 AS "P_1", 0.681818 AS "P_2", 0.090909 AS "P_3", 2 AS "D", 0.681818 AS "DP"
+    UNION ALL
+    SELECT 21 AS nid,  0.366667 AS "P_0", 0.016667 AS "P_1", 0.300000 AS "P_2", 0.316667 AS "P_3", 0 AS "D", 0.366667 AS "DP"
+    UNION ALL
+    SELECT 22 AS nid,  0.347826 AS "P_0", 0.043478 AS "P_1", 0.434783 AS "P_2", 0.173913 AS "P_3", 2 AS "D", 0.434783 AS "DP"
+    UNION ALL
+    SELECT 23 AS nid,  0.173913 AS "P_0", 0.043478 AS "P_1", 0.391304 AS "P_2", 0.391304 AS "P_3", 2 AS "D", 0.391304 AS "DP"
+    UNION ALL
+    SELECT 24 AS nid,  0.486486 AS "P_0", 0.000000 AS "P_1", 0.243243 AS "P_2", 0.270270 AS "P_3", 0 AS "D", 0.486486 AS "DP"
+    UNION ALL
+    SELECT 25 AS nid,  0.270270 AS "P_0", 0.000000 AS "P_1", 0.486486 AS "P_2", 0.243243 AS "P_3", 2 AS "D", 0.486486 AS "DP"
+    UNION ALL
+    SELECT 26 AS nid,  0.437500 AS "P_0", 0.093750 AS "P_1", 0.375000 AS "P_2", 0.093750 AS "P_3", 0 AS "D", 0.437500 AS "DP"
+    UNION ALL
+    SELECT 27 AS nid,  0.190323 AS "P_0", 0.319355 AS "P_1", 0.251613 AS "P_2", 0.238710 AS "P_3", 1 AS "D", 0.319355 AS "DP"
+    UNION ALL
+    SELECT 28 AS nid,  0.215232 AS "P_0", 0.225166 AS "P_1", 0.221854 AS "P_2", 0.337748 AS "P_3", 3 AS "D", 0.337748 AS "DP"
+    UNION ALL
+    SELECT 29 AS nid,  0.313830 AS "P_0", 0.042553 AS "P_1", 0.159574 AS "P_2", 0.484043 AS "P_3", 3 AS "D", 0.484043 AS "DP"
+    UNION ALL
+    SELECT 30 AS nid,  0.052632 AS "P_0", 0.526316 AS "P_1", 0.324561 AS "P_2", 0.096491 AS "P_3", 1 AS "D", 0.526316 AS "DP"
+    UNION ALL
+    SELECT 31 AS nid,  0.000000 AS "P_0", 0.176471 AS "P_1", 0.529412 AS "P_2", 0.294118 AS "P_3", 2 AS "D", 0.529412 AS "DP"
+    UNION ALL
+    SELECT 32 AS nid,  0.075000 AS "P_0", 0.675000 AS "P_1", 0.237500 AS "P_2", 0.012500 AS "P_3", 1 AS "D", 0.675000 AS "DP"
+    UNION ALL
+    SELECT 33 AS nid,  0.280255 AS "P_0", 0.038217 AS "P_1", 0.152866 AS "P_2", 0.528662 AS "P_3", 3 AS "D", 0.528662 AS "DP"
+    UNION ALL
+    SELECT 34 AS nid,  0.483871 AS "P_0", 0.064516 AS "P_1", 0.193548 AS "P_2", 0.258065 AS "P_3", 0 AS "D", 0.483871 AS "DP"
+    UNION ALL
+    SELECT 35 AS nid,  0.275000 AS "P_0", 0.000000 AS "P_1", 0.425000 AS "P_2", 0.300000 AS "P_3", 2 AS "D", 0.425000 AS "DP"
+    UNION ALL
+    SELECT 36 AS nid,  0.282051 AS "P_0", 0.051282 AS "P_1", 0.059829 AS "P_2", 0.606838 AS "P_3", 3 AS "D", 0.606838 AS "DP"
+    UNION ALL
+    SELECT 37 AS nid,  0.300000 AS "P_0", 0.000000 AS "P_1", 0.500000 AS "P_2", 0.200000 AS "P_3", 2 AS "D", 0.500000 AS "DP"
+    UNION ALL
+    SELECT 38 AS nid,  0.250000 AS "P_0", 0.000000 AS "P_1", 0.350000 AS "P_2", 0.400000 AS "P_3", 3 AS "D", 0.400000 AS "DP"
+    UNION ALL
+    SELECT 39 AS nid,  0.270270 AS "P_0", 0.000000 AS "P_1", 0.054054 AS "P_2", 0.675676 AS "P_3", 3 AS "D", 0.675676 AS "DP"
+    UNION ALL
+    SELECT 40 AS nid,  0.302326 AS "P_0", 0.139535 AS "P_1", 0.069767 AS "P_2", 0.488372 AS "P_3", 3 AS "D", 0.488372 AS "DP"
+    UNION ALL
+    SELECT 41 AS nid,  0.121212 AS "P_0", 0.469697 AS "P_1", 0.227273 AS "P_2", 0.181818 AS "P_3", 1 AS "D", 0.469697 AS "DP"
+    UNION ALL
+    SELECT 42 AS nid,  0.209016 AS "P_0", 0.278689 AS "P_1", 0.258197 AS "P_2", 0.254098 AS "P_3", 1 AS "D", 0.278689 AS "DP"
+    UNION ALL
+    SELECT 43 AS nid,  0.305556 AS "P_0", 0.048611 AS "P_1", 0.277778 AS "P_2", 0.368056 AS "P_3", 3 AS "D", 0.368056 AS "DP"
+    UNION ALL
+    SELECT 44 AS nid,  0.070000 AS "P_0", 0.610000 AS "P_1", 0.230000 AS "P_2", 0.090000 AS "P_3", 1 AS "D", 0.610000 AS "DP"
+    UNION ALL
+    SELECT 45 AS nid,  0.081081 AS "P_0", 0.216216 AS "P_1", 0.594595 AS "P_2", 0.108108 AS "P_3", 2 AS "D", 0.594595 AS "DP"
+    UNION ALL
+    SELECT 46 AS nid,  0.063492 AS "P_0", 0.841270 AS "P_1", 0.015873 AS "P_2", 0.079365 AS "P_3", 1 AS "D", 0.841270 AS "DP"
+    UNION ALL
+    SELECT 47 AS nid,  0.193548 AS "P_0", 0.225806 AS "P_1", 0.322581 AS "P_2", 0.258065 AS "P_3", 2 AS "D", 0.322581 AS "DP"
+    UNION ALL
+    SELECT 48 AS nid,  0.057143 AS "P_0", 0.685714 AS "P_1", 0.142857 AS "P_2", 0.114286 AS "P_3", 1 AS "D", 0.685714 AS "DP"
+    UNION ALL
+    SELECT 49 AS nid,  0.150000 AS "P_0", 0.600000 AS "P_1", 0.050000 AS "P_2", 0.200000 AS "P_3", 1 AS "D", 0.600000 AS "DP"
+    UNION ALL
+    SELECT 50 AS nid,  0.023256 AS "P_0", 0.953488 AS "P_1", 0.000000 AS "P_2", 0.023256 AS "P_3", 1 AS "D", 0.953488 AS "DP"
+    UNION ALL
+    SELECT 51 AS nid,  0.424242 AS "P_0", 0.090909 AS "P_1", 0.212121 AS "P_2", 0.272727 AS "P_3", 0 AS "D", 0.424242 AS "DP"
+    UNION ALL
+    SELECT 52 AS nid,  0.205128 AS "P_0", 0.012821 AS "P_1", 0.333333 AS "P_2", 0.448718 AS "P_3", 3 AS "D", 0.448718 AS "DP"
+    UNION ALL
+    SELECT 53 AS nid,  0.384615 AS "P_0", 0.051282 AS "P_1", 0.358974 AS "P_2", 0.205128 AS "P_3", 0 AS "D", 0.384615 AS "DP"
+    UNION ALL
+    SELECT 54 AS nid,  0.481481 AS "P_0", 0.148148 AS "P_1", 0.000000 AS "P_2", 0.370370 AS "P_3", 0 AS "D", 0.481481 AS "DP"
+    UNION ALL
+    SELECT 55 AS nid,  0.321429 AS "P_0", 0.000000 AS "P_1", 0.142857 AS "P_2", 0.535714 AS "P_3", 3 AS "D", 0.535714 AS "DP"
+    UNION ALL
+    SELECT 56 AS nid,  0.140000 AS "P_0", 0.020000 AS "P_1", 0.440000 AS "P_2", 0.400000 AS "P_3", 2 AS "D", 0.440000 AS "DP"
+    UNION ALL
+    SELECT 57 AS nid,  0.151515 AS "P_0", 0.606061 AS "P_1", 0.242424 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.606061 AS "DP"
+    UNION ALL
+    SELECT 58 AS nid,  0.021277 AS "P_0", 0.723404 AS "P_1", 0.234043 AS "P_2", 0.021277 AS "P_3", 1 AS "D", 0.723404 AS "DP"
+    UNION ALL
+    SELECT 59 AS nid,  0.037037 AS "P_0", 0.555556 AS "P_1", 0.407407 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.555556 AS "DP"
+    UNION ALL
+    SELECT 60 AS nid,  0.000000 AS "P_0", 0.950000 AS "P_1", 0.000000 AS "P_2", 0.050000 AS "P_3", 1 AS "D", 0.950000 AS "DP"
+  ) AS "Values"),
+"DT_output_0" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."P_0" AS "P_0", t2."P_1" AS "P_1", t2."P_2" AS "P_2", t2."P_3" AS "P_3", 
+   t2."D" AS "D", 
+   t2."DP" AS "DP"
+  FROM
+   "DT_node_lookup_0" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_0" AS t2
+   ON t1.node_id = t2.nid
+ ),
+"DT_node_lookup_1" AS 
+ (SELECT
+    t."index" AS "index",
+    COALESCE( t1."Leaf_7", t1."Leaf_10", t1."Leaf_13", t1."Leaf_15", t1."Leaf_16", t1."Leaf_19", t1."Leaf_24", t1."Leaf_25", t1."Leaf_27", t1."Leaf_28", t1."Leaf_32", t1."Leaf_33", t1."Leaf_35", t1."Leaf_36", t1."Leaf_39", t1."Leaf_40", t1."Leaf_42", t1."Leaf_43", t1."Leaf_44", t1."Leaf_45", t1."Leaf_47", t1."Leaf_48", t1."Leaf_51", t1."Leaf_52", t1."Leaf_53", t1."Leaf_54", t1."Leaf_55", t1."Leaf_56", t1."Leaf_57", t1."Leaf_58" ) AS node_id
+  FROM
+    model_input t
+    LEFT OUTER JOIN
+   (SELECT
+      t."index" AS "index",
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" <= 5.500000) AND (t."X_7" <= 2.500000) AND (t."X_8" <= 5.500000)) THEN 7 ELSE NULL END AS Leaf_7,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" <= 5.500000) AND (t."X_7" <= 2.500000) AND (t."X_8" > 5.500000) AND (t."X_8" > 8.500000)) THEN 10 ELSE NULL END AS Leaf_10,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" <= 5.500000) AND (t."X_7" > 2.500000) AND (t."X_4" > 1.500000) AND (t."X_9" <= 1.500000)) THEN 13 ELSE NULL END AS Leaf_13,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" <= 5.500000) AND (t."X_7" > 2.500000) AND (t."X_4" > 1.500000) AND (t."X_9" > 1.500000) AND (t."X_4" <= 6.500000)) THEN 15 ELSE NULL END AS Leaf_15,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" <= 5.500000) AND (t."X_7" > 2.500000) AND (t."X_4" > 1.500000) AND (t."X_9" > 1.500000) AND (t."X_4" > 6.500000)) THEN 16 ELSE NULL END AS Leaf_16,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" > 5.500000) AND (t."X_7" > 7.500000) AND (t."X_4" <= 1.500000)) THEN 19 ELSE NULL END AS Leaf_19,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" <= 1.500000) AND (t."X_7" > 5.500000)) THEN 24 ELSE NULL END AS Leaf_24,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" <= 1.500000) AND (t."X_7" <= 5.500000) AND (t."X_9" <= 1.500000)) THEN 25 ELSE NULL END AS Leaf_25,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" <= 1.500000) AND (t."X_7" <= 5.500000) AND (t."X_9" > 1.500000) AND (t."X_8" <= 2.500000)) THEN 27 ELSE NULL END AS Leaf_27,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" <= 1.500000) AND (t."X_7" <= 5.500000) AND (t."X_9" > 1.500000) AND (t."X_8" > 2.500000)) THEN 28 ELSE NULL END AS Leaf_28,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" > 1.500000) AND (t."X_8" <= 1.500000) AND (t."X_7" > 6.500000)) THEN 32 ELSE NULL END AS Leaf_32,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" > 1.500000) AND (t."X_8" <= 1.500000) AND (t."X_7" <= 6.500000) AND (t."X_7" <= 0.500000)) THEN 33 ELSE NULL END AS Leaf_33,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" > 1.500000) AND (t."X_8" <= 1.500000) AND (t."X_7" <= 6.500000) AND (t."X_7" > 0.500000) AND (t."X_8" <= 0.500000)) THEN 35 ELSE NULL END AS Leaf_35,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" > 1.500000) AND (t."X_8" <= 1.500000) AND (t."X_7" <= 6.500000) AND (t."X_7" > 0.500000) AND (t."X_8" > 0.500000)) THEN 36 ELSE NULL END AS Leaf_36,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" > 1.500000) AND (t."X_8" > 1.500000) AND (t."X_8" > 3.500000) AND (t."X_7" <= 3.500000)) THEN 39 ELSE NULL END AS Leaf_39,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" > 1.500000) AND (t."X_8" > 1.500000) AND (t."X_8" > 3.500000) AND (t."X_7" > 3.500000)) THEN 40 ELSE NULL END AS Leaf_40,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" > 1.500000) AND (t."X_8" > 1.500000) AND (t."X_8" <= 3.500000) AND (t."X_7" > 7.500000)) THEN 42 ELSE NULL END AS Leaf_42,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" > 1.500000) AND (t."X_8" > 1.500000) AND (t."X_8" <= 3.500000) AND (t."X_7" <= 7.500000) AND (t."X_9" <= 1.500000)) THEN 43 ELSE NULL END AS Leaf_43,
+      CASE WHEN((t."X_8" <= 4.500000) AND (t."X_4" > 1.500000) AND (t."X_8" > 1.500000) AND (t."X_8" <= 3.500000) AND (t."X_7" <= 7.500000) AND (t."X_9" > 1.500000)) THEN 44 ELSE NULL END AS Leaf_44,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" > 5.500000) AND (t."X_7" <= 7.500000) AND (t."X_8" <= 5.500000)) THEN 45 ELSE NULL END AS Leaf_45,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" <= 5.500000) AND (t."X_7" <= 2.500000) AND (t."X_8" > 5.500000) AND (t."X_8" <= 8.500000) AND (t."X_4" <= 4.500000)) THEN 47 ELSE NULL END AS Leaf_47,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" <= 5.500000) AND (t."X_7" <= 2.500000) AND (t."X_8" > 5.500000) AND (t."X_8" <= 8.500000) AND (t."X_4" > 4.500000)) THEN 48 ELSE NULL END AS Leaf_48,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" > 5.500000) AND (t."X_7" <= 7.500000) AND (t."X_8" > 5.500000) AND (t."X_5" <= 3.500000) AND (t."X_0" <= 4.500000)) THEN 51 ELSE NULL END AS Leaf_51,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" > 5.500000) AND (t."X_7" <= 7.500000) AND (t."X_8" > 5.500000) AND (t."X_5" <= 3.500000) AND (t."X_0" > 4.500000)) THEN 52 ELSE NULL END AS Leaf_52,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" > 5.500000) AND (t."X_7" <= 7.500000) AND (t."X_8" > 5.500000) AND (t."X_5" > 3.500000) AND (t."X_0" <= 4.500000)) THEN 53 ELSE NULL END AS Leaf_53,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" > 5.500000) AND (t."X_7" <= 7.500000) AND (t."X_8" > 5.500000) AND (t."X_5" > 3.500000) AND (t."X_0" > 4.500000)) THEN 54 ELSE NULL END AS Leaf_54,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" <= 5.500000) AND (t."X_7" > 2.500000) AND (t."X_4" <= 1.500000) AND (t."X_9" <= 5.500000)) THEN 55 ELSE NULL END AS Leaf_55,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" <= 5.500000) AND (t."X_7" > 2.500000) AND (t."X_4" <= 1.500000) AND (t."X_9" > 5.500000)) THEN 56 ELSE NULL END AS Leaf_56,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" > 5.500000) AND (t."X_7" > 7.500000) AND (t."X_4" > 1.500000) AND (t."X_8" <= 6.500000)) THEN 57 ELSE NULL END AS Leaf_57,
+      CASE WHEN((t."X_8" > 4.500000) AND (t."X_7" > 5.500000) AND (t."X_7" > 7.500000) AND (t."X_4" > 1.500000) AND (t."X_8" > 6.500000)) THEN 58 ELSE NULL END AS Leaf_58
+    FROM model_input t
+    ) AS t1
+    ON(t."index" == t1."index")
+ ),
+"DT_node_data_1" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."P_0" AS "P_0", "Values"."P_1" AS "P_1", "Values"."P_2" AS "P_2", "Values"."P_3" AS "P_3", 
+    "Values"."D" AS "D",
+    "Values"."DP" AS "DP"
+  FROM (
+    SELECT 0 AS nid,  0.218750 AS "P_0", 0.238281 AS "P_1", 0.257812 AS "P_2", 0.285156 AS "P_3", 3 AS "D", 0.285156 AS "DP"
+    UNION ALL
+    SELECT 1 AS nid,  0.201195 AS "P_0", 0.043825 AS "P_1", 0.442231 AS "P_2", 0.312749 AS "P_3", 2 AS "D", 0.442231 AS "DP"
+    UNION ALL
+    SELECT 2 AS nid,  0.235632 AS "P_0", 0.425287 AS "P_1", 0.080460 AS "P_2", 0.258621 AS "P_3", 1 AS "D", 0.425287 AS "DP"
+    UNION ALL
+    SELECT 3 AS nid,  0.335593 AS "P_0", 0.155932 AS "P_1", 0.091525 AS "P_2", 0.416949 AS "P_3", 3 AS "D", 0.416949 AS "DP"
+    UNION ALL
+    SELECT 4 AS nid,  0.105727 AS "P_0", 0.775330 AS "P_1", 0.066079 AS "P_2", 0.052863 AS "P_3", 1 AS "D", 0.775330 AS "DP"
+    UNION ALL
+    SELECT 5 AS nid,  0.346457 AS "P_0", 0.039370 AS "P_1", 0.031496 AS "P_2", 0.582677 AS "P_3", 3 AS "D", 0.582677 AS "DP"
+    UNION ALL
+    SELECT 6 AS nid,  0.327381 AS "P_0", 0.244048 AS "P_1", 0.136905 AS "P_2", 0.291667 AS "P_3", 0 AS "D", 0.327381 AS "DP"
+    UNION ALL
+    SELECT 7 AS nid,  0.162162 AS "P_0", 0.000000 AS "P_1", 0.027027 AS "P_2", 0.810811 AS "P_3", 3 AS "D", 0.810811 AS "DP"
+    UNION ALL
+    SELECT 8 AS nid,  0.422222 AS "P_0", 0.055556 AS "P_1", 0.033333 AS "P_2", 0.488889 AS "P_3", 3 AS "D", 0.488889 AS "DP"
+    UNION ALL
+    SELECT 9 AS nid,  0.520000 AS "P_0", 0.080000 AS "P_1", 0.060000 AS "P_2", 0.340000 AS "P_3", 0 AS "D", 0.520000 AS "DP"
+    UNION ALL
+    SELECT 10 AS nid,  0.300000 AS "P_0", 0.025000 AS "P_1", 0.000000 AS "P_2", 0.675000 AS "P_3", 3 AS "D", 0.675000 AS "DP"
+    UNION ALL
+    SELECT 11 AS nid,  0.372093 AS "P_0", 0.069767 AS "P_1", 0.069767 AS "P_2", 0.488372 AS "P_3", 3 AS "D", 0.488372 AS "DP"
+    UNION ALL
+    SELECT 12 AS nid,  0.312000 AS "P_0", 0.304000 AS "P_1", 0.160000 AS "P_2", 0.224000 AS "P_3", 0 AS "D", 0.312000 AS "DP"
+    UNION ALL
+    SELECT 13 AS nid,  0.264706 AS "P_0", 0.117647 AS "P_1", 0.147059 AS "P_2", 0.470588 AS "P_3", 3 AS "D", 0.470588 AS "DP"
+    UNION ALL
+    SELECT 14 AS nid,  0.329670 AS "P_0", 0.373626 AS "P_1", 0.164835 AS "P_2", 0.131868 AS "P_3", 1 AS "D", 0.373626 AS "DP"
+    UNION ALL
+    SELECT 15 AS nid,  0.228571 AS "P_0", 0.414286 AS "P_1", 0.214286 AS "P_2", 0.142857 AS "P_3", 1 AS "D", 0.414286 AS "DP"
+    UNION ALL
+    SELECT 16 AS nid,  0.666667 AS "P_0", 0.238095 AS "P_1", 0.000000 AS "P_2", 0.095238 AS "P_3", 0 AS "D", 0.666667 AS "DP"
+    UNION ALL
+    SELECT 17 AS nid,  0.161290 AS "P_0", 0.661290 AS "P_1", 0.080645 AS "P_2", 0.096774 AS "P_3", 1 AS "D", 0.661290 AS "DP"
+    UNION ALL
+    SELECT 18 AS nid,  0.038835 AS "P_0", 0.912621 AS "P_1", 0.048544 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.912621 AS "DP"
+    UNION ALL
+    SELECT 19 AS nid,  0.200000 AS "P_0", 0.650000 AS "P_1", 0.150000 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.650000 AS "DP"
+    UNION ALL
+    SELECT 20 AS nid,  0.000000 AS "P_0", 0.975904 AS "P_1", 0.024096 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.975904 AS "DP"
+    UNION ALL
+    SELECT 21 AS nid,  0.149533 AS "P_0", 0.037383 AS "P_1", 0.644860 AS "P_2", 0.168224 AS "P_3", 2 AS "D", 0.644860 AS "DP"
+    UNION ALL
+    SELECT 22 AS nid,  0.215190 AS "P_0", 0.045570 AS "P_1", 0.387342 AS "P_2", 0.351899 AS "P_3", 2 AS "D", 0.387342 AS "DP"
+    UNION ALL
+    SELECT 23 AS nid,  0.161765 AS "P_0", 0.000000 AS "P_1", 0.573529 AS "P_2", 0.264706 AS "P_3", 2 AS "D", 0.573529 AS "DP"
+    UNION ALL
+    SELECT 24 AS nid,  0.128205 AS "P_0", 0.102564 AS "P_1", 0.769231 AS "P_2", 0.000000 AS "P_3", 2 AS "D", 0.769231 AS "DP"
+    UNION ALL
+    SELECT 25 AS nid,  0.045455 AS "P_0", 0.000000 AS "P_1", 0.772727 AS "P_2", 0.181818 AS "P_3", 2 AS "D", 0.772727 AS "DP"
+    UNION ALL
+    SELECT 26 AS nid,  0.217391 AS "P_0", 0.000000 AS "P_1", 0.478261 AS "P_2", 0.304348 AS "P_3", 2 AS "D", 0.478261 AS "DP"
+    UNION ALL
+    SELECT 27 AS nid,  0.192308 AS "P_0", 0.000000 AS "P_1", 0.615385 AS "P_2", 0.192308 AS "P_3", 2 AS "D", 0.615385 AS "DP"
+    UNION ALL
+    SELECT 28 AS nid,  0.250000 AS "P_0", 0.000000 AS "P_1", 0.300000 AS "P_2", 0.450000 AS "P_3", 3 AS "D", 0.450000 AS "DP"
+    UNION ALL
+    SELECT 29 AS nid,  0.294118 AS "P_0", 0.000000 AS "P_1", 0.483660 AS "P_2", 0.222222 AS "P_3", 2 AS "D", 0.483660 AS "DP"
+    UNION ALL
+    SELECT 30 AS nid,  0.165289 AS "P_0", 0.074380 AS "P_1", 0.326446 AS "P_2", 0.433884 AS "P_3", 3 AS "D", 0.433884 AS "DP"
+    UNION ALL
+    SELECT 31 AS nid,  0.358974 AS "P_0", 0.000000 AS "P_1", 0.367521 AS "P_2", 0.273504 AS "P_3", 2 AS "D", 0.367521 AS "DP"
+    UNION ALL
+    SELECT 32 AS nid,  0.083333 AS "P_0", 0.000000 AS "P_1", 0.861111 AS "P_2", 0.055556 AS "P_3", 2 AS "D", 0.861111 AS "DP"
+    UNION ALL
+    SELECT 33 AS nid,  0.681818 AS "P_0", 0.000000 AS "P_1", 0.181818 AS "P_2", 0.136364 AS "P_3", 0 AS "D", 0.681818 AS "DP"
+    UNION ALL
+    SELECT 34 AS nid,  0.284211 AS "P_0", 0.000000 AS "P_1", 0.410526 AS "P_2", 0.305263 AS "P_3", 2 AS "D", 0.410526 AS "DP"
+    UNION ALL
+    SELECT 35 AS nid,  0.291667 AS "P_0", 0.000000 AS "P_1", 0.583333 AS "P_2", 0.125000 AS "P_3", 2 AS "D", 0.583333 AS "DP"
+    UNION ALL
+    SELECT 36 AS nid,  0.281690 AS "P_0", 0.000000 AS "P_1", 0.352113 AS "P_2", 0.366197 AS "P_3", 3 AS "D", 0.366197 AS "DP"
+    UNION ALL
+    SELECT 37 AS nid,  0.136612 AS "P_0", 0.038251 AS "P_1", 0.377049 AS "P_2", 0.448087 AS "P_3", 3 AS "D", 0.448087 AS "DP"
+    UNION ALL
+    SELECT 38 AS nid,  0.254237 AS "P_0", 0.186441 AS "P_1", 0.169492 AS "P_2", 0.389830 AS "P_3", 3 AS "D", 0.389830 AS "DP"
+    UNION ALL
+    SELECT 39 AS nid,  0.208333 AS "P_0", 0.000000 AS "P_1", 0.083333 AS "P_2", 0.708333 AS "P_3", 3 AS "D", 0.708333 AS "DP"
+    UNION ALL
+    SELECT 40 AS nid,  0.285714 AS "P_0", 0.314286 AS "P_1", 0.228571 AS "P_2", 0.171429 AS "P_3", 1 AS "D", 0.314286 AS "DP"
+    UNION ALL
+    SELECT 41 AS nid,  0.157895 AS "P_0", 0.006579 AS "P_1", 0.315789 AS "P_2", 0.519737 AS "P_3", 3 AS "D", 0.519737 AS "DP"
+    UNION ALL
+    SELECT 42 AS nid,  0.032258 AS "P_0", 0.193548 AS "P_1", 0.677419 AS "P_2", 0.096774 AS "P_3", 2 AS "D", 0.677419 AS "DP"
+    UNION ALL
+    SELECT 43 AS nid,  0.025641 AS "P_0", 0.000000 AS "P_1", 0.256410 AS "P_2", 0.717949 AS "P_3", 3 AS "D", 0.717949 AS "DP"
+    UNION ALL
+    SELECT 44 AS nid,  0.203540 AS "P_0", 0.008850 AS "P_1", 0.336283 AS "P_2", 0.451327 AS "P_3", 3 AS "D", 0.451327 AS "DP"
+    UNION ALL
+    SELECT 45 AS nid,  0.115385 AS "P_0", 0.500000 AS "P_1", 0.192308 AS "P_2", 0.192308 AS "P_3", 1 AS "D", 0.500000 AS "DP"
+    UNION ALL
+    SELECT 46 AS nid,  0.173469 AS "P_0", 0.704082 AS "P_1", 0.051020 AS "P_2", 0.071429 AS "P_3", 1 AS "D", 0.704082 AS "DP"
+    UNION ALL
+    SELECT 47 AS nid,  0.518519 AS "P_0", 0.000000 AS "P_1", 0.074074 AS "P_2", 0.407407 AS "P_3", 0 AS "D", 0.518519 AS "DP"
+    UNION ALL
+    SELECT 48 AS nid,  0.521739 AS "P_0", 0.173913 AS "P_1", 0.043478 AS "P_2", 0.260870 AS "P_3", 0 AS "D", 0.521739 AS "DP"
+    UNION ALL
+    SELECT 49 AS nid,  0.255814 AS "P_0", 0.627907 AS "P_1", 0.069767 AS "P_2", 0.046512 AS "P_3", 1 AS "D", 0.627907 AS "DP"
+    UNION ALL
+    SELECT 50 AS nid,  0.109091 AS "P_0", 0.763636 AS "P_1", 0.036364 AS "P_2", 0.090909 AS "P_3", 1 AS "D", 0.763636 AS "DP"
+    UNION ALL
+    SELECT 51 AS nid,  0.136364 AS "P_0", 0.636364 AS "P_1", 0.136364 AS "P_2", 0.090909 AS "P_3", 1 AS "D", 0.636364 AS "DP"
+    UNION ALL
+    SELECT 52 AS nid,  0.380952 AS "P_0", 0.619048 AS "P_1", 0.000000 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.619048 AS "DP"
+    UNION ALL
+    SELECT 53 AS nid,  0.093750 AS "P_0", 0.718750 AS "P_1", 0.031250 AS "P_2", 0.156250 AS "P_3", 1 AS "D", 0.718750 AS "DP"
+    UNION ALL
+    SELECT 54 AS nid,  0.130435 AS "P_0", 0.826087 AS "P_1", 0.043478 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.826087 AS "DP"
+    UNION ALL
+    SELECT 55 AS nid,  0.434783 AS "P_0", 0.043478 AS "P_1", 0.043478 AS "P_2", 0.478261 AS "P_3", 3 AS "D", 0.478261 AS "DP"
+    UNION ALL
+    SELECT 56 AS nid,  0.300000 AS "P_0", 0.100000 AS "P_1", 0.100000 AS "P_2", 0.500000 AS "P_3", 3 AS "D", 0.500000 AS "DP"
+    UNION ALL
+    SELECT 57 AS nid,  0.000000 AS "P_0", 0.942857 AS "P_1", 0.057143 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.942857 AS "DP"
+    UNION ALL
+    SELECT 58 AS nid,  0.000000 AS "P_0", 1.000000 AS "P_1", 0.000000 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 1.000000 AS "DP"
+  ) AS "Values"),
+"DT_output_1" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."P_0" AS "P_0", t2."P_1" AS "P_1", t2."P_2" AS "P_2", t2."P_3" AS "P_3", 
+   t2."D" AS "D", 
+   t2."DP" AS "DP"
+  FROM
+   "DT_node_lookup_1" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_1" AS t2
+   ON t1.node_id = t2.nid
+ ),
+"DT_node_lookup_2" AS 
+ (SELECT
+    t."index" AS "index",
+    COALESCE( t1."Leaf_7", t1."Leaf_9", t1."Leaf_13", t1."Leaf_14", t1."Leaf_15", t1."Leaf_21", t1."Leaf_23", t1."Leaf_24", t1."Leaf_29", t1."Leaf_30", t1."Leaf_31", t1."Leaf_32", t1."Leaf_35", t1."Leaf_36", t1."Leaf_37", t1."Leaf_38", t1."Leaf_39", t1."Leaf_41", t1."Leaf_42", t1."Leaf_44", t1."Leaf_45", t1."Leaf_46", t1."Leaf_49", t1."Leaf_50", t1."Leaf_51", t1."Leaf_52", t1."Leaf_55", t1."Leaf_56", t1."Leaf_57", t1."Leaf_58" ) AS node_id
+  FROM
+    model_input t
+    LEFT OUTER JOIN
+   (SELECT
+      t."index" AS "index",
+      CASE WHEN((t."X_6" > 7.500000) AND (t."X_7" <= 6.500000) AND (t."X_8" <= 0.500000)) THEN 7 ELSE NULL END AS Leaf_7,
+      CASE WHEN((t."X_6" > 7.500000) AND (t."X_7" > 6.500000) AND (t."X_7" <= 7.500000)) THEN 9 ELSE NULL END AS Leaf_9,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" > 5.500000) AND (t."X_6" > 6.500000) AND (t."X_7" <= 7.500000)) THEN 13 ELSE NULL END AS Leaf_13,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" > 5.500000) AND (t."X_6" > 6.500000) AND (t."X_7" > 7.500000)) THEN 14 ELSE NULL END AS Leaf_14,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" > 5.500000) AND (t."X_6" <= 6.500000) AND (t."X_8" <= 4.500000)) THEN 15 ELSE NULL END AS Leaf_15,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" <= 3.500000) AND (t."X_0" <= 3.500000) AND (t."X_5" <= 2.500000)) THEN 21 ELSE NULL END AS Leaf_21,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" <= 3.500000) AND (t."X_0" <= 3.500000) AND (t."X_5" > 2.500000) AND (t."X_9" <= 4.500000)) THEN 23 ELSE NULL END AS Leaf_23,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" <= 3.500000) AND (t."X_0" <= 3.500000) AND (t."X_5" > 2.500000) AND (t."X_9" > 4.500000)) THEN 24 ELSE NULL END AS Leaf_24,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" > 3.500000) AND (t."X_7" > 3.500000) AND (t."X_0" > 5.500000) AND (t."X_5" <= 1.500000)) THEN 29 ELSE NULL END AS Leaf_29,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" > 3.500000) AND (t."X_7" > 3.500000) AND (t."X_0" > 5.500000) AND (t."X_5" > 1.500000)) THEN 30 ELSE NULL END AS Leaf_30,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" > 3.500000) AND (t."X_7" > 3.500000) AND (t."X_0" <= 5.500000) AND (t."X_9" <= 2.500000)) THEN 31 ELSE NULL END AS Leaf_31,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" > 3.500000) AND (t."X_7" > 3.500000) AND (t."X_0" <= 5.500000) AND (t."X_9" > 2.500000)) THEN 32 ELSE NULL END AS Leaf_32,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" <= 3.500000) AND (t."X_0" > 3.500000) AND (t."X_8" > 2.500000) AND (t."X_0" <= 6.500000)) THEN 35 ELSE NULL END AS Leaf_35,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" <= 3.500000) AND (t."X_0" > 3.500000) AND (t."X_8" > 2.500000) AND (t."X_0" > 6.500000)) THEN 36 ELSE NULL END AS Leaf_36,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" <= 3.500000) AND (t."X_0" > 3.500000) AND (t."X_8" <= 2.500000) AND (t."X_5" <= 2.500000)) THEN 37 ELSE NULL END AS Leaf_37,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" <= 3.500000) AND (t."X_0" > 3.500000) AND (t."X_8" <= 2.500000) AND (t."X_5" > 2.500000)) THEN 38 ELSE NULL END AS Leaf_38,
+      CASE WHEN((t."X_6" > 7.500000) AND (t."X_7" > 6.500000) AND (t."X_7" > 7.500000) AND (t."X_6" <= 8.500000)) THEN 39 ELSE NULL END AS Leaf_39,
+      CASE WHEN((t."X_6" > 7.500000) AND (t."X_7" > 6.500000) AND (t."X_7" > 7.500000) AND (t."X_6" > 8.500000) AND (t."X_5" <= 5.500000)) THEN 41 ELSE NULL END AS Leaf_41,
+      CASE WHEN((t."X_6" > 7.500000) AND (t."X_7" > 6.500000) AND (t."X_7" > 7.500000) AND (t."X_6" > 8.500000) AND (t."X_5" > 5.500000)) THEN 42 ELSE NULL END AS Leaf_42,
+      CASE WHEN((t."X_6" > 7.500000) AND (t."X_7" <= 6.500000) AND (t."X_8" > 0.500000) AND (t."X_5" > 5.500000)) THEN 44 ELSE NULL END AS Leaf_44,
+      CASE WHEN((t."X_6" > 7.500000) AND (t."X_7" <= 6.500000) AND (t."X_8" > 0.500000) AND (t."X_5" <= 5.500000) AND (t."X_9" <= 6.500000)) THEN 45 ELSE NULL END AS Leaf_45,
+      CASE WHEN((t."X_6" > 7.500000) AND (t."X_7" <= 6.500000) AND (t."X_8" > 0.500000) AND (t."X_5" <= 5.500000) AND (t."X_9" > 6.500000)) THEN 46 ELSE NULL END AS Leaf_46,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" > 3.500000) AND (t."X_7" <= 3.500000) AND (t."X_8" > 5.500000) AND (t."X_0" <= 3.500000)) THEN 49 ELSE NULL END AS Leaf_49,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" > 3.500000) AND (t."X_7" <= 3.500000) AND (t."X_8" > 5.500000) AND (t."X_0" > 3.500000)) THEN 50 ELSE NULL END AS Leaf_50,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" > 3.500000) AND (t."X_7" <= 3.500000) AND (t."X_8" <= 5.500000) AND (t."X_9" <= 5.500000)) THEN 51 ELSE NULL END AS Leaf_51,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" <= 5.500000) AND (t."X_8" > 3.500000) AND (t."X_7" <= 3.500000) AND (t."X_8" <= 5.500000) AND (t."X_9" > 5.500000)) THEN 52 ELSE NULL END AS Leaf_52,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" > 5.500000) AND (t."X_6" <= 6.500000) AND (t."X_8" > 4.500000) AND (t."X_7" <= 7.500000) AND (t."X_9" <= 4.500000)) THEN 55 ELSE NULL END AS Leaf_55,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" > 5.500000) AND (t."X_6" <= 6.500000) AND (t."X_8" > 4.500000) AND (t."X_7" <= 7.500000) AND (t."X_9" > 4.500000)) THEN 56 ELSE NULL END AS Leaf_56,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" > 5.500000) AND (t."X_6" <= 6.500000) AND (t."X_8" > 4.500000) AND (t."X_7" > 7.500000) AND (t."X_0" <= 5.500000)) THEN 57 ELSE NULL END AS Leaf_57,
+      CASE WHEN((t."X_6" <= 7.500000) AND (t."X_7" > 5.500000) AND (t."X_6" <= 6.500000) AND (t."X_8" > 4.500000) AND (t."X_7" > 7.500000) AND (t."X_0" > 5.500000)) THEN 58 ELSE NULL END AS Leaf_58
+    FROM model_input t
+    ) AS t1
+    ON(t."index" == t1."index")
+ ),
+"DT_node_data_2" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."P_0" AS "P_0", "Values"."P_1" AS "P_1", "Values"."P_2" AS "P_2", "Values"."P_3" AS "P_3", 
+    "Values"."D" AS "D",
+    "Values"."DP" AS "DP"
+  FROM (
+    SELECT 0 AS nid,  0.225586 AS "P_0", 0.272461 AS "P_1", 0.241211 AS "P_2", 0.260742 AS "P_3", 1 AS "D", 0.272461 AS "DP"
+    UNION ALL
+    SELECT 1 AS nid,  0.234508 AS "P_0", 0.321993 AS "P_1", 0.202916 AS "P_2", 0.240583 AS "P_3", 1 AS "D", 0.321993 AS "DP"
+    UNION ALL
+    SELECT 2 AS nid,  0.189055 AS "P_0", 0.069652 AS "P_1", 0.398010 AS "P_2", 0.343284 AS "P_3", 2 AS "D", 0.398010 AS "DP"
+    UNION ALL
+    SELECT 3 AS nid,  0.230769 AS "P_0", 0.000000 AS "P_1", 0.131868 AS "P_2", 0.637363 AS "P_3", 3 AS "D", 0.637363 AS "DP"
+    UNION ALL
+    SELECT 4 AS nid,  0.154545 AS "P_0", 0.127273 AS "P_1", 0.618182 AS "P_2", 0.100000 AS "P_3", 2 AS "D", 0.618182 AS "DP"
+    UNION ALL
+    SELECT 5 AS nid,  0.313840 AS "P_0", 0.087719 AS "P_1", 0.226121 AS "P_2", 0.372320 AS "P_3", 3 AS "D", 0.372320 AS "DP"
+    UNION ALL
+    SELECT 6 AS nid,  0.103226 AS "P_0", 0.709677 AS "P_1", 0.164516 AS "P_2", 0.022581 AS "P_3", 1 AS "D", 0.709677 AS "DP"
+    UNION ALL
+    SELECT 7 AS nid,  0.400000 AS "P_0", 0.000000 AS "P_1", 0.320000 AS "P_2", 0.280000 AS "P_3", 0 AS "D", 0.400000 AS "DP"
+    UNION ALL
+    SELECT 8 AS nid,  0.166667 AS "P_0", 0.000000 AS "P_1", 0.060606 AS "P_2", 0.772727 AS "P_3", 3 AS "D", 0.772727 AS "DP"
+    UNION ALL
+    SELECT 9 AS nid,  0.424242 AS "P_0", 0.000000 AS "P_1", 0.424242 AS "P_2", 0.151515 AS "P_3", 0 AS "D", 0.424242 AS "DP"
+    UNION ALL
+    SELECT 10 AS nid,  0.038961 AS "P_0", 0.181818 AS "P_1", 0.701299 AS "P_2", 0.077922 AS "P_3", 2 AS "D", 0.701299 AS "DP"
+    UNION ALL
+    SELECT 11 AS nid,  0.061983 AS "P_0", 0.805785 AS "P_1", 0.103306 AS "P_2", 0.028926 AS "P_3", 1 AS "D", 0.805785 AS "DP"
+    UNION ALL
+    SELECT 12 AS nid,  0.250000 AS "P_0", 0.367647 AS "P_1", 0.382353 AS "P_2", 0.000000 AS "P_3", 2 AS "D", 0.382353 AS "DP"
+    UNION ALL
+    SELECT 13 AS nid,  0.416667 AS "P_0", 0.111111 AS "P_1", 0.472222 AS "P_2", 0.000000 AS "P_3", 2 AS "D", 0.472222 AS "DP"
+    UNION ALL
+    SELECT 14 AS nid,  0.062500 AS "P_0", 0.656250 AS "P_1", 0.281250 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.656250 AS "DP"
+    UNION ALL
+    SELECT 15 AS nid,  0.200000 AS "P_0", 0.366667 AS "P_1", 0.400000 AS "P_2", 0.033333 AS "P_3", 2 AS "D", 0.400000 AS "DP"
+    UNION ALL
+    SELECT 16 AS nid,  0.042453 AS "P_0", 0.867925 AS "P_1", 0.061321 AS "P_2", 0.028302 AS "P_3", 1 AS "D", 0.867925 AS "DP"
+    UNION ALL
+    SELECT 17 AS nid,  0.224044 AS "P_0", 0.016393 AS "P_1", 0.398907 AS "P_2", 0.360656 AS "P_3", 2 AS "D", 0.398907 AS "DP"
+    UNION ALL
+    SELECT 18 AS nid,  0.363636 AS "P_0", 0.127273 AS "P_1", 0.130303 AS "P_2", 0.378788 AS "P_3", 3 AS "D", 0.378788 AS "DP"
+    UNION ALL
+    SELECT 19 AS nid,  0.476923 AS "P_0", 0.046154 AS "P_1", 0.307692 AS "P_2", 0.169231 AS "P_3", 0 AS "D", 0.476923 AS "DP"
+    UNION ALL
+    SELECT 20 AS nid,  0.084746 AS "P_0", 0.000000 AS "P_1", 0.449153 AS "P_2", 0.466102 AS "P_3", 3 AS "D", 0.466102 AS "DP"
+    UNION ALL
+    SELECT 21 AS nid,  0.714286 AS "P_0", 0.000000 AS "P_1", 0.238095 AS "P_2", 0.047619 AS "P_3", 0 AS "D", 0.714286 AS "DP"
+    UNION ALL
+    SELECT 22 AS nid,  0.363636 AS "P_0", 0.068182 AS "P_1", 0.340909 AS "P_2", 0.227273 AS "P_3", 0 AS "D", 0.363636 AS "DP"
+    UNION ALL
+    SELECT 23 AS nid,  0.285714 AS "P_0", 0.047619 AS "P_1", 0.238095 AS "P_2", 0.428571 AS "P_3", 3 AS "D", 0.428571 AS "DP"
+    UNION ALL
+    SELECT 24 AS nid,  0.434783 AS "P_0", 0.086957 AS "P_1", 0.434783 AS "P_2", 0.043478 AS "P_3", 0 AS "D", 0.434783 AS "DP"
+    UNION ALL
+    SELECT 25 AS nid,  0.333333 AS "P_0", 0.075556 AS "P_1", 0.115556 AS "P_2", 0.475556 AS "P_3", 3 AS "D", 0.475556 AS "DP"
+    UNION ALL
+    SELECT 26 AS nid,  0.428571 AS "P_0", 0.238095 AS "P_1", 0.161905 AS "P_2", 0.171429 AS "P_3", 0 AS "D", 0.428571 AS "DP"
+    UNION ALL
+    SELECT 27 AS nid,  0.366667 AS "P_0", 0.316667 AS "P_1", 0.033333 AS "P_2", 0.283333 AS "P_3", 0 AS "D", 0.366667 AS "DP"
+    UNION ALL
+    SELECT 28 AS nid,  0.511111 AS "P_0", 0.133333 AS "P_1", 0.333333 AS "P_2", 0.022222 AS "P_3", 0 AS "D", 0.511111 AS "DP"
+    UNION ALL
+    SELECT 29 AS nid,  0.500000 AS "P_0", 0.000000 AS "P_1", 0.500000 AS "P_2", 0.000000 AS "P_3", 0 AS "D", 0.500000 AS "DP"
+    UNION ALL
+    SELECT 30 AS nid,  0.521739 AS "P_0", 0.260870 AS "P_1", 0.173913 AS "P_2", 0.043478 AS "P_3", 0 AS "D", 0.521739 AS "DP"
+    UNION ALL
+    SELECT 31 AS nid,  0.200000 AS "P_0", 0.250000 AS "P_1", 0.100000 AS "P_2", 0.450000 AS "P_3", 3 AS "D", 0.450000 AS "DP"
+    UNION ALL
+    SELECT 32 AS nid,  0.450000 AS "P_0", 0.350000 AS "P_1", 0.000000 AS "P_2", 0.200000 AS "P_3", 0 AS "D", 0.450000 AS "DP"
+    UNION ALL
+    SELECT 33 AS nid,  0.029851 AS "P_0", 0.000000 AS "P_1", 0.567164 AS "P_2", 0.402985 AS "P_3", 2 AS "D", 0.567164 AS "DP"
+    UNION ALL
+    SELECT 34 AS nid,  0.156863 AS "P_0", 0.000000 AS "P_1", 0.294118 AS "P_2", 0.549020 AS "P_3", 3 AS "D", 0.549020 AS "DP"
+    UNION ALL
+    SELECT 35 AS nid,  0.259259 AS "P_0", 0.000000 AS "P_1", 0.074074 AS "P_2", 0.666667 AS "P_3", 3 AS "D", 0.666667 AS "DP"
+    UNION ALL
+    SELECT 36 AS nid,  0.041667 AS "P_0", 0.000000 AS "P_1", 0.541667 AS "P_2", 0.416667 AS "P_3", 2 AS "D", 0.541667 AS "DP"
+    UNION ALL
+    SELECT 37 AS nid,  0.045455 AS "P_0", 0.000000 AS "P_1", 0.363636 AS "P_2", 0.590909 AS "P_3", 3 AS "D", 0.590909 AS "DP"
+    UNION ALL
+    SELECT 38 AS nid,  0.022222 AS "P_0", 0.000000 AS "P_1", 0.666667 AS "P_2", 0.311111 AS "P_3", 2 AS "D", 0.666667 AS "DP"
+    UNION ALL
+    SELECT 39 AS nid,  0.031250 AS "P_0", 0.312500 AS "P_1", 0.656250 AS "P_2", 0.000000 AS "P_3", 2 AS "D", 0.656250 AS "DP"
+    UNION ALL
+    SELECT 40 AS nid,  0.044444 AS "P_0", 0.088889 AS "P_1", 0.733333 AS "P_2", 0.133333 AS "P_3", 2 AS "D", 0.733333 AS "DP"
+    UNION ALL
+    SELECT 41 AS nid,  0.000000 AS "P_0", 0.000000 AS "P_1", 0.960000 AS "P_2", 0.040000 AS "P_3", 2 AS "D", 0.960000 AS "DP"
+    UNION ALL
+    SELECT 42 AS nid,  0.100000 AS "P_0", 0.200000 AS "P_1", 0.450000 AS "P_2", 0.250000 AS "P_3", 2 AS "D", 0.450000 AS "DP"
+    UNION ALL
+    SELECT 43 AS nid,  0.136364 AS "P_0", 0.000000 AS "P_1", 0.022727 AS "P_2", 0.840909 AS "P_3", 3 AS "D", 0.840909 AS "DP"
+    UNION ALL
+    SELECT 44 AS nid,  0.227273 AS "P_0", 0.000000 AS "P_1", 0.136364 AS "P_2", 0.636364 AS "P_3", 3 AS "D", 0.636364 AS "DP"
+    UNION ALL
+    SELECT 45 AS nid,  0.250000 AS "P_0", 0.000000 AS "P_1", 0.041667 AS "P_2", 0.708333 AS "P_3", 3 AS "D", 0.708333 AS "DP"
+    UNION ALL
+    SELECT 46 AS nid,  0.000000 AS "P_0", 0.000000 AS "P_1", 0.000000 AS "P_2", 1.000000 AS "P_3", 3 AS "D", 1.000000 AS "DP"
+    UNION ALL
+    SELECT 47 AS nid,  0.294872 AS "P_0", 0.000000 AS "P_1", 0.153846 AS "P_2", 0.551282 AS "P_3", 3 AS "D", 0.551282 AS "DP"
+    UNION ALL
+    SELECT 48 AS nid,  0.353741 AS "P_0", 0.115646 AS "P_1", 0.095238 AS "P_2", 0.435374 AS "P_3", 3 AS "D", 0.435374 AS "DP"
+    UNION ALL
+    SELECT 49 AS nid,  0.084507 AS "P_0", 0.098592 AS "P_1", 0.000000 AS "P_2", 0.816901 AS "P_3", 3 AS "D", 0.816901 AS "DP"
+    UNION ALL
+    SELECT 50 AS nid,  0.605263 AS "P_0", 0.131579 AS "P_1", 0.184211 AS "P_2", 0.078947 AS "P_3", 0 AS "D", 0.605263 AS "DP"
+    UNION ALL
+    SELECT 51 AS nid,  0.375000 AS "P_0", 0.000000 AS "P_1", 0.208333 AS "P_2", 0.416667 AS "P_3", 3 AS "D", 0.416667 AS "DP"
+    UNION ALL
+    SELECT 52 AS nid,  0.166667 AS "P_0", 0.000000 AS "P_1", 0.066667 AS "P_2", 0.766667 AS "P_3", 3 AS "D", 0.766667 AS "DP"
+    UNION ALL
+    SELECT 53 AS nid,  0.061404 AS "P_0", 0.798246 AS "P_1", 0.087719 AS "P_2", 0.052632 AS "P_3", 1 AS "D", 0.798246 AS "DP"
+    UNION ALL
+    SELECT 54 AS nid,  0.020408 AS "P_0", 0.948980 AS "P_1", 0.030612 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.948980 AS "DP"
+    UNION ALL
+    SELECT 55 AS nid,  0.090909 AS "P_0", 0.659091 AS "P_1", 0.136364 AS "P_2", 0.113636 AS "P_3", 1 AS "D", 0.659091 AS "DP"
+    UNION ALL
+    SELECT 56 AS nid,  0.042857 AS "P_0", 0.885714 AS "P_1", 0.057143 AS "P_2", 0.014286 AS "P_3", 1 AS "D", 0.885714 AS "DP"
+    UNION ALL
+    SELECT 57 AS nid,  0.052632 AS "P_0", 0.868421 AS "P_1", 0.078947 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.868421 AS "DP"
+    UNION ALL
+    SELECT 58 AS nid,  0.000000 AS "P_0", 1.000000 AS "P_1", 0.000000 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 1.000000 AS "DP"
+  ) AS "Values"),
+"DT_output_2" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."P_0" AS "P_0", t2."P_1" AS "P_1", t2."P_2" AS "P_2", t2."P_3" AS "P_3", 
+   t2."D" AS "D", 
+   t2."DP" AS "DP"
+  FROM
+   "DT_node_lookup_2" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_2" AS t2
+   ON t1.node_id = t2.nid
+ ),
+"DT_node_lookup_3" AS 
+ (SELECT
+    t."index" AS "index",
+    COALESCE( t1."Leaf_6", t1."Leaf_7", t1."Leaf_9", t1."Leaf_11", t1."Leaf_12", t1."Leaf_14", t1."Leaf_19", t1."Leaf_21", t1."Leaf_22", t1."Leaf_25", t1."Leaf_26", t1."Leaf_27", t1."Leaf_28", t1."Leaf_30", t1."Leaf_31", t1."Leaf_32", t1."Leaf_35", t1."Leaf_36", t1."Leaf_37", t1."Leaf_38" ) AS node_id
+  FROM
+    model_input t
+    LEFT OUTER JOIN
+   (SELECT
+      t."index" AS "index",
+      CASE WHEN((t."X_1" <= 1.500000) AND (t."X_8" > 3.500000) AND (t."X_0" > 8.500000)) THEN 6 ELSE NULL END AS Leaf_6,
+      CASE WHEN((t."X_1" <= 1.500000) AND (t."X_8" <= 3.500000) AND (t."X_7" <= 0.500000)) THEN 7 ELSE NULL END AS Leaf_7,
+      CASE WHEN((t."X_1" <= 1.500000) AND (t."X_8" <= 3.500000) AND (t."X_7" > 0.500000) AND (t."X_1" <= 0.500000)) THEN 9 ELSE NULL END AS Leaf_9,
+      CASE WHEN((t."X_1" <= 1.500000) AND (t."X_8" <= 3.500000) AND (t."X_7" > 0.500000) AND (t."X_1" > 0.500000) AND (t."X_7" <= 3.500000)) THEN 11 ELSE NULL END AS Leaf_11,
+      CASE WHEN((t."X_1" <= 1.500000) AND (t."X_8" <= 3.500000) AND (t."X_7" > 0.500000) AND (t."X_1" > 0.500000) AND (t."X_7" > 3.500000)) THEN 12 ELSE NULL END AS Leaf_12,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" > 8.500000)) THEN 14 ELSE NULL END AS Leaf_14,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" <= 3.500000) AND (t."X_8" > 5.500000) AND (t."X_0" <= 5.500000)) THEN 19 ELSE NULL END AS Leaf_19,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" <= 3.500000) AND (t."X_8" > 5.500000) AND (t."X_0" > 5.500000) AND (t."X_7" <= 4.500000)) THEN 21 ELSE NULL END AS Leaf_21,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" <= 3.500000) AND (t."X_8" > 5.500000) AND (t."X_0" > 5.500000) AND (t."X_7" > 4.500000)) THEN 22 ELSE NULL END AS Leaf_22,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" <= 3.500000) AND (t."X_8" <= 5.500000) AND (t."X_8" <= 1.500000) AND (t."X_0" <= 5.500000)) THEN 25 ELSE NULL END AS Leaf_25,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" <= 3.500000) AND (t."X_8" <= 5.500000) AND (t."X_8" <= 1.500000) AND (t."X_0" > 5.500000)) THEN 26 ELSE NULL END AS Leaf_26,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" <= 3.500000) AND (t."X_8" <= 5.500000) AND (t."X_8" > 1.500000) AND (t."X_8" <= 4.500000)) THEN 27 ELSE NULL END AS Leaf_27,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" <= 3.500000) AND (t."X_8" <= 5.500000) AND (t."X_8" > 1.500000) AND (t."X_8" > 4.500000)) THEN 28 ELSE NULL END AS Leaf_28,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" > 3.500000) AND (t."X_0" > 6.500000)) THEN 30 ELSE NULL END AS Leaf_30,
+      CASE WHEN((t."X_1" <= 1.500000) AND (t."X_8" > 3.500000) AND (t."X_0" <= 8.500000) AND (t."X_9" <= 5.000000)) THEN 31 ELSE NULL END AS Leaf_31,
+      CASE WHEN((t."X_1" <= 1.500000) AND (t."X_8" > 3.500000) AND (t."X_0" <= 8.500000) AND (t."X_9" > 5.000000)) THEN 32 ELSE NULL END AS Leaf_32,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" > 3.500000) AND (t."X_0" <= 6.500000) AND (t."X_9" <= 7.500000) AND (t."X_8" <= 4.500000)) THEN 35 ELSE NULL END AS Leaf_35,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" > 3.500000) AND (t."X_0" <= 6.500000) AND (t."X_9" <= 7.500000) AND (t."X_8" > 4.500000)) THEN 36 ELSE NULL END AS Leaf_36,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" > 3.500000) AND (t."X_0" <= 6.500000) AND (t."X_9" > 7.500000) AND (t."X_0" <= 3.500000)) THEN 37 ELSE NULL END AS Leaf_37,
+      CASE WHEN((t."X_1" > 1.500000) AND (t."X_0" <= 8.500000) AND (t."X_1" > 3.500000) AND (t."X_0" <= 6.500000) AND (t."X_9" > 7.500000) AND (t."X_0" > 3.500000)) THEN 38 ELSE NULL END AS Leaf_38
+    FROM model_input t
+    ) AS t1
+    ON(t."index" == t1."index")
+ ),
+"DT_node_data_3" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."P_0" AS "P_0", "Values"."P_1" AS "P_1", "Values"."P_2" AS "P_2", "Values"."P_3" AS "P_3", 
+    "Values"."D" AS "D",
+    "Values"."DP" AS "DP"
+  FROM (
+    SELECT 0 AS nid,  0.222656 AS "P_0", 0.256836 AS "P_1", 0.255859 AS "P_2", 0.264648 AS "P_3", 3 AS "D", 0.264648 AS "DP"
+    UNION ALL
+    SELECT 1 AS nid,  0.357513 AS "P_0", 0.036269 AS "P_1", 0.207254 AS "P_2", 0.398964 AS "P_3", 3 AS "D", 0.398964 AS "DP"
+    UNION ALL
+    SELECT 2 AS nid,  0.191336 AS "P_0", 0.308063 AS "P_1", 0.267148 AS "P_2", 0.233454 AS "P_3", 1 AS "D", 0.308063 AS "DP"
+    UNION ALL
+    SELECT 3 AS nid,  0.149533 AS "P_0", 0.000000 AS "P_1", 0.205607 AS "P_2", 0.644860 AS "P_3", 3 AS "D", 0.644860 AS "DP"
+    UNION ALL
+    SELECT 4 AS nid,  0.616279 AS "P_0", 0.081395 AS "P_1", 0.209302 AS "P_2", 0.093023 AS "P_3", 0 AS "D", 0.616279 AS "DP"
+    UNION ALL
+    SELECT 5 AS nid,  0.903846 AS "P_0", 0.019231 AS "P_1", 0.019231 AS "P_2", 0.057692 AS "P_3", 0 AS "D", 0.903846 AS "DP"
+    UNION ALL
+    SELECT 6 AS nid,  0.176471 AS "P_0", 0.176471 AS "P_1", 0.500000 AS "P_2", 0.147059 AS "P_3", 2 AS "D", 0.500000 AS "DP"
+    UNION ALL
+    SELECT 7 AS nid,  0.000000 AS "P_0", 0.000000 AS "P_1", 0.090909 AS "P_2", 0.909091 AS "P_3", 3 AS "D", 0.909091 AS "DP"
+    UNION ALL
+    SELECT 8 AS nid,  0.188235 AS "P_0", 0.000000 AS "P_1", 0.235294 AS "P_2", 0.576471 AS "P_3", 3 AS "D", 0.576471 AS "DP"
+    UNION ALL
+    SELECT 9 AS nid,  0.060606 AS "P_0", 0.000000 AS "P_1", 0.181818 AS "P_2", 0.757576 AS "P_3", 3 AS "D", 0.757576 AS "DP"
+    UNION ALL
+    SELECT 10 AS nid,  0.269231 AS "P_0", 0.000000 AS "P_1", 0.269231 AS "P_2", 0.461538 AS "P_3", 3 AS "D", 0.461538 AS "DP"
+    UNION ALL
+    SELECT 11 AS nid,  0.190476 AS "P_0", 0.000000 AS "P_1", 0.476190 AS "P_2", 0.333333 AS "P_3", 2 AS "D", 0.476190 AS "DP"
+    UNION ALL
+    SELECT 12 AS nid,  0.322581 AS "P_0", 0.000000 AS "P_1", 0.129032 AS "P_2", 0.548387 AS "P_3", 3 AS "D", 0.548387 AS "DP"
+    UNION ALL
+    SELECT 13 AS nid,  0.196496 AS "P_0", 0.282854 AS "P_1", 0.277847 AS "P_2", 0.242803 AS "P_3", 1 AS "D", 0.282854 AS "DP"
+    UNION ALL
+    SELECT 14 AS nid,  0.062500 AS "P_0", 0.937500 AS "P_1", 0.000000 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.937500 AS "DP"
+    UNION ALL
+    SELECT 15 AS nid,  0.301370 AS "P_0", 0.141553 AS "P_1", 0.278539 AS "P_2", 0.278539 AS "P_3", 0 AS "D", 0.301370 AS "DP"
+    UNION ALL
+    SELECT 16 AS nid,  0.156897 AS "P_0", 0.336207 AS "P_1", 0.277586 AS "P_2", 0.229310 AS "P_3", 1 AS "D", 0.336207 AS "DP"
+    UNION ALL
+    SELECT 17 AS nid,  0.178571 AS "P_0", 0.050000 AS "P_1", 0.335714 AS "P_2", 0.435714 AS "P_3", 3 AS "D", 0.435714 AS "DP"
+    UNION ALL
+    SELECT 18 AS nid,  0.518987 AS "P_0", 0.303797 AS "P_1", 0.177215 AS "P_2", 0.000000 AS "P_3", 0 AS "D", 0.518987 AS "DP"
+    UNION ALL
+    SELECT 19 AS nid,  0.840000 AS "P_0", 0.080000 AS "P_1", 0.080000 AS "P_2", 0.000000 AS "P_3", 0 AS "D", 0.840000 AS "DP"
+    UNION ALL
+    SELECT 20 AS nid,  0.370370 AS "P_0", 0.407407 AS "P_1", 0.222222 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.407407 AS "DP"
+    UNION ALL
+    SELECT 21 AS nid,  0.529412 AS "P_0", 0.176471 AS "P_1", 0.294118 AS "P_2", 0.000000 AS "P_3", 0 AS "D", 0.529412 AS "DP"
+    UNION ALL
+    SELECT 22 AS nid,  0.100000 AS "P_0", 0.800000 AS "P_1", 0.100000 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.800000 AS "DP"
+    UNION ALL
+    SELECT 23 AS nid,  0.297872 AS "P_0", 0.000000 AS "P_1", 0.510638 AS "P_2", 0.191489 AS "P_3", 2 AS "D", 0.510638 AS "DP"
+    UNION ALL
+    SELECT 24 AS nid,  0.118280 AS "P_0", 0.075269 AS "P_1", 0.247312 AS "P_2", 0.559140 AS "P_3", 3 AS "D", 0.559140 AS "DP"
+    UNION ALL
+    SELECT 25 AS nid,  0.608696 AS "P_0", 0.000000 AS "P_1", 0.043478 AS "P_2", 0.347826 AS "P_3", 0 AS "D", 0.608696 AS "DP"
+    UNION ALL
+    SELECT 26 AS nid,  0.000000 AS "P_0", 0.000000 AS "P_1", 0.958333 AS "P_2", 0.041667 AS "P_3", 2 AS "D", 0.958333 AS "DP"
+    UNION ALL
+    SELECT 27 AS nid,  0.082192 AS "P_0", 0.013699 AS "P_1", 0.301370 AS "P_2", 0.602740 AS "P_3", 3 AS "D", 0.602740 AS "DP"
+    UNION ALL
+    SELECT 28 AS nid,  0.250000 AS "P_0", 0.300000 AS "P_1", 0.050000 AS "P_2", 0.400000 AS "P_3", 3 AS "D", 0.400000 AS "DP"
+    UNION ALL
+    SELECT 29 AS nid,  0.165154 AS "P_0", 0.312160 AS "P_1", 0.286751 AS "P_2", 0.235935 AS "P_3", 1 AS "D", 0.312160 AS "DP"
+    UNION ALL
+    SELECT 30 AS nid,  0.000000 AS "P_0", 0.793103 AS "P_1", 0.103448 AS "P_2", 0.103448 AS "P_3", 1 AS "D", 0.793103 AS "DP"
+    UNION ALL
+    SELECT 31 AS nid,  1.000000 AS "P_0", 0.000000 AS "P_1", 0.000000 AS "P_2", 0.000000 AS "P_3", 0 AS "D", 1.000000 AS "DP"
+    UNION ALL
+    SELECT 32 AS nid,  0.821429 AS "P_0", 0.035714 AS "P_1", 0.035714 AS "P_2", 0.107143 AS "P_3", 0 AS "D", 0.821429 AS "DP"
+    UNION ALL
+    SELECT 33 AS nid,  0.173516 AS "P_0", 0.278539 AS "P_1", 0.273973 AS "P_2", 0.273973 AS "P_3", 1 AS "D", 0.278539 AS "DP"
+    UNION ALL
+    SELECT 34 AS nid,  0.132743 AS "P_0", 0.442478 AS "P_1", 0.336283 AS "P_2", 0.088496 AS "P_3", 1 AS "D", 0.442478 AS "DP"
+    UNION ALL
+    SELECT 35 AS nid,  0.261084 AS "P_0", 0.108374 AS "P_1", 0.517241 AS "P_2", 0.113300 AS "P_3", 2 AS "D", 0.517241 AS "DP"
+    UNION ALL
+    SELECT 36 AS nid,  0.097872 AS "P_0", 0.425532 AS "P_1", 0.063830 AS "P_2", 0.412766 AS "P_3", 1 AS "D", 0.425532 AS "DP"
+    UNION ALL
+    SELECT 37 AS nid,  0.152941 AS "P_0", 0.494118 AS "P_1", 0.282353 AS "P_2", 0.070588 AS "P_3", 1 AS "D", 0.494118 AS "DP"
+    UNION ALL
+    SELECT 38 AS nid,  0.071429 AS "P_0", 0.285714 AS "P_1", 0.500000 AS "P_2", 0.142857 AS "P_3", 2 AS "D", 0.500000 AS "DP"
+  ) AS "Values"),
+"DT_output_3" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."P_0" AS "P_0", t2."P_1" AS "P_1", t2."P_2" AS "P_2", t2."P_3" AS "P_3", 
+   t2."D" AS "D", 
+   t2."DP" AS "DP"
+  FROM
+   "DT_node_lookup_3" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_3" AS t2
+   ON t1.node_id = t2.nid
+ ),
+"DT_node_lookup_4" AS 
+ (SELECT
+    t."index" AS "index",
+    COALESCE( t1."Leaf_3", t1."Leaf_4", t1."Leaf_9", t1."Leaf_11", t1."Leaf_13", t1."Leaf_14", t1."Leaf_15", t1."Leaf_16", t1."Leaf_23", t1."Leaf_24", t1."Leaf_25", t1."Leaf_26", t1."Leaf_28", t1."Leaf_29", t1."Leaf_30", t1."Leaf_35", t1."Leaf_36", t1."Leaf_37", t1."Leaf_38", t1."Leaf_39", t1."Leaf_41", t1."Leaf_42" ) AS node_id
+  FROM
+    model_input t
+    LEFT OUTER JOIN
+   (SELECT
+      t."index" AS "index",
+      CASE WHEN((t."X_6" <= 0.500000) AND (t."X_8" <= 8.500000)) THEN 3 ELSE NULL END AS Leaf_3,
+      CASE WHEN((t."X_6" <= 0.500000) AND (t."X_8" > 8.500000)) THEN 4 ELSE NULL END AS Leaf_4,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" > 7.500000) AND (t."X_7" <= 6.500000) AND (t."X_5" <= 3.500000)) THEN 9 ELSE NULL END AS Leaf_9,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" > 7.500000) AND (t."X_7" > 6.500000) AND (t."X_8" <= 1.500000)) THEN 11 ELSE NULL END AS Leaf_11,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" > 7.500000) AND (t."X_7" > 6.500000) AND (t."X_8" > 1.500000) AND (t."X_7" <= 8.500000)) THEN 13 ELSE NULL END AS Leaf_13,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" > 7.500000) AND (t."X_7" > 6.500000) AND (t."X_8" > 1.500000) AND (t."X_7" > 8.500000)) THEN 14 ELSE NULL END AS Leaf_14,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" > 7.500000) AND (t."X_7" <= 6.500000) AND (t."X_5" > 3.500000) AND (t."X_5" <= 6.500000)) THEN 15 ELSE NULL END AS Leaf_15,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" > 7.500000) AND (t."X_7" <= 6.500000) AND (t."X_5" > 3.500000) AND (t."X_5" > 6.500000)) THEN 16 ELSE NULL END AS Leaf_16,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" > 2.500000) AND (t."X_7" > 5.500000) AND (t."X_8" <= 4.500000) AND (t."X_5" <= 3.500000)) THEN 23 ELSE NULL END AS Leaf_23,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" > 2.500000) AND (t."X_7" > 5.500000) AND (t."X_8" <= 4.500000) AND (t."X_5" > 3.500000)) THEN 24 ELSE NULL END AS Leaf_24,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" > 2.500000) AND (t."X_7" > 5.500000) AND (t."X_8" > 4.500000) AND (t."X_7" <= 6.500000)) THEN 25 ELSE NULL END AS Leaf_25,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" > 2.500000) AND (t."X_7" > 5.500000) AND (t."X_8" > 4.500000) AND (t."X_7" > 6.500000)) THEN 26 ELSE NULL END AS Leaf_26,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" > 2.500000) AND (t."X_7" <= 5.500000) AND (t."X_2" > 8.500000)) THEN 28 ELSE NULL END AS Leaf_28,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" > 2.500000) AND (t."X_7" <= 5.500000) AND (t."X_2" <= 8.500000) AND (t."X_2" <= 1.500000)) THEN 29 ELSE NULL END AS Leaf_29,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" > 2.500000) AND (t."X_7" <= 5.500000) AND (t."X_2" <= 8.500000) AND (t."X_2" > 1.500000)) THEN 30 ELSE NULL END AS Leaf_30,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" <= 2.500000) AND (t."X_6" <= 1.500000) AND (t."X_7" > 2.500000) AND (t."X_0" <= 5.500000)) THEN 35 ELSE NULL END AS Leaf_35,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" <= 2.500000) AND (t."X_6" <= 1.500000) AND (t."X_7" > 2.500000) AND (t."X_0" > 5.500000)) THEN 36 ELSE NULL END AS Leaf_36,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" <= 2.500000) AND (t."X_6" <= 1.500000) AND (t."X_7" <= 2.500000) AND (t."X_8" <= 4.500000)) THEN 37 ELSE NULL END AS Leaf_37,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" <= 2.500000) AND (t."X_6" <= 1.500000) AND (t."X_7" <= 2.500000) AND (t."X_8" > 4.500000)) THEN 38 ELSE NULL END AS Leaf_38,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" <= 2.500000) AND (t."X_6" > 1.500000) AND (t."X_0" <= 4.500000)) THEN 39 ELSE NULL END AS Leaf_39,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" <= 2.500000) AND (t."X_6" > 1.500000) AND (t."X_0" > 4.500000) AND (t."X_7" <= 3.500000)) THEN 41 ELSE NULL END AS Leaf_41,
+      CASE WHEN((t."X_6" > 0.500000) AND (t."X_6" <= 7.500000) AND (t."X_6" <= 2.500000) AND (t."X_6" > 1.500000) AND (t."X_0" > 4.500000) AND (t."X_7" > 3.500000)) THEN 42 ELSE NULL END AS Leaf_42
+    FROM model_input t
+    ) AS t1
+    ON(t."index" == t1."index")
+ ),
+"DT_node_data_4" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."P_0" AS "P_0", "Values"."P_1" AS "P_1", "Values"."P_2" AS "P_2", "Values"."P_3" AS "P_3", 
+    "Values"."D" AS "D",
+    "Values"."DP" AS "DP"
+  FROM (
+    SELECT 0 AS nid,  0.250977 AS "P_0", 0.235352 AS "P_1", 0.266602 AS "P_2", 0.247070 AS "P_3", 2 AS "D", 0.266602 AS "DP"
+    UNION ALL
+    SELECT 1 AS nid,  0.178082 AS "P_0", 0.082192 AS "P_1", 0.027397 AS "P_2", 0.712329 AS "P_3", 3 AS "D", 0.712329 AS "DP"
+    UNION ALL
+    SELECT 2 AS nid,  0.256572 AS "P_0", 0.247108 AS "P_1", 0.284963 AS "P_2", 0.211356 AS "P_3", 2 AS "D", 0.284963 AS "DP"
+    UNION ALL
+    SELECT 3 AS nid,  0.259259 AS "P_0", 0.148148 AS "P_1", 0.074074 AS "P_2", 0.518519 AS "P_3", 3 AS "D", 0.518519 AS "DP"
+    UNION ALL
+    SELECT 4 AS nid,  0.130435 AS "P_0", 0.043478 AS "P_1", 0.000000 AS "P_2", 0.826087 AS "P_3", 3 AS "D", 0.826087 AS "DP"
+    UNION ALL
+    SELECT 5 AS nid,  0.261905 AS "P_0", 0.294974 AS "P_1", 0.251323 AS "P_2", 0.191799 AS "P_3", 1 AS "D", 0.294974 AS "DP"
+    UNION ALL
+    SELECT 6 AS nid,  0.235897 AS "P_0", 0.061538 AS "P_1", 0.415385 AS "P_2", 0.287179 AS "P_3", 2 AS "D", 0.415385 AS "DP"
+    UNION ALL
+    SELECT 7 AS nid,  0.360825 AS "P_0", 0.000000 AS "P_1", 0.144330 AS "P_2", 0.494845 AS "P_3", 3 AS "D", 0.494845 AS "DP"
+    UNION ALL
+    SELECT 8 AS nid,  0.112245 AS "P_0", 0.122449 AS "P_1", 0.683673 AS "P_2", 0.081633 AS "P_3", 2 AS "D", 0.683673 AS "DP"
+    UNION ALL
+    SELECT 9 AS nid,  0.472222 AS "P_0", 0.000000 AS "P_1", 0.250000 AS "P_2", 0.277778 AS "P_3", 0 AS "D", 0.472222 AS "DP"
+    UNION ALL
+    SELECT 10 AS nid,  0.295082 AS "P_0", 0.000000 AS "P_1", 0.081967 AS "P_2", 0.622951 AS "P_3", 3 AS "D", 0.622951 AS "DP"
+    UNION ALL
+    SELECT 11 AS nid,  0.054054 AS "P_0", 0.000000 AS "P_1", 0.864865 AS "P_2", 0.081081 AS "P_3", 2 AS "D", 0.864865 AS "DP"
+    UNION ALL
+    SELECT 12 AS nid,  0.147541 AS "P_0", 0.196721 AS "P_1", 0.573770 AS "P_2", 0.081967 AS "P_3", 2 AS "D", 0.573770 AS "DP"
+    UNION ALL
+    SELECT 13 AS nid,  0.228571 AS "P_0", 0.057143 AS "P_1", 0.571429 AS "P_2", 0.142857 AS "P_3", 2 AS "D", 0.571429 AS "DP"
+    UNION ALL
+    SELECT 14 AS nid,  0.038462 AS "P_0", 0.384615 AS "P_1", 0.576923 AS "P_2", 0.000000 AS "P_3", 2 AS "D", 0.576923 AS "DP"
+    UNION ALL
+    SELECT 15 AS nid,  0.228571 AS "P_0", 0.000000 AS "P_1", 0.028571 AS "P_2", 0.742857 AS "P_3", 3 AS "D", 0.742857 AS "DP"
+    UNION ALL
+    SELECT 16 AS nid,  0.384615 AS "P_0", 0.000000 AS "P_1", 0.153846 AS "P_2", 0.461538 AS "P_3", 3 AS "D", 0.461538 AS "DP"
+    UNION ALL
+    SELECT 17 AS nid,  0.278226 AS "P_0", 0.241935 AS "P_1", 0.217742 AS "P_2", 0.262097 AS "P_3", 0 AS "D", 0.278226 AS "DP"
+    UNION ALL
+    SELECT 18 AS nid,  0.253937 AS "P_0", 0.320866 AS "P_1", 0.267717 AS "P_2", 0.157480 AS "P_3", 1 AS "D", 0.320866 AS "DP"
+    UNION ALL
+    SELECT 19 AS nid,  0.378788 AS "P_0", 0.037879 AS "P_1", 0.299242 AS "P_2", 0.284091 AS "P_3", 0 AS "D", 0.378788 AS "DP"
+    UNION ALL
+    SELECT 20 AS nid,  0.118852 AS "P_0", 0.627049 AS "P_1", 0.233607 AS "P_2", 0.020492 AS "P_3", 1 AS "D", 0.627049 AS "DP"
+    UNION ALL
+    SELECT 21 AS nid,  0.226190 AS "P_0", 0.190476 AS "P_1", 0.559524 AS "P_2", 0.023810 AS "P_3", 2 AS "D", 0.559524 AS "DP"
+    UNION ALL
+    SELECT 22 AS nid,  0.062500 AS "P_0", 0.856250 AS "P_1", 0.062500 AS "P_2", 0.018750 AS "P_3", 1 AS "D", 0.856250 AS "DP"
+    UNION ALL
+    SELECT 23 AS nid,  0.185185 AS "P_0", 0.037037 AS "P_1", 0.777778 AS "P_2", 0.000000 AS "P_3", 2 AS "D", 0.777778 AS "DP"
+    UNION ALL
+    SELECT 24 AS nid,  0.245614 AS "P_0", 0.263158 AS "P_1", 0.456140 AS "P_2", 0.035088 AS "P_3", 2 AS "D", 0.456140 AS "DP"
+    UNION ALL
+    SELECT 25 AS nid,  0.216216 AS "P_0", 0.675676 AS "P_1", 0.081081 AS "P_2", 0.027027 AS "P_3", 1 AS "D", 0.675676 AS "DP"
+    UNION ALL
+    SELECT 26 AS nid,  0.016260 AS "P_0", 0.910569 AS "P_1", 0.056911 AS "P_2", 0.016260 AS "P_3", 1 AS "D", 0.910569 AS "DP"
+    UNION ALL
+    SELECT 27 AS nid,  0.354167 AS "P_0", 0.041667 AS "P_1", 0.320833 AS "P_2", 0.283333 AS "P_3", 0 AS "D", 0.354167 AS "DP"
+    UNION ALL
+    SELECT 28 AS nid,  0.625000 AS "P_0", 0.000000 AS "P_1", 0.083333 AS "P_2", 0.291667 AS "P_3", 0 AS "D", 0.625000 AS "DP"
+    UNION ALL
+    SELECT 29 AS nid,  0.266667 AS "P_0", 0.088889 AS "P_1", 0.222222 AS "P_2", 0.422222 AS "P_3", 3 AS "D", 0.422222 AS "DP"
+    UNION ALL
+    SELECT 30 AS nid,  0.374359 AS "P_0", 0.030769 AS "P_1", 0.343590 AS "P_2", 0.251282 AS "P_3", 0 AS "D", 0.374359 AS "DP"
+    UNION ALL
+    SELECT 31 AS nid,  0.328358 AS "P_0", 0.194030 AS "P_1", 0.253731 AS "P_2", 0.223881 AS "P_3", 0 AS "D", 0.328358 AS "DP"
+    UNION ALL
+    SELECT 32 AS nid,  0.219298 AS "P_0", 0.298246 AS "P_1", 0.175439 AS "P_2", 0.307018 AS "P_3", 3 AS "D", 0.307018 AS "DP"
+    UNION ALL
+    SELECT 33 AS nid,  0.413333 AS "P_0", 0.040000 AS "P_1", 0.240000 AS "P_2", 0.306667 AS "P_3", 0 AS "D", 0.413333 AS "DP"
+    UNION ALL
+    SELECT 34 AS nid,  0.220339 AS "P_0", 0.389830 AS "P_1", 0.271186 AS "P_2", 0.118644 AS "P_3", 1 AS "D", 0.389830 AS "DP"
+    UNION ALL
+    SELECT 35 AS nid,  0.352941 AS "P_0", 0.294118 AS "P_1", 0.147059 AS "P_2", 0.205882 AS "P_3", 0 AS "D", 0.352941 AS "DP"
+    UNION ALL
+    SELECT 36 AS nid,  0.040000 AS "P_0", 0.520000 AS "P_1", 0.440000 AS "P_2", 0.000000 AS "P_3", 1 AS "D", 0.520000 AS "DP"
+    UNION ALL
+    SELECT 37 AS nid,  0.272727 AS "P_0", 0.000000 AS "P_1", 0.500000 AS "P_2", 0.227273 AS "P_3", 2 AS "D", 0.500000 AS "DP"
+    UNION ALL
+    SELECT 38 AS nid,  0.471698 AS "P_0", 0.056604 AS "P_1", 0.132075 AS "P_2", 0.339623 AS "P_3", 0 AS "D", 0.471698 AS "DP"
+    UNION ALL
+    SELECT 39 AS nid,  0.162791 AS "P_0", 0.441860 AS "P_1", 0.000000 AS "P_2", 0.395349 AS "P_3", 1 AS "D", 0.441860 AS "DP"
+    UNION ALL
+    SELECT 40 AS nid,  0.253521 AS "P_0", 0.211268 AS "P_1", 0.281690 AS "P_2", 0.253521 AS "P_3", 2 AS "D", 0.281690 AS "DP"
+    UNION ALL
+    SELECT 41 AS nid,  0.375000 AS "P_0", 0.000000 AS "P_1", 0.395833 AS "P_2", 0.229167 AS "P_3", 2 AS "D", 0.395833 AS "DP"
+    UNION ALL
+    SELECT 42 AS nid,  0.000000 AS "P_0", 0.652174 AS "P_1", 0.043478 AS "P_2", 0.304348 AS "P_3", 1 AS "D", 0.652174 AS "DP"
+  ) AS "Values"),
+"DT_output_4" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."P_0" AS "P_0", t2."P_1" AS "P_1", t2."P_2" AS "P_2", t2."P_3" AS "P_3", 
+   t2."D" AS "D", 
+   t2."DP" AS "DP"
+  FROM
+   "DT_node_lookup_4" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_4" AS t2
+   ON t1.node_id = t2.nid
+ ),
+"union_of_trees" AS
+ (SELECT scu."index_u" AS "index", scu."P_0" AS "P_0", scu."P_1" AS "P_1", scu."P_2" AS "P_2", scu."P_3" AS "P_3"
+ FROM (
+    SELECT t."index" AS "index_u", t."P_0" AS "P_0", t."P_1" AS "P_1", t."P_2" AS "P_2", t."P_3" AS "P_3" FROM "DT_output_0" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."P_0" AS "P_0", t."P_1" AS "P_1", t."P_2" AS "P_2", t."P_3" AS "P_3" FROM "DT_output_1" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."P_0" AS "P_0", t."P_1" AS "P_1", t."P_2" AS "P_2", t."P_3" AS "P_3" FROM "DT_output_2" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."P_0" AS "P_0", t."P_1" AS "P_1", t."P_2" AS "P_2", t."P_3" AS "P_3" FROM "DT_output_3" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."P_0" AS "P_0", t."P_1" AS "P_1", t."P_2" AS "P_2", t."P_3" AS "P_3" FROM "DT_output_4" AS t
+  ) AS scu
+)
+SELECT
+   t."index" AS "index",
+   CAST(NULL AS FLOAT) AS "LogProba_0",
+   AVG(t."P_0") AS "Proba_0",
+   CAST(NULL AS FLOAT) AS "Score_0",
+   CAST(NULL AS FLOAT) AS "LogProba_1",
+   AVG(t."P_1") AS "Proba_1",
+   CAST(NULL AS FLOAT) AS "Score_1",
+   CAST(NULL AS FLOAT) AS "LogProba_2",
+   AVG(t."P_2") AS "Proba_2",
+   CAST(NULL AS FLOAT) AS "Score_2",
+   CAST(NULL AS FLOAT) AS "LogProba_3",
+   AVG(t."P_3") AS "Proba_3",
+   CAST(NULL AS FLOAT) AS "Score_3"
+FROM "union_of_trees" AS t
+GROUP BY t."index"
