@@ -1,0 +1,185 @@
+       longitude  latitude  ...  ocean_proximity    target
+0              1         8  ...                0  452600.0
+1              1         7  ...                0  358500.0
+2              1         7  ...                0  352100.0
+3              1         7  ...                0  341300.0
+4              1         7  ...                0  342200.0
+...          ...       ...  ...              ...       ...
+20635          3         9  ...                0   78100.0
+20636          3         9  ...                0   77100.0
+20637          3         9  ...                0   92300.0
+20638          3         9  ...                0   84700.0
+20639          3         9  ...                0   89400.0
+
+[20640 rows x 10 columns]
+MLLITE_MODEL_SET_OPTIONS RidgeRegressor None
+MLLITE_MODEL_OPTIONS_DEFAULT RidgeRegressor { }
+MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeRegressor { ,   , }
+MLLITE_MODEL_JSON_AFTER_SETTING RidgeRegressor None
+('OPERATION_START', 'TRAINING')
+[[ 1.  8.  8.  0.  0.  0.  0.  9.  0.]
+ [ 1.  7.  3.  8.  8.  8.  8.  9.  0.]
+ [ 1.  7. 10.  2.  1.  1.  1.  9.  0.]
+ [ 1.  7. 10.  1.  1.  1.  1.  8.  0.]
+ [ 1.  7. 10.  3.  2.  1.  2.  5.  0.]] [452600. 358500. 352100. 341300. 342200.]
+MLLITE_FIT_USING_MODEL mllite_ridge_reg.RidgeRegressor_ff4_ff4
+PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_REGRESSOR_FIT' 1 2
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 1 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 2 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 3 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
+PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_REGRESSOR_FIT' 2 2
+('OPERATION_END_ELAPSED', 0.028, 'TRAINING')
+{ ,   , }
+{ ,   , }
+{
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
+	"dataset" : { "dataset_rows" : 20640, "dataset_features" : 9 },
+	"equations" : {
+			"intercept" : 270145.000000,
+			"coeffs" : [ -23239.255859, -23913.384766, 5888.641113, -489.675140, 10710.183594, -16661.726562, 8505.788086, 24954.556641, 0.000000 ]
+		}
+}
+WRITING_JSON_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_california_housing_quantized.json'
+
+MLLITE_MODEL_SET_OPTIONS RidgeRegressor None
+MLLITE_MODEL_OPTIONS_DEFAULT RidgeRegressor { }
+MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeRegressor { ,   , }
+MLLITE_MODEL_JSON_AFTER_SETTING RidgeRegressor None
+MLLITE_RELOADING_MODEL mllite_ridge_reg.RidgeRegressor_ff4_ff4
+{
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
+	"dataset" : { "dataset_rows" : 20640, "dataset_features" : 9 },
+	"equations" : {
+			"intercept" : 270145.000000,
+			"coeffs" : [ -23239.255859, -23913.384766, 5888.641113, -489.675140, 10710.183594, -16661.726562, 8505.788086, 24954.556641, 0.000000 ]
+		}
+}
+BEAUTIFIED_JSON_START
+{
+	"dataset" : 	{
+		"dataset_features" : 9,
+		"dataset_rows" : 20640
+	},
+	"equations" : 	{
+		"coeffs" : [ -23239.255859, -23913.384766, 5888.641113, -489.67514, 10710.183594, -16661.726562, 8505.788086, 24954.556641, 0.0 ],
+		"intercept" : 270145.0
+	},
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"options" :  { "alpha" : 1.0, "random_state" : 1789 }
+}
+BEAUTIFIED_JSON_END
+('OPERATION_START', 'PREDICT')
+[327298.8   338285.56  364564.38  ...  40630.35   55014.547  64102.117]
+('OPERATION_END_ELAPSED', 0.004, 'PREDICT')
+('OPERATION_START', 'PREDICT')
+[327298.8   338285.56  364564.38  ...  40630.35   55014.547  64102.117]
+('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
+MODEL_PERFS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': None, 'dataset': 'california_housing_quantized', 'size': 20640, 'mse': 5802039300.0, 'mae': 57877.332, 'mape': 0.3370525, 'r2': 0.5642643746861667}
+WRITING_PERF_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_california_housing_quantized.perf'
+
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': None, 'dataset': 'california_housing_quantized', 'training_time_in_sec': 0.028, 'prediction_time_in_sec': 0.003}
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_california_housing_quantized.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  model_input."index" AS "index",
+   270145.000000 + -23239.255859 * X_0 + -23913.384766 * X_1 + 5888.641113 * X_2 + -489.675140 * X_3 + 10710.183594 * X_4 + -16661.726562 * X_5 + 8505.788086 * X_6 + 24954.556641 * X_7 + 0.000000 * X_8 AS "Estimator"
+  FROM model_input
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_FIRST_LINES_END
+SQL_OUT_PUT_LAST_LINES_START
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  model_input."index" AS "index",
+   270145.000000 + -23239.255859 * X_0 + -23913.384766 * X_1 + 5888.641113 * X_2 + -489.675140 * X_3 + 10710.183594 * X_4 + -16661.726562 * X_5 + 8505.788086 * X_6 + 24954.556641 * X_7 + 0.000000 * X_8 AS "Estimator"
+  FROM model_input
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_LAST_LINES_END
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+       X_0  X_1   X_2  X_3  X_4  X_5  X_6  X_7  X_8    KEY
+0      1.0  8.0   8.0  0.0  0.0  0.0  0.0  9.0  0.0      0
+1      1.0  7.0   3.0  8.0  8.0  8.0  8.0  9.0  0.0      1
+2      1.0  7.0  10.0  2.0  1.0  1.0  1.0  9.0  0.0      2
+3      1.0  7.0  10.0  1.0  1.0  1.0  1.0  8.0  0.0      3
+4      1.0  7.0  10.0  3.0  2.0  1.0  2.0  5.0  0.0      4
+...    ...  ...   ...  ...  ...  ...  ...  ...  ...    ...
+20635  3.0  9.0   4.0  3.0  3.0  2.0  3.0  0.0  0.0  20635
+20636  3.0  9.0   2.0  0.0  0.0  0.0  0.0  2.0  0.0  20636
+20637  3.0  9.0   2.0  5.0  5.0  3.0  5.0  0.0  0.0  20637
+20638  3.0  9.0   2.0  4.0  4.0  2.0  3.0  1.0  0.0  20638
+20639  3.0  9.0   1.0  6.0  7.0  6.0  6.0  2.0  0.0  20639
+
+[20640 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+       index      Estimator
+0          0  327298.804686
+1          1  338285.543711
+2          2  364564.366516
+3          3  340099.485015
+4          4  283472.436492
+...      ...            ...
+20635  20635   31616.770477
+20636  20636   46893.165037
+20637  20637   40630.354769
+20638  20638   55014.553346
+20639  20639   64102.127386
+
+[20640 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+       index  SQL_Estimator   Py_Estimator
+20624  20624   92837.801240   92837.796875
+20625  20625  199393.853025  199393.843750
+20626  20626   57469.668118   57469.656250
+20627  20627   60070.439452   60070.437500
+20628  20628   78390.700808   78390.687500
+20629  20629   52297.020424   52297.023438
+20630  20630  119812.727484  119812.718750
+20631  20631  123986.067815  123986.062500
+20632  20632   96966.941196   96966.937500
+20633  20633   90167.983034   90167.968750
+20634  20634  156036.189731  156036.171875
+20635  20635   31616.770477   31616.765625
+20636  20636   46893.165037   46893.160156
+20637  20637   40630.354769   40630.351562
+20638  20638   55014.553346   55014.546875
+20639  20639   64102.127386   64102.117188
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
