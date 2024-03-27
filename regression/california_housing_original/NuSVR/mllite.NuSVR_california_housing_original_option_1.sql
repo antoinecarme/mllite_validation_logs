@@ -1,0 +1,554 @@
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ )
+,"SV_data" AS
+ ( SELECT 
+   "Values"."sv_idx" AS "sv_idx",
+   "Values"."coeff" AS "coeff",
+   "Values"."sv_0" AS "sv_0",
+   "Values"."sv_1" AS "sv_1",
+   "Values"."sv_2" AS "sv_2",
+   "Values"."sv_3" AS "sv_3",
+   "Values"."sv_4" AS "sv_4",
+   "Values"."sv_5" AS "sv_5",
+   "Values"."sv_6" AS "sv_6",
+   "Values"."sv_7" AS "sv_7",
+   "Values"."sv_8" AS "sv_8"
+  FROM
+  (
+     SELECT 0 AS "sv_idx", 1.000000 AS "coeff", -122.230003 AS "sv_0", 37.880001 AS "sv_1", 41.000000 AS "sv_2", 880.000000 AS "sv_3", 129.000000 AS "sv_4", 322.000000 AS "sv_5", 126.000000 AS "sv_6", 8.325200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 1 AS "sv_idx", -1.000000 AS "coeff", -122.260002 AS "sv_0", 37.849998 AS "sv_1", 52.000000 AS "sv_2", 3503.000000 AS "sv_3", 752.000000 AS "sv_4", 1504.000000 AS "sv_5", 734.000000 AS "sv_6", 3.270500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 2 AS "sv_idx", -1.000000 AS "coeff", -122.260002 AS "sv_0", 37.849998 AS "sv_1", 52.000000 AS "sv_2", 2643.000000 AS "sv_3", 626.000000 AS "sv_4", 1212.000000 AS "sv_5", 620.000000 AS "sv_6", 1.916700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 3 AS "sv_idx", -1.000000 AS "coeff", -122.269997 AS "sv_0", 37.840000 AS "sv_1", 52.000000 AS "sv_2", 2436.000000 AS "sv_3", 541.000000 AS "sv_4", 1015.000000 AS "sv_5", 478.000000 AS "sv_6", 1.725000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 4 AS "sv_idx", -1.000000 AS "coeff", -122.269997 AS "sv_0", 37.820000 AS "sv_1", 41.000000 AS "sv_2", 3221.000000 AS "sv_3", 853.000000 AS "sv_4", 1959.000000 AS "sv_5", 720.000000 AS "sv_6", 1.110800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 5 AS "sv_idx", -1.000000 AS "coeff", -122.279999 AS "sv_0", 37.810001 AS "sv_1", 36.000000 AS "sv_2", 2914.000000 AS "sv_3", 562.000000 AS "sv_4", 1236.000000 AS "sv_5", 509.000000 AS "sv_6", 2.446400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 6 AS "sv_idx", 1.000000 AS "coeff", -122.269997 AS "sv_0", 37.799999 AS "sv_1", 52.000000 AS "sv_2", 249.000000 AS "sv_3", 78.000000 AS "sv_4", 396.000000 AS "sv_5", 85.000000 AS "sv_6", 1.243400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 7 AS "sv_idx", -1.000000 AS "coeff", -122.269997 AS "sv_0", 37.799999 AS "sv_1", 39.000000 AS "sv_2", 1715.000000 AS "sv_3", 623.000000 AS "sv_4", 1327.000000 AS "sv_5", 467.000000 AS "sv_6", 1.847700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 8 AS "sv_idx", -1.000000 AS "coeff", -122.260002 AS "sv_0", 37.820000 AS "sv_1", 31.000000 AS "sv_2", 4596.000000 AS "sv_3", 1331.000000 AS "sv_4", 2048.000000 AS "sv_5", 1180.000000 AS "sv_6", 2.834500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 9 AS "sv_idx", -1.000000 AS "coeff", -122.260002 AS "sv_0", 37.820000 AS "sv_1", 22.000000 AS "sv_2", 3682.000000 AS "sv_3", 1270.000000 AS "sv_4", 2024.000000 AS "sv_5", 1250.000000 AS "sv_6", 1.218500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 10 AS "sv_idx", -1.000000 AS "coeff", -122.260002 AS "sv_0", 37.820000 AS "sv_1", 37.000000 AS "sv_2", 3633.000000 AS "sv_3", 1085.000000 AS "sv_4", 1838.000000 AS "sv_5", 980.000000 AS "sv_6", 2.610400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 11 AS "sv_idx", -1.000000 AS "coeff", -122.250000 AS "sv_0", 37.810001 AS "sv_1", 52.000000 AS "sv_2", 1758.000000 AS "sv_3", 460.000000 AS "sv_4", 686.000000 AS "sv_5", 422.000000 AS "sv_6", 3.169100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 12 AS "sv_idx", -1.000000 AS "coeff", -122.250000 AS "sv_0", 37.820000 AS "sv_1", 28.000000 AS "sv_2", 3337.000000 AS "sv_3", 855.000000 AS "sv_4", 1520.000000 AS "sv_5", 802.000000 AS "sv_6", 3.906300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 13 AS "sv_idx", -1.000000 AS "coeff", -122.250000 AS "sv_0", 37.820000 AS "sv_1", 32.000000 AS "sv_2", 3809.000000 AS "sv_3", 1098.000000 AS "sv_4", 1806.000000 AS "sv_5", 1022.000000 AS "sv_6", 2.642900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 14 AS "sv_idx", -1.000000 AS "coeff", -122.230003 AS "sv_0", 37.840000 AS "sv_1", 47.000000 AS "sv_2", 3175.000000 AS "sv_3", 454.000000 AS "sv_4", 1098.000000 AS "sv_5", 485.000000 AS "sv_6", 5.286800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 15 AS "sv_idx", -1.000000 AS "coeff", -122.209999 AS "sv_0", 37.840000 AS "sv_1", 44.000000 AS "sv_2", 3424.000000 AS "sv_3", 597.000000 AS "sv_4", 1358.000000 AS "sv_5", 597.000000 AS "sv_6", 6.019400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 16 AS "sv_idx", -1.000000 AS "coeff", -122.190002 AS "sv_0", 37.840000 AS "sv_1", 18.000000 AS "sv_2", 1617.000000 AS "sv_3", 210.000000 AS "sv_4", 533.000000 AS "sv_5", 194.000000 AS "sv_6", 11.601700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 17 AS "sv_idx", -1.000000 AS "coeff", -122.199997 AS "sv_0", 37.830002 AS "sv_1", 26.000000 AS "sv_2", 1589.000000 AS "sv_3", 223.000000 AS "sv_4", 542.000000 AS "sv_5", 211.000000 AS "sv_6", 8.401000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 18 AS "sv_idx", 1.000000 AS "coeff", -122.180000 AS "sv_0", 37.810001 AS "sv_1", 30.000000 AS "sv_2", 292.000000 AS "sv_3", 38.000000 AS "sv_4", 126.000000 AS "sv_5", 52.000000 AS "sv_6", 6.362400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 19 AS "sv_idx", -1.000000 AS "coeff", -122.239998 AS "sv_0", 37.810001 AS "sv_1", 52.000000 AS "sv_2", 2093.000000 AS "sv_3", 550.000000 AS "sv_4", 918.000000 AS "sv_5", 483.000000 AS "sv_6", 2.747700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 20 AS "sv_idx", -1.000000 AS "coeff", -122.250000 AS "sv_0", 37.799999 AS "sv_1", 42.000000 AS "sv_2", 4120.000000 AS "sv_3", 1065.000000 AS "sv_4", 1715.000000 AS "sv_5", 1015.000000 AS "sv_6", 2.934500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 21 AS "sv_idx", -1.000000 AS "coeff", -122.250000 AS "sv_0", 37.799999 AS "sv_1", 36.000000 AS "sv_2", 1678.000000 AS "sv_3", 606.000000 AS "sv_4", 1645.000000 AS "sv_5", 543.000000 AS "sv_6", 2.230300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 22 AS "sv_idx", -1.000000 AS "coeff", -122.239998 AS "sv_0", 37.790001 AS "sv_1", 39.000000 AS "sv_2", 1469.000000 AS "sv_3", 431.000000 AS "sv_4", 1464.000000 AS "sv_5", 389.000000 AS "sv_6", 2.163800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 23 AS "sv_idx", -1.000000 AS "coeff", -122.190002 AS "sv_0", 37.799999 AS "sv_1", 48.000000 AS "sv_2", 1694.000000 AS "sv_3", 259.000000 AS "sv_4", 610.000000 AS "sv_5", 238.000000 AS "sv_6", 4.744000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 24 AS "sv_idx", -1.000000 AS "coeff", -122.209999 AS "sv_0", 37.770000 AS "sv_1", 52.000000 AS "sv_2", 591.000000 AS "sv_3", 173.000000 AS "sv_4", 353.000000 AS "sv_5", 137.000000 AS "sv_6", 4.090400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 25 AS "sv_idx", -1.000000 AS "coeff", -122.199997 AS "sv_0", 37.770000 AS "sv_1", 39.000000 AS "sv_2", 2689.000000 AS "sv_3", 597.000000 AS "sv_4", 1888.000000 AS "sv_5", 537.000000 AS "sv_6", 2.256200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 26 AS "sv_idx", -1.000000 AS "coeff", -122.190002 AS "sv_0", 37.779999 AS "sv_1", 52.000000 AS "sv_2", 2198.000000 AS "sv_3", 397.000000 AS "sv_4", 984.000000 AS "sv_5", 369.000000 AS "sv_6", 3.220000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 27 AS "sv_idx", -1.000000 AS "coeff", -122.180000 AS "sv_0", 37.799999 AS "sv_1", 23.000000 AS "sv_2", 2317.000000 AS "sv_3", 336.000000 AS "sv_4", 955.000000 AS "sv_5", 328.000000 AS "sv_6", 6.752700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 28 AS "sv_idx", -1.000000 AS "coeff", -122.129997 AS "sv_0", 37.770000 AS "sv_1", 24.000000 AS "sv_2", 2459.000000 AS "sv_3", 317.000000 AS "sv_4", 916.000000 AS "sv_5", 324.000000 AS "sv_6", 7.071200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 29 AS "sv_idx", -1.000000 AS "coeff", -122.169998 AS "sv_0", 37.779999 AS "sv_1", 42.000000 AS "sv_2", 1524.000000 AS "sv_3", 260.000000 AS "sv_4", 651.000000 AS "sv_5", 267.000000 AS "sv_6", 3.687500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 30 AS "sv_idx", -1.000000 AS "coeff", -122.169998 AS "sv_0", 37.770000 AS "sv_1", 30.000000 AS "sv_2", 3326.000000 AS "sv_3", 746.000000 AS "sv_4", 1704.000000 AS "sv_5", 703.000000 AS "sv_6", 2.875000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 31 AS "sv_idx", -1.000000 AS "coeff", -122.160004 AS "sv_0", 37.770000 AS "sv_1", 45.000000 AS "sv_2", 2324.000000 AS "sv_3", 397.000000 AS "sv_4", 968.000000 AS "sv_5", 384.000000 AS "sv_6", 3.573900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 32 AS "sv_idx", -1.000000 AS "coeff", -122.180000 AS "sv_0", 37.730000 AS "sv_1", 42.000000 AS "sv_2", 4074.000000 AS "sv_3", 874.000000 AS "sv_4", 2736.000000 AS "sv_5", 780.000000 AS "sv_6", 2.455000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 33 AS "sv_idx", -1.000000 AS "coeff", -122.139999 AS "sv_0", 37.759998 AS "sv_1", 34.000000 AS "sv_2", 1513.000000 AS "sv_3", 231.000000 AS "sv_4", 545.000000 AS "sv_5", 211.000000 AS "sv_6", 5.570100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 34 AS "sv_idx", -1.000000 AS "coeff", -122.129997 AS "sv_0", 37.759998 AS "sv_1", 26.000000 AS "sv_2", 3266.000000 AS "sv_3", 491.000000 AS "sv_4", 1222.000000 AS "sv_5", 533.000000 AS "sv_6", 5.370000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 35 AS "sv_idx", -1.000000 AS "coeff", -122.129997 AS "sv_0", 37.740002 AS "sv_1", 41.000000 AS "sv_2", 4400.000000 AS "sv_3", 666.000000 AS "sv_4", 1476.000000 AS "sv_5", 648.000000 AS "sv_6", 5.000000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 36 AS "sv_idx", -1.000000 AS "coeff", -122.290001 AS "sv_0", 37.900002 AS "sv_1", 52.000000 AS "sv_2", 1604.000000 AS "sv_3", 263.000000 AS "sv_4", 594.000000 AS "sv_5", 286.000000 AS "sv_6", 5.338000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 37 AS "sv_idx", -1.000000 AS "coeff", -122.290001 AS "sv_0", 37.889999 AS "sv_1", 52.000000 AS "sv_2", 2248.000000 AS "sv_3", 422.000000 AS "sv_4", 870.000000 AS "sv_5", 377.000000 AS "sv_6", 3.473200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 38 AS "sv_idx", -1.000000 AS "coeff", -122.290001 AS "sv_0", 37.889999 AS "sv_1", 52.000000 AS "sv_2", 2269.000000 AS "sv_3", 380.000000 AS "sv_4", 1004.000000 AS "sv_5", 371.000000 AS "sv_6", 5.169600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 39 AS "sv_idx", -1.000000 AS "coeff", -122.269997 AS "sv_0", 37.900002 AS "sv_1", 42.000000 AS "sv_2", 1650.000000 AS "sv_3", 274.000000 AS "sv_4", 645.000000 AS "sv_5", 256.000000 AS "sv_6", 5.622800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 40 AS "sv_idx", -1.000000 AS "coeff", -122.279999 AS "sv_0", 37.889999 AS "sv_1", 52.000000 AS "sv_2", 2315.000000 AS "sv_3", 408.000000 AS "sv_4", 835.000000 AS "sv_5", 369.000000 AS "sv_6", 4.589300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 41 AS "sv_idx", -1.000000 AS "coeff", -122.269997 AS "sv_0", 37.880001 AS "sv_1", 52.000000 AS "sv_2", 3360.000000 AS "sv_3", 648.000000 AS "sv_4", 1232.000000 AS "sv_5", 621.000000 AS "sv_6", 4.281300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 42 AS "sv_idx", -1.000000 AS "coeff", -122.279999 AS "sv_0", 37.869999 AS "sv_1", 49.000000 AS "sv_2", 2026.000000 AS "sv_3", 548.000000 AS "sv_4", 963.000000 AS "sv_5", 521.000000 AS "sv_6", 1.980500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 43 AS "sv_idx", -1.000000 AS "coeff", -122.269997 AS "sv_0", 37.880001 AS "sv_1", 37.000000 AS "sv_2", 2619.000000 AS "sv_3", 682.000000 AS "sv_4", 1152.000000 AS "sv_5", 616.000000 AS "sv_6", 2.520000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 44 AS "sv_idx", 1.000000 AS "coeff", -122.250000 AS "sv_0", 37.869999 AS "sv_1", 52.000000 AS "sv_2", 609.000000 AS "sv_3", 236.000000 AS "sv_4", 1349.000000 AS "sv_5", 250.000000 AS "sv_6", 1.169600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 45 AS "sv_idx", -1.000000 AS "coeff", -122.260002 AS "sv_0", 37.869999 AS "sv_1", 52.000000 AS "sv_2", 1087.000000 AS "sv_3", 371.000000 AS "sv_4", 3337.000000 AS "sv_5", 350.000000 AS "sv_6", 1.401200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 46 AS "sv_idx", -1.000000 AS "coeff", -122.269997 AS "sv_0", 37.869999 AS "sv_1", 35.000000 AS "sv_2", 3218.000000 AS "sv_3", 1108.000000 AS "sv_4", 1675.000000 AS "sv_5", 1000.000000 AS "sv_6", 1.746400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 47 AS "sv_idx", -1.000000 AS "coeff", -122.279999 AS "sv_0", 37.869999 AS "sv_1", 52.000000 AS "sv_2", 1233.000000 AS "sv_3", 300.000000 AS "sv_4", 571.000000 AS "sv_5", 292.000000 AS "sv_6", 2.278800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 48 AS "sv_idx", -1.000000 AS "coeff", -122.260002 AS "sv_0", 37.860001 AS "sv_1", 52.000000 AS "sv_2", 3497.000000 AS "sv_3", 832.000000 AS "sv_4", 1493.000000 AS "sv_5", 794.000000 AS "sv_6", 2.904400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 49 AS "sv_idx", 1.000000 AS "coeff", -122.250000 AS "sv_0", 37.860001 AS "sv_1", 48.000000 AS "sv_2", 2153.000000 AS "sv_3", 517.000000 AS "sv_4", 1656.000000 AS "sv_5", 459.000000 AS "sv_6", 3.041700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 50 AS "sv_idx", 1.000000 AS "coeff", -122.250000 AS "sv_0", 37.860001 AS "sv_1", 52.000000 AS "sv_2", 1709.000000 AS "sv_3", 318.000000 AS "sv_4", 719.000000 AS "sv_5", 295.000000 AS "sv_6", 5.046300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 51 AS "sv_idx", 1.000000 AS "coeff", -122.239998 AS "sv_0", 37.860001 AS "sv_1", 52.000000 AS "sv_2", 1668.000000 AS "sv_3", 225.000000 AS "sv_4", 517.000000 AS "sv_5", 214.000000 AS "sv_6", 7.852100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 52 AS "sv_idx", 1.000000 AS "coeff", -122.239998 AS "sv_0", 37.849998 AS "sv_1", 52.000000 AS "sv_2", 3726.000000 AS "sv_3", 474.000000 AS "sv_4", 1366.000000 AS "sv_5", 496.000000 AS "sv_6", 9.395900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 53 AS "sv_idx", -1.000000 AS "coeff", -122.260002 AS "sv_0", 37.849998 AS "sv_1", 52.000000 AS "sv_2", 3618.000000 AS "sv_3", 768.000000 AS "sv_4", 1508.000000 AS "sv_5", 755.000000 AS "sv_6", 3.261900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 54 AS "sv_idx", -1.000000 AS "coeff", -122.269997 AS "sv_0", 37.849998 AS "sv_1", 52.000000 AS "sv_2", 4076.000000 AS "sv_3", 920.000000 AS "sv_4", 1800.000000 AS "sv_5", 815.000000 AS "sv_6", 2.705400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 55 AS "sv_idx", -1.000000 AS "coeff", -122.279999 AS "sv_0", 37.830002 AS "sv_1", 52.000000 AS "sv_2", 3108.000000 AS "sv_3", 813.000000 AS "sv_4", 1623.000000 AS "sv_5", 765.000000 AS "sv_6", 2.699700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 56 AS "sv_idx", 1.000000 AS "coeff", -122.230003 AS "sv_0", 37.830002 AS "sv_1", 52.000000 AS "sv_2", 2990.000000 AS "sv_3", 379.000000 AS "sv_4", 947.000000 AS "sv_5", 361.000000 AS "sv_6", 7.877200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 57 AS "sv_idx", 1.000000 AS "coeff", -122.220001 AS "sv_0", 37.820000 AS "sv_1", 39.000000 AS "sv_2", 2492.000000 AS "sv_3", 310.000000 AS "sv_4", 808.000000 AS "sv_5", 315.000000 AS "sv_6", 11.860300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 58 AS "sv_idx", 1.000000 AS "coeff", -122.220001 AS "sv_0", 37.820000 AS "sv_1", 42.000000 AS "sv_2", 2991.000000 AS "sv_3", 335.000000 AS "sv_4", 1018.000000 AS "sv_5", 335.000000 AS "sv_6", 13.499000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 59 AS "sv_idx", 1.000000 AS "coeff", -122.230003 AS "sv_0", 37.820000 AS "sv_1", 52.000000 AS "sv_2", 3242.000000 AS "sv_3", 366.000000 AS "sv_4", 1001.000000 AS "sv_5", 352.000000 AS "sv_6", 12.213800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 60 AS "sv_idx", 1.000000 AS "coeff", -122.230003 AS "sv_0", 37.820000 AS "sv_1", 52.000000 AS "sv_2", 3051.000000 AS "sv_3", 381.000000 AS "sv_4", 1005.000000 AS "sv_5", 369.000000 AS "sv_6", 8.187200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 61 AS "sv_idx", 1.000000 AS "coeff", -122.230003 AS "sv_0", 37.820000 AS "sv_1", 52.000000 AS "sv_2", 3494.000000 AS "sv_3", 396.000000 AS "sv_4", 1192.000000 AS "sv_5", 383.000000 AS "sv_6", 12.380400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 62 AS "sv_idx", 1.000000 AS "coeff", -122.239998 AS "sv_0", 37.830002 AS "sv_1", 52.000000 AS "sv_2", 1757.000000 AS "sv_3", 246.000000 AS "sv_4", 585.000000 AS "sv_5", 227.000000 AS "sv_6", 5.894800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 63 AS "sv_idx", 1.000000 AS "coeff", -122.239998 AS "sv_0", 37.830002 AS "sv_1", 52.000000 AS "sv_2", 2449.000000 AS "sv_3", 312.000000 AS "sv_4", 916.000000 AS "sv_5", 316.000000 AS "sv_6", 8.119400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 64 AS "sv_idx", 1.000000 AS "coeff", -122.230003 AS "sv_0", 37.820000 AS "sv_1", 52.000000 AS "sv_2", 1611.000000 AS "sv_3", 203.000000 AS "sv_4", 556.000000 AS "sv_5", 179.000000 AS "sv_6", 8.747700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 65 AS "sv_idx", -1.000000 AS "coeff", -122.290001 AS "sv_0", 37.759998 AS "sv_1", 18.000000 AS "sv_2", 2873.000000 AS "sv_3", 763.000000 AS "sv_4", 1243.000000 AS "sv_5", 663.000000 AS "sv_6", 5.170200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 66 AS "sv_idx", -1.000000 AS "coeff", -122.239998 AS "sv_0", 37.759998 AS "sv_1", 52.000000 AS "sv_2", 1846.000000 AS "sv_3", 471.000000 AS "sv_4", 827.000000 AS "sv_5", 446.000000 AS "sv_6", 2.683300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 67 AS "sv_idx", -1.000000 AS "coeff", -122.239998 AS "sv_0", 37.750000 AS "sv_1", 27.000000 AS "sv_2", 4051.000000 AS "sv_3", 753.000000 AS "sv_4", 1499.000000 AS "sv_5", 797.000000 AS "sv_6", 4.871100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 68 AS "sv_idx", -1.000000 AS "coeff", -122.059998 AS "sv_0", 37.709999 AS "sv_1", 36.000000 AS "sv_2", 3541.000000 AS "sv_3", 570.000000 AS "sv_4", 1478.000000 AS "sv_5", 529.000000 AS "sv_6", 4.635000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 69 AS "sv_idx", -1.000000 AS "coeff", -122.070000 AS "sv_0", 37.720001 AS "sv_1", 26.000000 AS "sv_2", 3204.000000 AS "sv_3", 477.000000 AS "sv_4", 1411.000000 AS "sv_5", 484.000000 AS "sv_6", 5.483400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 70 AS "sv_idx", -1.000000 AS "coeff", -122.080002 AS "sv_0", 37.720001 AS "sv_1", 32.000000 AS "sv_2", 2476.000000 AS "sv_3", 368.000000 AS "sv_4", 1048.000000 AS "sv_5", 367.000000 AS "sv_6", 5.619400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 71 AS "sv_idx", -1.000000 AS "coeff", -122.110001 AS "sv_0", 37.709999 AS "sv_1", 36.000000 AS "sv_2", 4569.000000 AS "sv_3", 824.000000 AS "sv_4", 1950.000000 AS "sv_5", 819.000000 AS "sv_6", 4.650000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 72 AS "sv_idx", -1.000000 AS "coeff", -122.099998 AS "sv_0", 37.689999 AS "sv_1", 30.000000 AS "sv_2", 3115.000000 AS "sv_3", 625.000000 AS "sv_4", 1444.000000 AS "sv_5", 568.000000 AS "sv_6", 3.722200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 73 AS "sv_idx", -1.000000 AS "coeff", -122.070000 AS "sv_0", 37.700001 AS "sv_1", 32.000000 AS "sv_2", 3400.000000 AS "sv_3", 736.000000 AS "sv_4", 1487.000000 AS "sv_5", 694.000000 AS "sv_6", 3.000000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 74 AS "sv_idx", -1.000000 AS "coeff", -122.080002 AS "sv_0", 37.700001 AS "sv_1", 25.000000 AS "sv_2", 3402.000000 AS "sv_3", 758.000000 AS "sv_4", 1645.000000 AS "sv_5", 710.000000 AS "sv_6", 3.493400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 75 AS "sv_idx", -1.000000 AS "coeff", -122.089996 AS "sv_0", 37.700001 AS "sv_1", 33.000000 AS "sv_2", 4413.000000 AS "sv_3", 1107.000000 AS "sv_4", 2239.000000 AS "sv_5", 1051.000000 AS "sv_6", 2.986100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 76 AS "sv_idx", -1.000000 AS "coeff", -122.089996 AS "sv_0", 37.689999 AS "sv_1", 20.000000 AS "sv_2", 4296.000000 AS "sv_3", 817.000000 AS "sv_4", 1732.000000 AS "sv_5", 800.000000 AS "sv_6", 4.803600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 77 AS "sv_idx", -1.000000 AS "coeff", -122.150002 AS "sv_0", 37.730000 AS "sv_1", 45.000000 AS "sv_2", 3758.000000 AS "sv_3", 819.000000 AS "sv_4", 1573.000000 AS "sv_5", 736.000000 AS "sv_6", 2.835500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 78 AS "sv_idx", -1.000000 AS "coeff", -122.169998 AS "sv_0", 37.730000 AS "sv_1", 46.000000 AS "sv_2", 2163.000000 AS "sv_3", 470.000000 AS "sv_4", 925.000000 AS "sv_5", 435.000000 AS "sv_6", 3.250000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 79 AS "sv_idx", -1.000000 AS "coeff", -122.169998 AS "sv_0", 37.730000 AS "sv_1", 52.000000 AS "sv_2", 1555.000000 AS "sv_3", 289.000000 AS "sv_4", 620.000000 AS "sv_5", 292.000000 AS "sv_6", 3.715900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 80 AS "sv_idx", -1.000000 AS "coeff", -122.160004 AS "sv_0", 37.709999 AS "sv_1", 37.000000 AS "sv_2", 1507.000000 AS "sv_3", 242.000000 AS "sv_4", 632.000000 AS "sv_5", 253.000000 AS "sv_6", 4.555300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 81 AS "sv_idx", -1.000000 AS "coeff", -122.160004 AS "sv_0", 37.720001 AS "sv_1", 10.000000 AS "sv_2", 2229.000000 AS "sv_3", 601.000000 AS "sv_4", 877.000000 AS "sv_5", 485.000000 AS "sv_6", 3.343100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 82 AS "sv_idx", -1.000000 AS "coeff", -122.150002 AS "sv_0", 37.730000 AS "sv_1", 28.000000 AS "sv_2", 2215.000000 AS "sv_3", 587.000000 AS "sv_4", 830.000000 AS "sv_5", 573.000000 AS "sv_6", 2.189800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 83 AS "sv_idx", -1.000000 AS "coeff", -122.150002 AS "sv_0", 37.720001 AS "sv_1", 29.000000 AS "sv_2", 4169.000000 AS "sv_3", 1047.000000 AS "sv_4", 2024.000000 AS "sv_5", 962.000000 AS "sv_6", 2.812500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 84 AS "sv_idx", -1.000000 AS "coeff", -122.139999 AS "sv_0", 37.730000 AS "sv_1", 43.000000 AS "sv_2", 2264.000000 AS "sv_3", 390.000000 AS "sv_4", 931.000000 AS "sv_5", 368.000000 AS "sv_6", 3.812500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 85 AS "sv_idx", -1.000000 AS "coeff", -122.139999 AS "sv_0", 37.709999 AS "sv_1", 27.000000 AS "sv_2", 3094.000000 AS "sv_3", 866.000000 AS "sv_4", 1364.000000 AS "sv_5", 789.000000 AS "sv_6", 2.610100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 86 AS "sv_idx", -1.000000 AS "coeff", -122.139999 AS "sv_0", 37.709999 AS "sv_1", 18.000000 AS "sv_2", 3905.000000 AS "sv_3", 1007.000000 AS "sv_4", 2197.000000 AS "sv_5", 1044.000000 AS "sv_6", 3.693200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 87 AS "sv_idx", -1.000000 AS "coeff", -122.129997 AS "sv_0", 37.700001 AS "sv_1", 43.000000 AS "sv_2", 3046.000000 AS "sv_3", 557.000000 AS "sv_4", 1333.000000 AS "sv_5", 544.000000 AS "sv_6", 3.458300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 88 AS "sv_idx", -1.000000 AS "coeff", -122.139999 AS "sv_0", 37.680000 AS "sv_1", 27.000000 AS "sv_2", 3337.000000 AS "sv_3", 613.000000 AS "sv_4", 1489.000000 AS "sv_5", 607.000000 AS "sv_6", 3.636400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 89 AS "sv_idx", -1.000000 AS "coeff", -122.080002 AS "sv_0", 37.680000 AS "sv_1", 26.000000 AS "sv_2", 2607.000000 AS "sv_3", 682.000000 AS "sv_4", 1401.000000 AS "sv_5", 607.000000 AS "sv_6", 2.656300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 90 AS "sv_idx", -1.000000 AS "coeff", -122.099998 AS "sv_0", 37.669998 AS "sv_1", 34.000000 AS "sv_2", 3659.000000 AS "sv_3", 897.000000 AS "sv_4", 2479.000000 AS "sv_5", 903.000000 AS "sv_6", 2.956400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 91 AS "sv_idx", -1.000000 AS "coeff", -122.120003 AS "sv_0", 37.680000 AS "sv_1", 40.000000 AS "sv_2", 1553.000000 AS "sv_3", 253.000000 AS "sv_4", 724.000000 AS "sv_5", 267.000000 AS "sv_6", 4.380000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 92 AS "sv_idx", -1.000000 AS "coeff", -122.120003 AS "sv_0", 37.680000 AS "sv_1", 37.000000 AS "sv_2", 2412.000000 AS "sv_3", 394.000000 AS "sv_4", 975.000000 AS "sv_5", 375.000000 AS "sv_6", 4.041700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 93 AS "sv_idx", -1.000000 AS "coeff", -122.139999 AS "sv_0", 37.669998 AS "sv_1", 34.000000 AS "sv_2", 3036.000000 AS "sv_3", 533.000000 AS "sv_4", 1366.000000 AS "sv_5", 500.000000 AS "sv_6", 4.238600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 94 AS "sv_idx", -1.000000 AS "coeff", -122.139999 AS "sv_0", 37.669998 AS "sv_1", 36.000000 AS "sv_2", 1487.000000 AS "sv_3", 249.000000 AS "sv_4", 641.000000 AS "sv_5", 243.000000 AS "sv_6", 4.068200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 95 AS "sv_idx", -1.000000 AS "coeff", -122.139999 AS "sv_0", 37.669998 AS "sv_1", 37.000000 AS "sv_2", 3156.000000 AS "sv_3", 534.000000 AS "sv_4", 1495.000000 AS "sv_5", 543.000000 AS "sv_6", 4.812500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 96 AS "sv_idx", -1.000000 AS "coeff", -122.129997 AS "sv_0", 37.669998 AS "sv_1", 42.000000 AS "sv_2", 3592.000000 AS "sv_3", 703.000000 AS "sv_4", 1625.000000 AS "sv_5", 665.000000 AS "sv_6", 3.243400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 97 AS "sv_idx", -1.000000 AS "coeff", -122.059998 AS "sv_0", 37.669998 AS "sv_1", 22.000000 AS "sv_2", 3882.000000 AS "sv_3", 816.000000 AS "sv_4", 1830.000000 AS "sv_5", 743.000000 AS "sv_6", 4.273300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 98 AS "sv_idx", -1.000000 AS "coeff", -122.070000 AS "sv_0", 37.669998 AS "sv_1", 28.000000 AS "sv_2", 2932.000000 AS "sv_3", 739.000000 AS "sv_4", 1198.000000 AS "sv_5", 624.000000 AS "sv_6", 3.241700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 99 AS "sv_idx", -1.000000 AS "coeff", -122.040001 AS "sv_0", 37.669998 AS "sv_1", 29.000000 AS "sv_2", 1694.000000 AS "sv_3", 251.000000 AS "sv_4", 690.000000 AS "sv_5", 242.000000 AS "sv_6", 6.050100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 100 AS "sv_idx", -1.000000 AS "coeff", -122.120003 AS "sv_0", 37.650002 AS "sv_1", 26.000000 AS "sv_2", 162.000000 AS "sv_3", 27.000000 AS "sv_4", 86.000000 AS "sv_5", 25.000000 AS "sv_6", 2.375000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 101 AS "sv_idx", -1.000000 AS "coeff", -122.070000 AS "sv_0", 37.630001 AS "sv_1", 35.000000 AS "sv_2", 1931.000000 AS "sv_3", 376.000000 AS "sv_4", 1175.000000 AS "sv_5", 337.000000 AS "sv_6", 3.729200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 102 AS "sv_idx", -1.000000 AS "coeff", -122.070000 AS "sv_0", 37.590000 AS "sv_1", 15.000000 AS "sv_2", 3475.000000 AS "sv_3", 686.000000 AS "sv_4", 2568.000000 AS "sv_5", 653.000000 AS "sv_6", 4.621100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 103 AS "sv_idx", -1.000000 AS "coeff", -122.010002 AS "sv_0", 37.580002 AS "sv_1", 17.000000 AS "sv_2", 4313.000000 AS "sv_3", 717.000000 AS "sv_4", 2629.000000 AS "sv_5", 721.000000 AS "sv_6", 5.757900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 104 AS "sv_idx", -1.000000 AS "coeff", -121.959999 AS "sv_0", 37.549999 AS "sv_1", 4.000000 AS "sv_2", 3746.000000 AS "sv_3", 993.000000 AS "sv_4", 1606.000000 AS "sv_5", 838.000000 AS "sv_6", 4.138700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 105 AS "sv_idx", -1.000000 AS "coeff", -122.010002 AS "sv_0", 37.540001 AS "sv_1", 32.000000 AS "sv_2", 2572.000000 AS "sv_3", 406.000000 AS "sv_4", 1128.000000 AS "sv_5", 395.000000 AS "sv_6", 5.000000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 106 AS "sv_idx", -1.000000 AS "coeff", -121.970001 AS "sv_0", 37.509998 AS "sv_1", 25.000000 AS "sv_2", 3333.000000 AS "sv_3", 511.000000 AS "sv_4", 1671.000000 AS "sv_5", 504.000000 AS "sv_6", 5.435900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 107 AS "sv_idx", 1.000000 AS "coeff", -121.889999 AS "sv_0", 37.490002 AS "sv_1", 9.000000 AS "sv_2", 4909.000000 AS "sv_3", 577.000000 AS "sv_4", 1981.000000 AS "sv_5", 591.000000 AS "sv_6", 9.719400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 108 AS "sv_idx", -1.000000 AS "coeff", -121.919998 AS "sv_0", 37.480000 AS "sv_1", 23.000000 AS "sv_2", 4314.000000 AS "sv_3", 676.000000 AS "sv_4", 1972.000000 AS "sv_5", 623.000000 AS "sv_6", 5.381300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 109 AS "sv_idx", -1.000000 AS "coeff", -122.029999 AS "sv_0", 37.549999 AS "sv_1", 26.000000 AS "sv_2", 3087.000000 AS "sv_3", 532.000000 AS "sv_4", 1597.000000 AS "sv_5", 483.000000 AS "sv_6", 4.911800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 110 AS "sv_idx", -1.000000 AS "coeff", -121.919998 AS "sv_0", 37.720001 AS "sv_1", 22.000000 AS "sv_2", 4638.000000 AS "sv_3", 716.000000 AS "sv_4", 2302.000000 AS "sv_5", 687.000000 AS "sv_6", 5.347000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 111 AS "sv_idx", -1.000000 AS "coeff", -121.910004 AS "sv_0", 37.709999 AS "sv_1", 25.000000 AS "sv_2", 4377.000000 AS "sv_3", 668.000000 AS "sv_4", 2038.000000 AS "sv_5", 671.000000 AS "sv_6", 5.723300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 112 AS "sv_idx", -1.000000 AS "coeff", -121.930000 AS "sv_0", 37.709999 AS "sv_1", 26.000000 AS "sv_2", 4822.000000 AS "sv_3", 845.000000 AS "sv_4", 2288.000000 AS "sv_5", 805.000000 AS "sv_6", 4.228100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 113 AS "sv_idx", 1.000000 AS "coeff", -121.930000 AS "sv_0", 37.660000 AS "sv_1", 24.000000 AS "sv_2", 3166.000000 AS "sv_3", 424.000000 AS "sv_4", 1081.000000 AS "sv_5", 400.000000 AS "sv_6", 8.333700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 114 AS "sv_idx", -1.000000 AS "coeff", -121.919998 AS "sv_0", 37.680000 AS "sv_1", 23.000000 AS "sv_2", 1655.000000 AS "sv_3", 223.000000 AS "sv_4", 706.000000 AS "sv_5", 219.000000 AS "sv_6", 7.221100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 115 AS "sv_idx", -1.000000 AS "coeff", -121.910004 AS "sv_0", 37.689999 AS "sv_1", 23.000000 AS "sv_2", 2179.000000 AS "sv_3", 308.000000 AS "sv_4", 926.000000 AS "sv_5", 299.000000 AS "sv_6", 5.934500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 116 AS "sv_idx", -1.000000 AS "coeff", -121.879997 AS "sv_0", 37.669998 AS "sv_1", 16.000000 AS "sv_2", 4070.000000 AS "sv_3", 624.000000 AS "sv_4", 1543.000000 AS "sv_5", 577.000000 AS "sv_6", 6.521400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 117 AS "sv_idx", -1.000000 AS "coeff", -121.879997 AS "sv_0", 37.669998 AS "sv_1", 25.000000 AS "sv_2", 2244.000000 AS "sv_3", 301.000000 AS "sv_4", 937.000000 AS "sv_5", 324.000000 AS "sv_6", 6.452400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 118 AS "sv_idx", -1.000000 AS "coeff", -121.889999 AS "sv_0", 37.669998 AS "sv_1", 19.000000 AS "sv_2", 2034.000000 AS "sv_3", 288.000000 AS "sv_4", 852.000000 AS "sv_5", 295.000000 AS "sv_6", 6.528500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 119 AS "sv_idx", 1.000000 AS "coeff", -121.879997 AS "sv_0", 37.639999 AS "sv_1", 20.000000 AS "sv_2", 1309.000000 AS "sv_3", 184.000000 AS "sv_4", 514.000000 AS "sv_5", 172.000000 AS "sv_6", 10.950600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 120 AS "sv_idx", -1.000000 AS "coeff", -121.870003 AS "sv_0", 37.669998 AS "sv_1", 10.000000 AS "sv_2", 4337.000000 AS "sv_3", 800.000000 AS "sv_4", 1813.000000 AS "sv_5", 743.000000 AS "sv_6", 5.500000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 121 AS "sv_idx", -1.000000 AS "coeff", -121.849998 AS "sv_0", 37.680000 AS "sv_1", 4.000000 AS "sv_2", 4719.000000 AS "sv_3", 741.000000 AS "sv_4", 1895.000000 AS "sv_5", 742.000000 AS "sv_6", 6.813200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 122 AS "sv_idx", -1.000000 AS "coeff", -121.870003 AS "sv_0", 37.660000 AS "sv_1", 27.000000 AS "sv_2", 1569.000000 AS "sv_3", 242.000000 AS "sv_4", 583.000000 AS "sv_5", 214.000000 AS "sv_6", 5.751900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 123 AS "sv_idx", -1.000000 AS "coeff", -121.760002 AS "sv_0", 37.700001 AS "sv_1", 9.000000 AS "sv_2", 3980.000000 AS "sv_3", 736.000000 AS "sv_4", 1705.000000 AS "sv_5", 679.000000 AS "sv_6", 5.706800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 124 AS "sv_idx", -1.000000 AS "coeff", -121.779999 AS "sv_0", 37.680000 AS "sv_1", 17.000000 AS "sv_2", 3112.000000 AS "sv_3", 872.000000 AS "sv_4", 1392.000000 AS "sv_5", 680.000000 AS "sv_6", 3.022200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 125 AS "sv_idx", -1.000000 AS "coeff", -120.559998 AS "sv_0", 38.480000 AS "sv_1", 14.000000 AS "sv_2", 3545.000000 AS "sv_3", 702.000000 AS "sv_4", 946.000000 AS "sv_5", 411.000000 AS "sv_6", 3.460900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 126 AS "sv_idx", -1.000000 AS "coeff", -120.589996 AS "sv_0", 38.450001 AS "sv_1", 13.000000 AS "sv_2", 2944.000000 AS "sv_3", 558.000000 AS "sv_4", 1091.000000 AS "sv_5", 466.000000 AS "sv_6", 3.000000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 127 AS "sv_idx", -1.000000 AS "coeff", -120.250000 AS "sv_0", 38.549999 AS "sv_1", 15.000000 AS "sv_2", 4403.000000 AS "sv_3", 891.000000 AS "sv_4", 1103.000000 AS "sv_5", 433.000000 AS "sv_6", 3.012500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 128 AS "sv_idx", 1.000000 AS "coeff", -121.959999 AS "sv_0", 37.849998 AS "sv_1", 10.000000 AS "sv_2", 3209.000000 AS "sv_3", 379.000000 AS "sv_4", 1199.000000 AS "sv_5", 392.000000 AS "sv_6", 12.247800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 129 AS "sv_idx", 1.000000 AS "coeff", -122.080002 AS "sv_0", 37.840000 AS "sv_1", 17.000000 AS "sv_2", 1320.000000 AS "sv_3", 159.000000 AS "sv_4", 1722.000000 AS "sv_5", 141.000000 AS "sv_6", 11.706400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 130 AS "sv_idx", -1.000000 AS "coeff", -120.980003 AS "sv_0", 38.669998 AS "sv_1", 13.000000 AS "sv_2", 3432.000000 AS "sv_3", 516.000000 AS "sv_4", 1286.000000 AS "sv_5", 470.000000 AS "sv_6", 5.584000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 131 AS "sv_idx", -1.000000 AS "coeff", -119.839996 AS "sv_0", 36.830002 AS "sv_1", 17.000000 AS "sv_2", 3012.000000 AS "sv_3", 408.000000 AS "sv_4", 987.000000 AS "sv_5", 362.000000 AS "sv_6", 7.420100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 132 AS "sv_idx", -1.000000 AS "coeff", -119.820000 AS "sv_0", 36.830002 AS "sv_1", 16.000000 AS "sv_2", 2868.000000 AS "sv_3", 376.000000 AS "sv_4", 1016.000000 AS "sv_5", 379.000000 AS "sv_6", 6.117500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 133 AS "sv_idx", -1.000000 AS "coeff", -119.820000 AS "sv_0", 36.799999 AS "sv_1", 33.000000 AS "sv_2", 1670.000000 AS "sv_3", 256.000000 AS "sv_4", 528.000000 AS "sv_5", 250.000000 AS "sv_6", 2.947100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 134 AS "sv_idx", -1.000000 AS "coeff", -119.629997 AS "sv_0", 36.790001 AS "sv_1", 19.000000 AS "sv_2", 1317.000000 AS "sv_3", 189.000000 AS "sv_4", 517.000000 AS "sv_5", 187.000000 AS "sv_6", 4.526000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 135 AS "sv_idx", -1.000000 AS "coeff", -119.080002 AS "sv_0", 35.349998 AS "sv_1", 20.000000 AS "sv_2", 892.000000 AS "sv_3", 129.000000 AS "sv_4", 331.000000 AS "sv_5", 135.000000 AS "sv_6", 7.183700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 136 AS "sv_idx", -1.000000 AS "coeff", -119.570000 AS "sv_0", 36.099998 AS "sv_1", 36.000000 AS "sv_2", 1729.000000 AS "sv_3", 317.000000 AS "sv_4", 737.000000 AS "sv_5", 278.000000 AS "sv_6", 3.531300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 137 AS "sv_idx", 1.000000 AS "coeff", -118.540001 AS "sv_0", 34.259998 AS "sv_1", 23.000000 AS "sv_2", 4960.000000 AS "sv_3", 592.000000 AS "sv_4", 1929.000000 AS "sv_5", 586.000000 AS "sv_6", 10.905200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 138 AS "sv_idx", 1.000000 AS "coeff", -118.489998 AS "sv_0", 34.130001 AS "sv_1", 24.000000 AS "sv_2", 4394.000000 AS "sv_3", 0.000000 AS "sv_4", 1443.000000 AS "sv_5", 528.000000 AS "sv_6", 11.297900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 139 AS "sv_idx", 1.000000 AS "coeff", -118.480003 AS "sv_0", 34.160000 AS "sv_1", 30.000000 AS "sv_2", 3507.000000 AS "sv_3", 536.000000 AS "sv_4", 1427.000000 AS "sv_5", 525.000000 AS "sv_6", 6.708200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 140 AS "sv_idx", 1.000000 AS "coeff", -118.300003 AS "sv_0", 34.110001 AS "sv_1", 25.000000 AS "sv_2", 1590.000000 AS "sv_3", 218.000000 AS "sv_4", 568.000000 AS "sv_5", 206.000000 AS "sv_6", 8.438900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 141 AS "sv_idx", 1.000000 AS "coeff", -118.339996 AS "sv_0", 34.099998 AS "sv_1", 29.000000 AS "sv_2", 3193.000000 AS "sv_3", 1452.000000 AS "sv_4", 2039.000000 AS "sv_5", 1265.000000 AS "sv_6", 1.820900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 142 AS "sv_idx", 1.000000 AS "coeff", -118.330002 AS "sv_0", 34.080002 AS "sv_1", 52.000000 AS "sv_2", 1777.000000 AS "sv_3", 454.000000 AS "sv_4", 671.000000 AS "sv_5", 439.000000 AS "sv_6", 3.508300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 143 AS "sv_idx", 1.000000 AS "coeff", -118.309998 AS "sv_0", 34.070000 AS "sv_1", 20.000000 AS "sv_2", 3264.000000 AS "sv_3", 1248.000000 AS "sv_4", 2919.000000 AS "sv_5", 1191.000000 AS "sv_6", 2.367400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 144 AS "sv_idx", 1.000000 AS "coeff", -118.349998 AS "sv_0", 34.070000 AS "sv_1", 52.000000 AS "sv_2", 2315.000000 AS "sv_3", 356.000000 AS "sv_4", 894.000000 AS "sv_5", 345.000000 AS "sv_6", 4.132800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 145 AS "sv_idx", 1.000000 AS "coeff", -118.379997 AS "sv_0", 34.070000 AS "sv_1", 21.000000 AS "sv_2", 3653.000000 AS "sv_3", 956.000000 AS "sv_4", 1510.000000 AS "sv_5", 890.000000 AS "sv_6", 3.557300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 146 AS "sv_idx", 1.000000 AS "coeff", -118.349998 AS "sv_0", 34.060001 AS "sv_1", 52.000000 AS "sv_2", 3446.000000 AS "sv_3", 1360.000000 AS "sv_4", 1768.000000 AS "sv_5", 1245.000000 AS "sv_6", 2.472200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 147 AS "sv_idx", 1.000000 AS "coeff", -118.379997 AS "sv_0", 34.049999 AS "sv_1", 35.000000 AS "sv_2", 3517.000000 AS "sv_3", 879.000000 AS "sv_4", 1632.000000 AS "sv_5", 784.000000 AS "sv_6", 3.095600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 148 AS "sv_idx", 1.000000 AS "coeff", -118.279999 AS "sv_0", 34.020000 AS "sv_1", 29.000000 AS "sv_2", 515.000000 AS "sv_3", 229.000000 AS "sv_4", 2690.000000 AS "sv_5", 217.000000 AS "sv_6", 0.499900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 149 AS "sv_idx", 1.000000 AS "coeff", -118.470001 AS "sv_0", 34.049999 AS "sv_1", 25.000000 AS "sv_2", 2689.000000 AS "sv_3", 719.000000 AS "sv_4", 1229.000000 AS "sv_5", 663.000000 AS "sv_6", 3.590900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 150 AS "sv_idx", 1.000000 AS "coeff", -118.440002 AS "sv_0", 34.070000 AS "sv_1", 35.000000 AS "sv_2", 1973.000000 AS "sv_3", 332.000000 AS "sv_4", 1257.000000 AS "sv_5", 296.000000 AS "sv_6", 8.956500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 151 AS "sv_idx", 1.000000 AS "coeff", -118.440002 AS "sv_0", 34.060001 AS "sv_1", 28.000000 AS "sv_2", 3910.000000 AS "sv_3", 959.000000 AS "sv_4", 1763.000000 AS "sv_5", 867.000000 AS "sv_6", 5.500000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 152 AS "sv_idx", 1.000000 AS "coeff", -118.440002 AS "sv_0", 34.060001 AS "sv_1", 14.000000 AS "sv_2", 520.000000 AS "sv_3", 292.000000 AS "sv_4", 282.000000 AS "sv_5", 213.000000 AS "sv_6", 2.285700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 153 AS "sv_idx", 1.000000 AS "coeff", -118.430000 AS "sv_0", 34.049999 AS "sv_1", 22.000000 AS "sv_2", 4251.000000 AS "sv_3", 1073.000000 AS "sv_4", 1581.000000 AS "sv_5", 881.000000 AS "sv_6", 5.255500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 154 AS "sv_idx", 1.000000 AS "coeff", -118.430000 AS "sv_0", 34.060001 AS "sv_1", 20.000000 AS "sv_2", 4600.000000 AS "sv_3", 1018.000000 AS "sv_4", 1675.000000 AS "sv_5", 932.000000 AS "sv_6", 5.199900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 155 AS "sv_idx", 1.000000 AS "coeff", -118.440002 AS "sv_0", 34.049999 AS "sv_1", 22.000000 AS "sv_2", 3970.000000 AS "sv_3", 871.000000 AS "sv_4", 1588.000000 AS "sv_5", 791.000000 AS "sv_6", 4.861800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 156 AS "sv_idx", 1.000000 AS "coeff", -118.500000 AS "sv_0", 33.970001 AS "sv_1", 29.000000 AS "sv_2", 2737.000000 AS "sv_3", 808.000000 AS "sv_4", 1157.000000 AS "sv_5", 696.000000 AS "sv_6", 5.128000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 157 AS "sv_idx", 1.000000 AS "coeff", -118.209999 AS "sv_0", 34.220001 AS "sv_1", 37.000000 AS "sv_2", 2260.000000 AS "sv_3", 322.000000 AS "sv_4", 941.000000 AS "sv_5", 303.000000 AS "sv_6", 8.369500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 158 AS "sv_idx", 1.000000 AS "coeff", -118.190002 AS "sv_0", 34.209999 AS "sv_1", 41.000000 AS "sv_2", 1602.000000 AS "sv_3", 228.000000 AS "sv_4", 680.000000 AS "sv_5", 225.000000 AS "sv_6", 6.553000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 159 AS "sv_idx", 1.000000 AS "coeff", -118.190002 AS "sv_0", 34.189999 AS "sv_1", 34.000000 AS "sv_2", 2061.000000 AS "sv_3", 260.000000 AS "sv_4", 825.000000 AS "sv_5", 254.000000 AS "sv_6", 15.000100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 160 AS "sv_idx", 1.000000 AS "coeff", -117.989998 AS "sv_0", 33.970001 AS "sv_1", 18.000000 AS "sv_2", 4078.000000 AS "sv_3", 484.000000 AS "sv_4", 1490.000000 AS "sv_5", 482.000000 AS "sv_6", 10.803400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 161 AS "sv_idx", -1.000000 AS "coeff", -118.160004 AS "sv_0", 33.880001 AS "sv_1", 33.000000 AS "sv_2", 2180.000000 AS "sv_3", 522.000000 AS "sv_4", 1634.000000 AS "sv_5", 467.000000 AS "sv_6", 3.011400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 162 AS "sv_idx", 1.000000 AS "coeff", -118.150002 AS "sv_0", 33.759998 AS "sv_1", 36.000000 AS "sv_2", 2916.000000 AS "sv_3", 785.000000 AS "sv_4", 1183.000000 AS "sv_5", 749.000000 AS "sv_6", 3.598500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 163 AS "sv_idx", 1.000000 AS "coeff", -118.400002 AS "sv_0", 33.869999 AS "sv_1", 45.000000 AS "sv_2", 2181.000000 AS "sv_3", 505.000000 AS "sv_4", 965.000000 AS "sv_5", 471.000000 AS "sv_6", 5.381600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 164 AS "sv_idx", 1.000000 AS "coeff", -118.400002 AS "sv_0", 33.860001 AS "sv_1", 41.000000 AS "sv_2", 2237.000000 AS "sv_3", 597.000000 AS "sv_4", 938.000000 AS "sv_5", 523.000000 AS "sv_6", 4.710500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 165 AS "sv_idx", 1.000000 AS "coeff", -118.389999 AS "sv_0", 33.830002 AS "sv_1", 32.000000 AS "sv_2", 2075.000000 AS "sv_3", 539.000000 AS "sv_4", 954.000000 AS "sv_5", 519.000000 AS "sv_6", 5.637000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 166 AS "sv_idx", 1.000000 AS "coeff", -118.389999 AS "sv_0", 33.820000 AS "sv_1", 30.000000 AS "sv_2", 3433.000000 AS "sv_3", 918.000000 AS "sv_4", 1526.000000 AS "sv_5", 828.000000 AS "sv_6", 4.581700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 167 AS "sv_idx", 1.000000 AS "coeff", -118.430000 AS "sv_0", 33.820000 AS "sv_1", 34.000000 AS "sv_2", 2112.000000 AS "sv_3", 614.000000 AS "sv_4", 946.000000 AS "sv_5", 574.000000 AS "sv_6", 4.604800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 168 AS "sv_idx", 1.000000 AS "coeff", -118.440002 AS "sv_0", 33.810001 AS "sv_1", 33.000000 AS "sv_2", 3994.000000 AS "sv_3", 990.000000 AS "sv_4", 1647.000000 AS "sv_5", 931.000000 AS "sv_6", 5.010600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 169 AS "sv_idx", 1.000000 AS "coeff", -118.370003 AS "sv_0", 33.790001 AS "sv_1", 36.000000 AS "sv_2", 1596.000000 AS "sv_3", 234.000000 AS "sv_4", 654.000000 AS "sv_5", 223.000000 AS "sv_6", 8.206400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 170 AS "sv_idx", 1.000000 AS "coeff", -118.400002 AS "sv_0", 33.779999 AS "sv_1", 26.000000 AS "sv_2", 5005.000000 AS "sv_3", 776.000000 AS "sv_4", 2357.000000 AS "sv_5", 790.000000 AS "sv_6", 8.542100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 171 AS "sv_idx", 1.000000 AS "coeff", -118.330002 AS "sv_0", 33.770000 AS "sv_1", 33.000000 AS "sv_2", 4244.000000 AS "sv_3", 595.000000 AS "sv_4", 1534.000000 AS "sv_5", 557.000000 AS "sv_6", 9.821400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 172 AS "sv_idx", 1.000000 AS "coeff", -118.400002 AS "sv_0", 34.070000 AS "sv_1", 22.000000 AS "sv_2", 2170.000000 AS "sv_3", 593.000000 AS "sv_4", 850.000000 AS "sv_5", 520.000000 AS "sv_6", 2.910700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 173 AS "sv_idx", 1.000000 AS "coeff", -118.389999 AS "sv_0", 34.060001 AS "sv_1", 39.000000 AS "sv_2", 3299.000000 AS "sv_3", 831.000000 AS "sv_4", 1649.000000 AS "sv_5", 759.000000 AS "sv_6", 3.329500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 174 AS "sv_idx", 1.000000 AS "coeff", -118.400002 AS "sv_0", 34.060001 AS "sv_1", 37.000000 AS "sv_2", 3781.000000 AS "sv_3", 873.000000 AS "sv_4", 1725.000000 AS "sv_5", 838.000000 AS "sv_6", 4.145500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 175 AS "sv_idx", 1.000000 AS "coeff", -118.760002 AS "sv_0", 34.130001 AS "sv_1", 10.000000 AS "sv_2", 4355.000000 AS "sv_3", 716.000000 AS "sv_4", 2030.000000 AS "sv_5", 674.000000 AS "sv_6", 6.557100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 176 AS "sv_idx", 1.000000 AS "coeff", -118.739998 AS "sv_0", 34.049999 AS "sv_1", 19.000000 AS "sv_2", 3487.000000 AS "sv_3", 686.000000 AS "sv_4", 2782.000000 AS "sv_5", 584.000000 AS "sv_6", 7.918400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 177 AS "sv_idx", 1.000000 AS "coeff", -118.620003 AS "sv_0", 34.060001 AS "sv_1", 25.000000 AS "sv_2", 3546.000000 AS "sv_3", 584.000000 AS "sv_4", 1530.000000 AS "sv_5", 601.000000 AS "sv_6", 7.400100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 178 AS "sv_idx", 1.000000 AS "coeff", -118.519997 AS "sv_0", 34.360001 AS "sv_1", 5.000000 AS "sv_2", 4222.000000 AS "sv_3", 712.000000 AS "sv_4", 2024.000000 AS "sv_5", 646.000000 AS "sv_6", 5.870300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 179 AS "sv_idx", 1.000000 AS "coeff", -122.570000 AS "sv_0", 37.959999 AS "sv_1", 52.000000 AS "sv_2", 3458.000000 AS "sv_3", 468.000000 AS "sv_4", 1449.000000 AS "sv_5", 471.000000 AS "sv_6", 9.183400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 180 AS "sv_idx", 1.000000 AS "coeff", -122.540001 AS "sv_0", 37.959999 AS "sv_1", 44.000000 AS "sv_2", 1552.000000 AS "sv_3", 204.000000 AS "sv_4", 596.000000 AS "sv_5", 208.000000 AS "sv_6", 10.129000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 181 AS "sv_idx", 1.000000 AS "coeff", -122.550003 AS "sv_0", 37.919998 AS "sv_1", 52.000000 AS "sv_2", 2303.000000 AS "sv_3", 350.000000 AS "sv_4", 859.000000 AS "sv_5", 359.000000 AS "sv_6", 6.108500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 182 AS "sv_idx", 1.000000 AS "coeff", -117.870003 AS "sv_0", 33.610001 AS "sv_1", 25.000000 AS "sv_2", 2267.000000 AS "sv_3", 359.000000 AS "sv_4", 866.000000 AS "sv_5", 348.000000 AS "sv_6", 7.790000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 183 AS "sv_idx", 1.000000 AS "coeff", -117.769997 AS "sv_0", 33.540001 AS "sv_1", 28.000000 AS "sv_2", 3404.000000 AS "sv_3", 497.000000 AS "sv_4", 1134.000000 AS "sv_5", 466.000000 AS "sv_6", 7.221700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 184 AS "sv_idx", -1.000000 AS "coeff", -117.910004 AS "sv_0", 33.740002 AS "sv_1", 15.000000 AS "sv_2", 715.000000 AS "sv_3", 214.000000 AS "sv_4", 1394.000000 AS "sv_5", 244.000000 AS "sv_6", 3.384600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 185 AS "sv_idx", 1.000000 AS "coeff", -118.110001 AS "sv_0", 33.740002 AS "sv_1", 43.000000 AS "sv_2", 1222.000000 AS "sv_3", 303.000000 AS "sv_4", 565.000000 AS "sv_5", 309.000000 AS "sv_6", 4.848200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 186 AS "sv_idx", -1.000000 AS "coeff", -117.349998 AS "sv_0", 33.950001 AS "sv_1", 28.000000 AS "sv_2", 1650.000000 AS "sv_3", 210.000000 AS "sv_4", 557.000000 AS "sv_5", 211.000000 AS "sv_6", 7.663200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 187 AS "sv_idx", -1.000000 AS "coeff", -117.139999 AS "sv_0", 33.939999 AS "sv_1", 5.000000 AS "sv_2", 4873.000000 AS "sv_3", 639.000000 AS "sv_4", 1947.000000 AS "sv_5", 568.000000 AS "sv_6", 6.322300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 188 AS "sv_idx", -1.000000 AS "coeff", -121.360001 AS "sv_0", 38.580002 AS "sv_1", 25.000000 AS "sv_2", 3196.000000 AS "sv_3", 406.000000 AS "sv_4", 978.000000 AS "sv_5", 419.000000 AS "sv_6", 8.469900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 189 AS "sv_idx", -1.000000 AS "coeff", -121.300003 AS "sv_0", 38.650002 AS "sv_1", 26.000000 AS "sv_2", 3192.000000 AS "sv_3", 447.000000 AS "sv_4", 1132.000000 AS "sv_5", 418.000000 AS "sv_6", 4.527800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 190 AS "sv_idx", -1.000000 AS "coeff", -117.279999 AS "sv_0", 34.150002 AS "sv_1", 36.000000 AS "sv_2", 1734.000000 AS "sv_3", 280.000000 AS "sv_4", 604.000000 AS "sv_5", 259.000000 AS "sv_6", 3.829200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 191 AS "sv_idx", 1.000000 AS "coeff", -117.250000 AS "sv_0", 32.860001 AS "sv_1", 30.000000 AS "sv_2", 1670.000000 AS "sv_3", 219.000000 AS "sv_4", 606.000000 AS "sv_5", 202.000000 AS "sv_6", 12.442900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 192 AS "sv_idx", 1.000000 AS "coeff", -117.239998 AS "sv_0", 32.849998 AS "sv_1", 22.000000 AS "sv_2", 3479.000000 AS "sv_3", 448.000000 AS "sv_4", 1252.000000 AS "sv_5", 440.000000 AS "sv_6", 10.070700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 193 AS "sv_idx", -1.000000 AS "coeff", -117.070000 AS "sv_0", 32.790001 AS "sv_1", 25.000000 AS "sv_2", 2489.000000 AS "sv_3", 314.000000 AS "sv_4", 911.000000 AS "sv_5", 309.000000 AS "sv_6", 7.833600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 194 AS "sv_idx", -1.000000 AS "coeff", -116.970001 AS "sv_0", 32.759998 AS "sv_1", 26.000000 AS "sv_2", 2460.000000 AS "sv_3", 313.000000 AS "sv_4", 838.000000 AS "sv_5", 299.000000 AS "sv_6", 5.987800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 195 AS "sv_idx", -1.000000 AS "coeff", -117.099998 AS "sv_0", 32.900002 AS "sv_1", 16.000000 AS "sv_2", 2994.000000 AS "sv_3", 445.000000 AS "sv_4", 1047.000000 AS "sv_5", 437.000000 AS "sv_6", 5.149000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 196 AS "sv_idx", 1.000000 AS "coeff", -122.410004 AS "sv_0", 37.810001 AS "sv_1", 31.000000 AS "sv_2", 3991.000000 AS "sv_3", 1311.000000 AS "sv_4", 2305.000000 AS "sv_5", 1201.000000 AS "sv_6", 1.898100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 197 AS "sv_idx", 1.000000 AS "coeff", -122.419998 AS "sv_0", 37.799999 AS "sv_1", 50.000000 AS "sv_2", 2494.000000 AS "sv_3", 731.000000 AS "sv_4", 958.000000 AS "sv_5", 712.000000 AS "sv_6", 3.235600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 198 AS "sv_idx", 1.000000 AS "coeff", -122.410004 AS "sv_0", 37.799999 AS "sv_1", 52.000000 AS "sv_2", 2583.000000 AS "sv_3", 672.000000 AS "sv_4", 1335.000000 AS "sv_5", 613.000000 AS "sv_6", 3.147700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 199 AS "sv_idx", 1.000000 AS "coeff", -122.410004 AS "sv_0", 37.790001 AS "sv_1", 52.000000 AS "sv_2", 2909.000000 AS "sv_3", 851.000000 AS "sv_4", 1711.000000 AS "sv_5", 830.000000 AS "sv_6", 3.029600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 200 AS "sv_idx", 1.000000 AS "coeff", -122.410004 AS "sv_0", 37.799999 AS "sv_1", 52.000000 AS "sv_2", 3260.000000 AS "sv_3", 1535.000000 AS "sv_4", 3260.000000 AS "sv_5", 1457.000000 AS "sv_6", 0.900000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 201 AS "sv_idx", 1.000000 AS "coeff", -122.389999 AS "sv_0", 37.799999 AS "sv_1", 25.000000 AS "sv_2", 4561.000000 AS "sv_3", 1474.000000 AS "sv_4", 1525.000000 AS "sv_5", 1169.000000 AS "sv_6", 4.558100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 202 AS "sv_idx", 1.000000 AS "coeff", -122.410004 AS "sv_0", 37.790001 AS "sv_1", 52.000000 AS "sv_2", 3610.000000 AS "sv_3", 1286.000000 AS "sv_4", 1504.000000 AS "sv_5", 1047.000000 AS "sv_6", 3.205900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 203 AS "sv_idx", 1.000000 AS "coeff", -122.419998 AS "sv_0", 37.779999 AS "sv_1", 27.000000 AS "sv_2", 1728.000000 AS "sv_3", 884.000000 AS "sv_4", 1211.000000 AS "sv_5", 752.000000 AS "sv_6", 0.854300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 204 AS "sv_idx", 1.000000 AS "coeff", -122.419998 AS "sv_0", 37.799999 AS "sv_1", 52.000000 AS "sv_2", 2657.000000 AS "sv_3", 772.000000 AS "sv_4", 1014.000000 AS "sv_5", 685.000000 AS "sv_6", 4.038000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 205 AS "sv_idx", 1.000000 AS "coeff", -122.419998 AS "sv_0", 37.790001 AS "sv_1", 48.000000 AS "sv_2", 4506.000000 AS "sv_3", 1342.000000 AS "sv_4", 1980.000000 AS "sv_5", 1239.000000 AS "sv_6", 4.015600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 206 AS "sv_idx", 1.000000 AS "coeff", -122.440002 AS "sv_0", 37.790001 AS "sv_1", 52.000000 AS "sv_2", 1817.000000 AS "sv_3", 535.000000 AS "sv_4", 800.000000 AS "sv_5", 487.000000 AS "sv_6", 3.975000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 207 AS "sv_idx", 1.000000 AS "coeff", -122.440002 AS "sv_0", 37.790001 AS "sv_1", 52.000000 AS "sv_2", 3640.000000 AS "sv_3", 840.000000 AS "sv_4", 1525.000000 AS "sv_5", 796.000000 AS "sv_6", 4.437500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 208 AS "sv_idx", 1.000000 AS "coeff", -122.430000 AS "sv_0", 37.790001 AS "sv_1", 50.000000 AS "sv_2", 3312.000000 AS "sv_3", 1095.000000 AS "sv_4", 1475.000000 AS "sv_5", 997.000000 AS "sv_6", 2.716500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 209 AS "sv_idx", 1.000000 AS "coeff", -122.430000 AS "sv_0", 37.790001 AS "sv_1", 52.000000 AS "sv_2", 3020.000000 AS "sv_3", 842.000000 AS "sv_4", 1294.000000 AS "sv_5", 769.000000 AS "sv_6", 3.437500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 210 AS "sv_idx", 1.000000 AS "coeff", -122.449997 AS "sv_0", 37.779999 AS "sv_1", 52.000000 AS "sv_2", 3975.000000 AS "sv_3", 716.000000 AS "sv_4", 1515.000000 AS "sv_5", 691.000000 AS "sv_6", 5.015600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 211 AS "sv_idx", 1.000000 AS "coeff", -122.440002 AS "sv_0", 37.770000 AS "sv_1", 52.000000 AS "sv_2", 3475.000000 AS "sv_3", 807.000000 AS "sv_4", 1518.000000 AS "sv_5", 777.000000 AS "sv_6", 3.618600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 212 AS "sv_idx", 1.000000 AS "coeff", -122.459999 AS "sv_0", 37.750000 AS "sv_1", 52.000000 AS "sv_2", 1590.000000 AS "sv_3", 236.000000 AS "sv_4", 622.000000 AS "sv_5", 232.000000 AS "sv_6", 5.815100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 213 AS "sv_idx", 1.000000 AS "coeff", -122.480003 AS "sv_0", 37.730000 AS "sv_1", 52.000000 AS "sv_2", 1597.000000 AS "sv_3", 240.000000 AS "sv_4", 566.000000 AS "sv_5", 231.000000 AS "sv_6", 5.168100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 214 AS "sv_idx", 1.000000 AS "coeff", -120.669998 AS "sv_0", 35.299999 AS "sv_1", 19.000000 AS "sv_2", 1540.000000 AS "sv_3", 715.000000 AS "sv_4", 1799.000000 AS "sv_5", 635.000000 AS "sv_6", 0.702500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 215 AS "sv_idx", 1.000000 AS "coeff", -122.260002 AS "sv_0", 37.540001 AS "sv_1", 5.000000 AS "sv_2", 3264.000000 AS "sv_3", 442.000000 AS "sv_4", 1607.000000 AS "sv_5", 453.000000 AS "sv_6", 9.141500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 216 AS "sv_idx", 1.000000 AS "coeff", -122.269997 AS "sv_0", 37.480000 AS "sv_1", 26.000000 AS "sv_2", 3542.000000 AS "sv_3", 507.000000 AS "sv_4", 1392.000000 AS "sv_5", 524.000000 AS "sv_6", 8.518400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 217 AS "sv_idx", 1.000000 AS "coeff", -122.180000 AS "sv_0", 37.439999 AS "sv_1", 44.000000 AS "sv_2", 2237.000000 AS "sv_3", 347.000000 AS "sv_4", 948.000000 AS "sv_5", 346.000000 AS "sv_6", 8.243600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 218 AS "sv_idx", 1.000000 AS "coeff", -122.190002 AS "sv_0", 37.439999 AS "sv_1", 38.000000 AS "sv_2", 3383.000000 AS "sv_3", 456.000000 AS "sv_4", 1203.000000 AS "sv_5", 465.000000 AS "sv_6", 9.319800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 219 AS "sv_idx", 1.000000 AS "coeff", -122.269997 AS "sv_0", 37.430000 AS "sv_1", 33.000000 AS "sv_2", 1601.000000 AS "sv_3", 223.000000 AS "sv_4", 629.000000 AS "sv_5", 215.000000 AS "sv_6", 15.000100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 220 AS "sv_idx", 1.000000 AS "coeff", -119.779999 AS "sv_0", 34.480000 AS "sv_1", 21.000000 AS "sv_2", 2377.000000 AS "sv_3", 322.000000 AS "sv_4", 1007.000000 AS "sv_5", 328.000000 AS "sv_6", 7.924800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 221 AS "sv_idx", 1.000000 AS "coeff", -119.669998 AS "sv_0", 34.470001 AS "sv_1", 35.000000 AS "sv_2", 2700.000000 AS "sv_3", 422.000000 AS "sv_4", 1995.000000 AS "sv_5", 383.000000 AS "sv_6", 4.975700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 222 AS "sv_idx", 1.000000 AS "coeff", -119.510002 AS "sv_0", 34.459999 AS "sv_1", 28.000000 AS "sv_2", 3506.000000 AS "sv_3", 563.000000 AS "sv_4", 1362.000000 AS "sv_5", 483.000000 AS "sv_6", 6.091000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 223 AS "sv_idx", 1.000000 AS "coeff", -119.769997 AS "sv_0", 34.430000 AS "sv_1", 28.000000 AS "sv_2", 3318.000000 AS "sv_3", 441.000000 AS "sv_4", 1604.000000 AS "sv_5", 404.000000 AS "sv_6", 9.782100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 224 AS "sv_idx", -1.000000 AS "coeff", -121.900002 AS "sv_0", 37.340000 AS "sv_1", 52.000000 AS "sv_2", 241.000000 AS "sv_3", 69.000000 AS "sv_4", 385.000000 AS "sv_5", 64.000000 AS "sv_6", 2.619000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 225 AS "sv_idx", 1.000000 AS "coeff", -121.989998 AS "sv_0", 37.250000 AS "sv_1", 22.000000 AS "sv_2", 4240.000000 AS "sv_3", 532.000000 AS "sv_4", 1480.000000 AS "sv_5", 514.000000 AS "sv_6", 11.246300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 226 AS "sv_idx", 1.000000 AS "coeff", -122.010002 AS "sv_0", 37.270000 AS "sv_1", 27.000000 AS "sv_2", 3340.000000 AS "sv_3", 451.000000 AS "sv_4", 1220.000000 AS "sv_5", 447.000000 AS "sv_6", 8.817800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 227 AS "sv_idx", 1.000000 AS "coeff", -122.010002 AS "sv_0", 37.259998 AS "sv_1", 14.000000 AS "sv_2", 2561.000000 AS "sv_3", 404.000000 AS "sv_4", 1172.000000 AS "sv_5", 378.000000 AS "sv_6", 7.610700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 228 AS "sv_idx", 1.000000 AS "coeff", -122.019997 AS "sv_0", 37.290001 AS "sv_1", 18.000000 AS "sv_2", 2550.000000 AS "sv_3", 312.000000 AS "sv_4", 999.000000 AS "sv_5", 320.000000 AS "sv_6", 8.793900 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 229 AS "sv_idx", 1.000000 AS "coeff", -122.000000 AS "sv_0", 37.279999 AS "sv_1", 33.000000 AS "sv_2", 2170.000000 AS "sv_3", 311.000000 AS "sv_4", 854.000000 AS "sv_5", 303.000000 AS "sv_6", 8.360500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 230 AS "sv_idx", 1.000000 AS "coeff", -122.059998 AS "sv_0", 37.270000 AS "sv_1", 16.000000 AS "sv_2", 1612.000000 AS "sv_3", 221.000000 AS "sv_4", 567.000000 AS "sv_5", 208.000000 AS "sv_6", 10.579300 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 231 AS "sv_idx", 1.000000 AS "coeff", -122.029999 AS "sv_0", 37.270000 AS "sv_1", 25.000000 AS "sv_2", 4460.000000 AS "sv_3", 553.000000 AS "sv_4", 1608.000000 AS "sv_5", 561.000000 AS "sv_6", 10.795800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 232 AS "sv_idx", 1.000000 AS "coeff", -122.059998 AS "sv_0", 37.330002 AS "sv_1", 23.000000 AS "sv_2", 4507.000000 AS "sv_3", 751.000000 AS "sv_4", 2167.000000 AS "sv_5", 722.000000 AS "sv_6", 7.010200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 233 AS "sv_idx", 1.000000 AS "coeff", -122.070000 AS "sv_0", 37.310001 AS "sv_1", 24.000000 AS "sv_2", 4401.000000 AS "sv_3", 698.000000 AS "sv_4", 1818.000000 AS "sv_5", 685.000000 AS "sv_6", 7.298600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 234 AS "sv_idx", 1.000000 AS "coeff", -122.029999 AS "sv_0", 37.369999 AS "sv_1", 16.000000 AS "sv_2", 3402.000000 AS "sv_3", 1193.000000 AS "sv_4", 1479.000000 AS "sv_5", 1043.000000 AS "sv_6", 3.586100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 235 AS "sv_idx", 1.000000 AS "coeff", -122.070000 AS "sv_0", 37.360001 AS "sv_1", 21.000000 AS "sv_2", 3244.000000 AS "sv_3", 426.000000 AS "sv_4", 1158.000000 AS "sv_5", 415.000000 AS "sv_6", 7.500000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 236 AS "sv_idx", 1.000000 AS "coeff", -122.089996 AS "sv_0", 37.360001 AS "sv_1", 37.000000 AS "sv_2", 2269.000000 AS "sv_3", 325.000000 AS "sv_4", 930.000000 AS "sv_5", 321.000000 AS "sv_6", 7.527400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 237 AS "sv_idx", 1.000000 AS "coeff", -122.070000 AS "sv_0", 37.349998 AS "sv_1", 35.000000 AS "sv_2", 1579.000000 AS "sv_3", 210.000000 AS "sv_4", 570.000000 AS "sv_5", 196.000000 AS "sv_6", 8.588800 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 238 AS "sv_idx", 1.000000 AS "coeff", -122.080002 AS "sv_0", 37.340000 AS "sv_1", 28.000000 AS "sv_2", 1643.000000 AS "sv_3", 216.000000 AS "sv_4", 594.000000 AS "sv_5", 205.000000 AS "sv_6", 12.367000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 239 AS "sv_idx", 1.000000 AS "coeff", -122.099998 AS "sv_0", 37.369999 AS "sv_1", 40.000000 AS "sv_2", 2224.000000 AS "sv_3", 354.000000 AS "sv_4", 929.000000 AS "sv_5", 345.000000 AS "sv_6", 8.106400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 240 AS "sv_idx", 1.000000 AS "coeff", -122.120003 AS "sv_0", 37.369999 AS "sv_1", 18.000000 AS "sv_2", 1617.000000 AS "sv_3", 231.000000 AS "sv_4", 555.000000 AS "sv_5", 222.000000 AS "sv_6", 8.902100 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 241 AS "sv_idx", 1.000000 AS "coeff", -122.110001 AS "sv_0", 37.389999 AS "sv_1", 36.000000 AS "sv_2", 1660.000000 AS "sv_3", 261.000000 AS "sv_4", 655.000000 AS "sv_5", 249.000000 AS "sv_6", 6.396700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 242 AS "sv_idx", 1.000000 AS "coeff", -122.120003 AS "sv_0", 37.389999 AS "sv_1", 34.000000 AS "sv_2", 3561.000000 AS "sv_3", 497.000000 AS "sv_4", 1336.000000 AS "sv_5", 501.000000 AS "sv_6", 8.917200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 243 AS "sv_idx", 1.000000 AS "coeff", -122.120003 AS "sv_0", 37.400002 AS "sv_1", 32.000000 AS "sv_2", 3514.000000 AS "sv_3", 473.000000 AS "sv_4", 1583.000000 AS "sv_5", 480.000000 AS "sv_6", 10.389400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 244 AS "sv_idx", 1.000000 AS "coeff", -122.129997 AS "sv_0", 37.450001 AS "sv_1", 37.000000 AS "sv_2", 2295.000000 AS "sv_3", 332.000000 AS "sv_4", 933.000000 AS "sv_5", 332.000000 AS "sv_6", 6.725700 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 245 AS "sv_idx", 1.000000 AS "coeff", -122.129997 AS "sv_0", 37.450001 AS "sv_1", 41.000000 AS "sv_2", 3233.000000 AS "sv_3", 540.000000 AS "sv_4", 1251.000000 AS "sv_5", 506.000000 AS "sv_6", 6.635400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 246 AS "sv_idx", 1.000000 AS "coeff", -122.160004 AS "sv_0", 37.419998 AS "sv_1", 34.000000 AS "sv_2", 4448.000000 AS "sv_3", 610.000000 AS "sv_4", 2571.000000 AS "sv_5", 581.000000 AS "sv_6", 11.049200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 247 AS "sv_idx", 1.000000 AS "coeff", -122.129997 AS "sv_0", 37.389999 AS "sv_1", 27.000000 AS "sv_2", 3385.000000 AS "sv_3", 427.000000 AS "sv_4", 1248.000000 AS "sv_5", 409.000000 AS "sv_6", 12.037200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 248 AS "sv_idx", 1.000000 AS "coeff", -121.860001 AS "sv_0", 37.209999 AS "sv_1", 23.000000 AS "sv_2", 2552.000000 AS "sv_3", 305.000000 AS "sv_4", 916.000000 AS "sv_5", 316.000000 AS "sv_6", 9.197400 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 249 AS "sv_idx", -1.000000 AS "coeff", -120.970001 AS "sv_0", 37.730000 AS "sv_1", 19.000000 AS "sv_2", 3725.000000 AS "sv_3", 543.000000 AS "sv_4", 1412.000000 AS "sv_5", 463.000000 AS "sv_6", 5.747600 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 250 AS "sv_idx", -1.000000 AS "coeff", -120.589996 AS "sv_0", 37.590000 AS "sv_1", 36.000000 AS "sv_2", 291.000000 AS "sv_3", 48.000000 AS "sv_4", 124.000000 AS "sv_5", 47.000000 AS "sv_6", 5.694500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 251 AS "sv_idx", 1.000000 AS "coeff", -119.389999 AS "sv_0", 34.320000 AS "sv_1", 19.000000 AS "sv_2", 3238.000000 AS "sv_3", 629.000000 AS "sv_4", 1195.000000 AS "sv_5", 443.000000 AS "sv_6", 4.847200 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 252 AS "sv_idx", 1.000000 AS "coeff", -119.290001 AS "sv_0", 34.240002 AS "sv_1", 27.000000 AS "sv_2", 4742.000000 AS "sv_3", 775.000000 AS "sv_4", 1682.000000 AS "sv_5", 696.000000 AS "sv_6", 6.194000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 253 AS "sv_idx", 1.000000 AS "coeff", -118.959999 AS "sv_0", 34.299999 AS "sv_1", 16.000000 AS "sv_2", 3103.000000 AS "sv_3", 482.000000 AS "sv_4", 1567.000000 AS "sv_5", 467.000000 AS "sv_6", 6.907000 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 254 AS "sv_idx", 1.000000 AS "coeff", -118.900002 AS "sv_0", 34.189999 AS "sv_1", 26.000000 AS "sv_2", 1582.000000 AS "sv_3", 196.000000 AS "sv_4", 573.000000 AS "sv_5", 182.000000 AS "sv_6", 10.059500 AS "sv_7", 0.000000 AS "sv_8"
+     UNION ALL
+     SELECT 255 AS "sv_idx", 1.000000 AS "coeff", -118.849998 AS "sv_0", 34.270000 AS "sv_1", 50.000000 AS "sv_2", 187.000000 AS "sv_3", 33.000000 AS "sv_4", 130.000000 AS "sv_5", 35.000000 AS "sv_6", 3.343800 AS "sv_7", 0.000000 AS "sv_8"
+   ) AS "Values"
+ )
+,"Kernel_DotProd" AS
+ ( SELECT
+    dp."index" as "index",
+    dp."dot_product" AS "Estimator"
+   FROM
+    (SELECT
+      full_join_data_sv."index" AS "index",
+      sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -68900.648438 AS dot_product
+     FROM
+       (SELECT
+          model_input."index" AS "index",
+          "SV_data"."coeff" *  exp(min(max(-32.0, -0.000000 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2))), 32.0))  AS "dot_prod" 
+        FROM
+          model_input, "SV_data"
+       ) AS full_join_data_sv
+     GROUP BY full_join_data_sv."index"
+    ) AS dp )
+SELECT
+  t."index" as "index",
+  t."Estimator" as "Estimator"
+FROM "Kernel_DotProd" AS t

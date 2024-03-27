@@ -1,0 +1,718 @@
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup_0" AS 
+ (SELECT
+    model_input."index" AS "index",
+    CASE WHEN (model_input."X_8" <= -0.005612) THEN CASE WHEN (model_input."X_2" <= 0.009422) THEN CASE WHEN (model_input."X_6" <= 0.024709) THEN CASE WHEN (model_input."X_8" <= -0.043277) THEN CASE WHEN (model_input."X_2" <= -0.043390) THEN CASE WHEN (model_input."X_1" <= 0.003019) THEN 47 ELSE 48 END ELSE 46 END ELSE CASE WHEN (model_input."X_6" <= 0.002620) THEN CASE WHEN (model_input."X_8" <= -0.020297) THEN 51 ELSE 52 END ELSE CASE WHEN (model_input."X_8" <= -0.019203) THEN 53 ELSE 54 END END END ELSE CASE WHEN (model_input."X_8" <= -0.018656) THEN CASE WHEN (model_input."X_2" <= -0.005667) THEN CASE WHEN (model_input."X_3" <= -0.010835) THEN 59 ELSE 60 END ELSE 58 END ELSE 56 END END ELSE CASE WHEN (model_input."X_8" <= -0.030137) THEN CASE WHEN (model_input."X_8" <= -0.049882) THEN 21 ELSE 22 END ELSE CASE WHEN (model_input."X_3" <= -0.000506) THEN 13 ELSE 14 END END END ELSE CASE WHEN (model_input."X_2" <= 0.055768) THEN CASE WHEN (model_input."X_3" <= 0.058022) THEN CASE WHEN (model_input."X_4" <= 0.041774) THEN CASE WHEN (model_input."X_0" <= -0.003698) THEN CASE WHEN (model_input."X_7" <= -0.021043) THEN 39 ELSE 40 END ELSE CASE WHEN (model_input."X_0" <= 0.023546) THEN 37 ELSE 38 END END ELSE CASE WHEN (model_input."X_8" <= 0.064314) THEN CASE WHEN (model_input."X_3" <= 0.037365) THEN 33 ELSE 34 END ELSE CASE WHEN (model_input."X_2" <= -0.008362) THEN 31 ELSE 32 END END END ELSE CASE WHEN (model_input."X_9" <= -0.009362) THEN 25 ELSE 26 END END ELSE CASE WHEN (model_input."X_5" <= 0.022485) THEN CASE WHEN (model_input."X_2" <= 0.075708) THEN CASE WHEN (model_input."X_2" <= 0.059541) THEN 19 ELSE 20 END ELSE CASE WHEN (model_input."X_8" <= 0.033289) THEN 17 ELSE 18 END END ELSE CASE WHEN (model_input."X_2" <= 0.083252) THEN 7 ELSE 8 END END END END AS node_id
+  FROM model_input
+ ),
+"DT_node_data_0" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 0 AS nid, 158.875565 AS "E"
+    UNION ALL
+    SELECT 1 AS nid, 109.899040 AS "E"
+    UNION ALL
+    SELECT 2 AS nid, 202.410263 AS "E"
+    UNION ALL
+    SELECT 3 AS nid, 185.125000 AS "E"
+    UNION ALL
+    SELECT 4 AS nid, 254.862076 AS "E"
+    UNION ALL
+    SELECT 5 AS nid, 277.864868 AS "E"
+    UNION ALL
+    SELECT 6 AS nid, 214.333328 AS "E"
+    UNION ALL
+    SELECT 7 AS nid, 180.500000 AS "E"
+    UNION ALL
+    SELECT 8 AS nid, 245.090912 AS "E"
+    UNION ALL
+    SELECT 9 AS nid, 95.611115 AS "E"
+    UNION ALL
+    SELECT 10 AS nid, 160.217392 AS "E"
+    UNION ALL
+    SELECT 11 AS nid, 134.851852 AS "E"
+    UNION ALL
+    SELECT 12 AS nid, 196.263153 AS "E"
+    UNION ALL
+    SELECT 13 AS nid, 150.375000 AS "E"
+    UNION ALL
+    SELECT 14 AS nid, 229.636368 AS "E"
+    UNION ALL
+    SELECT 15 AS nid, 251.666672 AS "E"
+    UNION ALL
+    SELECT 16 AS nid, 302.684204 AS "E"
+    UNION ALL
+    SELECT 17 AS nid, 326.899994 AS "E"
+    UNION ALL
+    SELECT 18 AS nid, 275.777771 AS "E"
+    UNION ALL
+    SELECT 19 AS nid, 277.500000 AS "E"
+    UNION ALL
+    SELECT 20 AS nid, 231.000000 AS "E"
+    UNION ALL
+    SELECT 21 AS nid, 116.071426 AS "E"
+    UNION ALL
+    SELECT 22 AS nid, 155.076920 AS "E"
+    UNION ALL
+    SELECT 23 AS nid, 178.326797 AS "E"
+    UNION ALL
+    SELECT 24 AS nid, 230.347824 AS "E"
+    UNION ALL
+    SELECT 25 AS nid, 262.454559 AS "E"
+    UNION ALL
+    SELECT 26 AS nid, 200.916672 AS "E"
+    UNION ALL
+    SELECT 27 AS nid, 189.235291 AS "E"
+    UNION ALL
+    SELECT 28 AS nid, 156.509811 AS "E"
+    UNION ALL
+    SELECT 29 AS nid, 129.812500 AS "E"
+    UNION ALL
+    SELECT 30 AS nid, 201.473679 AS "E"
+    UNION ALL
+    SELECT 31 AS nid, 156.333328 AS "E"
+    UNION ALL
+    SELECT 32 AS nid, 242.100006 AS "E"
+    UNION ALL
+    SELECT 33 AS nid, 109.199997 AS "E"
+    UNION ALL
+    SELECT 34 AS nid, 164.166672 AS "E"
+    UNION ALL
+    SELECT 35 AS nid, 169.152176 AS "E"
+    UNION ALL
+    SELECT 36 AS nid, 205.732147 AS "E"
+    UNION ALL
+    SELECT 37 AS nid, 236.807693 AS "E"
+    UNION ALL
+    SELECT 38 AS nid, 178.800003 AS "E"
+    UNION ALL
+    SELECT 39 AS nid, 205.199997 AS "E"
+    UNION ALL
+    SELECT 40 AS nid, 151.709671 AS "E"
+    UNION ALL
+    SELECT 41 AS nid, 109.164833 AS "E"
+    UNION ALL
+    SELECT 42 AS nid, 78.239433 AS "E"
+    UNION ALL
+    SELECT 43 AS nid, 85.270271 AS "E"
+    UNION ALL
+    SELECT 44 AS nid, 125.537041 AS "E"
+    UNION ALL
+    SELECT 45 AS nid, 100.875000 AS "E"
+    UNION ALL
+    SELECT 46 AS nid, 56.461540 AS "E"
+    UNION ALL
+    SELECT 47 AS nid, 119.000000 AS "E"
+    UNION ALL
+    SELECT 48 AS nid, 79.454544 AS "E"
+    UNION ALL
+    SELECT 49 AS nid, 108.500000 AS "E"
+    UNION ALL
+    SELECT 50 AS nid, 146.833328 AS "E"
+    UNION ALL
+    SELECT 51 AS nid, 146.909088 AS "E"
+    UNION ALL
+    SELECT 52 AS nid, 86.263161 AS "E"
+    UNION ALL
+    SELECT 53 AS nid, 129.500000 AS "E"
+    UNION ALL
+    SELECT 54 AS nid, 181.500000 AS "E"
+    UNION ALL
+    SELECT 55 AS nid, 74.016129 AS "E"
+    UNION ALL
+    SELECT 56 AS nid, 107.333336 AS "E"
+    UNION ALL
+    SELECT 57 AS nid, 78.379997 AS "E"
+    UNION ALL
+    SELECT 58 AS nid, 55.833332 AS "E"
+    UNION ALL
+    SELECT 59 AS nid, 73.095238 AS "E"
+    UNION ALL
+    SELECT 60 AS nid, 106.125000 AS "E"
+  ) AS "Values"
+ ),
+"DT_output_0" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_0" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_0" AS t2
+   ON t1.node_id = t2.nid
+ ),
+"DT_node_lookup_1" AS 
+ (SELECT
+    model_input."index" AS "index",
+    CASE WHEN (model_input."X_2" <= 0.015889) THEN CASE WHEN (model_input."X_8" <= -0.010411) THEN CASE WHEN (model_input."X_2" <= 0.006189) THEN CASE WHEN (model_input."X_3" <= 0.025315) THEN CASE WHEN (model_input."X_6" <= 0.024709) THEN CASE WHEN (model_input."X_8" <= -0.055438) THEN 49 ELSE 50 END ELSE CASE WHEN (model_input."X_6" <= 0.076252) THEN 51 ELSE 52 END END ELSE 46 END ELSE 44 END ELSE CASE WHEN (model_input."X_9" <= 0.071409) THEN CASE WHEN (model_input."X_3" <= -0.045263) THEN CASE WHEN (model_input."X_6" <= 0.021028) THEN CASE WHEN (model_input."X_1" <= 0.003019) THEN 29 ELSE 30 END ELSE 28 END ELSE CASE WHEN (model_input."X_8" <= 0.042619) THEN CASE WHEN (model_input."X_5" <= 0.094979) THEN 39 ELSE 40 END ELSE CASE WHEN (model_input."X_3" <= 0.004658) THEN 37 ELSE 38 END END END ELSE 22 END END ELSE CASE WHEN (model_input."X_3" <= 0.023594) THEN CASE WHEN (model_input."X_8" <= 0.000683) THEN CASE WHEN (model_input."X_5" <= -0.013996) THEN 15 ELSE CASE WHEN (model_input."X_2" <= 0.042296) THEN 17 ELSE 18 END END ELSE CASE WHEN (model_input."X_8" <= 0.060868) THEN CASE WHEN (model_input."X_4" <= 0.041774) THEN CASE WHEN (model_input."X_2" <= 0.047146) THEN 11 ELSE 12 END ELSE 10 END ELSE 8 END END ELSE CASE WHEN (model_input."X_2" <= 0.053613) THEN CASE WHEN (model_input."X_9" <= -0.011433) THEN 23 ELSE CASE WHEN (model_input."X_2" <= 0.036907) THEN CASE WHEN (model_input."X_0" <= 0.032627) THEN 33 ELSE 34 END ELSE 32 END END ELSE CASE WHEN (model_input."X_5" <= 0.021076) THEN CASE WHEN (model_input."X_4" <= -0.027024) THEN 53 ELSE CASE WHEN (model_input."X_6" <= -0.026833) THEN 55 ELSE 56 END END ELSE 42 END END END END AS node_id
+  FROM model_input
+ ),
+"DT_node_data_1" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 0 AS nid, 154.533936 AS "E"
+    UNION ALL
+    SELECT 1 AS nid, 128.467529 AS "E"
+    UNION ALL
+    SELECT 2 AS nid, 214.447754 AS "E"
+    UNION ALL
+    SELECT 3 AS nid, 172.833328 AS "E"
+    UNION ALL
+    SELECT 4 AS nid, 248.189194 AS "E"
+    UNION ALL
+    SELECT 5 AS nid, 128.333328 AS "E"
+    UNION ALL
+    SELECT 6 AS nid, 209.242432 AS "E"
+    UNION ALL
+    SELECT 7 AS nid, 190.600006 AS "E"
+    UNION ALL
+    SELECT 8 AS nid, 267.500000 AS "E"
+    UNION ALL
+    SELECT 9 AS nid, 211.352936 AS "E"
+    UNION ALL
+    SELECT 10 AS nid, 146.500000 AS "E"
+    UNION ALL
+    SELECT 11 AS nid, 175.777771 AS "E"
+    UNION ALL
+    SELECT 12 AS nid, 251.375000 AS "E"
+    UNION ALL
+    SELECT 13 AS nid, 103.129410 AS "E"
+    UNION ALL
+    SELECT 14 AS nid, 159.681152 AS "E"
+    UNION ALL
+    SELECT 15 AS nid, 95.363640 AS "E"
+    UNION ALL
+    SELECT 16 AS nid, 151.000000 AS "E"
+    UNION ALL
+    SELECT 17 AS nid, 179.625000 AS "E"
+    UNION ALL
+    SELECT 18 AS nid, 122.375000 AS "E"
+    UNION ALL
+    SELECT 19 AS nid, 222.222229 AS "E"
+    UNION ALL
+    SELECT 20 AS nid, 272.789459 AS "E"
+    UNION ALL
+    SELECT 21 AS nid, 152.755905 AS "E"
+    UNION ALL
+    SELECT 22 AS nid, 239.636368 AS "E"
+    UNION ALL
+    SELECT 23 AS nid, 261.125000 AS "E"
+    UNION ALL
+    SELECT 24 AS nid, 211.107147 AS "E"
+    UNION ALL
+    SELECT 25 AS nid, 115.071426 AS "E"
+    UNION ALL
+    SELECT 26 AS nid, 163.414139 AS "E"
+    UNION ALL
+    SELECT 27 AS nid, 129.100006 AS "E"
+    UNION ALL
+    SELECT 28 AS nid, 80.000000 AS "E"
+    UNION ALL
+    SELECT 29 AS nid, 150.444443 AS "E"
+    UNION ALL
+    SELECT 30 AS nid, 111.636360 AS "E"
+    UNION ALL
+    SELECT 31 AS nid, 224.263153 AS "E"
+    UNION ALL
+    SELECT 32 AS nid, 183.333328 AS "E"
+    UNION ALL
+    SELECT 33 AS nid, 205.300003 AS "E"
+    UNION ALL
+    SELECT 34 AS nid, 245.333328 AS "E"
+    UNION ALL
+    SELECT 35 AS nid, 154.481018 AS "E"
+    UNION ALL
+    SELECT 36 AS nid, 198.699997 AS "E"
+    UNION ALL
+    SELECT 37 AS nid, 218.416672 AS "E"
+    UNION ALL
+    SELECT 38 AS nid, 169.125000 AS "E"
+    UNION ALL
+    SELECT 39 AS nid, 146.771423 AS "E"
+    UNION ALL
+    SELECT 40 AS nid, 214.444443 AS "E"
+    UNION ALL
+    SELECT 41 AS nid, 281.266663 AS "E"
+    UNION ALL
+    SELECT 42 AS nid, 241.000000 AS "E"
+    UNION ALL
+    SELECT 43 AS nid, 99.037735 AS "E"
+    UNION ALL
+    SELECT 44 AS nid, 162.272720 AS "E"
+    UNION ALL
+    SELECT 45 AS nid, 94.680557 AS "E"
+    UNION ALL
+    SELECT 46 AS nid, 140.866669 AS "E"
+    UNION ALL
+    SELECT 47 AS nid, 106.612503 AS "E"
+    UNION ALL
+    SELECT 48 AS nid, 79.765625 AS "E"
+    UNION ALL
+    SELECT 49 AS nid, 83.193550 AS "E"
+    UNION ALL
+    SELECT 50 AS nid, 121.428574 AS "E"
+    UNION ALL
+    SELECT 51 AS nid, 74.574074 AS "E"
+    UNION ALL
+    SELECT 52 AS nid, 107.800003 AS "E"
+    UNION ALL
+    SELECT 53 AS nid, 293.818176 AS "E"
+    UNION ALL
+    SELECT 54 AS nid, 274.000000 AS "E"
+    UNION ALL
+    SELECT 55 AS nid, 279.363647 AS "E"
+    UNION ALL
+    SELECT 56 AS nid, 266.625000 AS "E"
+  ) AS "Values"
+ ),
+"DT_output_1" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_1" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_1" AS t2
+   ON t1.node_id = t2.nid
+ ),
+"DT_node_lookup_2" AS 
+ (SELECT
+    model_input."index" AS "index",
+    CASE WHEN (model_input."X_2" <= 0.005111) THEN CASE WHEN (model_input."X_8" <= 0.020942) THEN CASE WHEN (model_input."X_6" <= -0.030515) THEN CASE WHEN (model_input."X_6" <= -0.063650) THEN 43 ELSE CASE WHEN (model_input."X_9" <= -0.003149) THEN 45 ELSE 46 END END ELSE CASE WHEN (model_input."X_0" <= -0.038207) THEN CASE WHEN (model_input."X_8" <= -0.049143) THEN 51 ELSE CASE WHEN (model_input."X_6" <= 0.024709) THEN 53 ELSE 54 END END ELSE CASE WHEN (model_input."X_8" <= -0.013934) THEN CASE WHEN (model_input."X_9" <= 0.013420) THEN 59 ELSE 60 END ELSE CASE WHEN (model_input."X_5" <= -0.021199) THEN 57 ELSE 58 END END END END ELSE CASE WHEN (model_input."X_3" <= -0.032060) THEN 9 ELSE CASE WHEN (model_input."X_2" <= -0.015367) THEN CASE WHEN (model_input."X_1" <= 0.003019) THEN 21 ELSE 22 END ELSE CASE WHEN (model_input."X_6" <= -0.030515) THEN 31 ELSE 32 END END END END ELSE CASE WHEN (model_input."X_3" <= 0.002937) THEN CASE WHEN (model_input."X_8" <= -0.026541) THEN CASE WHEN (model_input."X_2" <= 0.043912) THEN 19 ELSE 20 END ELSE CASE WHEN (model_input."X_5" <= 0.090752) THEN CASE WHEN (model_input."X_9" <= 0.038272) THEN CASE WHEN (model_input."X_2" <= 0.040679) THEN 17 ELSE 18 END ELSE 16 END ELSE 14 END END ELSE CASE WHEN (model_input."X_8" <= 0.011375) THEN CASE WHEN (model_input."X_2" <= 0.067624) THEN CASE WHEN (model_input."X_9" <= 0.021704) THEN CASE WHEN (model_input."X_1" <= 0.003019) THEN 37 ELSE 38 END ELSE 28 END ELSE 26 END ELSE CASE WHEN (model_input."X_3" <= 0.058022) THEN CASE WHEN (model_input."X_4" <= 0.010815) THEN 33 ELSE CASE WHEN (model_input."X_8" <= 0.064314) THEN 35 ELSE 36 END END ELSE CASE WHEN (model_input."X_0" <= -0.003698) THEN 39 ELSE CASE WHEN (model_input."X_6" <= -0.052605) THEN 47 ELSE 48 END END END END END END AS node_id
+  FROM model_input
+ ),
+"DT_node_data_2" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 0 AS nid, 155.585968 AS "E"
+    UNION ALL
+    SELECT 1 AS nid, 117.959511 AS "E"
+    UNION ALL
+    SELECT 2 AS nid, 203.246155 AS "E"
+    UNION ALL
+    SELECT 3 AS nid, 100.225639 AS "E"
+    UNION ALL
+    SELECT 4 AS nid, 184.461533 AS "E"
+    UNION ALL
+    SELECT 5 AS nid, 165.350647 AS "E"
+    UNION ALL
+    SELECT 6 AS nid, 227.974579 AS "E"
+    UNION ALL
+    SELECT 7 AS nid, 112.210526 AS "E"
+    UNION ALL
+    SELECT 8 AS nid, 182.758621 AS "E"
+    UNION ALL
+    SELECT 9 AS nid, 127.090912 AS "E"
+    UNION ALL
+    SELECT 10 AS nid, 199.853653 AS "E"
+    UNION ALL
+    SELECT 11 AS nid, 173.190475 AS "E"
+    UNION ALL
+    SELECT 12 AS nid, 227.850006 AS "E"
+    UNION ALL
+    SELECT 13 AS nid, 193.897964 AS "E"
+    UNION ALL
+    SELECT 14 AS nid, 122.111115 AS "E"
+    UNION ALL
+    SELECT 15 AS nid, 174.189194 AS "E"
+    UNION ALL
+    SELECT 16 AS nid, 254.666672 AS "E"
+    UNION ALL
+    SELECT 17 AS nid, 202.759995 AS "E"
+    UNION ALL
+    SELECT 18 AS nid, 114.666664 AS "E"
+    UNION ALL
+    SELECT 19 AS nid, 86.555557 AS "E"
+    UNION ALL
+    SELECT 20 AS nid, 135.300003 AS "E"
+    UNION ALL
+    SELECT 21 AS nid, 196.199997 AS "E"
+    UNION ALL
+    SELECT 22 AS nid, 152.272720 AS "E"
+    UNION ALL
+    SELECT 23 AS nid, 195.750000 AS "E"
+    UNION ALL
+    SELECT 24 AS nid, 242.121948 AS "E"
+    UNION ALL
+    SELECT 25 AS nid, 178.321426 AS "E"
+    UNION ALL
+    SELECT 26 AS nid, 256.750000 AS "E"
+    UNION ALL
+    SELECT 27 AS nid, 193.899994 AS "E"
+    UNION ALL
+    SELECT 28 AS nid, 139.375000 AS "E"
+    UNION ALL
+    SELECT 29 AS nid, 224.000000 AS "E"
+    UNION ALL
+    SELECT 30 AS nid, 269.030304 AS "E"
+    UNION ALL
+    SELECT 31 AS nid, 253.875000 AS "E"
+    UNION ALL
+    SELECT 32 AS nid, 210.500000 AS "E"
+    UNION ALL
+    SELECT 33 AS nid, 255.333328 AS "E"
+    UNION ALL
+    SELECT 34 AS nid, 210.176468 AS "E"
+    UNION ALL
+    SELECT 35 AS nid, 192.625000 AS "E"
+    UNION ALL
+    SELECT 36 AS nid, 252.300003 AS "E"
+    UNION ALL
+    SELECT 37 AS nid, 170.875000 AS "E"
+    UNION ALL
+    SELECT 38 AS nid, 209.250000 AS "E"
+    UNION ALL
+    SELECT 39 AS nid, 236.625000 AS "E"
+    UNION ALL
+    SELECT 40 AS nid, 279.399994 AS "E"
+    UNION ALL
+    SELECT 41 AS nid, 132.593750 AS "E"
+    UNION ALL
+    SELECT 42 AS nid, 93.871162 AS "E"
+    UNION ALL
+    SELECT 43 AS nid, 101.833336 AS "E"
+    UNION ALL
+    SELECT 44 AS nid, 151.050003 AS "E"
+    UNION ALL
+    SELECT 45 AS nid, 169.727280 AS "E"
+    UNION ALL
+    SELECT 46 AS nid, 128.222229 AS "E"
+    UNION ALL
+    SELECT 47 AS nid, 264.222229 AS "E"
+    UNION ALL
+    SELECT 48 AS nid, 287.937500 AS "E"
+    UNION ALL
+    SELECT 49 AS nid, 111.425529 AS "E"
+    UNION ALL
+    SELECT 50 AS nid, 86.758621 AS "E"
+    UNION ALL
+    SELECT 51 AS nid, 78.714287 AS "E"
+    UNION ALL
+    SELECT 52 AS nid, 125.303032 AS "E"
+    UNION ALL
+    SELECT 53 AS nid, 146.399994 AS "E"
+    UNION ALL
+    SELECT 54 AS nid, 92.846153 AS "E"
+    UNION ALL
+    SELECT 55 AS nid, 81.045975 AS "E"
+    UNION ALL
+    SELECT 56 AS nid, 103.896553 AS "E"
+    UNION ALL
+    SELECT 57 AS nid, 132.250000 AS "E"
+    UNION ALL
+    SELECT 58 AS nid, 93.095238 AS "E"
+    UNION ALL
+    SELECT 59 AS nid, 73.348488 AS "E"
+    UNION ALL
+    SELECT 60 AS nid, 105.238098 AS "E"
+  ) AS "Values"
+ ),
+"DT_output_2" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_2" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_2" AS t2
+   ON t1.node_id = t2.nid
+ ),
+"DT_node_lookup_3" AS 
+ (SELECT
+    model_input."index" AS "index",
+    CASE WHEN (model_input."X_8" <= -0.003761) THEN CASE WHEN (model_input."X_2" <= 0.006189) THEN CASE WHEN (model_input."X_2" <= -0.030457) THEN CASE WHEN (model_input."X_5" <= 0.020607) THEN CASE WHEN (model_input."X_4" <= -0.039408) THEN CASE WHEN (model_input."X_3" <= -0.048706) THEN 51 ELSE 52 END ELSE CASE WHEN (model_input."X_4" <= -0.000881) THEN 53 ELSE 54 END END ELSE 48 END ELSE CASE WHEN (model_input."X_5" <= -0.017598) THEN CASE WHEN (model_input."X_9" <= -0.003149) THEN 41 ELSE 42 END ELSE CASE WHEN (model_input."X_9" <= -0.040428) THEN 43 ELSE CASE WHEN (model_input."X_4" <= 0.011503) THEN 45 ELSE 46 END END END END ELSE CASE WHEN (model_input."X_8" <= -0.030137) THEN CASE WHEN (model_input."X_0" <= -0.025494) THEN 21 ELSE 22 END ELSE CASE WHEN (model_input."X_0" <= -0.012780) THEN 9 ELSE 10 END END END ELSE CASE WHEN (model_input."X_2" <= 0.018045) THEN CASE WHEN (model_input."X_6" <= 0.035754) THEN CASE WHEN (model_input."X_7" <= 0.099993) THEN CASE WHEN (model_input."X_1" <= 0.003019) THEN CASE WHEN (model_input."X_8" <= 0.015929) THEN 29 ELSE 30 END ELSE CASE WHEN (model_input."X_0" <= 0.003567) THEN 31 ELSE 32 END END ELSE 24 END ELSE 20 END ELSE CASE WHEN (model_input."X_3" <= 0.018430) THEN CASE WHEN (model_input."X_2" <= 0.055768) THEN CASE WHEN (model_input."X_6" <= -0.030515) THEN 15 ELSE 16 END ELSE CASE WHEN (model_input."X_0" <= -0.023677) THEN 17 ELSE 18 END END ELSE CASE WHEN (model_input."X_4" <= 0.003935) THEN 25 ELSE CASE WHEN (model_input."X_0" <= 0.003567) THEN 33 ELSE CASE WHEN (model_input."X_8" <= 0.033043) THEN 35 ELSE 36 END END END END END END AS node_id
+  FROM model_input
+ ),
+"DT_node_data_3" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 0 AS nid, 150.789597 AS "E"
+    UNION ALL
+    SELECT 1 AS nid, 108.668144 AS "E"
+    UNION ALL
+    SELECT 2 AS nid, 194.861115 AS "E"
+    UNION ALL
+    SELECT 3 AS nid, 167.049179 AS "E"
+    UNION ALL
+    SELECT 4 AS nid, 230.957443 AS "E"
+    UNION ALL
+    SELECT 5 AS nid, 93.893852 AS "E"
+    UNION ALL
+    SELECT 6 AS nid, 164.936172 AS "E"
+    UNION ALL
+    SELECT 7 AS nid, 138.875000 AS "E"
+    UNION ALL
+    SELECT 8 AS nid, 192.130432 AS "E"
+    UNION ALL
+    SELECT 9 AS nid, 242.555557 AS "E"
+    UNION ALL
+    SELECT 10 AS nid, 159.714279 AS "E"
+    UNION ALL
+    SELECT 11 AS nid, 198.666672 AS "E"
+    UNION ALL
+    SELECT 12 AS nid, 248.426224 AS "E"
+    UNION ALL
+    SELECT 13 AS nid, 154.117645 AS "E"
+    UNION ALL
+    SELECT 14 AS nid, 246.000000 AS "E"
+    UNION ALL
+    SELECT 15 AS nid, 119.222221 AS "E"
+    UNION ALL
+    SELECT 16 AS nid, 193.375000 AS "E"
+    UNION ALL
+    SELECT 17 AS nid, 221.750000 AS "E"
+    UNION ALL
+    SELECT 18 AS nid, 270.250000 AS "E"
+    UNION ALL
+    SELECT 19 AS nid, 173.509094 AS "E"
+    UNION ALL
+    SELECT 20 AS nid, 107.833336 AS "E"
+    UNION ALL
+    SELECT 21 AS nid, 157.416672 AS "E"
+    UNION ALL
+    SELECT 22 AS nid, 120.333336 AS "E"
+    UNION ALL
+    SELECT 23 AS nid, 167.820007 AS "E"
+    UNION ALL
+    SELECT 24 AS nid, 230.399994 AS "E"
+    UNION ALL
+    SELECT 25 AS nid, 279.200012 AS "E"
+    UNION ALL
+    SELECT 26 AS nid, 238.391312 AS "E"
+    UNION ALL
+    SELECT 27 AS nid, 188.199997 AS "E"
+    UNION ALL
+    SELECT 28 AS nid, 154.233337 AS "E"
+    UNION ALL
+    SELECT 29 AS nid, 157.823532 AS "E"
+    UNION ALL
+    SELECT 30 AS nid, 210.652176 AS "E"
+    UNION ALL
+    SELECT 31 AS nid, 123.900002 AS "E"
+    UNION ALL
+    SELECT 32 AS nid, 169.399994 AS "E"
+    UNION ALL
+    SELECT 33 AS nid, 215.142853 AS "E"
+    UNION ALL
+    SELECT 34 AS nid, 248.562500 AS "E"
+    UNION ALL
+    SELECT 35 AS nid, 227.000000 AS "E"
+    UNION ALL
+    SELECT 36 AS nid, 258.363647 AS "E"
+    UNION ALL
+    SELECT 37 AS nid, 83.443481 AS "E"
+    UNION ALL
+    SELECT 38 AS nid, 112.671875 AS "E"
+    UNION ALL
+    SELECT 39 AS nid, 156.238098 AS "E"
+    UNION ALL
+    SELECT 40 AS nid, 91.395348 AS "E"
+    UNION ALL
+    SELECT 41 AS nid, 180.000000 AS "E"
+    UNION ALL
+    SELECT 42 AS nid, 130.100006 AS "E"
+    UNION ALL
+    SELECT 43 AS nid, 118.090912 AS "E"
+    UNION ALL
+    SELECT 44 AS nid, 82.218750 AS "E"
+    UNION ALL
+    SELECT 45 AS nid, 64.437500 AS "E"
+    UNION ALL
+    SELECT 46 AS nid, 100.000000 AS "E"
+    UNION ALL
+    SELECT 47 AS nid, 80.245285 AS "E"
+    UNION ALL
+    SELECT 48 AS nid, 121.111115 AS "E"
+    UNION ALL
+    SELECT 49 AS nid, 89.468086 AS "E"
+    UNION ALL
+    SELECT 50 AS nid, 72.898308 AS "E"
+    UNION ALL
+    SELECT 51 AS nid, 59.444443 AS "E"
+    UNION ALL
+    SELECT 52 AS nid, 96.578949 AS "E"
+    UNION ALL
+    SELECT 53 AS nid, 67.232559 AS "E"
+    UNION ALL
+    SELECT 54 AS nid, 88.125000 AS "E"
+  ) AS "Values"
+ ),
+"DT_output_3" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_3" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_3" AS t2
+   ON t1.node_id = t2.nid
+ ),
+"DT_node_lookup_4" AS 
+ (SELECT
+    model_input."index" AS "index",
+    CASE WHEN (model_input."X_8" <= 0.024392) THEN CASE WHEN (model_input."X_2" <= 0.076247) THEN CASE WHEN (model_input."X_8" <= -0.033884) THEN CASE WHEN (model_input."X_2" <= 0.027206) THEN CASE WHEN (model_input."X_3" <= -0.048706) THEN CASE WHEN (model_input."X_9" <= -0.032143) THEN 51 ELSE 52 END ELSE CASE WHEN (model_input."X_4" <= -0.040096) THEN 47 ELSE 48 END END ELSE CASE WHEN (model_input."X_8" <= -0.056217) THEN 49 ELSE 50 END END ELSE CASE WHEN (model_input."X_2" <= -0.029379) THEN CASE WHEN (model_input."X_6" <= 0.009983) THEN CASE WHEN (model_input."X_5" <= 0.021859) THEN 33 ELSE 34 END ELSE CASE WHEN (model_input."X_3" <= -0.011988) THEN 45 ELSE 46 END END ELSE CASE WHEN (model_input."X_9" <= -0.005220) THEN CASE WHEN (model_input."X_3" <= 0.002937) THEN 37 ELSE 38 END ELSE CASE WHEN (model_input."X_5" <= 0.018414) THEN 39 ELSE 40 END END END END ELSE 8 END ELSE CASE WHEN (model_input."X_9" <= 0.034130) THEN CASE WHEN (model_input."X_3" <= 0.051137) THEN CASE WHEN (model_input."X_3" <= -0.028049) THEN 9 ELSE CASE WHEN (model_input."X_4" <= 0.041774) THEN CASE WHEN (model_input."X_2" <= 0.015350) THEN 19 ELSE 20 END ELSE CASE WHEN (model_input."X_2" <= 0.004033) THEN 17 ELSE 18 END END END ELSE CASE WHEN (model_input."X_8" <= 0.056388) THEN 11 ELSE 12 END END ELSE CASE WHEN (model_input."X_3" <= 0.057454) THEN CASE WHEN (model_input."X_6" <= -0.048923) THEN 25 ELSE CASE WHEN (model_input."X_8" <= 0.058685) THEN 27 ELSE 28 END END ELSE CASE WHEN (model_input."X_8" <= 0.068129) THEN 43 ELSE 44 END END END END AS node_id
+  FROM model_input
+ ),
+"DT_node_data_4" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 0 AS nid, 153.407242 AS "E"
+    UNION ALL
+    SELECT 1 AS nid, 126.447716 AS "E"
+    UNION ALL
+    SELECT 2 AS nid, 214.066177 AS "E"
+    UNION ALL
+    SELECT 3 AS nid, 186.355270 AS "E"
+    UNION ALL
+    SELECT 4 AS nid, 249.166672 AS "E"
+    UNION ALL
+    SELECT 5 AS nid, 166.611115 AS "E"
+    UNION ALL
+    SELECT 6 AS nid, 234.818176 AS "E"
+    UNION ALL
+    SELECT 7 AS nid, 122.003357 AS "E"
+    UNION ALL
+    SELECT 8 AS nid, 292.000000 AS "E"
+    UNION ALL
+    SELECT 9 AS nid, 117.083336 AS "E"
+    UNION ALL
+    SELECT 10 AS nid, 180.761902 AS "E"
+    UNION ALL
+    SELECT 11 AS nid, 215.538467 AS "E"
+    UNION ALL
+    SELECT 12 AS nid, 262.666656 AS "E"
+    UNION ALL
+    SELECT 13 AS nid, 93.119263 AS "E"
+    UNION ALL
+    SELECT 14 AS nid, 138.661377 AS "E"
+    UNION ALL
+    SELECT 15 AS nid, 201.190475 AS "E"
+    UNION ALL
+    SELECT 16 AS nid, 160.333328 AS "E"
+    UNION ALL
+    SELECT 17 AS nid, 186.750000 AS "E"
+    UNION ALL
+    SELECT 18 AS nid, 125.111115 AS "E"
+    UNION ALL
+    SELECT 19 AS nid, 172.500000 AS "E"
+    UNION ALL
+    SELECT 20 AS nid, 227.272720 AS "E"
+    UNION ALL
+    SELECT 21 AS nid, 84.774193 AS "E"
+    UNION ALL
+    SELECT 22 AS nid, 141.625000 AS "E"
+    UNION ALL
+    SELECT 23 AS nid, 236.074997 AS "E"
+    UNION ALL
+    SELECT 24 AS nid, 275.350006 AS "E"
+    UNION ALL
+    SELECT 25 AS nid, 270.666656 AS "E"
+    UNION ALL
+    SELECT 26 AS nid, 221.250000 AS "E"
+    UNION ALL
+    SELECT 27 AS nid, 198.230774 AS "E"
+    UNION ALL
+    SELECT 28 AS nid, 241.199997 AS "E"
+    UNION ALL
+    SELECT 29 AS nid, 110.111115 AS "E"
+    UNION ALL
+    SELECT 30 AS nid, 150.081482 AS "E"
+    UNION ALL
+    SELECT 31 AS nid, 128.612900 AS "E"
+    UNION ALL
+    SELECT 32 AS nid, 85.173912 AS "E"
+    UNION ALL
+    SELECT 33 AS nid, 115.681816 AS "E"
+    UNION ALL
+    SELECT 34 AS nid, 160.222229 AS "E"
+    UNION ALL
+    SELECT 35 AS nid, 170.644073 AS "E"
+    UNION ALL
+    SELECT 36 AS nid, 134.118423 AS "E"
+    UNION ALL
+    SELECT 37 AS nid, 141.685715 AS "E"
+    UNION ALL
+    SELECT 38 AS nid, 212.875000 AS "E"
+    UNION ALL
+    SELECT 39 AS nid, 117.288887 AS "E"
+    UNION ALL
+    SELECT 40 AS nid, 158.548386 AS "E"
+    UNION ALL
+    SELECT 41 AS nid, 50.235294 AS "E"
+    UNION ALL
+    SELECT 42 AS nid, 92.500000 AS "E"
+    UNION ALL
+    SELECT 43 AS nid, 289.600006 AS "E"
+    UNION ALL
+    SELECT 44 AS nid, 261.100006 AS "E"
+    UNION ALL
+    SELECT 45 AS nid, 71.583336 AS "E"
+    UNION ALL
+    SELECT 46 AS nid, 100.000000 AS "E"
+    UNION ALL
+    SELECT 47 AS nid, 107.636360 AS "E"
+    UNION ALL
+    SELECT 48 AS nid, 80.883720 AS "E"
+    UNION ALL
+    SELECT 49 AS nid, 131.750000 AS "E"
+    UNION ALL
+    SELECT 50 AS nid, 151.500000 AS "E"
+    UNION ALL
+    SELECT 51 AS nid, 57.111111 AS "E"
+    UNION ALL
+    SELECT 52 AS nid, 42.500000 AS "E"
+  ) AS "Values"
+ ),
+"DT_output_4" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_4" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_4" AS t2
+   ON t1.node_id = t2.nid
+ ),
+"union_of_trees" AS
+ (SELECT scu."index_u" AS "index", scu."E" AS "E"
+ FROM (
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_0" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_1" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_2" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_3" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_4" AS t
+  ) AS scu
+)
+SELECT
+   t."index" AS "index",
+   AVG(t."E") AS "Estimator"
+FROM "union_of_trees" AS t
+GROUP BY t."index"
