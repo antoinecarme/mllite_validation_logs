@@ -81,7 +81,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 512 512
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 2 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 3 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.012, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.013, 'TRAINING')
 { ,  "max_leaf_nodes" : 64 }
 { ,  "max_leaf_nodes" : 64 }
 {
@@ -535,7 +535,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.DecisionTreeClassifier', 'model_name': 'DecisionTreeClassifier', 'options': None, 'dataset': 'FourClass_10_medium', 'size': 512, 'accuracy': 0.888671875, 'auc': 0.9636914272213859}
 WRITING_PERF_CODE 'logs/auto_tests/classification/DecisionTreeClassifier/mllite.DecisionTreeClassifier_FourClass_10_medium.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeClassifier', 'model_name': 'DecisionTreeClassifier', 'options': None, 'dataset': 'FourClass_10_medium', 'training_time_in_sec': 0.012, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeClassifier', 'model_name': 'DecisionTreeClassifier', 'options': None, 'dataset': 'FourClass_10_medium', 'training_time_in_sec': 0.013, 'prediction_time_in_sec': 0.0}
 WRITING_SQL_CODE 'logs/auto_tests/classification/DecisionTreeClassifier/mllite.DecisionTreeClassifier_FourClass_10_medium.sql'
 
 
@@ -577,24 +577,64 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0       X_1       X_2       X_3  ...       X_7       X_8       X_9  KEY
-0   -1.104915  0.852920  0.507679 -0.381407  ...  0.479871 -1.472978 -1.793182    0
-1    1.845877 -1.230132  0.868872 -1.364713  ... -3.816458  0.362403 -0.619445    1
-2   -2.837179  1.477195  0.565303  1.382117  ... -0.012256  1.102744  1.483759    2
-3   -0.817915  0.349464 -0.778337  0.031169  ... -1.054359 -0.344547 -0.450057    3
-4    2.867865 -1.912016  0.005109 -0.897717  ... -1.535723 -0.616466 -0.572385    4
-..        ...       ...       ...       ...  ...       ...       ...       ...  ...
-507  2.438772 -1.661028 -1.497360 -0.075190  ... -0.360560  0.591629 -0.673836  507
-508  2.240772 -0.702349  0.668354 -1.061221  ...  1.595941  1.042002 -1.470823  508
-509 -1.085291  0.783440 -0.493113  0.767185  ...  1.308570  1.430318 -0.063795  509
-510  0.377241 -1.091754  0.032081  2.033396  ... -0.311330  1.357257 -0.465549  510
-511 -0.376689  1.158867 -0.352004 -1.122018  ...  1.244896  1.521553  1.011941  511
+<class 'pandas.core.frame.DataFrame'>
+Index: 512 entries, 0 to 511
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     512 non-null    float32
+ 1   X_1     512 non-null    float32
+ 2   X_2     512 non-null    float32
+ 3   X_3     512 non-null    float32
+ 4   X_4     512 non-null    float32
+ 5   X_5     512 non-null    float32
+ 6   X_6     512 non-null    float32
+ 7   X_7     512 non-null    float32
+ 8   X_8     512 non-null    float32
+ 9   X_9     512 non-null    float32
+dtypes: float32(10)
+memory usage: 24.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0     -1.104915  0.852920  0.507679  ...  0.479871 -1.472978 -1.793182
+1      1.845877 -1.230132  0.868872  ... -3.816458  0.362403 -0.619445
+2     -2.837179  1.477195  0.565303  ... -0.012256  1.102744  1.483759
+3     -0.817915  0.349464 -0.778337  ... -1.054359 -0.344547 -0.450057
+4      2.867865 -1.912016  0.005109  ... -1.535723 -0.616466 -0.572385
+...         ...       ...       ...  ...       ...       ...       ...
+507    2.438772 -1.661028 -1.497360  ... -0.360560  0.591629 -0.673836
+508    2.240772 -0.702349  0.668354  ...  1.595941  1.042002 -1.470823
+509   -1.085291  0.783440 -0.493113  ...  1.308570  1.430318 -0.063795
+510    0.377241 -1.091754  0.032081  ... -0.311330  1.357257 -0.465549
+511   -0.376689  1.158867 -0.352004  ...  1.244896  1.521553  1.011941
 
-[512 rows x 11 columns]
+[512 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 512 entries, 0 to 511
+Data columns (total 15 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          512 non-null    int64  
+ 1   Score_0        0 non-null      object 
+ 2   Proba_0        512 non-null    float64
+ 3   LogProba_0     512 non-null    float64
+ 4   Score_1        0 non-null      object 
+ 5   Proba_1        512 non-null    float64
+ 6   LogProba_1     512 non-null    float64
+ 7   Score_2        0 non-null      object 
+ 8   Proba_2        512 non-null    float64
+ 9   LogProba_2     512 non-null    float64
+ 10  Score_3        0 non-null      object 
+ 11  Proba_3        512 non-null    float64
+ 12  LogProba_3     512 non-null    float64
+ 13  Decision       512 non-null    int64  
+ 14  DecisionProba  512 non-null    float64
+dtypes: float64(9), int64(2), object(4)
+memory usage: 60.1+ KB
      index Score_0   Proba_0  ...     LogProba_3 Decision  DecisionProba
 0        0    None  1.000000  ... -1.797693e+308        0       1.000000
 1        1    None  0.000000  ...   0.000000e+00        3       1.000000
@@ -636,4 +676,93 @@ Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
 511    511    None     0.065574  ...    0.081967   0.057377            1
 
 [16 rows x 20 columns]
+MLLITE_SQL_ERROR ('Py_Proba_0', 'SQL_Proba_0') 1.048847811617206e-06
+     Py_Proba_0  SQL_Proba_0
+496    0.000001     0.000001
+497    0.000001     0.000001
+498    0.684211     0.684211
+499    0.065574     0.065574
+500    1.000000     1.000000
+501    0.076923     0.076923
+502    0.076923     0.076923
+503    0.684211     0.684211
+504    0.000001     0.000001
+505    1.000000     1.000000
+506    0.684211     0.684211
+507    0.000001     0.000001
+508    0.065574     0.065574
+509    0.065574     0.065574
+510    1.000000     1.000000
+511    0.065574     0.065574
+MLLITE_SQL_ERROR ('Py_Proba_1', 'SQL_Proba_1') 1.1157059292719542e-07
+     Py_Proba_1  SQL_Proba_1
+496    0.000001     0.000001
+497    0.000001     0.000001
+498    0.000001     0.000001
+499    0.795082     0.795082
+500    0.000001     0.000001
+501    0.051282     0.051282
+502    0.051282     0.051282
+503    0.000001     0.000001
+504    0.000001     0.000001
+505    0.000001     0.000001
+506    0.000001     0.000001
+507    0.000001     0.000001
+508    0.795082     0.795082
+509    0.795082     0.795082
+510    0.000001     0.000001
+511    0.795082     0.795082
+MLLITE_SQL_ERROR ('Py_Proba_2', 'SQL_Proba_2') 6.801365987470234e-07
+     Py_Proba_2  SQL_Proba_2
+496    1.000000     1.000000
+497    1.000000     1.000000
+498    0.315789     0.315789
+499    0.081967     0.081967
+500    0.000001     0.000001
+501    0.000001     0.000001
+502    0.000001     0.000001
+503    0.315789     0.315789
+504    1.000000     1.000000
+505    0.000001     0.000001
+506    0.315789     0.315789
+507    1.000000     1.000000
+508    0.081967     0.081967
+509    0.081967     0.081967
+510    0.000001     0.000001
+511    0.081967     0.081967
+MLLITE_SQL_ERROR ('Py_Proba_3', 'SQL_Proba_3') 2.0919560822935555e-07
+     Py_Proba_3  SQL_Proba_3
+496    0.000001     0.000001
+497    0.000001     0.000001
+498    0.000001     0.000001
+499    0.057377     0.057377
+500    0.000001     0.000001
+501    0.871795     0.871795
+502    0.871795     0.871795
+503    0.000001     0.000001
+504    0.000001     0.000001
+505    0.000001     0.000001
+506    0.000001     0.000001
+507    0.000001     0.000001
+508    0.057377     0.057377
+509    0.057377     0.057377
+510    0.000001     0.000001
+511    0.057377     0.057377
+     Py_Decision  SQL_Decision
+496            2             2
+497            2             2
+498            0             0
+499            1             1
+500            0             0
+501            3             3
+502            3             3
+503            0             0
+504            2             2
+505            0             0
+506            0             0
+507            2             2
+508            1             1
+509            1             1
+510            0             0
+511            1             1
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

@@ -7,10 +7,9 @@ model_scores_cte AS
  (SELECT model_input."index" AS "index",
    0.000558 + 0.045419 * X_0 + 0.237181 * X_1 + -0.022942 * X_2 + -0.068167 * X_3 + 0.168399 * X_4 + -0.029209 * X_5 + 0.025823 * X_6 + -0.074720 * X_7 + -0.020305 * X_8 + 0.010837 * X_9 + 0.009426 * X_10 + 0.078202 * X_11 + 0.017281 * X_12 + 0.028883 * X_13 + -0.007622 * X_14 + 0.039188 * X_15 + 0.026010 * X_16 + -0.002356 * X_17 + 0.043976 * X_18 + -0.072737 * X_19 + -0.010874 * X_20 + 0.024740 * X_21 + -0.038020 * X_22 + -0.030292 * X_23 + -0.011367 * X_24 + 0.043258 * X_25 + -0.006911 * X_26 + 0.004048 * X_27 + -0.002650 * X_28 + -0.028311 * X_29 + -0.010290 * X_30 + -0.007142 * X_31 + 0.036601 * X_32 + -0.046100 * X_33 + 0.057148 * X_34 + -0.026235 * X_35 + -0.015731 * X_36 + 0.020540 * X_37 + -0.041613 * X_38 + 0.073646 * X_39 + 0.032632 * X_40 + 0.017451 * X_41 + 0.027560 * X_42 + -0.044444 * X_43 + -0.011069 * X_44 + 0.062136 * X_45 + -0.001885 * X_46 + 0.035238 * X_47 + 0.050407 * X_48 + -0.000028 * X_49 + 0.001497 * X_50 + 0.047333 * X_51 + 0.024141 * X_52 + 0.037380 * X_53 + 0.004623 * X_54 + -0.035307 * X_55 + -0.008028 * X_56 + -0.033042 * X_57 + 0.024598 * X_58 + 0.058963 * X_59 + 0.026407 * X_60 + 0.287095 * X_61 + -0.006355 * X_62 + 0.053387 * X_63 + -0.029842 * X_64 + 0.013425 * X_65 + -0.004110 * X_66 + -0.144599 * X_67 + 0.041283 * X_68 + 0.048438 * X_69 + -0.025844 * X_70 + 0.008356 * X_71 + 0.049051 * X_72 + 0.030766 * X_73 + -0.002816 * X_74 + 0.045158 * X_75 + -0.000441 * X_76 + -0.020979 * X_77 + -0.030908 * X_78 + -0.015179 * X_79 + 0.053937 * X_80 + 0.014094 * X_81 + 0.024816 * X_82 + 0.028835 * X_83 + -0.031021 * X_84 + 0.009181 * X_85 + 0.031942 * X_86 + -0.011498 * X_87 + -0.015318 * X_88 + -0.066391 * X_89 + 0.019888 * X_90 + 0.032839 * X_91 + 0.075866 * X_92 + -0.031744 * X_93 + 0.069718 * X_94 + -0.019710 * X_95 + 0.026573 * X_96 + -0.026752 * X_97 + -0.001094 * X_98 + -0.013733 * X_99 AS "Score_1", CAST(NULL AS FLOAT) AS "Proba_1", CAST(NULL AS FLOAT) AS "LogProba_1"
   FROM model_input
- )
-,
+ ),
 soft_max_orig_cte AS 
- (SELECT t."index" AS "index", 
+( SELECT t."index" AS "index", 
    -t."Score_1" AS "Score_0",
    1.0 - t."Proba_1" AS "Proba_0",
    CAST(NULL AS FLOAT) AS "LogProba_0",
@@ -18,132 +17,52 @@ soft_max_orig_cte AS
    t."Proba_1" AS "Proba_1",
    CAST(NULL AS FLOAT) AS "LogProba_1",
    CAST(NULL AS BIGINT) AS "Decision",
-   CAST(NULL AS FLOAT) AS "DecisionProba"
-  FROM model_scores_cte AS t
- )
-,
-soft_max_class_union AS 
- (SELECT scu.index_u AS index_u, scu.class AS class,  scu."LogProba" AS "LogProba", scu."Proba" AS "Proba", scu."Score" AS "Score"
-  FROM 
-   (SELECT "index" AS index_u, 0 AS class,  "LogProba_0" AS "LogProba", "Proba_0" AS "Proba", "Score_0" AS "Score" from "soft_max_orig_cte"
-    UNION ALL
-    SELECT "index" AS index_u, 1 AS class,  "LogProba_1" AS "LogProba", "Proba_1" AS "Proba", "Score_1" AS "Score" from "soft_max_orig_cte"
-   ) AS scu
- )
-,soft_max_score_max AS 
- (SELECT t."index" AS "index",
-   t."LogProba_0" AS "LogProba_0", t."Proba_0" AS "Proba_0", t."Score_0" AS "Score_0",
-   t."LogProba_1" AS "LogProba_1", t."Proba_1" AS "Proba_1", t."Score_1" AS "Score_1",
-   max_select."index_m" AS "index_m",
-   max_select."max_Score" AS "max_Score"
+   CAST(NULL AS FLOAT) AS "DecisionProba",
+   MAX(t."Score_0", t."Score_1") AS "Greatest_Score"
   FROM
- "soft_max_orig_cte" AS t
-    LEFT OUTER JOIN
-    (SELECT t1.index_u AS index_m,
-      max(t1."Score") AS "max_Score"
-     FROM soft_max_class_union t1
-     GROUP BY t1.index_u
-    ) AS max_select
-    ON t."index" = max_select.index_m
-  )
-,soft_max_deltas AS 
- (SELECT soft_max_score_max."index" AS "index",
-    soft_max_score_max."Score_0" AS "Score_0",
-    EXP(max(-32.0, soft_max_score_max."Score_0" - soft_max_score_max."max_Score")) AS "ExpDelta_Score_0",
-    soft_max_score_max."Score_1" AS "Score_1",
-    EXP(max(-32.0, soft_max_score_max."Score_1" - soft_max_score_max."max_Score")) AS "ExpDelta_Score_1",
-    soft_max_score_max."max_Score" AS "max_Score"
-  FROM soft_max_score_max
- )
-,soft_max_class_union_with_delta AS 
- (SELECT soft_scu."index" AS "index",
-   soft_scu.class AS class,
-   soft_scu."ExpDelta_Score" AS "ExpDelta_Score"
-  FROM (
-    SELECT t."index" AS "index", 0 AS "class", t."ExpDelta_Score_0" AS "ExpDelta_Score"  FROM soft_max_deltas AS t
-    UNION ALL
-    SELECT t."index" AS "index", 1 AS "class", t."ExpDelta_Score_1" AS "ExpDelta_Score"  FROM soft_max_deltas AS t
-) AS soft_scu)
-,
+    model_scores_cte AS t
+),
+soft_max_cte_with_exp_deltas AS 
+( SELECT t1.*,
+    ( t1."Exp_Score_0" + t1."Exp_Score_1" ) AS "Sum_Exp"
+  FROM
+   ( SELECT t.*,
+        EXP(t."Score_0" - t."Greatest_Score") as "Exp_Score_0",
+        EXP(t."Score_1" - t."Greatest_Score") as "Exp_Score_1"
+    FROM
+       soft_max_orig_cte AS t
+  ) AS t1
+),
 soft_max_cte AS 
- (SELECT t1."index" AS "index",
+( SELECT t1."index" AS "index",
     CAST(NULL AS FLOAT) AS "LogProba_0",
-    t1."ExpDelta_Score_0" / sum_exp_t."sum_ExpDelta_Score" AS "Proba_0",
+    t1."Exp_Score_0" / t1."Sum_Exp" AS "Proba_0",
     t1."Score_0" AS "Score_0",
     CAST(NULL AS FLOAT) AS "LogProba_1",
-    t1."ExpDelta_Score_1" / sum_exp_t."sum_ExpDelta_Score" AS "Proba_1",
+    t1."Exp_Score_1" / t1."Sum_Exp" AS "Proba_1",
     t1."Score_1" AS "Score_1"
  FROM 
-   soft_max_deltas AS t1
-   LEFT OUTER JOIN
-   ( SELECT t3."index" AS "index",
-       SUM( t3."ExpDelta_Score" ) AS "sum_ExpDelta_Score"
-     FROM soft_max_class_union_with_delta AS t3
-     GROUP BY t3."index"
-   ) AS sum_exp_t
-   ON (t1."index" = sum_exp_t."index")
- )
-,
-score_class_union AS 
- (SELECT scu.index_u AS index_u, scu.class AS class,  scu."LogProba" AS "LogProba", scu."Proba" AS "Proba", scu."Score" AS "Score"
-  FROM 
-   (SELECT "index" AS index_u, 0 AS class,  "LogProba_0" AS "LogProba", "Proba_0" AS "Proba", "Score_0" AS "Score" from "soft_max_cte"
-    UNION ALL
-    SELECT "index" AS index_u, 1 AS class,  "LogProba_1" AS "LogProba", "Proba_1" AS "Proba", "Score_1" AS "Score" from "soft_max_cte"
-   ) AS scu
- )
-,
-score_max AS 
- (SELECT t."index" AS "index",
-   t."LogProba_0" AS "LogProba_0", t."Proba_0" AS "Proba_0", t."Score_0" AS "Score_0",
-   t."LogProba_1" AS "LogProba_1", t."Proba_1" AS "Proba_1", t."Score_1" AS "Score_1",
-   max_select."index_m" AS "index_m",
-   max_select."max_Score" AS "max_Score"
+   soft_max_cte_with_exp_deltas as t1
+),
+arg_max_cte_with_max_proba AS 
+( SELECT t.*,
+    MAX(  t."Proba_0", t."Proba_1" ) AS "Max_Proba"
   FROM
-    "soft_max_cte" AS t
-    LEFT OUTER JOIN
-    (SELECT score_class_union.index_u AS index_m,
-      max(score_class_union."Score") AS "max_Score"
-     FROM score_class_union
-     GROUP BY score_class_union.index_u
-    ) AS max_select
-    ON t."index" = max_select.index_m
-  )
-,
-union_with_max AS 
- (SELECT score_class_union.index_u AS "index",
-   score_class_union.class AS class,
-   score_class_union."LogProba" AS "LogProba", score_class_union."Proba" AS "Proba", score_class_union."Score" AS "Score",
-   score_max."LogProba_0" AS "LogProba_0", score_max."Proba_0" AS "Proba_0", score_max."Score_0" AS "Score_0",
-   score_max."LogProba_1" AS "LogProba_1", score_max."Proba_1" AS "Proba_1", score_max."Score_1" AS "Score_1",
-   score_max.index_m AS index_m,
-   score_max."max_Score" AS "max_Score"
+     "soft_max_cte" AS t
+),
+arg_max_cte_with_max_proba_idx AS 
+( SELECT t.*,
+   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
+   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
   FROM
-   score_class_union
-   LEFT OUTER JOIN
-   score_max
-   ON score_class_union.index_u = score_max."index"
- )
-,
+   "arg_max_cte_with_max_proba" AS t
+),
 arg_max_cte AS 
- (SELECT score_max."index" AS "index",
-   score_max."LogProba_0" AS "LogProba_0", score_max."Proba_0" AS "Proba_0", score_max."Score_0" AS "Score_0",
-   score_max."LogProba_1" AS "LogProba_1", score_max."Proba_1" AS "Proba_1", score_max."Score_1" AS "Score_1",
-   score_max.index_m AS index_m,
-   score_max."max_Score" AS "max_Score",
-   "arg_max_t_Score"."index_Score" AS "index_Score",
-   "arg_max_t_Score"."arg_max_Score" AS "arg_max_Score"
-  FROM
-   score_max
-   LEFT OUTER JOIN
-   (SELECT union_with_max."index" AS "index_Score",
-     max(union_with_max.class) AS "arg_max_Score"
-    FROM union_with_max
-    WHERE union_with_max."max_Score" <= union_with_max."Score"
-    GROUP BY union_with_max."index"
-   ) AS "arg_max_t_Score"
-   ON score_max."index" = "arg_max_t_Score"."index_Score"
- )
+ (SELECT t.*,
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
 SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_0" AS "Score_0",
   arg_max_cte."Proba_0" AS "Proba_0",
@@ -151,9 +70,6 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_1" AS "Score_1",
   arg_max_cte."Proba_1" AS "Proba_1",
   CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte

@@ -87,7 +87,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 27 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 30 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 32 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
-('OPERATION_END_ELAPSED', 1.204, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.977, 'TRAINING')
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 }
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 }
 {
@@ -430,9 +430,9 @@ BEAUTIFIED_JSON_START
 }
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.013, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.007, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.012, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.007, 'PREDICT')
 [[1.000e-04 9.999e-01]
  [0.000e+00 1.000e+00]
  [3.000e-04 9.997e-01]
@@ -445,7 +445,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'census_one_hot_sampled', 'size': 6105, 'accuracy': 0.23996723996723995, 'auc': 0.6245548428857244}
 WRITING_PERF_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_one_hot_sampled_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'census_one_hot_sampled', 'training_time_in_sec': 1.204, 'prediction_time_in_sec': 0.012}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'census_one_hot_sampled', 'training_time_in_sec': 0.977, 'prediction_time_in_sec': 0.007}
 WRITING_SQL_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_one_hot_sampled_option_1.sql'
 
 
@@ -456,14 +456,21 @@ WITH model_input AS
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
 SQL_OUT_PUT_FIRST_LINES_END
 SQL_OUT_PUT_LAST_LINES_START
-ax."index" AS "index_Score",
-     max(union_with_max.class) AS "arg_max_Score"
-    FROM union_with_max
-    WHERE union_with_max."max_Score" <= union_with_max."Score"
-    GROUP BY union_with_max."index"
-   ) AS "arg_max_t_Score"
-   ON score_max."index" = "arg_max_t_Score"."index_Score"
- )
+S t
+),
+arg_max_cte_with_max_proba_idx AS 
+( SELECT t.*,
+   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
+   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+ (SELECT t.*,
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
 SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_0" AS "Score_0",
   arg_max_cte."Proba_0" AS "Proba_0",
@@ -471,11 +478,8 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_1" AS "Score_1",
   arg_max_cte."Proba_1" AS "Proba_1",
   CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
 SQL_OUT_PUT_LAST_LINES_END
 
@@ -483,20 +487,81 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-      X_0  X_1  X_2  X_3  X_4  X_5  ...  X_48  X_49  X_50  X_51  X_52   KEY
-0     2.0  0.0  1.0  0.0  0.0  0.0  ...   0.0   0.0   1.0   0.0   0.0     0
-1     1.0  0.0  0.0  0.0  0.0  1.0  ...   0.0   0.0   1.0   0.0   0.0     1
-2     1.0  0.0  1.0  0.0  0.0  0.0  ...   0.0   0.0   1.0   0.0   0.0     2
-3     1.0  0.0  0.0  1.0  0.0  0.0  ...   0.0   0.0   0.0   0.0   1.0     3
-4     1.0  0.0  0.0  0.0  0.0  1.0  ...   0.0   0.0   1.0   0.0   0.0     4
-...   ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...   ...   ...
-6100  2.0  0.0  0.0  1.0  0.0  0.0  ...   0.0   0.0   0.0   0.0   1.0  6100
-6101  2.0  0.0  1.0  0.0  0.0  0.0  ...   0.0   0.0   1.0   0.0   0.0  6101
-6102  3.0  0.0  0.0  0.0  1.0  0.0  ...   0.0   0.0   1.0   0.0   0.0  6102
-6103  1.0  0.0  1.0  0.0  0.0  0.0  ...   0.0   0.0   1.0   0.0   0.0  6103
-6104  4.0  0.0  1.0  0.0  0.0  0.0  ...   0.0   0.0   1.0   0.0   0.0  6104
+<class 'pandas.core.frame.DataFrame'>
+Index: 6105 entries, 0 to 6104
+Data columns (total 53 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     6105 non-null   float32
+ 1   X_1     6105 non-null   float32
+ 2   X_2     6105 non-null   float32
+ 3   X_3     6105 non-null   float32
+ 4   X_4     6105 non-null   float32
+ 5   X_5     6105 non-null   float32
+ 6   X_6     6105 non-null   float32
+ 7   X_7     6105 non-null   float32
+ 8   X_8     6105 non-null   float32
+ 9   X_9     6105 non-null   float32
+ 10  X_10    6105 non-null   float32
+ 11  X_11    6105 non-null   float32
+ 12  X_12    6105 non-null   float32
+ 13  X_13    6105 non-null   float32
+ 14  X_14    6105 non-null   float32
+ 15  X_15    6105 non-null   float32
+ 16  X_16    6105 non-null   float32
+ 17  X_17    6105 non-null   float32
+ 18  X_18    6105 non-null   float32
+ 19  X_19    6105 non-null   float32
+ 20  X_20    6105 non-null   float32
+ 21  X_21    6105 non-null   float32
+ 22  X_22    6105 non-null   float32
+ 23  X_23    6105 non-null   float32
+ 24  X_24    6105 non-null   float32
+ 25  X_25    6105 non-null   float32
+ 26  X_26    6105 non-null   float32
+ 27  X_27    6105 non-null   float32
+ 28  X_28    6105 non-null   float32
+ 29  X_29    6105 non-null   float32
+ 30  X_30    6105 non-null   float32
+ 31  X_31    6105 non-null   float32
+ 32  X_32    6105 non-null   float32
+ 33  X_33    6105 non-null   float32
+ 34  X_34    6105 non-null   float32
+ 35  X_35    6105 non-null   float32
+ 36  X_36    6105 non-null   float32
+ 37  X_37    6105 non-null   float32
+ 38  X_38    6105 non-null   float32
+ 39  X_39    6105 non-null   float32
+ 40  X_40    6105 non-null   float32
+ 41  X_41    6105 non-null   float32
+ 42  X_42    6105 non-null   float32
+ 43  X_43    6105 non-null   float32
+ 44  X_44    6105 non-null   float32
+ 45  X_45    6105 non-null   float32
+ 46  X_46    6105 non-null   float32
+ 47  X_47    6105 non-null   float32
+ 48  X_48    6105 non-null   float32
+ 49  X_49    6105 non-null   float32
+ 50  X_50    6105 non-null   float32
+ 51  X_51    6105 non-null   float32
+ 52  X_52    6105 non-null   float32
+dtypes: float32(53)
+memory usage: 1.3 MB
+       X_0  X_1  X_2  X_3  X_4  X_5  ...  X_47  X_48  X_49  X_50  X_51  X_52
+index                                ...                                    
+0      2.0  0.0  1.0  0.0  0.0  0.0  ...   0.0   0.0   0.0   1.0   0.0   0.0
+1      1.0  0.0  0.0  0.0  0.0  1.0  ...   0.0   0.0   0.0   1.0   0.0   0.0
+2      1.0  0.0  1.0  0.0  0.0  0.0  ...   0.0   0.0   0.0   1.0   0.0   0.0
+3      1.0  0.0  0.0  1.0  0.0  0.0  ...   0.0   0.0   0.0   0.0   0.0   1.0
+4      1.0  0.0  0.0  0.0  0.0  1.0  ...   0.0   0.0   0.0   1.0   0.0   0.0
+...    ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...   ...   ...
+6100   2.0  0.0  0.0  1.0  0.0  0.0  ...   0.0   0.0   0.0   0.0   0.0   1.0
+6101   2.0  0.0  1.0  0.0  0.0  0.0  ...   0.0   0.0   0.0   1.0   0.0   0.0
+6102   3.0  0.0  0.0  0.0  1.0  0.0  ...   0.0   0.0   0.0   1.0   0.0   0.0
+6103   1.0  0.0  1.0  0.0  0.0  0.0  ...   0.0   0.0   0.0   1.0   0.0   0.0
+6104   4.0  0.0  1.0  0.0  0.0  0.0  ...   0.0   0.0   0.0   1.0   0.0   0.0
 
-[6105 rows x 54 columns]
+[6105 rows x 53 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 

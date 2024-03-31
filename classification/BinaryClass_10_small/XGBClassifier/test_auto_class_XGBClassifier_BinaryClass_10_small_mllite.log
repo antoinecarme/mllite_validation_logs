@@ -65,7 +65,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 32 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 33 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 34 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_CLASSIFIER_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.046, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.078, 'TRAINING')
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  }
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  }
 {
@@ -3735,7 +3735,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': None, 'dataset': 'BinaryClass_10_small', 'size': 64, 'accuracy': 1.0, 'auc': 1.0}
 WRITING_PERF_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_BinaryClass_10_small.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': None, 'dataset': 'BinaryClass_10_small', 'training_time_in_sec': 0.046, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': None, 'dataset': 'BinaryClass_10_small', 'training_time_in_sec': 0.078, 'prediction_time_in_sec': 0.0}
 WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_BinaryClass_10_small.sql'
 
 
@@ -3761,14 +3761,21 @@ WITH model_input AS
     SELECT 5 AS nid,  -0.060000 AS "P_0", 0.060
 SQL_OUT_PUT_FIRST_LINES_END
 SQL_OUT_PUT_LAST_LINES_START
-ax."index" AS "index_Score",
-     max(union_with_max.class) AS "arg_max_Score"
-    FROM union_with_max
-    WHERE union_with_max."max_Score" <= union_with_max."Score"
-    GROUP BY union_with_max."index"
-   ) AS "arg_max_t_Score"
-   ON score_max."index" = "arg_max_t_Score"."index_Score"
- )
+S t
+),
+arg_max_cte_with_max_proba_idx AS 
+( SELECT t.*,
+   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
+   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+ (SELECT t.*,
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
 SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_0" AS "Score_0",
   arg_max_cte."Proba_0" AS "Proba_0",
@@ -3776,11 +3783,8 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_1" AS "Score_1",
   arg_max_cte."Proba_1" AS "Proba_1",
   CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
 SQL_OUT_PUT_LAST_LINES_END
 
@@ -3788,36 +3792,70 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-         X_0       X_1       X_2       X_3  ...       X_7       X_8       X_9  KEY
-0  -1.064559 -0.820872 -0.723270 -0.096420  ...  0.652010 -0.319080 -0.383915    0
-1  -0.960957 -1.294560 -0.778172  0.835975  ... -0.518959  0.207019 -0.945521    1
-2  -1.406136 -0.242116  1.301289 -0.494365  ... -1.043267 -1.426875  1.876952    2
-3  -1.954561 -1.845000  0.508844 -0.224022  ...  0.532215 -1.374292  2.746056    3
-4  -0.098659 -1.731538  2.272470  0.118096  ...  0.845839  1.740497  0.199837    4
-..       ...       ...       ...       ...  ...       ...       ...       ...  ...
-59  1.123207  0.820741  0.307790  0.571600  ... -0.348400 -2.114189  0.674955   59
-60  0.648423 -0.244695 -0.012258  1.592630  ...  0.520360  1.591133  0.415493   60
-61 -1.537976 -0.863574 -0.339109  0.416003  ... -1.807600 -0.932955 -0.606641   61
-62  1.719474 -0.751864 -1.224318 -0.811701  ...  0.148196 -0.611486  0.366529   62
-63 -0.263412  1.788292  0.201192 -0.339974  ... -0.413903  1.138708 -1.061929   63
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+ 4   X_4     64 non-null     float32
+ 5   X_5     64 non-null     float32
+ 6   X_6     64 non-null     float32
+ 7   X_7     64 non-null     float32
+ 8   X_8     64 non-null     float32
+ 9   X_9     64 non-null     float32
+dtypes: float32(10)
+memory usage: 3.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0     -1.064559 -0.820872 -0.723270  ...  0.652010 -0.319080 -0.383915
+1     -0.960957 -1.294560 -0.778172  ... -0.518959  0.207019 -0.945521
+2     -1.406136 -0.242116  1.301289  ... -1.043267 -1.426875  1.876952
+3     -1.954561 -1.845000  0.508844  ...  0.532215 -1.374292  2.746056
+4     -0.098659 -1.731538  2.272470  ...  0.845839  1.740497  0.199837
+...         ...       ...       ...  ...       ...       ...       ...
+59     1.123207  0.820741  0.307790  ... -0.348400 -2.114189  0.674955
+60     0.648423 -0.244695 -0.012258  ...  0.520360  1.591133  0.415493
+61    -1.537976 -0.863574 -0.339109  ... -1.807600 -0.932955 -0.606641
+62     1.719474 -0.751864 -1.224318  ...  0.148196 -0.611486  0.366529
+63    -0.263412  1.788292  0.201192  ... -0.413903  1.138708 -1.061929
 
-[64 rows x 11 columns]
+[64 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 9 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          64 non-null     int64  
+ 1   Score_0        64 non-null     float64
+ 2   Proba_0        64 non-null     float64
+ 3   LogProba_0     64 non-null     float64
+ 4   Score_1        64 non-null     float64
+ 5   Proba_1        64 non-null     float64
+ 6   LogProba_1     64 non-null     float64
+ 7   Decision       64 non-null     int64  
+ 8   DecisionProba  64 non-null     float64
+dtypes: float64(7), int64(2)
+memory usage: 4.6 KB
     index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
-0       0  2.606881  0.985425  ...   -4.228445         0       0.985425
-1       1  2.527643  0.982965  ...   -4.072468         0       0.982965
-2       2 -1.936720  0.007589  ...   -0.007618         1       0.992411
-3       3  2.185438  0.966782  ...   -3.404657         0       0.966782
-4       4 -1.576566  0.015472  ...   -0.015593         1       0.984528
+0       0  1.606882  0.961349  ...   -3.253182         0       0.961349
+1       1  1.527643  0.955010  ...   -3.101319         0       0.955010
+2       2 -2.936720  0.002805  ...   -0.002809         1       0.997195
+3       3  1.185437  0.914579  ...   -2.460165         0       0.914579
+4       4 -2.576567  0.005748  ...   -0.005765         1       0.994252
 ..    ...       ...       ...  ...         ...       ...            ...
-59     59  2.659585  0.986864  ...   -4.332394         0       0.986864
-60     60  1.953214  0.948163  ...   -2.959658         0       0.948163
-61     61  2.096635  0.960580  ...   -3.233489         0       0.960580
-62     62  1.797298  0.930513  ...   -2.666616         0       0.930513
-63     63  2.598907  0.985194  ...   -4.212732         0       0.985194
+59     59  1.659586  0.965081  ...   -3.354716         0       0.965081
+60     60  0.953215  0.870618  ...   -2.044982         0       0.870618
+61     61  1.096636  0.899644  ...   -2.299028         0       0.899644
+62     62  0.797299  0.831262  ...   -1.779408         0       0.831262
+63     63  1.598908  0.960752  ...   -3.237855         0       0.960752
 
 [64 rows x 9 columns]
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
@@ -3828,22 +3866,75 @@ Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
        'LogProba_1', 'Decision', 'DecisionProba'],
       dtype='object')
     index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
-48     48 -1.765898     0.010647  ...    0.003739    0.996261            1
-49     49  2.261697     0.971346  ...    0.965003    0.034997            0
-50     50 -0.232433     0.187724  ...    0.187725    0.812275            1
-51     51  2.747932     0.988968  ...    0.975912    0.024088            0
-52     52  2.674683     0.987250  ...    0.987250    0.012750            0
-53     53  2.125793     0.962730  ...    0.962730    0.037270            0
-54     54  1.030227     0.742778  ...    0.969158    0.030842            0
-55     55  2.175610     0.966145  ...    0.079669    0.920331            1
-56     56 -0.582595     0.102920  ...    0.102921    0.897079            1
-57     57  0.250320     0.377692  ...    0.871171    0.128829            0
-58     58  2.957073     0.992712  ...    0.992712    0.007289            0
-59     59  2.659585     0.986864  ...    0.986864    0.013136            0
-60     60  1.953214     0.948163  ...    0.923990    0.076010            0
-61     61  2.096635     0.960580  ...    0.960580    0.039420            0
-62     62  1.797298     0.930513  ...    0.927256    0.072744            0
-63     63  2.598907     0.985194  ...    0.985194    0.014806            0
+48     48 -2.765897     0.003943  ...    0.003739    0.996261            1
+49     49  1.261697     0.925766  ...    0.965003    0.034997            0
+50     50 -1.232433     0.078358  ...    0.187725    0.812275            1
+51     51  1.747932     0.970570  ...    0.975912    0.024088            0
+52     52  1.674684     0.966084  ...    0.987250    0.012750            0
+53     53  1.125794     0.904787  ...    0.962730    0.037270            0
+54     54  0.030229     0.515110  ...    0.969158    0.030842            0
+55     55  1.175609     0.913031  ...    0.079669    0.920331            1
+56     56 -1.582594     0.040497  ...    0.102921    0.897079            1
+57     57 -0.749677     0.182522  ...    0.871171    0.128829            0
+58     58  1.957074     0.980433  ...    0.992712    0.007289            0
+59     59  1.659586     0.965081  ...    0.986864    0.013136            0
+60     60  0.953215     0.870618  ...    0.923990    0.076010            0
+61     61  1.096636     0.899644  ...    0.960580    0.039420            0
+62     62  0.797299     0.831262  ...    0.927256    0.072744            0
+63     63  1.598908     0.960752  ...    0.985194    0.014806            0
 
 [16 rows x 12 columns]
+MLLITE_SQL_ERROR ('Py_Proba_0', 'SQL_Proba_0') 0.5223180394898068
+    Py_Proba_0  SQL_Proba_0
+48    0.003739     0.003943
+49    0.965003     0.925766
+50    0.187725     0.078358
+51    0.975912     0.970570
+52    0.987250     0.966084
+53    0.962730     0.904787
+54    0.969158     0.515110
+55    0.079669     0.913031
+56    0.102921     0.040497
+57    0.871171     0.182522
+58    0.992712     0.980433
+59    0.986864     0.965081
+60    0.923990     0.870618
+61    0.960580     0.899644
+62    0.927256     0.831262
+63    0.985194     0.960752
+MLLITE_SQL_ERROR ('Py_Proba_1', 'SQL_Proba_1') 0.47510604584132077
+    Py_Proba_1  SQL_Proba_1
+48    0.996261     0.996057
+49    0.034997     0.074234
+50    0.812275     0.921642
+51    0.024088     0.029430
+52    0.012750     0.033916
+53    0.037270     0.095213
+54    0.030842     0.484890
+55    0.920331     0.086969
+56    0.897079     0.959503
+57    0.128829     0.817478
+58    0.007289     0.019567
+59    0.013136     0.034919
+60    0.076010     0.129382
+61    0.039420     0.100356
+62    0.072744     0.168738
+63    0.014806     0.039248
+    Py_Decision  SQL_Decision
+48            1             1
+49            0             0
+50            1             1
+51            0             0
+52            0             0
+53            0             0
+54            0             0
+55            1             0
+56            1             1
+57            0             1
+58            0             0
+59            0             0
+60            0             0
+61            0             0
+62            0             0
+63            0             0
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

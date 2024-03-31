@@ -470,7 +470,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVC_Global_BINARY_2_3' 108 1
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVC_Global_BINARY_2_3' 120 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVC_Global_BINARY_2_3' 128 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.813, 'TRAINING')
+('OPERATION_END_ELAPSED', 1.134, 'TRAINING')
 { "C" : 2,  "max_iter" : 128  }
 { "C" : 2,  "max_iter" : 128  }
 {
@@ -1665,9 +1665,9 @@ BEAUTIFIED_JSON_START
 }
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.016, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.015, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.016, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.015, 'PREDICT')
 [[0.136  0.3246 0.277  0.2624]
  [0.1159 0.0799 0.085  0.7191]
  [0.0168 0.0012 0.0972 0.8848]
@@ -1680,7 +1680,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': '{"C" : 2}', 'dataset': 'FourClass_10_medium', 'size': 512, 'accuracy': 0.865234375, 'auc': 0.4332818199482296}
 WRITING_PERF_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_FourClass_10_medium_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': '{"C" : 2}', 'dataset': 'FourClass_10_medium', 'training_time_in_sec': 0.813, 'prediction_time_in_sec': 0.016}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': '{"C" : 2}', 'dataset': 'FourClass_10_medium', 'training_time_in_sec': 1.134, 'prediction_time_in_sec': 0.015}
 WRITING_SQL_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_FourClass_10_medium_option_1.sql'
 
 
@@ -1710,7 +1710,11 @@ WITH model_input AS
      SELECT 0 AS sv_idx, -1.104915 AS sv_0, 0.852920 AS sv_1, 0.507679 AS sv_2, -0.381407 AS sv_3, -0.632111
 SQL_OUT_PUT_FIRST_LINES_END
 SQL_OUT_PUT_LAST_LINES_START
-_max_cte."Proba_1" AS "Proba_1",
+ore_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
   CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
   arg_max_cte."Score_2" AS "Score_2",
   arg_max_cte."Proba_2" AS "Proba_2",
@@ -1718,13 +1722,8 @@ _max_cte."Proba_1" AS "Proba_1",
   arg_max_cte."Score_3" AS "Score_3",
   arg_max_cte."Proba_3" AS "Proba_3",
   CASE WHEN (arg_max_cte."Proba_3" IS NULL OR arg_max_cte."Proba_3" > 0.0) THEN LN( arg_max_cte."Proba_3" ) ELSE -1.79769313486231e+308 END AS "LogProba_3",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
-   WHEN (arg_max_cte."arg_max_Score" = 2) THEN arg_max_cte."Proba_2"
-   WHEN (arg_max_cte."arg_max_Score" = 3) THEN arg_max_cte."Proba_3"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
 SQL_OUT_PUT_LAST_LINES_END
 
@@ -1732,20 +1731,38 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0       X_1       X_2       X_3  ...       X_7       X_8       X_9  KEY
-0   -1.104915  0.852920  0.507679 -0.381407  ...  0.479871 -1.472978 -1.793182    0
-1    1.845877 -1.230132  0.868872 -1.364713  ... -3.816458  0.362403 -0.619445    1
-2   -2.837179  1.477195  0.565303  1.382117  ... -0.012256  1.102744  1.483759    2
-3   -0.817915  0.349464 -0.778337  0.031169  ... -1.054359 -0.344547 -0.450057    3
-4    2.867865 -1.912016  0.005109 -0.897717  ... -1.535723 -0.616466 -0.572385    4
-..        ...       ...       ...       ...  ...       ...       ...       ...  ...
-507  2.438772 -1.661028 -1.497360 -0.075190  ... -0.360560  0.591629 -0.673836  507
-508  2.240772 -0.702349  0.668354 -1.061221  ...  1.595941  1.042002 -1.470823  508
-509 -1.085291  0.783440 -0.493113  0.767185  ...  1.308570  1.430318 -0.063795  509
-510  0.377241 -1.091754  0.032081  2.033396  ... -0.311330  1.357257 -0.465549  510
-511 -0.376689  1.158867 -0.352004 -1.122018  ...  1.244896  1.521553  1.011941  511
+<class 'pandas.core.frame.DataFrame'>
+Index: 512 entries, 0 to 511
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     512 non-null    float32
+ 1   X_1     512 non-null    float32
+ 2   X_2     512 non-null    float32
+ 3   X_3     512 non-null    float32
+ 4   X_4     512 non-null    float32
+ 5   X_5     512 non-null    float32
+ 6   X_6     512 non-null    float32
+ 7   X_7     512 non-null    float32
+ 8   X_8     512 non-null    float32
+ 9   X_9     512 non-null    float32
+dtypes: float32(10)
+memory usage: 24.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0     -1.104915  0.852920  0.507679  ...  0.479871 -1.472978 -1.793182
+1      1.845877 -1.230132  0.868872  ... -3.816458  0.362403 -0.619445
+2     -2.837179  1.477195  0.565303  ... -0.012256  1.102744  1.483759
+3     -0.817915  0.349464 -0.778337  ... -1.054359 -0.344547 -0.450057
+4      2.867865 -1.912016  0.005109  ... -1.535723 -0.616466 -0.572385
+...         ...       ...       ...  ...       ...       ...       ...
+507    2.438772 -1.661028 -1.497360  ... -0.360560  0.591629 -0.673836
+508    2.240772 -0.702349  0.668354  ...  1.595941  1.042002 -1.470823
+509   -1.085291  0.783440 -0.493113  ...  1.308570  1.430318 -0.063795
+510    0.377241 -1.091754  0.032081  ... -0.311330  1.357257 -0.465549
+511   -0.376689  1.158867 -0.352004  ...  1.244896  1.521553  1.011941
 
-[512 rows x 11 columns]
+[512 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 

@@ -480,7 +480,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 2 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 3 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 4 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'RANDOM_FOREST_CLASSIFIER_FIT' 32 32
-('OPERATION_END_ELAPSED', 0.033, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.051, 'TRAINING')
 { ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  }
 { ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  }
 {
@@ -7921,7 +7921,7 @@ BEAUTIFIED_JSON_START
 }
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.004, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
 [[0.9375 0.0625]
@@ -7936,7 +7936,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': None, 'dataset': 'BreastCancer_quantized', 'size': 569, 'accuracy': 1.0, 'auc': 1.0}
 WRITING_PERF_CODE 'logs/auto_tests/classification/RandomForestClassifier/mllite.RandomForestClassifier_BreastCancer_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': None, 'dataset': 'BreastCancer_quantized', 'training_time_in_sec': 0.033, 'prediction_time_in_sec': 0.003}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': None, 'dataset': 'BreastCancer_quantized', 'training_time_in_sec': 0.051, 'prediction_time_in_sec': 0.003}
 WRITING_SQL_CODE 'logs/auto_tests/classification/RandomForestClassifier/mllite.RandomForestClassifier_BreastCancer_quantized.sql'
 
 
@@ -7979,21 +7979,94 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-     X_0  X_1  X_2  X_3  X_4  X_5  X_6  ...  X_24  X_25  X_26  X_27  X_28  X_29  KEY
-0    8.0  0.0  8.0  8.0  8.0  9.0  9.0  ...   8.0   9.0   9.0   9.0   9.0   9.0    0
-1    9.0  3.0  8.0  9.0  2.0  3.0  6.0  ...   3.0   4.0   5.0   8.0   4.0   7.0    1
-2    8.0  7.0  8.0  8.0  8.0  8.0  8.0  ...   7.0   8.0   8.0   9.0   8.0   6.0    2
-3    2.0  6.0  3.0  1.0  9.0  9.0  9.0  ...   9.0   9.0   9.0   9.0  10.0   9.0    3
-4    9.0  1.0  9.0  9.0  6.0  7.0  8.0  ...   5.0   4.0   7.0   7.0   1.0   4.0    4
-..   ...  ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...   ...   ...  ...
-564  9.0  7.0  9.0  9.0  8.0  6.0  9.0  ...   6.0   4.0   7.0   9.0   0.0   2.0  564
-565  9.0  9.0  8.0  8.0  5.0  5.0  7.0  ...   2.0   4.0   6.0   7.0   3.0   1.0  565
-566  7.0  9.0  7.0  7.0  2.0  5.0  6.0  ...   2.0   7.0   6.0   6.0   1.0   4.0  566
-567  9.0  9.0  9.0  8.0  8.0  9.0  9.0  ...   8.0   9.0   9.0   9.0   9.0   9.0  567
-568  0.0  8.0  0.0  0.0  0.0  0.0  0.0  ...   0.0   0.0   0.0   0.0   5.0   2.0  568
+<class 'pandas.core.frame.DataFrame'>
+Index: 569 entries, 0 to 568
+Data columns (total 30 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     569 non-null    float32
+ 1   X_1     569 non-null    float32
+ 2   X_2     569 non-null    float32
+ 3   X_3     569 non-null    float32
+ 4   X_4     569 non-null    float32
+ 5   X_5     569 non-null    float32
+ 6   X_6     569 non-null    float32
+ 7   X_7     569 non-null    float32
+ 8   X_8     569 non-null    float32
+ 9   X_9     569 non-null    float32
+ 10  X_10    569 non-null    float32
+ 11  X_11    569 non-null    float32
+ 12  X_12    569 non-null    float32
+ 13  X_13    569 non-null    float32
+ 14  X_14    569 non-null    float32
+ 15  X_15    569 non-null    float32
+ 16  X_16    569 non-null    float32
+ 17  X_17    569 non-null    float32
+ 18  X_18    569 non-null    float32
+ 19  X_19    569 non-null    float32
+ 20  X_20    569 non-null    float32
+ 21  X_21    569 non-null    float32
+ 22  X_22    569 non-null    float32
+ 23  X_23    569 non-null    float32
+ 24  X_24    569 non-null    float32
+ 25  X_25    569 non-null    float32
+ 26  X_26    569 non-null    float32
+ 27  X_27    569 non-null    float32
+ 28  X_28    569 non-null    float32
+ 29  X_29    569 non-null    float32
+dtypes: float32(30)
+memory usage: 71.1 KB
+       X_0  X_1  X_2  X_3  X_4  X_5  ...  X_24  X_25  X_26  X_27  X_28  X_29
+index                                ...                                    
+0      8.0  0.0  8.0  8.0  8.0  9.0  ...   8.0   9.0   9.0   9.0   9.0   9.0
+1      9.0  3.0  8.0  9.0  2.0  3.0  ...   3.0   4.0   5.0   8.0   4.0   7.0
+2      8.0  7.0  8.0  8.0  8.0  8.0  ...   7.0   8.0   8.0   9.0   8.0   6.0
+3      2.0  6.0  3.0  1.0  9.0  9.0  ...   9.0   9.0   9.0   9.0  10.0   9.0
+4      9.0  1.0  9.0  9.0  6.0  7.0  ...   5.0   4.0   7.0   7.0   1.0   4.0
+...    ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...   ...   ...
+564    9.0  7.0  9.0  9.0  8.0  6.0  ...   6.0   4.0   7.0   9.0   0.0   2.0
+565    9.0  9.0  8.0  8.0  5.0  5.0  ...   2.0   4.0   6.0   7.0   3.0   1.0
+566    7.0  9.0  7.0  7.0  2.0  5.0  ...   2.0   7.0   6.0   6.0   1.0   4.0
+567    9.0  9.0  9.0  8.0  8.0  9.0  ...   8.0   9.0   9.0   9.0   9.0   9.0
+568    0.0  8.0  0.0  0.0  0.0  0.0  ...   0.0   0.0   0.0   0.0   5.0   2.0
 
-[569 rows x 31 columns]
+[569 rows x 30 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 569 entries, 0 to 568
+Data columns (total 7 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   index       569 non-null    int64  
+ 1   LogProba_0  0 non-null      object 
+ 2   Proba_0     569 non-null    float64
+ 3   Score_0     0 non-null      object 
+ 4   LogProba_1  0 non-null      object 
+ 5   Proba_1     569 non-null    float64
+ 6   Score_1     0 non-null      object 
+dtypes: float64(2), int64(1), object(4)
+memory usage: 31.2+ KB
+     index LogProba_0  Proba_0 Score_0 LogProba_1  Proba_1 Score_1
+0        0       None  0.93750    None       None  0.06250    None
+1        1       None  1.00000    None       None  0.00000    None
+2        2       None  1.00000    None       None  0.00000    None
+3        3       None  0.96875    None       None  0.03125    None
+4        4       None  0.96875    None       None  0.03125    None
+..     ...        ...      ...     ...        ...      ...     ...
+564    564       None  1.00000    None       None  0.00000    None
+565    565       None  1.00000    None       None  0.00000    None
+566    566       None  0.90625    None       None  0.09375    None
+567    567       None  1.00000    None       None  0.00000    None
+568    568       None  0.00000    None       None  1.00000    None
+
+[569 rows x 7 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'LogProba_0', 'Proba_0', 'Score_0', 'LogProba_1', 'Proba_1',
+       'Score_1'],
+      dtype='object')

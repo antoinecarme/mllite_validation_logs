@@ -70,7 +70,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global' 48 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global' 60 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global' 72 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.038, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.042, 'TRAINING')
 { ,  "max_iter" : 128  }
 { ,  "max_iter" : 128  }
 {
@@ -356,7 +356,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': None, 'dataset': 'BinaryClass_10_small', 'size': 64, 'accuracy': 0.921875, 'auc': 0.2021484375}
 WRITING_PERF_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_BinaryClass_10_small.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': None, 'dataset': 'BinaryClass_10_small', 'training_time_in_sec': 0.038, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': None, 'dataset': 'BinaryClass_10_small', 'training_time_in_sec': 0.042, 'prediction_time_in_sec': 0.0}
 WRITING_SQL_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_BinaryClass_10_small.sql'
 
 
@@ -386,14 +386,21 @@ WITH model_input AS
      SELECT 0 AS sv_idx, -1.064559 AS sv_0, -0.820872 AS sv_1, -0.723270 AS sv_2, -0.096420 AS sv_3, -0.4046
 SQL_OUT_PUT_FIRST_LINES_END
 SQL_OUT_PUT_LAST_LINES_START
-ax."index" AS "index_Score",
-     max(union_with_max.class) AS "arg_max_Score"
-    FROM union_with_max
-    WHERE union_with_max."max_Score" <= union_with_max."Score"
-    GROUP BY union_with_max."index"
-   ) AS "arg_max_t_Score"
-   ON score_max."index" = "arg_max_t_Score"."index_Score"
- )
+S t
+),
+arg_max_cte_with_max_proba_idx AS 
+( SELECT t.*,
+   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
+   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+ (SELECT t.*,
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
 SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_0" AS "Score_0",
   arg_max_cte."Proba_0" AS "Proba_0",
@@ -401,11 +408,8 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_1" AS "Score_1",
   arg_max_cte."Proba_1" AS "Proba_1",
   CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
 SQL_OUT_PUT_LAST_LINES_END
 
@@ -413,36 +417,70 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-         X_0       X_1       X_2       X_3  ...       X_7       X_8       X_9  KEY
-0  -1.064559 -0.820872 -0.723270 -0.096420  ...  0.652010 -0.319080 -0.383915    0
-1  -0.960957 -1.294560 -0.778172  0.835975  ... -0.518959  0.207019 -0.945521    1
-2  -1.406136 -0.242116  1.301289 -0.494365  ... -1.043267 -1.426875  1.876952    2
-3  -1.954561 -1.845000  0.508844 -0.224022  ...  0.532215 -1.374292  2.746056    3
-4  -0.098659 -1.731538  2.272470  0.118096  ...  0.845839  1.740497  0.199837    4
-..       ...       ...       ...       ...  ...       ...       ...       ...  ...
-59  1.123207  0.820741  0.307790  0.571600  ... -0.348400 -2.114189  0.674955   59
-60  0.648423 -0.244695 -0.012258  1.592630  ...  0.520360  1.591133  0.415493   60
-61 -1.537976 -0.863574 -0.339109  0.416003  ... -1.807600 -0.932955 -0.606641   61
-62  1.719474 -0.751864 -1.224318 -0.811701  ...  0.148196 -0.611486  0.366529   62
-63 -0.263412  1.788292  0.201192 -0.339974  ... -0.413903  1.138708 -1.061929   63
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+ 4   X_4     64 non-null     float32
+ 5   X_5     64 non-null     float32
+ 6   X_6     64 non-null     float32
+ 7   X_7     64 non-null     float32
+ 8   X_8     64 non-null     float32
+ 9   X_9     64 non-null     float32
+dtypes: float32(10)
+memory usage: 3.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0     -1.064559 -0.820872 -0.723270  ...  0.652010 -0.319080 -0.383915
+1     -0.960957 -1.294560 -0.778172  ... -0.518959  0.207019 -0.945521
+2     -1.406136 -0.242116  1.301289  ... -1.043267 -1.426875  1.876952
+3     -1.954561 -1.845000  0.508844  ...  0.532215 -1.374292  2.746056
+4     -0.098659 -1.731538  2.272470  ...  0.845839  1.740497  0.199837
+...         ...       ...       ...  ...       ...       ...       ...
+59     1.123207  0.820741  0.307790  ... -0.348400 -2.114189  0.674955
+60     0.648423 -0.244695 -0.012258  ...  0.520360  1.591133  0.415493
+61    -1.537976 -0.863574 -0.339109  ... -1.807600 -0.932955 -0.606641
+62     1.719474 -0.751864 -1.224318  ...  0.148196 -0.611486  0.366529
+63    -0.263412  1.788292  0.201192  ... -0.413903  1.138708 -1.061929
 
-[64 rows x 11 columns]
+[64 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
-    index  Score_0 Proba_0  ... LogProba_1  Decision DecisionProba
-0       0        0    None  ...       None         1          None
-1       1        0    None  ...       None         1          None
-2       2        0    None  ...       None         1          None
-3       3        0    None  ...       None         1          None
-4       4        0    None  ...       None         1          None
-..    ...      ...     ...  ...        ...       ...           ...
-59     59        0    None  ...       None         1          None
-60     60        0    None  ...       None         1          None
-61     61        0    None  ...       None         1          None
-62     62        0    None  ...       None         1          None
-63     63        0    None  ...       None         1          None
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 9 columns):
+ #   Column         Non-Null Count  Dtype 
+---  ------         --------------  ----- 
+ 0   index          64 non-null     int64 
+ 1   Score_0        64 non-null     int64 
+ 2   Proba_0        0 non-null      object
+ 3   LogProba_0     0 non-null      object
+ 4   Score_1        64 non-null     int64 
+ 5   Proba_1        0 non-null      object
+ 6   LogProba_1     0 non-null      object
+ 7   Decision       0 non-null      object
+ 8   DecisionProba  0 non-null      object
+dtypes: int64(3), object(6)
+memory usage: 4.6+ KB
+    index  Score_0 Proba_0 LogProba_0  ...  Proba_1 LogProba_1 Decision DecisionProba
+0       0        0    None       None  ...     None       None     None          None
+1       1        0    None       None  ...     None       None     None          None
+2       2        0    None       None  ...     None       None     None          None
+3       3        0    None       None  ...     None       None     None          None
+4       4        0    None       None  ...     None       None     None          None
+..    ...      ...     ...        ...  ...      ...        ...      ...           ...
+59     59        0    None       None  ...     None       None     None          None
+60     60        0    None       None  ...     None       None     None          None
+61     61        0    None       None  ...     None       None     None          None
+62     62        0    None       None  ...     None       None     None          None
+63     63        0    None       None  ...     None       None     None          None
 
 [64 rows x 9 columns]
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
@@ -471,4 +509,3 @@ Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
 63     63        0        None  ...  3.000001e-14  1.000000e+00           0
 
 [16 rows x 12 columns]
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

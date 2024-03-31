@@ -79,7 +79,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 2 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 3 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 4 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'RANDOM_FOREST_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 2.47, 'TRAINING')
+('OPERATION_END_ELAPSED', 3.146, 'TRAINING')
 { "max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  }
 { "max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  }
 {
@@ -848,9 +848,9 @@ BEAUTIFIED_JSON_START
 }
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.069, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.073, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.067, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.069, 'PREDICT')
 [[0.4939 0.5061]
  [0.6609 0.3391]
  [0.7406 0.2594]
@@ -863,7 +863,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'census_quantized', 'size': 48842, 'accuracy': 0.7978379263748413, 'auc': 0.8105987583990102}
 WRITING_PERF_CODE 'logs/auto_tests/classification/RandomForestClassifier/mllite.RandomForestClassifier_census_quantized_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'census_quantized', 'training_time_in_sec': 2.47, 'prediction_time_in_sec': 0.067}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'census_quantized', 'training_time_in_sec': 3.146, 'prediction_time_in_sec': 0.069}
 WRITING_SQL_CODE 'logs/auto_tests/classification/RandomForestClassifier/mllite.RandomForestClassifier_census_quantized_option_1.sql'
 
 
@@ -916,24 +916,60 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-        X_0  X_1  X_2  X_3  X_4  X_5  ...  X_9  X_10  X_11  X_12  X_13    KEY
-0       6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0   9.0   0.0   4.0   0.0      0
-1       7.0  0.0  1.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   0.0   0.0      1
-2       6.0  0.0  6.0  0.0  3.0  0.0  ...  0.0   0.0   0.0   4.0   0.0      2
-3       7.0  0.0  7.0  0.0  1.0  0.0  ...  0.0   0.0   0.0   4.0   0.0      3
-4       3.0  0.0  8.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   4.0   0.0      4
-...     ...  ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...    ...
-48837   6.0  0.0  6.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   4.0   0.0  48837
-48838  10.0  0.0  8.0  0.0  3.0  0.0  ...  0.0   0.0   0.0   4.0   0.0  48838
-48839   6.0  0.0  9.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   8.0   0.0  48839
-48840   6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0   9.0   0.0   4.0   0.0  48840
-48841   3.0  0.0  5.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   8.0   0.0  48841
+<class 'pandas.core.frame.DataFrame'>
+Index: 48842 entries, 0 to 48841
+Data columns (total 14 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     48842 non-null  float32
+ 1   X_1     48842 non-null  float32
+ 2   X_2     48842 non-null  float32
+ 3   X_3     48842 non-null  float32
+ 4   X_4     48842 non-null  float32
+ 5   X_5     48842 non-null  float32
+ 6   X_6     48842 non-null  float32
+ 7   X_7     48842 non-null  float32
+ 8   X_8     48842 non-null  float32
+ 9   X_9     48842 non-null  float32
+ 10  X_10    48842 non-null  float32
+ 11  X_11    48842 non-null  float32
+ 12  X_12    48842 non-null  float32
+ 13  X_13    48842 non-null  float32
+dtypes: float32(14)
+memory usage: 3.0 MB
+        X_0  X_1  X_2  X_3  X_4  X_5  ...  X_8  X_9  X_10  X_11  X_12  X_13
+index                                 ...                                  
+0       6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   9.0   0.0   4.0   0.0
+1       7.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   0.0   0.0
+2       6.0  0.0  6.0  0.0  3.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+3       7.0  0.0  7.0  0.0  1.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+4       3.0  0.0  8.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+...     ...  ...  ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...
+48837   6.0  0.0  6.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+48838  10.0  0.0  8.0  0.0  3.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+48839   6.0  0.0  9.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   8.0   0.0
+48840   6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   9.0   0.0   4.0   0.0
+48841   3.0  0.0  5.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   8.0   0.0
 
-[48842 rows x 15 columns]
+[48842 rows x 14 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 48842 entries, 0 to 48841
+Data columns (total 7 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   index       48842 non-null  int64  
+ 1   LogProba_0  0 non-null      object 
+ 2   Proba_0     48842 non-null  float64
+ 3   Score_0     0 non-null      object 
+ 4   LogProba_1  0 non-null      object 
+ 5   Proba_1     48842 non-null  float64
+ 6   Score_1     0 non-null      object 
+dtypes: float64(2), int64(1), object(4)
+memory usage: 2.6+ MB
        index LogProba_0   Proba_0 Score_0 LogProba_1   Proba_1 Score_1
 0          0       None  0.493863    None       None  0.506137    None
 1          1       None  0.660903    None       None  0.339097    None
@@ -955,23 +991,3 @@ COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'LogProba_0', 'Proba_0', 'Score_0', 'LogProba_1', 'Proba_1',
        'Score_1'],
       dtype='object')
-       index LogProba_0  SQL_Proba_0  ... Py_Proba_0 Py_Proba_1  Py_Decision
-48826  48826       None     0.549716  ...   0.549716   0.450284        <=50K
-48827  48827       None     0.769960  ...   0.769961   0.230039        <=50K
-48828  48828       None     0.720673  ...   0.720673   0.279327        <=50K
-48829  48829       None     0.699346  ...   0.699346   0.300654        <=50K
-48830  48830       None     0.870901  ...   0.870901   0.129099        <=50K
-48831  48831       None     0.723052  ...   0.723052   0.276948        <=50K
-48832  48832       None     0.682129  ...   0.682129   0.317871        <=50K
-48833  48833       None     0.878556  ...   0.878556   0.121444        <=50K
-48834  48834       None     0.950039  ...   0.950038   0.049962        <=50K
-48835  48835       None     0.555370  ...   0.555370   0.444630        <=50K
-48836  48836       None     0.818864  ...   0.818864   0.181136        <=50K
-48837  48837       None     0.608167  ...   0.608167   0.391833        <=50K
-48838  48838       None     0.764376  ...   0.764376   0.235624        <=50K
-48839  48839       None     0.481141  ...   0.481141   0.518859         >50K
-48840  48840       None     0.493863  ...   0.493863   0.506137         >50K
-48841  48841       None     0.708220  ...   0.708220   0.291780        <=50K
-
-[16 rows x 10 columns]
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

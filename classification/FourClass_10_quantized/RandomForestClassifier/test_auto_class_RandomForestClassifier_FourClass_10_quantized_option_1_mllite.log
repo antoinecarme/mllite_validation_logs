@@ -79,7 +79,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 2 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 3 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 4 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'RANDOM_FOREST_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.013, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.02, 'TRAINING')
 { "max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  }
 { "max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  }
 {
@@ -1145,7 +1145,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'FourClass_10_quantized', 'size': 1024, 'accuracy': 0.681640625, 'auc': 0.8868563142364396}
 WRITING_PERF_CODE 'logs/auto_tests/classification/RandomForestClassifier/mllite.RandomForestClassifier_FourClass_10_quantized_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'FourClass_10_quantized', 'training_time_in_sec': 0.013, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'FourClass_10_quantized', 'training_time_in_sec': 0.02, 'prediction_time_in_sec': 0.001}
 WRITING_SQL_CODE 'logs/auto_tests/classification/RandomForestClassifier/mllite.RandomForestClassifier_FourClass_10_quantized_option_1.sql'
 
 
@@ -1197,24 +1197,62 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-      X_0  X_1  X_2  X_3  X_4  X_5  X_6  X_7  X_8  X_9   KEY
-0     2.0  6.0  6.0  5.0  2.0  7.0  8.0  7.0  1.0  0.0     0
-1     8.0  2.0  7.0  2.0  8.0  2.0  0.0  0.0  5.0  2.0     1
-2     0.0  8.0  6.0  8.0  8.0  4.0  6.0  6.0  7.0  9.0     2
-3     3.0  5.0  2.0  6.0  8.0  5.0  5.0  3.0  4.0  3.0     3
-4     9.0  1.0  4.0  4.0  3.0  8.0  2.0  1.0  3.0  2.0     4
-...   ...  ...  ...  ...  ...  ...  ...  ...  ...  ...   ...
-1019  0.0  7.0  0.0  5.0  7.0  9.0  9.0  8.0  0.0  1.0  1019
-1020  1.0  6.0  9.0  7.0  4.0  8.0  8.0  6.0  4.0  4.0  1020
-1021  1.0  8.0  6.0  2.0  1.0  0.0  0.0  1.0  9.0  2.0  1021
-1022  2.0  8.0  9.0  1.0  4.0  7.0  0.0  5.0  9.0  7.0  1022
-1023  3.0  7.0  9.0  1.0  3.0  8.0  3.0  3.0  2.0  6.0  1023
+<class 'pandas.core.frame.DataFrame'>
+Index: 1024 entries, 0 to 1023
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     1024 non-null   float32
+ 1   X_1     1024 non-null   float32
+ 2   X_2     1024 non-null   float32
+ 3   X_3     1024 non-null   float32
+ 4   X_4     1024 non-null   float32
+ 5   X_5     1024 non-null   float32
+ 6   X_6     1024 non-null   float32
+ 7   X_7     1024 non-null   float32
+ 8   X_8     1024 non-null   float32
+ 9   X_9     1024 non-null   float32
+dtypes: float32(10)
+memory usage: 48.0 KB
+       X_0  X_1  X_2  X_3  X_4  X_5  X_6  X_7  X_8  X_9
+index                                                  
+0      2.0  6.0  6.0  5.0  2.0  7.0  8.0  7.0  1.0  0.0
+1      8.0  2.0  7.0  2.0  8.0  2.0  0.0  0.0  5.0  2.0
+2      0.0  8.0  6.0  8.0  8.0  4.0  6.0  6.0  7.0  9.0
+3      3.0  5.0  2.0  6.0  8.0  5.0  5.0  3.0  4.0  3.0
+4      9.0  1.0  4.0  4.0  3.0  8.0  2.0  1.0  3.0  2.0
+...    ...  ...  ...  ...  ...  ...  ...  ...  ...  ...
+1019   0.0  7.0  0.0  5.0  7.0  9.0  9.0  8.0  0.0  1.0
+1020   1.0  6.0  9.0  7.0  4.0  8.0  8.0  6.0  4.0  4.0
+1021   1.0  8.0  6.0  2.0  1.0  0.0  0.0  1.0  9.0  2.0
+1022   2.0  8.0  9.0  1.0  4.0  7.0  0.0  5.0  9.0  7.0
+1023   3.0  7.0  9.0  1.0  3.0  8.0  3.0  3.0  2.0  6.0
 
-[1024 rows x 11 columns]
+[1024 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1024 entries, 0 to 1023
+Data columns (total 13 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   index       1024 non-null   int64  
+ 1   LogProba_0  0 non-null      object 
+ 2   Proba_0     1024 non-null   float64
+ 3   Score_0     0 non-null      object 
+ 4   LogProba_1  0 non-null      object 
+ 5   Proba_1     1024 non-null   float64
+ 6   Score_1     0 non-null      object 
+ 7   LogProba_2  0 non-null      object 
+ 8   Proba_2     1024 non-null   float64
+ 9   Score_2     0 non-null      object 
+ 10  LogProba_3  0 non-null      object 
+ 11  Proba_3     1024 non-null   float64
+ 12  Score_3     0 non-null      object 
+dtypes: float64(4), int64(1), object(8)
+memory usage: 104.1+ KB
       index LogProba_0   Proba_0 Score_0  ... Score_2  LogProba_3   Proba_3 Score_3
 0         0       None  0.200906    None  ...    None        None  0.098472    None
 1         1       None  0.263338    None  ...    None        None  0.564335    None
@@ -1237,23 +1275,3 @@ Index(['index', 'LogProba_0', 'Proba_0', 'Score_0', 'LogProba_1', 'Proba_1',
        'Score_1', 'LogProba_2', 'Proba_2', 'Score_2', 'LogProba_3', 'Proba_3',
        'Score_3'],
       dtype='object')
-      index LogProba_0  SQL_Proba_0  ... Py_Proba_2 Py_Proba_3  Py_Decision
-1008   1008       None     0.286871  ...   0.352094   0.324511            2
-1009   1009       None     0.067166  ...   0.139152   0.139783            1
-1010   1010       None     0.458312  ...   0.143562   0.198529            0
-1011   1011       None     0.161838  ...   0.600158   0.026499            2
-1012   1012       None     0.156367  ...   0.111071   0.041370            1
-1013   1013       None     0.128266  ...   0.692929   0.105702            2
-1014   1014       None     0.285931  ...   0.046719   0.368345            3
-1015   1015       None     0.181634  ...   0.535803   0.245644            2
-1016   1016       None     0.260000  ...   0.327273   0.412727            3
-1017   1017       None     0.270447  ...   0.393537   0.314342            2
-1018   1018       None     0.237144  ...   0.372325   0.362888            2
-1019   1019       None     0.099694  ...   0.644526   0.158811            2
-1020   1020       None     0.247953  ...   0.326123   0.298148            2
-1021   1021       None     0.155896  ...   0.019433   0.579484            3
-1022   1022       None     0.245661  ...   0.084195   0.423485            3
-1023   1023       None     0.402179  ...   0.322977   0.234009            0
-
-[16 rows x 18 columns]
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

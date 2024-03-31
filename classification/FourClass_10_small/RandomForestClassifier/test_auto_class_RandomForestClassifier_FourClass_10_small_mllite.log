@@ -437,7 +437,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 2 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 3 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 4 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'RANDOM_FOREST_CLASSIFIER_FIT' 32 32
-('OPERATION_END_ELAPSED', 0.02, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.018, 'TRAINING')
 { ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  }
 { ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  }
 {
@@ -5646,7 +5646,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': None, 'dataset': 'FourClass_10_small', 'size': 64, 'accuracy': 1.0, 'auc': 1.0}
 WRITING_PERF_CODE 'logs/auto_tests/classification/RandomForestClassifier/mllite.RandomForestClassifier_FourClass_10_small.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': None, 'dataset': 'FourClass_10_small', 'training_time_in_sec': 0.02, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': None, 'dataset': 'FourClass_10_small', 'training_time_in_sec': 0.018, 'prediction_time_in_sec': 0.001}
 WRITING_SQL_CODE 'logs/auto_tests/classification/RandomForestClassifier/mllite.RandomForestClassifier_FourClass_10_small.sql'
 
 
@@ -5702,21 +5702,81 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-         X_0       X_1       X_2       X_3  ...       X_7       X_8       X_9  KEY
-0  -1.050659  0.920640 -0.455125 -0.050130  ...  1.021308 -0.010797 -1.586949    0
-1   1.869880 -2.312190 -1.153852  1.292078  ... -1.335399 -1.648043  2.109906    1
-2  -0.124049  0.768644 -1.040184 -1.041910  ...  0.342352  1.247335 -1.413962    2
-3   0.928858 -1.177375  0.542731  1.248167  ... -0.053731  0.485529  1.106564    3
-4  -1.598324  1.482463  1.664691 -0.791131  ... -1.347481  1.816532  0.637000    4
-..       ...       ...       ...       ...  ...       ...       ...       ...  ...
-59  1.914430 -1.187978 -1.908593 -0.003361  ...  0.100255  1.147780 -0.640430   59
-60 -2.300030  2.981089  1.310992 -2.644979  ...  0.945393  0.000418  0.598406   60
-61 -0.438059 -0.593217  0.535711  2.307372  ...  1.507209 -0.652815 -1.264657   61
-62  0.855164 -0.934582 -1.885349 -0.051859  ... -0.362082 -2.566222  0.077759   62
-63  0.141928 -0.408314  0.402207  0.513474  ... -0.685914  0.317499 -0.049391   63
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+ 4   X_4     64 non-null     float32
+ 5   X_5     64 non-null     float32
+ 6   X_6     64 non-null     float32
+ 7   X_7     64 non-null     float32
+ 8   X_8     64 non-null     float32
+ 9   X_9     64 non-null     float32
+dtypes: float32(10)
+memory usage: 3.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0     -1.050659  0.920640 -0.455125  ...  1.021308 -0.010797 -1.586949
+1      1.869880 -2.312190 -1.153852  ... -1.335399 -1.648043  2.109906
+2     -0.124049  0.768644 -1.040184  ...  0.342352  1.247335 -1.413962
+3      0.928858 -1.177375  0.542731  ... -0.053731  0.485529  1.106564
+4     -1.598324  1.482463  1.664691  ... -1.347481  1.816532  0.637000
+...         ...       ...       ...  ...       ...       ...       ...
+59     1.914430 -1.187978 -1.908593  ...  0.100255  1.147780 -0.640430
+60    -2.300030  2.981089  1.310992  ...  0.945393  0.000418  0.598406
+61    -0.438059 -0.593217  0.535711  ...  1.507209 -0.652815 -1.264657
+62     0.855164 -0.934582 -1.885349  ... -0.362082 -2.566222  0.077759
+63     0.141928 -0.408314  0.402207  ... -0.685914  0.317499 -0.049391
 
-[64 rows x 11 columns]
+[64 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 13 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   index       64 non-null     int64  
+ 1   LogProba_0  0 non-null      object 
+ 2   Proba_0     64 non-null     float64
+ 3   Score_0     0 non-null      object 
+ 4   LogProba_1  0 non-null      object 
+ 5   Proba_1     64 non-null     float64
+ 6   Score_1     0 non-null      object 
+ 7   LogProba_2  0 non-null      object 
+ 8   Proba_2     64 non-null     float64
+ 9   Score_2     0 non-null      object 
+ 10  LogProba_3  0 non-null      object 
+ 11  Proba_3     64 non-null     float64
+ 12  Score_3     0 non-null      object 
+dtypes: float64(4), int64(1), object(8)
+memory usage: 6.6+ KB
+    index LogProba_0  Proba_0 Score_0  ... Score_2  LogProba_3  Proba_3 Score_3
+0       0       None  0.12500    None  ...    None        None  0.03125    None
+1       1       None  0.09375    None  ...    None        None  0.75000    None
+2       2       None  0.03125    None  ...    None        None  0.06250    None
+3       3       None  0.62500    None  ...    None        None  0.06250    None
+4       4       None  0.03125    None  ...    None        None  0.81250    None
+..    ...        ...      ...     ...  ...     ...         ...      ...     ...
+59     59       None  0.06250    None  ...    None        None  0.00000    None
+60     60       None  0.75000    None  ...    None        None  0.09375    None
+61     61       None  0.06250    None  ...    None        None  0.68750    None
+62     62       None  0.09375    None  ...    None        None  0.21875    None
+63     63       None  0.09375    None  ...    None        None  0.06250    None
+
+[64 rows x 13 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'LogProba_0', 'Proba_0', 'Score_0', 'LogProba_1', 'Proba_1',
+       'Score_1', 'LogProba_2', 'Proba_2', 'Score_2', 'LogProba_3', 'Proba_3',
+       'Score_3'],
+      dtype='object')

@@ -85,7 +85,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 2 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 3 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 4 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'RANDOM_FOREST_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.155, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.172, 'TRAINING')
 { "max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  }
 { "max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  }
 {
@@ -773,7 +773,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'census_sampled', 'size': 6105, 'accuracy': 0.8027846027846027, 'auc': 0.8227656820054137}
 WRITING_PERF_CODE 'logs/auto_tests/classification/RandomForestClassifier/mllite.RandomForestClassifier_census_sampled_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'census_sampled', 'training_time_in_sec': 0.155, 'prediction_time_in_sec': 0.005}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestClassifier', 'model_name': 'RandomForestClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'census_sampled', 'training_time_in_sec': 0.172, 'prediction_time_in_sec': 0.005}
 WRITING_SQL_CODE 'logs/auto_tests/classification/RandomForestClassifier/mllite.RandomForestClassifier_census_sampled_option_1.sql'
 
 
@@ -826,24 +826,60 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-      X_0  X_1        X_2  X_3   X_4  X_5  ...  X_9  X_10  X_11  X_12  X_13   KEY
-0     2.0  0.0   188950.0  0.0  14.0  0.0  ...  0.0   0.0   0.0   3.0   0.0     0
-1     1.0  0.0  1033222.0  0.0  10.0  0.0  ...  0.0   0.0   0.0   2.0   0.0     1
-2     1.0  0.0   129707.0  0.0  13.0  0.0  ...  0.0   4.0   0.0   1.0   0.0     2
-3     1.0  0.0    78530.0  0.0   9.0  0.0  ...  0.0   0.0   0.0   4.0   0.0     3
-4     1.0  0.0   159537.0  0.0  12.0  0.0  ...  0.0   0.0   0.0   2.0   0.0     4
-...   ...  ...        ...  ...   ...  ...  ...  ...   ...   ...   ...   ...   ...
-6100  2.0  0.0   102576.0  0.0  14.0  0.0  ...  0.0   0.0   0.0   3.0   0.0  6100
-6101  2.0  0.0   314963.0  0.0  10.0  0.0  ...  0.0   0.0   0.0   2.0   0.0  6101
-6102  3.0  0.0   109421.0  0.0  13.0  0.0  ...  0.0   0.0   0.0   3.0   0.0  6102
-6103  1.0  0.0    36201.0  0.0  13.0  0.0  ...  0.0   0.0   0.0   3.0   0.0  6103
-6104  4.0  0.0   584259.0  0.0   9.0  0.0  ...  0.0   0.0   0.0   2.0   0.0  6104
+<class 'pandas.core.frame.DataFrame'>
+Index: 6105 entries, 0 to 6104
+Data columns (total 14 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     6105 non-null   float32
+ 1   X_1     6105 non-null   float32
+ 2   X_2     6105 non-null   float32
+ 3   X_3     6105 non-null   float32
+ 4   X_4     6105 non-null   float32
+ 5   X_5     6105 non-null   float32
+ 6   X_6     6105 non-null   float32
+ 7   X_7     6105 non-null   float32
+ 8   X_8     6105 non-null   float32
+ 9   X_9     6105 non-null   float32
+ 10  X_10    6105 non-null   float32
+ 11  X_11    6105 non-null   float32
+ 12  X_12    6105 non-null   float32
+ 13  X_13    6105 non-null   float32
+dtypes: float32(14)
+memory usage: 381.6 KB
+       X_0  X_1        X_2  X_3   X_4  X_5  ...  X_8  X_9  X_10  X_11  X_12  X_13
+index                                       ...                                  
+0      2.0  0.0   188950.0  0.0  14.0  0.0  ...  0.0  0.0   0.0   0.0   3.0   0.0
+1      1.0  0.0  1033222.0  0.0  10.0  0.0  ...  0.0  0.0   0.0   0.0   2.0   0.0
+2      1.0  0.0   129707.0  0.0  13.0  0.0  ...  0.0  0.0   4.0   0.0   1.0   0.0
+3      1.0  0.0    78530.0  0.0   9.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+4      1.0  0.0   159537.0  0.0  12.0  0.0  ...  0.0  0.0   0.0   0.0   2.0   0.0
+...    ...  ...        ...  ...   ...  ...  ...  ...  ...   ...   ...   ...   ...
+6100   2.0  0.0   102576.0  0.0  14.0  0.0  ...  0.0  0.0   0.0   0.0   3.0   0.0
+6101   2.0  0.0   314963.0  0.0  10.0  0.0  ...  0.0  0.0   0.0   0.0   2.0   0.0
+6102   3.0  0.0   109421.0  0.0  13.0  0.0  ...  0.0  0.0   0.0   0.0   3.0   0.0
+6103   1.0  0.0    36201.0  0.0  13.0  0.0  ...  0.0  0.0   0.0   0.0   3.0   0.0
+6104   4.0  0.0   584259.0  0.0   9.0  0.0  ...  0.0  0.0   0.0   0.0   2.0   0.0
 
-[6105 rows x 15 columns]
+[6105 rows x 14 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 6105 entries, 0 to 6104
+Data columns (total 7 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   index       6105 non-null   int64  
+ 1   LogProba_0  0 non-null      object 
+ 2   Proba_0     6105 non-null   float64
+ 3   Score_0     0 non-null      object 
+ 4   LogProba_1  0 non-null      object 
+ 5   Proba_1     6105 non-null   float64
+ 6   Score_1     0 non-null      object 
+dtypes: float64(2), int64(1), object(4)
+memory usage: 334.0+ KB
       index LogProba_0   Proba_0 Score_0 LogProba_1   Proba_1 Score_1
 0         0       None  0.527984    None       None  0.472016    None
 1         1       None  0.812436    None       None  0.187564    None
@@ -865,23 +901,3 @@ COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'LogProba_0', 'Proba_0', 'Score_0', 'LogProba_1', 'Proba_1',
        'Score_1'],
       dtype='object')
-      index LogProba_0  SQL_Proba_0  ... Py_Proba_0 Py_Proba_1  Py_Decision
-6089   6089       None     0.600319  ...   0.600319   0.399681        <=50K
-6090   6090       None     0.773073  ...   0.773073   0.226927        <=50K
-6091   6091       None     0.853242  ...   0.853242   0.146758        <=50K
-6092   6092       None     0.844868  ...   0.844868   0.155132        <=50K
-6093   6093       None     0.710504  ...   0.710505   0.289495        <=50K
-6094   6094       None     0.829804  ...   0.829804   0.170196        <=50K
-6095   6095       None     0.668294  ...   0.668294   0.331706        <=50K
-6096   6096       None     0.864639  ...   0.864639   0.135361        <=50K
-6097   6097       None     0.749176  ...   0.749176   0.250824        <=50K
-6098   6098       None     0.862752  ...   0.862752   0.137248        <=50K
-6099   6099       None     0.820906  ...   0.820906   0.179094        <=50K
-6100   6100       None     0.533359  ...   0.533359   0.466641        <=50K
-6101   6101       None     0.761340  ...   0.761340   0.238660        <=50K
-6102   6102       None     0.584512  ...   0.584512   0.415488        <=50K
-6103   6103       None     0.706879  ...   0.706879   0.293121        <=50K
-6104   6104       None     0.733401  ...   0.733401   0.266599        <=50K
-
-[16 rows x 10 columns]
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

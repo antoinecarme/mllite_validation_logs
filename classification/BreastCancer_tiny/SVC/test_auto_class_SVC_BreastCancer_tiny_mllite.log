@@ -58,7 +58,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_TRAIN_CLASS_PROBA_CROSS_VALIDATION' 3 5
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_TRAIN_CLASS_PROBA_CROSS_VALIDATION' 4 5
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_TRAIN_CLASS_PROBA_CROSS_VALIDATION' 5 5
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.013, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.009, 'TRAINING')
 { ,  "max_iter" : 128  }
 { ,  "max_iter" : 128  }
 {
@@ -182,7 +182,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': None, 'dataset': 'BreastCancer_tiny', 'size': 16, 'accuracy': 0.9375, 'auc': 0.125}
 WRITING_PERF_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_BreastCancer_tiny.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': None, 'dataset': 'BreastCancer_tiny', 'training_time_in_sec': 0.013, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': None, 'dataset': 'BreastCancer_tiny', 'training_time_in_sec': 0.009, 'prediction_time_in_sec': 0.0}
 WRITING_SQL_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_BreastCancer_tiny.sql'
 
 
@@ -193,14 +193,21 @@ WITH model_input AS
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
 SQL_OUT_PUT_FIRST_LINES_END
 SQL_OUT_PUT_LAST_LINES_START
-ax."index" AS "index_Score",
-     max(union_with_max.class) AS "arg_max_Score"
-    FROM union_with_max
-    WHERE union_with_max."max_Score" <= union_with_max."Score"
-    GROUP BY union_with_max."index"
-   ) AS "arg_max_t_Score"
-   ON score_max."index" = "arg_max_t_Score"."index_Score"
- )
+S t
+),
+arg_max_cte_with_max_proba_idx AS 
+( SELECT t.*,
+   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
+   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+ (SELECT t.*,
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
 SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_0" AS "Score_0",
   arg_max_cte."Proba_0" AS "Proba_0",
@@ -208,11 +215,8 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_1" AS "Score_1",
   arg_max_cte."Proba_1" AS "Proba_1",
   CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
 SQL_OUT_PUT_LAST_LINES_END
 
@@ -220,46 +224,100 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0        X_1         X_2  ...    X_28     X_29  KEY
-0   19.730000  19.820000  130.699997  ...  0.2749  0.12970    0
-1   21.370001  15.100000  141.300003  ...  0.2730  0.08666    1
-2   19.400000  23.500000  129.100006  ...  0.2920  0.07614    2
-3   10.170000  14.880000   64.550003  ...  0.3557  0.08020    3
-4    8.888000  14.640000   58.790001  ...  0.2254  0.10840    4
-5   11.900000  14.650000   78.110001  ...  0.2727  0.10360    5
-6   13.870000  20.700001   89.769997  ...  0.2249  0.08492    6
-7   11.600000  12.840000   74.339996  ...  0.2772  0.08756    7
-8   15.660000  23.200001  110.199997  ...  0.3277  0.10190    8
-9   14.620000  24.020000   94.570000  ...  0.2522  0.07246    9
-10  18.820000  21.969999  123.699997  ...  0.3007  0.08314   10
-11  19.790001  25.120001  130.399994  ...  0.3305  0.08465   11
-12  15.340000  14.260000  102.500000  ...  0.4667  0.09946   12
-13  20.580000  22.139999  134.699997  ...  0.2909  0.05865   13
-14   9.667000  18.490000   61.490002  ...  0.3174  0.08524   14
-15  12.100000  17.719999   78.070000  ...  0.3049  0.07081   15
+<class 'pandas.core.frame.DataFrame'>
+Index: 16 entries, 0 to 15
+Data columns (total 30 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     16 non-null     float32
+ 1   X_1     16 non-null     float32
+ 2   X_2     16 non-null     float32
+ 3   X_3     16 non-null     float32
+ 4   X_4     16 non-null     float32
+ 5   X_5     16 non-null     float32
+ 6   X_6     16 non-null     float32
+ 7   X_7     16 non-null     float32
+ 8   X_8     16 non-null     float32
+ 9   X_9     16 non-null     float32
+ 10  X_10    16 non-null     float32
+ 11  X_11    16 non-null     float32
+ 12  X_12    16 non-null     float32
+ 13  X_13    16 non-null     float32
+ 14  X_14    16 non-null     float32
+ 15  X_15    16 non-null     float32
+ 16  X_16    16 non-null     float32
+ 17  X_17    16 non-null     float32
+ 18  X_18    16 non-null     float32
+ 19  X_19    16 non-null     float32
+ 20  X_20    16 non-null     float32
+ 21  X_21    16 non-null     float32
+ 22  X_22    16 non-null     float32
+ 23  X_23    16 non-null     float32
+ 24  X_24    16 non-null     float32
+ 25  X_25    16 non-null     float32
+ 26  X_26    16 non-null     float32
+ 27  X_27    16 non-null     float32
+ 28  X_28    16 non-null     float32
+ 29  X_29    16 non-null     float32
+dtypes: float32(30)
+memory usage: 2.0 KB
+             X_0        X_1         X_2  ...     X_27    X_28     X_29
+index                                    ...                          
+0      19.730000  19.820000  130.699997  ...  0.25070  0.2749  0.12970
+1      21.370001  15.100000  141.300003  ...  0.19660  0.2730  0.08666
+2      19.400000  23.500000  129.100006  ...  0.15640  0.2920  0.07614
+3      10.170000  14.880000   64.550003  ...  0.02579  0.3557  0.08020
+4       8.888000  14.640000   58.790001  ...  0.04786  0.2254  0.10840
+5      11.900000  14.650000   78.110001  ...  0.06042  0.2727  0.10360
+6      13.870000  20.700001   89.769997  ...  0.06845  0.2249  0.08492
+7      11.600000  12.840000   74.339996  ...  0.08449  0.2772  0.08756
+8      15.660000  23.200001  110.199997  ...  0.24620  0.3277  0.10190
+9      14.620000  24.020000   94.570000  ...  0.06946  0.2522  0.07246
+10     18.820000  21.969999  123.699997  ...  0.17080  0.3007  0.08314
+11     19.790001  25.120001  130.399994  ...  0.17320  0.3305  0.08465
+12     15.340000  14.260000  102.500000  ...  0.23930  0.4667  0.09946
+13     20.580000  22.139999  134.699997  ...  0.19200  0.2909  0.05865
+14      9.667000  18.490000   61.490002  ...  0.06560  0.3174  0.08524
+15     12.100000  17.719999   78.070000  ...  0.06266  0.3049  0.07081
 
-[16 rows x 31 columns]
+[16 rows x 30 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
-    index  Score_0 Proba_0  ... LogProba_1  Decision DecisionProba
-0       0        0    None  ...       None         1          None
-1       1        0    None  ...       None         1          None
-2       2        0    None  ...       None         1          None
-3       3        0    None  ...       None         1          None
-4       4        0    None  ...       None         1          None
-5       5        0    None  ...       None         1          None
-6       6        0    None  ...       None         1          None
-7       7        0    None  ...       None         1          None
-8       8        0    None  ...       None         1          None
-9       9        0    None  ...       None         1          None
-10     10        0    None  ...       None         1          None
-11     11        0    None  ...       None         1          None
-12     12        0    None  ...       None         1          None
-13     13        0    None  ...       None         1          None
-14     14        0    None  ...       None         1          None
-15     15        0    None  ...       None         1          None
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 16 entries, 0 to 15
+Data columns (total 9 columns):
+ #   Column         Non-Null Count  Dtype 
+---  ------         --------------  ----- 
+ 0   index          16 non-null     int64 
+ 1   Score_0        16 non-null     int64 
+ 2   Proba_0        0 non-null      object
+ 3   LogProba_0     0 non-null      object
+ 4   Score_1        16 non-null     int64 
+ 5   Proba_1        0 non-null      object
+ 6   LogProba_1     0 non-null      object
+ 7   Decision       0 non-null      object
+ 8   DecisionProba  0 non-null      object
+dtypes: int64(3), object(6)
+memory usage: 1.3+ KB
+    index  Score_0 Proba_0 LogProba_0  ...  Proba_1 LogProba_1 Decision DecisionProba
+0       0        0    None       None  ...     None       None     None          None
+1       1        0    None       None  ...     None       None     None          None
+2       2        0    None       None  ...     None       None     None          None
+3       3        0    None       None  ...     None       None     None          None
+4       4        0    None       None  ...     None       None     None          None
+5       5        0    None       None  ...     None       None     None          None
+6       6        0    None       None  ...     None       None     None          None
+7       7        0    None       None  ...     None       None     None          None
+8       8        0    None       None  ...     None       None     None          None
+9       9        0    None       None  ...     None       None     None          None
+10     10        0    None       None  ...     None       None     None          None
+11     11        0    None       None  ...     None       None     None          None
+12     12        0    None       None  ...     None       None     None          None
+13     13        0    None       None  ...     None       None     None          None
+14     14        0    None       None  ...     None       None     None          None
+15     15        0    None       None  ...     None       None     None          None
 
 [16 rows x 9 columns]
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
@@ -288,4 +346,3 @@ Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
 15     15        0        None  ...  1.427109e-01  8.572891e-01           1
 
 [16 rows x 12 columns]
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

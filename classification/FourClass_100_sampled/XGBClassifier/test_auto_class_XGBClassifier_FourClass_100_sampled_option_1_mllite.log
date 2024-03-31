@@ -153,7 +153,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 5 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 6 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 7 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_CLASSIFIER_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.15, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.131, 'TRAINING')
 { "max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  }
 { "max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  }
 {
@@ -915,7 +915,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'FourClass_100_sampled', 'size': 128, 'accuracy': 0.765625, 'auc': 0.9511382869147045}
 WRITING_PERF_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_FourClass_100_sampled_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'FourClass_100_sampled', 'training_time_in_sec': 0.15, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'FourClass_100_sampled', 'training_time_in_sec': 0.131, 'prediction_time_in_sec': 0.0}
 WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_FourClass_100_sampled_option_1.sql'
 
 
@@ -926,7 +926,11 @@ WITH model_input AS
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
 SQL_OUT_PUT_FIRST_LINES_END
 SQL_OUT_PUT_LAST_LINES_START
-_max_cte."Proba_1" AS "Proba_1",
+ore_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
   CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
   arg_max_cte."Score_2" AS "Score_2",
   arg_max_cte."Proba_2" AS "Proba_2",
@@ -934,13 +938,8 @@ _max_cte."Proba_1" AS "Proba_1",
   arg_max_cte."Score_3" AS "Score_3",
   arg_max_cte."Proba_3" AS "Proba_3",
   CASE WHEN (arg_max_cte."Proba_3" IS NULL OR arg_max_cte."Proba_3" > 0.0) THEN LN( arg_max_cte."Proba_3" ) ELSE -1.79769313486231e+308 END AS "LogProba_3",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
-   WHEN (arg_max_cte."arg_max_Score" = 2) THEN arg_max_cte."Proba_2"
-   WHEN (arg_max_cte."arg_max_Score" = 3) THEN arg_max_cte."Proba_3"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
 SQL_OUT_PUT_LAST_LINES_END
 
@@ -948,24 +947,154 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0       X_1       X_2       X_3  ...      X_97      X_98      X_99  KEY
-0    0.935563  2.247500 -1.070940  0.508270  ...  0.677246 -0.177791 -0.249523    0
-1    0.293314 -1.260450 -3.448018  0.269382  ...  0.327620  0.164190  2.205145    1
-2    0.596661  1.589408 -0.810968 -0.473920  ... -1.275388  0.026429 -0.565740    2
-3    1.456436 -2.080544  0.694122 -0.521966  ...  0.753116  1.059889  0.328791    3
-4   -1.193096 -0.499944  0.528137  0.185365  ... -0.506615  1.236806  1.097111    4
-..        ...       ...       ...       ...  ...       ...       ...       ...  ...
-123  0.634123 -0.617818 -2.241496 -1.066949  ...  0.279937 -0.966775 -0.710358  123
-124  0.918349 -0.311832 -0.471041  2.740133  ... -0.320630 -0.317160  0.826388  124
-125 -1.275761  1.107036  0.345849 -0.312646  ...  0.379130  0.566895  0.570030  125
-126  0.529198  1.241322  0.500518 -1.072927  ... -0.490827 -1.251546 -1.179887  126
-127 -0.098289 -0.628792 -0.750264  0.360985  ... -1.144028  0.882400 -0.271507  127
+<class 'pandas.core.frame.DataFrame'>
+Index: 128 entries, 0 to 127
+Data columns (total 100 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     128 non-null    float32
+ 1   X_1     128 non-null    float32
+ 2   X_2     128 non-null    float32
+ 3   X_3     128 non-null    float32
+ 4   X_4     128 non-null    float32
+ 5   X_5     128 non-null    float32
+ 6   X_6     128 non-null    float32
+ 7   X_7     128 non-null    float32
+ 8   X_8     128 non-null    float32
+ 9   X_9     128 non-null    float32
+ 10  X_10    128 non-null    float32
+ 11  X_11    128 non-null    float32
+ 12  X_12    128 non-null    float32
+ 13  X_13    128 non-null    float32
+ 14  X_14    128 non-null    float32
+ 15  X_15    128 non-null    float32
+ 16  X_16    128 non-null    float32
+ 17  X_17    128 non-null    float32
+ 18  X_18    128 non-null    float32
+ 19  X_19    128 non-null    float32
+ 20  X_20    128 non-null    float32
+ 21  X_21    128 non-null    float32
+ 22  X_22    128 non-null    float32
+ 23  X_23    128 non-null    float32
+ 24  X_24    128 non-null    float32
+ 25  X_25    128 non-null    float32
+ 26  X_26    128 non-null    float32
+ 27  X_27    128 non-null    float32
+ 28  X_28    128 non-null    float32
+ 29  X_29    128 non-null    float32
+ 30  X_30    128 non-null    float32
+ 31  X_31    128 non-null    float32
+ 32  X_32    128 non-null    float32
+ 33  X_33    128 non-null    float32
+ 34  X_34    128 non-null    float32
+ 35  X_35    128 non-null    float32
+ 36  X_36    128 non-null    float32
+ 37  X_37    128 non-null    float32
+ 38  X_38    128 non-null    float32
+ 39  X_39    128 non-null    float32
+ 40  X_40    128 non-null    float32
+ 41  X_41    128 non-null    float32
+ 42  X_42    128 non-null    float32
+ 43  X_43    128 non-null    float32
+ 44  X_44    128 non-null    float32
+ 45  X_45    128 non-null    float32
+ 46  X_46    128 non-null    float32
+ 47  X_47    128 non-null    float32
+ 48  X_48    128 non-null    float32
+ 49  X_49    128 non-null    float32
+ 50  X_50    128 non-null    float32
+ 51  X_51    128 non-null    float32
+ 52  X_52    128 non-null    float32
+ 53  X_53    128 non-null    float32
+ 54  X_54    128 non-null    float32
+ 55  X_55    128 non-null    float32
+ 56  X_56    128 non-null    float32
+ 57  X_57    128 non-null    float32
+ 58  X_58    128 non-null    float32
+ 59  X_59    128 non-null    float32
+ 60  X_60    128 non-null    float32
+ 61  X_61    128 non-null    float32
+ 62  X_62    128 non-null    float32
+ 63  X_63    128 non-null    float32
+ 64  X_64    128 non-null    float32
+ 65  X_65    128 non-null    float32
+ 66  X_66    128 non-null    float32
+ 67  X_67    128 non-null    float32
+ 68  X_68    128 non-null    float32
+ 69  X_69    128 non-null    float32
+ 70  X_70    128 non-null    float32
+ 71  X_71    128 non-null    float32
+ 72  X_72    128 non-null    float32
+ 73  X_73    128 non-null    float32
+ 74  X_74    128 non-null    float32
+ 75  X_75    128 non-null    float32
+ 76  X_76    128 non-null    float32
+ 77  X_77    128 non-null    float32
+ 78  X_78    128 non-null    float32
+ 79  X_79    128 non-null    float32
+ 80  X_80    128 non-null    float32
+ 81  X_81    128 non-null    float32
+ 82  X_82    128 non-null    float32
+ 83  X_83    128 non-null    float32
+ 84  X_84    128 non-null    float32
+ 85  X_85    128 non-null    float32
+ 86  X_86    128 non-null    float32
+ 87  X_87    128 non-null    float32
+ 88  X_88    128 non-null    float32
+ 89  X_89    128 non-null    float32
+ 90  X_90    128 non-null    float32
+ 91  X_91    128 non-null    float32
+ 92  X_92    128 non-null    float32
+ 93  X_93    128 non-null    float32
+ 94  X_94    128 non-null    float32
+ 95  X_95    128 non-null    float32
+ 96  X_96    128 non-null    float32
+ 97  X_97    128 non-null    float32
+ 98  X_98    128 non-null    float32
+ 99  X_99    128 non-null    float32
+dtypes: float32(100)
+memory usage: 51.0 KB
+            X_0       X_1       X_2  ...      X_97      X_98      X_99
+index                                ...                              
+0      0.935563  2.247500 -1.070940  ...  0.677246 -0.177791 -0.249523
+1      0.293314 -1.260450 -3.448018  ...  0.327620  0.164190  2.205145
+2      0.596661  1.589408 -0.810968  ... -1.275388  0.026429 -0.565740
+3      1.456436 -2.080544  0.694122  ...  0.753116  1.059889  0.328791
+4     -1.193096 -0.499944  0.528137  ... -0.506615  1.236806  1.097111
+...         ...       ...       ...  ...       ...       ...       ...
+123    0.634123 -0.617818 -2.241496  ...  0.279937 -0.966775 -0.710358
+124    0.918349 -0.311832 -0.471041  ... -0.320630 -0.317160  0.826388
+125   -1.275761  1.107036  0.345849  ...  0.379130  0.566895  0.570030
+126    0.529198  1.241322  0.500518  ... -0.490827 -1.251546 -1.179887
+127   -0.098289 -0.628792 -0.750264  ... -1.144028  0.882400 -0.271507
 
-[128 rows x 101 columns]
+[128 rows x 100 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 128 entries, 0 to 127
+Data columns (total 15 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          128 non-null    int64  
+ 1   Score_0        128 non-null    float64
+ 2   Proba_0        128 non-null    float64
+ 3   LogProba_0     128 non-null    float64
+ 4   Score_1        128 non-null    float64
+ 5   Proba_1        128 non-null    float64
+ 6   LogProba_1     128 non-null    float64
+ 7   Score_2        128 non-null    float64
+ 8   Proba_2        128 non-null    float64
+ 9   LogProba_2     128 non-null    float64
+ 10  Score_3        128 non-null    float64
+ 11  Proba_3        128 non-null    float64
+ 12  LogProba_3     128 non-null    float64
+ 13  Decision       128 non-null    int64  
+ 14  DecisionProba  128 non-null    float64
+dtypes: float64(13), int64(2)
+memory usage: 15.1 KB
      index   Score_0   Proba_0  ...  LogProba_3  Decision  DecisionProba
 0        0 -0.255836  0.130411  ...   -0.592295         3       0.553057
 1        1  0.190937  0.245009  ...   -1.454976         2       0.302851
@@ -1007,4 +1136,93 @@ Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
 127    127  0.283649     0.247449  ...    0.150739    0.435009            3
 
 [16 rows x 20 columns]
+MLLITE_SQL_ERROR ('Py_Proba_0', 'SQL_Proba_0') 0.016045524273288113
+     Py_Proba_0  SQL_Proba_0
+112    0.227369     0.227369
+113    0.201921     0.201921
+114    0.271836     0.271836
+115    0.438627     0.438627
+116    0.178645     0.178645
+117    0.107044     0.107044
+118    0.453308     0.453307
+119    0.178596     0.178596
+120    0.173888     0.173888
+121    0.314216     0.314216
+122    0.180344     0.180344
+123    0.134328     0.134328
+124    0.218758     0.218758
+125    0.194212     0.194212
+126    0.563861     0.563860
+127    0.247450     0.247449
+MLLITE_SQL_ERROR ('Py_Proba_1', 'SQL_Proba_1') 0.010093618021895847
+     Py_Proba_1  SQL_Proba_1
+112    0.415687     0.415687
+113    0.205864     0.205864
+114    0.378976     0.378977
+115    0.167694     0.167694
+116    0.122903     0.122903
+117    0.107459     0.107459
+118    0.165854     0.165855
+119    0.314402     0.314402
+120    0.328315     0.328315
+121    0.173156     0.173156
+122    0.258425     0.258425
+123    0.212804     0.212804
+124    0.389894     0.389894
+125    0.357961     0.357961
+126    0.163756     0.163756
+127    0.166803     0.166803
+MLLITE_SQL_ERROR ('Py_Proba_2', 'SQL_Proba_2') 0.017708571589821226
+     Py_Proba_2  SQL_Proba_2
+112    0.181685     0.181685
+113    0.259103     0.259103
+114    0.174021     0.174021
+115    0.123567     0.123567
+116    0.127083     0.127083
+117    0.580396     0.580396
+118    0.118256     0.118256
+119    0.348414     0.348414
+120    0.338423     0.338423
+121    0.137374     0.137374
+122    0.404806     0.404806
+123    0.532331     0.532331
+124    0.230542     0.230542
+125    0.304444     0.304444
+126    0.113807     0.113807
+127    0.150739     0.150739
+MLLITE_SQL_ERROR ('Py_Proba_3', 'SQL_Proba_3') 0.022160452019717475
+     Py_Proba_3  SQL_Proba_3
+112    0.175259     0.175259
+113    0.333113     0.333113
+114    0.175167     0.175167
+115    0.270113     0.270113
+116    0.571369     0.571369
+117    0.205102     0.205102
+118    0.262582     0.262582
+119    0.158588     0.158588
+120    0.159374     0.159374
+121    0.375254     0.375254
+122    0.156425     0.156425
+123    0.120537     0.120538
+124    0.160806     0.160806
+125    0.143383     0.143383
+126    0.158576     0.158576
+127    0.435009     0.435009
+     Py_Decision  SQL_Decision
+112            1             1
+113            3             3
+114            1             1
+115            0             0
+116            3             3
+117            2             2
+118            0             0
+119            2             2
+120            2             2
+121            3             3
+122            2             2
+123            2             2
+124            1             1
+125            1             1
+126            0             0
+127            3             3
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

@@ -46,7 +46,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.012, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.008, 'TRAINING')
 { ,   }
 { ,   }
 {
@@ -194,7 +194,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'iris_small', 'size': 64, 'accuracy': 0.8125, 'auc': 0.9540960231064398}
 WRITING_PERF_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_small.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'iris_small', 'training_time_in_sec': 0.011, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'iris_small', 'training_time_in_sec': 0.007, 'prediction_time_in_sec': 0.0}
 WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_small.sql'
 
 
@@ -211,18 +211,25 @@ model_scores_cte AS
    1.161481 + 0.194343 * X_0 + -0.849024 * X_1 + 0.144426 * X_2 + -0.563945 * X_3 AS "Score_1", CAST(NULL AS FLOAT) AS "Proba_1", CAST(NULL AS FLOAT) AS "LogProba_1",
    -1.731240 + -0.209552 * X_0 + 0.316551 * X_1 + 0.224681 * X_2 + 0.750721 * X_3 AS "Score_2", CAST(NULL AS FLOAT) AS "Proba_2", CAST(NULL AS FLOAT) AS "LogProba_2"
   FROM model_input
- )
-,
+ ),
 soft_max_orig_cte AS 
- (SELECT t."index" AS "index", 
+( SELECT t."index" AS "index", 
    t."Score_0" AS "Score_0",
    t."Proba_0" AS "Proba_0",
    t."LogProba_0" AS "LogProba_0",
    t."Score_1" AS "Score_1",
-   t."Proba_
+   t."Proba_1
 SQL_OUT_PUT_FIRST_LINES_END
 SQL_OUT_PUT_LAST_LINES_START
-x_cte."index" AS "index",
+ba" AS t
+),
+arg_max_cte AS 
+ (SELECT t.*,
+     COALESCE(  t."max_idx_0", t."max_idx_1", t."max_idx_2" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
+SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_0" AS "Score_0",
   arg_max_cte."Proba_0" AS "Proba_0",
   CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
@@ -232,12 +239,8 @@ x_cte."index" AS "index",
   arg_max_cte."Score_2" AS "Score_2",
   arg_max_cte."Proba_2" AS "Proba_2",
   CASE WHEN (arg_max_cte."Proba_2" IS NULL OR arg_max_cte."Proba_2" > 0.0) THEN LN( arg_max_cte."Proba_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
-   WHEN (arg_max_cte."arg_max_Score" = 2) THEN arg_max_cte."Proba_2"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
 SQL_OUT_PUT_LAST_LINES_END
 
@@ -245,24 +248,55 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-    X_0  X_1  X_2  X_3  KEY
-0   6.4  3.2  5.3  2.3    0
-1   6.3  3.3  4.7  1.6    1
-2   7.1  3.0  5.9  2.1    2
-3   6.1  2.6  5.6  1.4    3
-4   6.8  3.2  5.9  2.3    4
-..  ...  ...  ...  ...  ...
-59  5.4  3.9  1.7  0.4   59
-60  5.0  3.4  1.6  0.4   60
-61  6.3  2.5  5.0  1.9   61
-62  6.9  3.1  5.1  2.3   62
-63  6.5  3.0  5.2  2.0   63
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+dtypes: float32(4)
+memory usage: 1.5 KB
+       X_0  X_1  X_2  X_3
+index                    
+0      6.4  3.2  5.3  2.3
+1      6.3  3.3  4.7  1.6
+2      7.1  3.0  5.9  2.1
+3      6.1  2.6  5.6  1.4
+4      6.8  3.2  5.9  2.3
+...    ...  ...  ...  ...
+59     5.4  3.9  1.7  0.4
+60     5.0  3.4  1.6  0.4
+61     6.3  2.5  5.0  1.9
+62     6.9  3.1  5.1  2.3
+63     6.5  3.0  5.2  2.0
 
-[64 rows x 5 columns]
+[64 rows x 4 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 12 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          64 non-null     int64  
+ 1   Score_0        64 non-null     float64
+ 2   Proba_0        64 non-null     float64
+ 3   LogProba_0     64 non-null     float64
+ 4   Score_1        64 non-null     float64
+ 5   Proba_1        64 non-null     float64
+ 6   LogProba_1     64 non-null     float64
+ 7   Score_2        64 non-null     float64
+ 8   Proba_2        64 non-null     float64
+ 9   LogProba_2     64 non-null     float64
+ 10  Decision       64 non-null     int64  
+ 11  DecisionProba  64 non-null     float64
+dtypes: float64(10), int64(2)
+memory usage: 6.1 KB
     index   Score_0   Proba_0  ...  LogProba_2  Decision  DecisionProba
 0       0 -1.014844  0.115017  ...   -0.289776         2       0.748431
 1       1 -0.610909  0.230520  ...   -0.606153         2       0.545445
@@ -304,4 +338,75 @@ Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
 63     63 -1.026874     0.134762  ...    0.228412    0.636826            2
 
 [16 rows x 16 columns]
+MLLITE_SQL_ERROR ('Py_Proba_0', 'SQL_Proba_0') 1.0975462225321254e-06
+    Py_Proba_0  SQL_Proba_0
+48    0.731352     0.731352
+49    0.272939     0.272939
+50    0.234020     0.234020
+51    0.683328     0.683328
+52    0.845031     0.845031
+53    0.120549     0.120549
+54    0.683502     0.683502
+55    0.194370     0.194370
+56    0.205967     0.205967
+57    0.245581     0.245581
+58    0.113222     0.113222
+59    0.793165     0.793165
+60    0.727587     0.727587
+61    0.117515     0.117515
+62    0.131193     0.131194
+63    0.134762     0.134762
+MLLITE_SQL_ERROR ('Py_Proba_1', 'SQL_Proba_1') 2.8087013610447867e-07
+    Py_Proba_1  SQL_Proba_1
+48    0.171773     0.171773
+49    0.324336     0.324336
+50    0.512693     0.512693
+51    0.231920     0.231920
+52    0.076023     0.076023
+53    0.269108     0.269108
+54    0.223393     0.223393
+55    0.385355     0.385355
+56    0.338114     0.338114
+57    0.352359     0.352359
+58    0.103566     0.103566
+59    0.096484     0.096484
+60    0.156150     0.156150
+61    0.359291     0.359291
+62    0.176498     0.176499
+63    0.228412     0.228412
+MLLITE_SQL_ERROR ('Py_Proba_2', 'SQL_Proba_2') 2.8342150895799797e-07
+    Py_Proba_2  SQL_Proba_2
+48    0.096875     0.096875
+49    0.402725     0.402725
+50    0.253287     0.253287
+51    0.084751     0.084751
+52    0.078946     0.078946
+53    0.610343     0.610343
+54    0.093105     0.093105
+55    0.420275     0.420275
+56    0.455920     0.455919
+57    0.402060     0.402060
+58    0.783212     0.783212
+59    0.110351     0.110351
+60    0.116263     0.116263
+61    0.523194     0.523194
+62    0.692308     0.692308
+63    0.636826     0.636825
+    Py_Decision  SQL_Decision
+48            0             0
+49            2             2
+50            1             1
+51            0             0
+52            0             0
+53            2             2
+54            0             0
+55            2             2
+56            2             2
+57            2             2
+58            2             2
+59            0             0
+60            0             0
+61            2             2
+62            2             2
+63            2             2
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

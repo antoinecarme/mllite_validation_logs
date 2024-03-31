@@ -32,7 +32,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.407, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.413, 'TRAINING')
 { "alpha" : 0.0000001,   }
 { "alpha" : 0.0000001,   }
 {
@@ -84,9 +84,9 @@ BEAUTIFIED_JSON_START
 }
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.028, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.031, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.028, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.031, 'PREDICT')
 [[0.0669 0.9331]
  [0.9282 0.0718]
  [0.8306 0.1694]
@@ -99,7 +99,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': '{"alpha" : 0.0000001}', 'dataset': 'census_quantized', 'size': 48842, 'accuracy': 0.7663691085541132, 'auc': 0.7823280993272501}
 WRITING_PERF_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_census_quantized_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': '{"alpha" : 0.0000001}', 'dataset': 'census_quantized', 'training_time_in_sec': 0.407, 'prediction_time_in_sec': 0.028}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': '{"alpha" : 0.0000001}', 'dataset': 'census_quantized', 'training_time_in_sec': 0.413, 'prediction_time_in_sec': 0.031}
 WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_census_quantized_option_1.sql'
 
 
@@ -115,14 +115,21 @@ model_scores_cte AS
    -1.838795 + 0.025834 * X_0 + 0.000000 * X_1 + 0.002276 * X_2 + 0.000000 * X_3 + 0.046985 * X_4 + 0.000000 * X_5 + 0.000000 * X_6 + 0.000000 * X_7 + 0.000000 * X_8 + 0.000000 * X_9 + 0.209873 * X_10 + 0.039602 * X_11 + 0.183522 * X_12 + 0.000000 * X_13 AS "Score_1", CAST(NULL AS FLOAT) AS "Proba_1", CAST(NULL AS FLOAT) AS "LogProba
 SQL_OUT_PUT_FIRST_LINES_END
 SQL_OUT_PUT_LAST_LINES_START
-ax."index" AS "index_Score",
-     max(union_with_max.class) AS "arg_max_Score"
-    FROM union_with_max
-    WHERE union_with_max."max_Score" <= union_with_max."Score"
-    GROUP BY union_with_max."index"
-   ) AS "arg_max_t_Score"
-   ON score_max."index" = "arg_max_t_Score"."index_Score"
- )
+S t
+),
+arg_max_cte_with_max_proba_idx AS 
+( SELECT t.*,
+   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
+   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+ (SELECT t.*,
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
 SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_0" AS "Score_0",
   arg_max_cte."Proba_0" AS "Proba_0",
@@ -130,11 +137,8 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_1" AS "Score_1",
   arg_max_cte."Proba_1" AS "Proba_1",
   CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
 SQL_OUT_PUT_LAST_LINES_END
 
@@ -142,62 +146,43 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-        X_0  X_1  X_2  X_3  X_4  X_5  ...  X_9  X_10  X_11  X_12  X_13    KEY
-0       6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0   9.0   0.0   4.0   0.0      0
-1       7.0  0.0  1.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   0.0   0.0      1
-2       6.0  0.0  6.0  0.0  3.0  0.0  ...  0.0   0.0   0.0   4.0   0.0      2
-3       7.0  0.0  7.0  0.0  1.0  0.0  ...  0.0   0.0   0.0   4.0   0.0      3
-4       3.0  0.0  8.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   4.0   0.0      4
-...     ...  ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...    ...
-48837   6.0  0.0  6.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   4.0   0.0  48837
-48838  10.0  0.0  8.0  0.0  3.0  0.0  ...  0.0   0.0   0.0   4.0   0.0  48838
-48839   6.0  0.0  9.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   8.0   0.0  48839
-48840   6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0   9.0   0.0   4.0   0.0  48840
-48841   3.0  0.0  5.0  0.0  8.0  0.0  ...  0.0   0.0   0.0   8.0   0.0  48841
+<class 'pandas.core.frame.DataFrame'>
+Index: 48842 entries, 0 to 48841
+Data columns (total 14 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     48842 non-null  float32
+ 1   X_1     48842 non-null  float32
+ 2   X_2     48842 non-null  float32
+ 3   X_3     48842 non-null  float32
+ 4   X_4     48842 non-null  float32
+ 5   X_5     48842 non-null  float32
+ 6   X_6     48842 non-null  float32
+ 7   X_7     48842 non-null  float32
+ 8   X_8     48842 non-null  float32
+ 9   X_9     48842 non-null  float32
+ 10  X_10    48842 non-null  float32
+ 11  X_11    48842 non-null  float32
+ 12  X_12    48842 non-null  float32
+ 13  X_13    48842 non-null  float32
+dtypes: float32(14)
+memory usage: 3.0 MB
+        X_0  X_1  X_2  X_3  X_4  X_5  ...  X_8  X_9  X_10  X_11  X_12  X_13
+index                                 ...                                  
+0       6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   9.0   0.0   4.0   0.0
+1       7.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   0.0   0.0
+2       6.0  0.0  6.0  0.0  3.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+3       7.0  0.0  7.0  0.0  1.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+4       3.0  0.0  8.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+...     ...  ...  ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...
+48837   6.0  0.0  6.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+48838  10.0  0.0  8.0  0.0  3.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+48839   6.0  0.0  9.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   8.0   0.0
+48840   6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   9.0   0.0   4.0   0.0
+48841   3.0  0.0  5.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   8.0   0.0
 
-[48842 rows x 15 columns]
+[48842 rows x 14 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
-       index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
-0          0 -1.317310  0.066943  ...   -0.069289         1       0.933057
-1          1  1.279801  0.928216  ...   -2.634093         0       0.928216
-2          2  0.795092  0.830642  ...   -1.775740         0       0.830642
-3          3  0.860952  0.848374  ...   -1.886338         0       0.848374
-4          4  0.633117  0.780097  ...   -1.514571         0       0.780097
-...      ...       ...       ...  ...         ...       ...            ...
-48837  48837  0.560167  0.754051  ...   -1.402630         0       0.754051
-48838  48838  0.687204  0.798091  ...   -1.599940         0       0.798091
-48839  48839 -0.180749  0.410597  ...   -0.528645         1       0.589403
-48840  48840 -1.317310  0.066943  ...   -0.069289         1       0.933057
-48841  48841 -0.094143  0.453067  ...   -0.603429         1       0.546933
-
-[48842 rows x 9 columns]
-PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
-
-
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
-Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
-       'LogProba_1', 'Decision', 'DecisionProba'],
-      dtype='object')
-       index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
-48826  48826  0.494176     0.728762  ...    0.728762    0.271238        <=50K
-48827  48827  1.317548     0.933086  ...    0.933086    0.066914        <=50K
-48828  48828  0.604876     0.770255  ...    0.770254    0.229746        <=50K
-48829  48829  0.499264     0.730769  ...    0.730768    0.269232        <=50K
-48830  48830  0.877146     0.852493  ...    0.852493    0.147507        <=50K
-48831  48831  0.764706     0.821920  ...    0.821919    0.178081        <=50K
-48832  48832 -0.030952     0.484529  ...    0.484528    0.515472         >50K
-48833  48833  0.865766     0.849608  ...    0.849608    0.150392        <=50K
-48834  48834  0.945544     0.868880  ...    0.868880    0.131120        <=50K
-48835  48835  0.482796     0.724240  ...    0.724239    0.275761        <=50K
-48836  48836  0.635393     0.780877  ...    0.780877    0.219123        <=50K
-48837  48837  0.560167     0.754051  ...    0.754050    0.245950        <=50K
-48838  48838  0.687204     0.798091  ...    0.798090    0.201910        <=50K
-48839  48839 -0.180749     0.410597  ...    0.410596    0.589404         >50K
-48840  48840 -1.317310     0.066943  ...    0.066944    0.933056         >50K
-48841  48841 -0.094143     0.453067  ...    0.453068    0.546932         >50K
-
-[16 rows x 12 columns]
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

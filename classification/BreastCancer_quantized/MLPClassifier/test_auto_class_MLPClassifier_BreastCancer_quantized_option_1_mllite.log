@@ -42,7 +42,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 27 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 30 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 32 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.045, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.062, 'TRAINING')
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 }
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 }
 {
@@ -331,7 +331,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'BreastCancer_quantized', 'size': 569, 'accuracy': 0.8471001757469244, 'auc': 0.9192167433010939}
 WRITING_PERF_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_BreastCancer_quantized_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'BreastCancer_quantized', 'training_time_in_sec': 0.045, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'BreastCancer_quantized', 'training_time_in_sec': 0.062, 'prediction_time_in_sec': 0.001}
 WRITING_SQL_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_BreastCancer_quantized_option_1.sql'
 
 
@@ -342,14 +342,21 @@ WITH model_input AS
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
 SQL_OUT_PUT_FIRST_LINES_END
 SQL_OUT_PUT_LAST_LINES_START
-ax."index" AS "index_Score",
-     max(union_with_max.class) AS "arg_max_Score"
-    FROM union_with_max
-    WHERE union_with_max."max_Score" <= union_with_max."Score"
-    GROUP BY union_with_max."index"
-   ) AS "arg_max_t_Score"
-   ON score_max."index" = "arg_max_t_Score"."index_Score"
- )
+S t
+),
+arg_max_cte_with_max_proba_idx AS 
+( SELECT t.*,
+   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
+   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+ (SELECT t.*,
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
 SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_0" AS "Score_0",
   arg_max_cte."Proba_0" AS "Proba_0",
@@ -357,11 +364,8 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_1" AS "Score_1",
   arg_max_cte."Proba_1" AS "Proba_1",
   CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
 SQL_OUT_PUT_LAST_LINES_END
 
@@ -369,20 +373,58 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-     X_0  X_1  X_2  X_3  X_4  X_5  X_6  ...  X_24  X_25  X_26  X_27  X_28  X_29  KEY
-0    8.0  0.0  8.0  8.0  8.0  9.0  9.0  ...   8.0   9.0   9.0   9.0   9.0   9.0    0
-1    9.0  3.0  8.0  9.0  2.0  3.0  6.0  ...   3.0   4.0   5.0   8.0   4.0   7.0    1
-2    8.0  7.0  8.0  8.0  8.0  8.0  8.0  ...   7.0   8.0   8.0   9.0   8.0   6.0    2
-3    2.0  6.0  3.0  1.0  9.0  9.0  9.0  ...   9.0   9.0   9.0   9.0  10.0   9.0    3
-4    9.0  1.0  9.0  9.0  6.0  7.0  8.0  ...   5.0   4.0   7.0   7.0   1.0   4.0    4
-..   ...  ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...   ...   ...  ...
-564  9.0  7.0  9.0  9.0  8.0  6.0  9.0  ...   6.0   4.0   7.0   9.0   0.0   2.0  564
-565  9.0  9.0  8.0  8.0  5.0  5.0  7.0  ...   2.0   4.0   6.0   7.0   3.0   1.0  565
-566  7.0  9.0  7.0  7.0  2.0  5.0  6.0  ...   2.0   7.0   6.0   6.0   1.0   4.0  566
-567  9.0  9.0  9.0  8.0  8.0  9.0  9.0  ...   8.0   9.0   9.0   9.0   9.0   9.0  567
-568  0.0  8.0  0.0  0.0  0.0  0.0  0.0  ...   0.0   0.0   0.0   0.0   5.0   2.0  568
+<class 'pandas.core.frame.DataFrame'>
+Index: 569 entries, 0 to 568
+Data columns (total 30 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     569 non-null    float32
+ 1   X_1     569 non-null    float32
+ 2   X_2     569 non-null    float32
+ 3   X_3     569 non-null    float32
+ 4   X_4     569 non-null    float32
+ 5   X_5     569 non-null    float32
+ 6   X_6     569 non-null    float32
+ 7   X_7     569 non-null    float32
+ 8   X_8     569 non-null    float32
+ 9   X_9     569 non-null    float32
+ 10  X_10    569 non-null    float32
+ 11  X_11    569 non-null    float32
+ 12  X_12    569 non-null    float32
+ 13  X_13    569 non-null    float32
+ 14  X_14    569 non-null    float32
+ 15  X_15    569 non-null    float32
+ 16  X_16    569 non-null    float32
+ 17  X_17    569 non-null    float32
+ 18  X_18    569 non-null    float32
+ 19  X_19    569 non-null    float32
+ 20  X_20    569 non-null    float32
+ 21  X_21    569 non-null    float32
+ 22  X_22    569 non-null    float32
+ 23  X_23    569 non-null    float32
+ 24  X_24    569 non-null    float32
+ 25  X_25    569 non-null    float32
+ 26  X_26    569 non-null    float32
+ 27  X_27    569 non-null    float32
+ 28  X_28    569 non-null    float32
+ 29  X_29    569 non-null    float32
+dtypes: float32(30)
+memory usage: 71.1 KB
+       X_0  X_1  X_2  X_3  X_4  X_5  ...  X_24  X_25  X_26  X_27  X_28  X_29
+index                                ...                                    
+0      8.0  0.0  8.0  8.0  8.0  9.0  ...   8.0   9.0   9.0   9.0   9.0   9.0
+1      9.0  3.0  8.0  9.0  2.0  3.0  ...   3.0   4.0   5.0   8.0   4.0   7.0
+2      8.0  7.0  8.0  8.0  8.0  8.0  ...   7.0   8.0   8.0   9.0   8.0   6.0
+3      2.0  6.0  3.0  1.0  9.0  9.0  ...   9.0   9.0   9.0   9.0  10.0   9.0
+4      9.0  1.0  9.0  9.0  6.0  7.0  ...   5.0   4.0   7.0   7.0   1.0   4.0
+...    ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...   ...   ...
+564    9.0  7.0  9.0  9.0  8.0  6.0  ...   6.0   4.0   7.0   9.0   0.0   2.0
+565    9.0  9.0  8.0  8.0  5.0  5.0  ...   2.0   4.0   6.0   7.0   3.0   1.0
+566    7.0  9.0  7.0  7.0  2.0  5.0  ...   2.0   7.0   6.0   6.0   1.0   4.0
+567    9.0  9.0  9.0  8.0  8.0  9.0  ...   8.0   9.0   9.0   9.0   9.0   9.0
+568    0.0  8.0  0.0  0.0  0.0  0.0  ...   0.0   0.0   0.0   0.0   5.0   2.0
 
-[569 rows x 31 columns]
+[569 rows x 30 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 

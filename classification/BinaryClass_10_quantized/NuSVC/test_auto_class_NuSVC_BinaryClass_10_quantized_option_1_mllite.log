@@ -99,7 +99,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global' 108 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global' 120 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global' 128 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.855, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.744, 'TRAINING')
 { "nu" : 0.1,  "max_iter" : 128  }
 { "nu" : 0.1,  "max_iter" : 128  }
 {
@@ -736,9 +736,9 @@ BEAUTIFIED_JSON_START
 }
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.022, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.019, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.022, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.015, 'PREDICT')
 [[1.    0.   ]
  [0.305 0.695]
  [0.    1.   ]
@@ -751,7 +751,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': '{"nu" : 0.1}', 'dataset': 'BinaryClass_10_quantized', 'size': 1024, 'accuracy': 0.837890625, 'auc': 0.4863109863109863}
 WRITING_PERF_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_BinaryClass_10_quantized_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': '{"nu" : 0.1}', 'dataset': 'BinaryClass_10_quantized', 'training_time_in_sec': 0.855, 'prediction_time_in_sec': 0.022}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': '{"nu" : 0.1}', 'dataset': 'BinaryClass_10_quantized', 'training_time_in_sec': 0.744, 'prediction_time_in_sec': 0.015}
 WRITING_SQL_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_BinaryClass_10_quantized_option_1.sql'
 
 
@@ -781,14 +781,21 @@ WITH model_input AS
      SELECT 0 AS sv_idx, 4.000000 AS sv_0, 8.000000 AS sv_1, 7.000000 AS sv_2, 5.000000 AS sv_3, 7.000000 AS
 SQL_OUT_PUT_FIRST_LINES_END
 SQL_OUT_PUT_LAST_LINES_START
-ax."index" AS "index_Score",
-     max(union_with_max.class) AS "arg_max_Score"
-    FROM union_with_max
-    WHERE union_with_max."max_Score" <= union_with_max."Score"
-    GROUP BY union_with_max."index"
-   ) AS "arg_max_t_Score"
-   ON score_max."index" = "arg_max_t_Score"."index_Score"
- )
+S t
+),
+arg_max_cte_with_max_proba_idx AS 
+( SELECT t.*,
+   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
+   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+ (SELECT t.*,
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
 SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_0" AS "Score_0",
   arg_max_cte."Proba_0" AS "Proba_0",
@@ -796,11 +803,8 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_1" AS "Score_1",
   arg_max_cte."Proba_1" AS "Proba_1",
   CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
 SQL_OUT_PUT_LAST_LINES_END
 
@@ -808,36 +812,70 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-      X_0  X_1  X_2  X_3  X_4  X_5  X_6  X_7  X_8  X_9   KEY
-0     4.0  8.0  7.0  5.0  7.0  5.0  7.0  6.0  5.0  8.0     0
-1     2.0  9.0  6.0  5.0  6.0  3.0  4.0  5.0  8.0  3.0     1
-2     5.0  7.0  3.0  9.0  9.0  0.0  2.0  6.0  4.0  6.0     2
-3     8.0  2.0  8.0  4.0  6.0  6.0  8.0  5.0  5.0  1.0     3
-4     7.0  5.0  3.0  1.0  3.0  5.0  4.0  8.0  1.0  6.0     4
-...   ...  ...  ...  ...  ...  ...  ...  ...  ...  ...   ...
-1019  4.0  0.0  3.0  1.0  3.0  5.0  4.0  6.0  4.0  1.0  1019
-1020  8.0  5.0  6.0  8.0  6.0  4.0  6.0  7.0  6.0  1.0  1020
-1021  4.0  9.0  9.0  1.0  8.0  9.0  9.0  2.0  9.0  6.0  1021
-1022  5.0  8.0  4.0  4.0  9.0  0.0  2.0  0.0  5.0  7.0  1022
-1023  2.0  3.0  1.0  9.0  2.0  1.0  1.0  2.0  8.0  5.0  1023
+<class 'pandas.core.frame.DataFrame'>
+Index: 1024 entries, 0 to 1023
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     1024 non-null   float32
+ 1   X_1     1024 non-null   float32
+ 2   X_2     1024 non-null   float32
+ 3   X_3     1024 non-null   float32
+ 4   X_4     1024 non-null   float32
+ 5   X_5     1024 non-null   float32
+ 6   X_6     1024 non-null   float32
+ 7   X_7     1024 non-null   float32
+ 8   X_8     1024 non-null   float32
+ 9   X_9     1024 non-null   float32
+dtypes: float32(10)
+memory usage: 48.0 KB
+       X_0  X_1  X_2  X_3  X_4  X_5  X_6  X_7  X_8  X_9
+index                                                  
+0      4.0  8.0  7.0  5.0  7.0  5.0  7.0  6.0  5.0  8.0
+1      2.0  9.0  6.0  5.0  6.0  3.0  4.0  5.0  8.0  3.0
+2      5.0  7.0  3.0  9.0  9.0  0.0  2.0  6.0  4.0  6.0
+3      8.0  2.0  8.0  4.0  6.0  6.0  8.0  5.0  5.0  1.0
+4      7.0  5.0  3.0  1.0  3.0  5.0  4.0  8.0  1.0  6.0
+...    ...  ...  ...  ...  ...  ...  ...  ...  ...  ...
+1019   4.0  0.0  3.0  1.0  3.0  5.0  4.0  6.0  4.0  1.0
+1020   8.0  5.0  6.0  8.0  6.0  4.0  6.0  7.0  6.0  1.0
+1021   4.0  9.0  9.0  1.0  8.0  9.0  9.0  2.0  9.0  6.0
+1022   5.0  8.0  4.0  4.0  9.0  0.0  2.0  0.0  5.0  7.0
+1023   2.0  3.0  1.0  9.0  2.0  1.0  1.0  2.0  8.0  5.0
 
-[1024 rows x 11 columns]
+[1024 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1024 entries, 0 to 1023
+Data columns (total 9 columns):
+ #   Column         Non-Null Count  Dtype 
+---  ------         --------------  ----- 
+ 0   index          1024 non-null   int64 
+ 1   Score_0        1024 non-null   int64 
+ 2   Proba_0        0 non-null      object
+ 3   LogProba_0     0 non-null      object
+ 4   Score_1        1024 non-null   int64 
+ 5   Proba_1        0 non-null      object
+ 6   LogProba_1     0 non-null      object
+ 7   Decision       0 non-null      object
+ 8   DecisionProba  0 non-null      object
+dtypes: int64(3), object(6)
+memory usage: 72.1+ KB
       index  Score_0 Proba_0  ... LogProba_1  Decision DecisionProba
-0         0        0    None  ...       None         1          None
-1         1        0    None  ...       None         1          None
-2         2        0    None  ...       None         1          None
-3         3        0    None  ...       None         1          None
-4         4        0    None  ...       None         1          None
+0         0        0    None  ...       None      None          None
+1         1        0    None  ...       None      None          None
+2         2        0    None  ...       None      None          None
+3         3        0    None  ...       None      None          None
+4         4        0    None  ...       None      None          None
 ...     ...      ...     ...  ...        ...       ...           ...
-1019   1019        0    None  ...       None         1          None
-1020   1020        0    None  ...       None         1          None
-1021   1021        0    None  ...       None         1          None
-1022   1022        0    None  ...       None         1          None
-1023   1023        0    None  ...       None         1          None
+1019   1019        0    None  ...       None      None          None
+1020   1020        0    None  ...       None      None          None
+1021   1021        0    None  ...       None      None          None
+1022   1022        0    None  ...       None      None          None
+1023   1023        0    None  ...       None      None          None
 
 [1024 rows x 9 columns]
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
@@ -866,4 +904,3 @@ Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
 1023   1023        0        None  ...  3.000001e-14  1.000000e+00           0
 
 [16 rows x 12 columns]
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

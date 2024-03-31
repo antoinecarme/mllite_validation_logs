@@ -42,7 +42,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 27 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 30 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 32 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.064, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.044, 'TRAINING')
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 }
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 }
 {
@@ -256,9 +256,9 @@ BEAUTIFIED_JSON_START
 }
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 [[0.6313 0.3687]
  [0.647  0.353 ]
  [0.642  0.358 ]
@@ -271,7 +271,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'BinaryClass_10_medium', 'size': 512, 'accuracy': 0.501953125, 'auc': 0.8087663080796521}
 WRITING_PERF_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_BinaryClass_10_medium_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'BinaryClass_10_medium', 'training_time_in_sec': 0.064, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'BinaryClass_10_medium', 'training_time_in_sec': 0.044, 'prediction_time_in_sec': 0.0}
 WRITING_SQL_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_BinaryClass_10_medium_option_1.sql'
 
 
@@ -303,14 +303,21 @@ WITH model_input AS
     -0.542192 + -0.130990 * t.OUT_0  + 0.154237 * t.OUT_1  + 0.485681 * t.OUT_2  + 0.579797 * t.OUT_3  + 0.268727 * t.OUT_4  + 0.212743 * t.OUT_5  + -0.202162 * t.OUT_6  + -0.007192 * t.OUT_7  + -0.135851 * t.OUT_8  + -0.354397 * t.OUT_9 A
 SQL_OUT_PUT_FIRST_LINES_END
 SQL_OUT_PUT_LAST_LINES_START
-ax."index" AS "index_Score",
-     max(union_with_max.class) AS "arg_max_Score"
-    FROM union_with_max
-    WHERE union_with_max."max_Score" <= union_with_max."Score"
-    GROUP BY union_with_max."index"
-   ) AS "arg_max_t_Score"
-   ON score_max."index" = "arg_max_t_Score"."index_Score"
- )
+S t
+),
+arg_max_cte_with_max_proba_idx AS 
+( SELECT t.*,
+   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
+   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+ (SELECT t.*,
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
 SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_0" AS "Score_0",
   arg_max_cte."Proba_0" AS "Proba_0",
@@ -318,11 +325,8 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."Score_1" AS "Score_1",
   arg_max_cte."Proba_1" AS "Proba_1",
   CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."arg_max_Score" AS "Decision",
-  CASE
-   WHEN (arg_max_cte."arg_max_Score" = 0) THEN arg_max_cte."Proba_0"
-   WHEN (arg_max_cte."arg_max_Score" = 1) THEN arg_max_cte."Proba_1"
- END AS "DecisionProba"
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
 SQL_OUT_PUT_LAST_LINES_END
 
@@ -330,20 +334,38 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0       X_1       X_2       X_3  ...       X_7       X_8       X_9  KEY
-0   -0.044962  1.210300  0.837871  0.036822  ...  0.492410 -0.036524  0.927011    0
-1   -0.899949  1.417506  0.234098  0.054897  ...  0.201077  1.065277 -0.527426    1
-2    0.210234  0.615278 -0.232967  2.481978  ...  0.382822 -0.159713  0.429757    2
-3    1.372308 -0.697183  1.020035 -0.159894  ...  0.162336 -0.034774 -1.017369    3
-4    0.739356  0.040085 -0.293706 -1.073093  ...  1.367823 -0.883563  0.285353    4
-..        ...       ...       ...       ...  ...       ...       ...       ...  ...
-507 -1.371079 -0.448472  2.455614 -0.257140  ... -0.899182 -0.836368  0.570578  507
-508  1.140010 -0.836796  0.169285 -0.248971  ... -1.595744 -0.338076  1.167627  508
-509  1.632208 -2.034282  0.818088  0.624015  ...  0.787438 -0.256977  0.896508  509
-510 -3.195565  1.571081 -0.291694 -1.220009  ...  0.676890  0.663319 -0.701417  510
-511  0.095037 -0.527445  0.090365 -2.058599  ...  1.243205 -0.948822  0.514737  511
+<class 'pandas.core.frame.DataFrame'>
+Index: 512 entries, 0 to 511
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     512 non-null    float32
+ 1   X_1     512 non-null    float32
+ 2   X_2     512 non-null    float32
+ 3   X_3     512 non-null    float32
+ 4   X_4     512 non-null    float32
+ 5   X_5     512 non-null    float32
+ 6   X_6     512 non-null    float32
+ 7   X_7     512 non-null    float32
+ 8   X_8     512 non-null    float32
+ 9   X_9     512 non-null    float32
+dtypes: float32(10)
+memory usage: 24.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0     -0.044962  1.210300  0.837871  ...  0.492410 -0.036524  0.927011
+1     -0.899949  1.417506  0.234098  ...  0.201077  1.065277 -0.527426
+2      0.210234  0.615278 -0.232967  ...  0.382822 -0.159713  0.429757
+3      1.372308 -0.697183  1.020035  ...  0.162336 -0.034774 -1.017369
+4      0.739356  0.040085 -0.293706  ...  1.367823 -0.883563  0.285353
+...         ...       ...       ...  ...       ...       ...       ...
+507   -1.371079 -0.448472  2.455614  ... -0.899182 -0.836368  0.570578
+508    1.140010 -0.836796  0.169285  ... -1.595744 -0.338076  1.167627
+509    1.632208 -2.034282  0.818088  ...  0.787438 -0.256977  0.896508
+510   -3.195565  1.571081 -0.291694  ...  0.676890  0.663319 -0.701417
+511    0.095037 -0.527445  0.090365  ...  1.243205 -0.948822  0.514737
 
-[512 rows x 11 columns]
+[512 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
