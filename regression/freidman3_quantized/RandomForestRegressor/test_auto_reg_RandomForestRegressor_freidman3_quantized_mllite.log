@@ -500,7 +500,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 12 12
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 2 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'RANDOM_FOREST_REGRESSOR_FIT' 32 32
-('OPERATION_END_ELAPSED', 0.025, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.035, 'TRAINING')
 { ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  , }
 { ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  , }
 {
@@ -13619,7 +13619,7 @@ BEAUTIFIED_JSON_END
  1.2853445  0.7441453  1.3990966  1.03609    1.5102706  1.0977936
  1.3443364  0.09765271 1.3512344  1.3102341  1.5045323  1.537166
  1.5112767  1.3963206  1.0746951  1.5173044 ]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [1.4025403  1.499191   1.3399062  1.3552185  1.3081582  1.4055269
  1.4972439  0.8962026  1.5389996  1.3874812  0.8667537  1.5191083
@@ -13638,11 +13638,11 @@ BEAUTIFIED_JSON_END
  1.2853444  0.744145   1.3990967  1.0360904  1.5102707  1.097794
  1.3443365  0.09765274 1.3512344  1.3102335  1.5045326  1.5371659
  1.511277   1.3963202  1.0746949  1.5173047 ]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': None, 'dataset': 'freidman3_quantized', 'size': 100, 'mse': 0.0035574627, 'mae': 0.03094592, 'mape': 0.067352556, 'r2': 0.9549188332836676}
 WRITING_PERF_CODE 'logs/auto_tests/regression/RandomForestRegressor/mllite.RandomForestRegressor_freidman3_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': None, 'dataset': 'freidman3_quantized', 'training_time_in_sec': 0.025, 'prediction_time_in_sec': 0.002}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': None, 'dataset': 'freidman3_quantized', 'training_time_in_sec': 0.035, 'prediction_time_in_sec': 0.003}
 WRITING_SQL_CODE 'logs/auto_tests/regression/RandomForestRegressor/mllite.RandomForestRegressor_freidman3_quantized.sql'
 
 
@@ -13694,21 +13694,79 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-    X_0  X_1   X_2  X_3  KEY
-0   4.0  3.0   5.0  6.0    0
-1   9.0  9.0  10.0  3.0    1
-2   7.0  2.0   7.0  4.0    2
-3   3.0  2.0   4.0  0.0    3
-4   3.0  4.0   1.0  1.0    4
-..  ...  ...   ...  ...  ...
-95  2.0  6.0   6.0  4.0   95
-96  5.0  8.0   7.0  4.0   96
-97  7.0  9.0   3.0  0.0   97
-98  5.0  3.0   1.0  7.0   98
-99  0.0  0.0   9.0  9.0   99
+<class 'pandas.core.frame.DataFrame'>
+Index: 100 entries, 0 to 99
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     100 non-null    float32
+ 1   X_1     100 non-null    float32
+ 2   X_2     100 non-null    float32
+ 3   X_3     100 non-null    float32
+dtypes: float32(4)
+memory usage: 2.3 KB
+       X_0  X_1   X_2  X_3
+index                     
+0      4.0  3.0   5.0  6.0
+1      9.0  9.0  10.0  3.0
+2      7.0  2.0   7.0  4.0
+3      3.0  2.0   4.0  0.0
+4      3.0  4.0   1.0  1.0
+...    ...  ...   ...  ...
+95     2.0  6.0   6.0  4.0
+96     5.0  8.0   7.0  4.0
+97     7.0  9.0   3.0  0.0
+98     5.0  3.0   1.0  7.0
+99     0.0  0.0   9.0  9.0
 
-[100 rows x 5 columns]
+[100 rows x 4 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      100 non-null    int64  
+ 1   Estimator  100 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 1.7 KB
+    index  Estimator
+0       0   1.402540
+1       1   1.499191
+2       2   1.339907
+3       3   1.355218
+4       4   1.308158
+..    ...        ...
+95     95   1.537166
+96     96   1.511277
+97     97   1.396320
+98     98   1.074695
+99     99   1.517305
+
+[100 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+    index  SQL_Estimator  Py_Estimator
+84     84       1.285344      1.285344
+85     85       0.744145      0.744145
+86     86       1.399097      1.399097
+87     87       1.036090      1.036090
+88     88       1.510271      1.510271
+89     89       1.097794      1.097794
+90     90       1.344336      1.344336
+91     91       0.097653      0.097653
+92     92       1.351234      1.351234
+93     93       1.310234      1.310234
+94     94       1.504533      1.504532
+95     95       1.537166      1.537166
+96     96       1.511277      1.511277
+97     97       1.396320      1.396321
+98     98       1.074695      1.074695
+99     99       1.517305      1.517304
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

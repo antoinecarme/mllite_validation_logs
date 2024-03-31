@@ -57,7 +57,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 31 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 32 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 33 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 34 34
-('OPERATION_END_ELAPSED', 14.809, 'TRAINING')
+('OPERATION_END_ELAPSED', 13.298, 'TRAINING')
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 {
@@ -38333,14 +38333,14 @@ BEAUTIFIED_JSON_START
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
 [265254.4  345913.4  399674.28 ...  87833.33  96914.09 107928.89]
-('OPERATION_END_ELAPSED', 0.085, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.075, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [265254.4  345913.4  399674.28 ...  87833.33  96914.09 107928.89]
-('OPERATION_END_ELAPSED', 0.096, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.067, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'california_housing_quantized', 'size': 20640, 'mse': 3334092000.0, 'mae': 41071.664, 'mape': 0.23195049, 'r2': 0.7496082637009674}
 WRITING_PERF_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_california_housing_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'california_housing_quantized', 'training_time_in_sec': 14.809, 'prediction_time_in_sec': 0.096}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'california_housing_quantized', 'training_time_in_sec': 13.298, 'prediction_time_in_sec': 0.067}
 WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_california_housing_quantized.sql'
 
 
@@ -38391,21 +38391,84 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-       X_0  X_1   X_2  X_3  X_4  X_5  X_6  X_7  X_8    KEY
-0      1.0  8.0   8.0  0.0  0.0  0.0  0.0  9.0  0.0      0
-1      1.0  7.0   3.0  8.0  8.0  8.0  8.0  9.0  0.0      1
-2      1.0  7.0  10.0  2.0  1.0  1.0  1.0  9.0  0.0      2
-3      1.0  7.0  10.0  1.0  1.0  1.0  1.0  8.0  0.0      3
-4      1.0  7.0  10.0  3.0  2.0  1.0  2.0  5.0  0.0      4
-...    ...  ...   ...  ...  ...  ...  ...  ...  ...    ...
-20635  3.0  9.0   4.0  3.0  3.0  2.0  3.0  0.0  0.0  20635
-20636  3.0  9.0   2.0  0.0  0.0  0.0  0.0  2.0  0.0  20636
-20637  3.0  9.0   2.0  5.0  5.0  3.0  5.0  0.0  0.0  20637
-20638  3.0  9.0   2.0  4.0  4.0  2.0  3.0  1.0  0.0  20638
-20639  3.0  9.0   1.0  6.0  7.0  6.0  6.0  2.0  0.0  20639
+<class 'pandas.core.frame.DataFrame'>
+Index: 20640 entries, 0 to 20639
+Data columns (total 9 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     20640 non-null  float32
+ 1   X_1     20640 non-null  float32
+ 2   X_2     20640 non-null  float32
+ 3   X_3     20640 non-null  float32
+ 4   X_4     20640 non-null  float32
+ 5   X_5     20640 non-null  float32
+ 6   X_6     20640 non-null  float32
+ 7   X_7     20640 non-null  float32
+ 8   X_8     20640 non-null  float32
+dtypes: float32(9)
+memory usage: 886.9 KB
+       X_0  X_1   X_2  X_3  X_4  X_5  X_6  X_7  X_8
+index                                              
+0      1.0  8.0   8.0  0.0  0.0  0.0  0.0  9.0  0.0
+1      1.0  7.0   3.0  8.0  8.0  8.0  8.0  9.0  0.0
+2      1.0  7.0  10.0  2.0  1.0  1.0  1.0  9.0  0.0
+3      1.0  7.0  10.0  1.0  1.0  1.0  1.0  8.0  0.0
+4      1.0  7.0  10.0  3.0  2.0  1.0  2.0  5.0  0.0
+...    ...  ...   ...  ...  ...  ...  ...  ...  ...
+20635  3.0  9.0   4.0  3.0  3.0  2.0  3.0  0.0  0.0
+20636  3.0  9.0   2.0  0.0  0.0  0.0  0.0  2.0  0.0
+20637  3.0  9.0   2.0  5.0  5.0  3.0  5.0  0.0  0.0
+20638  3.0  9.0   2.0  4.0  4.0  2.0  3.0  1.0  0.0
+20639  3.0  9.0   1.0  6.0  7.0  6.0  6.0  2.0  0.0
 
-[20640 rows x 10 columns]
+[20640 rows x 9 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      20640 non-null  int64  
+ 1   Estimator  20640 non-null  float64
+dtypes: float64(1), int64(1)
+memory usage: 322.6 KB
+       index      Estimator
+0          0  265254.396493
+1          1  345913.408582
+2          2  399674.317290
+3          3  345932.279424
+4          4  294215.980103
+...      ...            ...
+20635  20635   75643.646952
+20636  20636  115764.847201
+20637  20637   87833.322579
+20638  20638   96914.087441
+20639  20639  107928.864451
+
+[20640 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+       index  SQL_Estimator   Py_Estimator
+20624  20624  119622.010501  119622.039062
+20625  20625  145404.418857  145404.453125
+20626  20626   76839.665918   76839.664062
+20627  20627  124172.880725  124172.906250
+20628  20628  111174.533608  111174.546875
+20629  20629   98870.738842   98870.757812
+20630  20630  124894.475629  124894.507812
+20631  20631  124832.946912  124832.984375
+20632  20632  113717.803693  113717.835938
+20633  20633  102590.614756  102590.625000
+20634  20634  127595.521022  127595.539062
+20635  20635   75643.646952   75643.656250
+20636  20636  115764.847201  115764.867188
+20637  20637   87833.322579   87833.328125
+20638  20638   96914.087441   96914.093750
+20639  20639  107928.864451  107928.890625
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

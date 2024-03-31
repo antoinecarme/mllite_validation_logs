@@ -35,7 +35,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 4 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 5 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 6 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 7 7
-('OPERATION_END_ELAPSED', 0.019, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.012, 'TRAINING')
 { "max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 { "max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 {
@@ -1009,7 +1009,7 @@ BEAUTIFIED_JSON_END
  154.79507  174.60109  102.45817  203.75417   88.75511  138.02226
  257.2365   106.0496    79.400925 212.19272   82.23701  248.54701
  233.02061  215.4768   159.72865  100.29892 ]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [ 98.35618  159.72865   84.96571  188.24893   86.468704 176.92377
  112.74567   79.400925 211.88164  114.336426 108.1655    98.98183
@@ -1026,7 +1026,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'diabetes_small', 'size': 64, 'mse': 1116.3416, 'mae': 26.855797, 'mape': 0.23907891, 'r2': 0.8291376811710496}
 WRITING_PERF_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_diabetes_small_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'diabetes_small', 'training_time_in_sec': 0.019, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'diabetes_small', 'training_time_in_sec': 0.012, 'prediction_time_in_sec': 0.001}
 WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_diabetes_small_option_1.sql'
 
 
@@ -1101,24 +1101,51 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-         X_0       X_1       X_2       X_3  ...       X_7       X_8       X_9  KEY
-0   0.038076  0.050680 -0.009439  0.002351  ...  0.050176 -0.025953  0.106617    0
-1   0.081666  0.050680  0.001339  0.035644  ...  0.034309  0.084492 -0.030072    1
-2   0.041708 -0.044642 -0.008362 -0.026328  ... -0.039493 -0.048359 -0.030072    2
-3  -0.041840 -0.044642  0.128521  0.063187  ... -0.039493 -0.015999 -0.050783    3
-4   0.023546  0.050680 -0.030996 -0.005670  ... -0.002592 -0.074093 -0.034215    4
-..       ...       ...       ...       ...  ...       ...       ...       ...  ...
-59  0.045341  0.050680  0.068163  0.008101  ...  0.071210  0.032432 -0.017646   59
-60 -0.027310  0.050680  0.060618  0.107944  ... -0.002592  0.070207  0.135612   60
-61 -0.001882 -0.044642  0.054152 -0.066506  ...  0.084863  0.084492  0.048628   61
-62  0.045341 -0.044642 -0.006206  0.011544  ... -0.039493  0.042897 -0.038357   62
-63 -0.041840 -0.044642 -0.033151 -0.022885  ... -0.024733 -0.025953 -0.038357   63
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+ 4   X_4     64 non-null     float32
+ 5   X_5     64 non-null     float32
+ 6   X_6     64 non-null     float32
+ 7   X_7     64 non-null     float32
+ 8   X_8     64 non-null     float32
+ 9   X_9     64 non-null     float32
+dtypes: float32(10)
+memory usage: 3.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0      0.038076  0.050680 -0.009439  ...  0.050176 -0.025953  0.106617
+1      0.081666  0.050680  0.001339  ...  0.034309  0.084492 -0.030072
+2      0.041708 -0.044642 -0.008362  ... -0.039493 -0.048359 -0.030072
+3     -0.041840 -0.044642  0.128521  ... -0.039493 -0.015999 -0.050783
+4      0.023546  0.050680 -0.030996  ... -0.002592 -0.074093 -0.034215
+...         ...       ...       ...  ...       ...       ...       ...
+59     0.045341  0.050680  0.068163  ...  0.071210  0.032432 -0.017646
+60    -0.027310  0.050680  0.060618  ... -0.002592  0.070207  0.135612
+61    -0.001882 -0.044642  0.054152  ...  0.084863  0.084492  0.048628
+62     0.045341 -0.044642 -0.006206  ... -0.039493  0.042897 -0.038357
+63    -0.041840 -0.044642 -0.033151  ... -0.024733 -0.025953 -0.038357
 
-[64 rows x 11 columns]
+[64 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      64 non-null     int64  
+ 1   Estimator  64 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 1.1 KB
     index   Estimator
 0       0   98.356180
 1       1  159.728665

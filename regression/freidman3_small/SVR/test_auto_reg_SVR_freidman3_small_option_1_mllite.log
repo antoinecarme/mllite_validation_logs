@@ -38,7 +38,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVR_Global' 108 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVR_Global' 120 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVR_Global' 128 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_REGRESSOR_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.025, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.021, 'TRAINING')
 { "C" : 2,  "max_iter" : 128  , }
 { "C" : 2,  "max_iter" : 128  , }
 {
@@ -202,7 +202,7 @@ BEAUTIFIED_JSON_END
  1.3424307 1.4337277 1.4244915 1.4626982 1.4408758 1.4483399 1.2949353
  1.4101679 1.1764385 1.3591442 1.4052687 1.4492877 1.2403374 1.3596437
  1.3778346]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [1.2730093 1.1337674 1.2345374 1.3782864 1.4036423 1.2788249 1.3692468
  1.1603888 1.137928  1.4955782 1.3633256 1.4678348 1.4308299 1.2749436
@@ -214,11 +214,11 @@ BEAUTIFIED_JSON_END
  1.2885379 1.4743242 1.3797858 1.4267262 1.3739859 1.4738562 1.2497499
  1.4478772 1.1626501 1.3800132 1.4489075 1.4575397 1.2091252 1.2984279
  1.3116974]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'freidman3_small', 'size': 64, 'mse': 0.077200145, 'mae': 0.154936, 'mape': 1.1799257, 'r2': 0.2103766533231166}
 WRITING_PERF_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_freidman3_small_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'freidman3_small', 'training_time_in_sec': 0.025, 'prediction_time_in_sec': 0.002}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'freidman3_small', 'training_time_in_sec': 0.021, 'prediction_time_in_sec': 0.001}
 WRITING_SQL_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_freidman3_small_option_1.sql'
 
 
@@ -281,24 +281,45 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0          X_1       X_2        X_3  KEY
-0   17.761709   423.498322  0.135270  10.148129    0
-1   45.437614   168.841202  0.343817   3.279963    1
-2   69.792320   473.447937  0.233546   3.411072    2
-3   67.667091   938.672607  0.652046   9.523154    3
-4   55.118420  1002.086060  0.726658   4.570618    4
-..        ...          ...       ...        ...  ...
-59  82.923828  1535.997559  0.287537   7.396835   59
-60  17.167280  1104.656250  0.421381   6.591000   60
-61  48.198017   353.104248  0.725143  10.405507   61
-62  17.373148   483.680237  0.685229   2.728044   62
-63   7.321981   487.752838  0.993317   5.340956   63
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+dtypes: float32(4)
+memory usage: 1.5 KB
+             X_0          X_1       X_2        X_3
+index                                             
+0      17.761709   423.498322  0.135270  10.148129
+1      45.437614   168.841202  0.343817   3.279963
+2      69.792320   473.447937  0.233546   3.411072
+3      67.667091   938.672607  0.652046   9.523154
+4      55.118420  1002.086060  0.726658   4.570618
+...          ...          ...       ...        ...
+59     82.923828  1535.997559  0.287537   7.396835
+60     17.167280  1104.656250  0.421381   6.591000
+61     48.198017   353.104248  0.725143  10.405507
+62     17.373148   483.680237  0.685229   2.728044
+63      7.321981   487.752838  0.993317   5.340956
 
-[64 rows x 5 columns]
+[64 rows x 4 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      64 non-null     int64  
+ 1   Estimator  64 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 1.1 KB
     index  Estimator
 0       0   1.273009
 1       1   1.133767

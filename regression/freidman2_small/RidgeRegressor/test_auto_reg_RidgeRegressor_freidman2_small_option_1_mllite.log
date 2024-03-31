@@ -31,7 +31,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_REGRESSOR_FIT' 2 2
-('OPERATION_END_ELAPSED', 0.009, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.005, 'TRAINING')
 { "alpha" : 0.0000001,   , }
 { "alpha" : 0.0000001,   , }
 {
@@ -85,7 +85,7 @@ BEAUTIFIED_JSON_END
   479.93243   259.15988   487.1575    341.6935    349.03854   113.99144
   709.5172     21.480902  742.72656   331.29968   176.58923   607.49915
   508.7128    314.2854    413.27618   646.7242  ]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [-108.10418   -39.688408   27.036678  569.22485   699.87115   -32.271095
   216.67389   242.3119    341.29047  1032.9508    354.56317   767.19806
@@ -102,7 +102,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': '{"alpha" : 0.0000001}', 'dataset': 'freidman2_small', 'size': 64, 'mse': 14051.611, 'mae': 85.09932, 'mape': 0.44302166, 'r2': 0.8804974465954227}
 WRITING_PERF_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman2_small_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': '{"alpha" : 0.0000001}', 'dataset': 'freidman2_small', 'training_time_in_sec': 0.009, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': '{"alpha" : 0.0000001}', 'dataset': 'freidman2_small', 'training_time_in_sec': 0.005, 'prediction_time_in_sec': 0.001}
 WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman2_small_option_1.sql'
 
 
@@ -148,24 +148,45 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0          X_1       X_2        X_3  KEY
-0   17.761709   423.498322  0.135270  10.148129    0
-1   45.437614   168.841202  0.343817   3.279963    1
-2   69.792320   473.447937  0.233546   3.411072    2
-3   67.667091   938.672607  0.652046   9.523154    3
-4   55.118420  1002.086060  0.726658   4.570618    4
-..        ...          ...       ...        ...  ...
-59  82.923828  1535.997559  0.287537   7.396835   59
-60  17.167280  1104.656250  0.421381   6.591000   60
-61  48.198017   353.104248  0.725143  10.405507   61
-62  17.373148   483.680237  0.685229   2.728044   62
-63   7.321981   487.752838  0.993317   5.340956   63
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+dtypes: float32(4)
+memory usage: 1.5 KB
+             X_0          X_1       X_2        X_3
+index                                             
+0      17.761709   423.498322  0.135270  10.148129
+1      45.437614   168.841202  0.343817   3.279963
+2      69.792320   473.447937  0.233546   3.411072
+3      67.667091   938.672607  0.652046   9.523154
+4      55.118420  1002.086060  0.726658   4.570618
+...          ...          ...       ...        ...
+59     82.923828  1535.997559  0.287537   7.396835
+60     17.167280  1104.656250  0.421381   6.591000
+61     48.198017   353.104248  0.725143  10.405507
+62     17.373148   483.680237  0.685229   2.728044
+63      7.321981   487.752838  0.993317   5.340956
 
-[64 rows x 5 columns]
+[64 rows x 4 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      64 non-null     int64  
+ 1   Estimator  64 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 1.1 KB
     index   Estimator
 0       0 -108.104190
 1       1  -39.688404

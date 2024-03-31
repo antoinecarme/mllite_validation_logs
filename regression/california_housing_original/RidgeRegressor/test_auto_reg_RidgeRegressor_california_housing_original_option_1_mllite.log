@@ -36,7 +36,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_REGRESSOR_FIT' 2 2
-('OPERATION_END_ELAPSED', 0.033, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.047, 'TRAINING')
 { "alpha" : 0.0000001,   , }
 { "alpha" : 0.0000001,   , }
 {
@@ -80,14 +80,14 @@ BEAUTIFIED_JSON_START
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
 [407507.4   424028.16  378142.72  ...  26832.45   38953.27   55098.344]
-('OPERATION_END_ELAPSED', 0.004, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.006, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [407507.4   424028.16  378142.72  ...  26832.45   38953.27   55098.344]
-('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.006, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': '{"alpha" : 0.0000001}', 'dataset': 'california_housing_original', 'size': 20640, 'mse': 4864810500.0, 'mae': 51051.0, 'mape': 0.30541262, 'r2': 0.6346506388843227}
 WRITING_PERF_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_california_housing_original_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': '{"alpha" : 0.0000001}', 'dataset': 'california_housing_original', 'training_time_in_sec': 0.033, 'prediction_time_in_sec': 0.003}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': '{"alpha" : 0.0000001}', 'dataset': 'california_housing_original', 'training_time_in_sec': 0.047, 'prediction_time_in_sec': 0.006}
 WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_california_housing_original_option_1.sql'
 
 
@@ -133,24 +133,50 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-              X_0        X_1   X_2     X_3  ...     X_6     X_7  X_8    KEY
-0     -122.230003  37.880001  41.0   880.0  ...   126.0  8.3252  0.0      0
-1     -122.220001  37.860001  21.0  7099.0  ...  1138.0  8.3014  0.0      1
-2     -122.239998  37.849998  52.0  1467.0  ...   177.0  7.2574  0.0      2
-3     -122.250000  37.849998  52.0  1274.0  ...   219.0  5.6431  0.0      3
-4     -122.250000  37.849998  52.0  1627.0  ...   259.0  3.8462  0.0      4
-...           ...        ...   ...     ...  ...     ...     ...  ...    ...
-20635 -121.089996  39.480000  25.0  1665.0  ...   330.0  1.5603  0.0  20635
-20636 -121.209999  39.490002  18.0   697.0  ...   114.0  2.5568  0.0  20636
-20637 -121.220001  39.430000  17.0  2254.0  ...   433.0  1.7000  0.0  20637
-20638 -121.320000  39.430000  18.0  1860.0  ...   349.0  1.8672  0.0  20638
-20639 -121.239998  39.369999  16.0  2785.0  ...   530.0  2.3886  0.0  20639
+<class 'pandas.core.frame.DataFrame'>
+Index: 20640 entries, 0 to 20639
+Data columns (total 9 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     20640 non-null  float32
+ 1   X_1     20640 non-null  float32
+ 2   X_2     20640 non-null  float32
+ 3   X_3     20640 non-null  float32
+ 4   X_4     20640 non-null  float32
+ 5   X_5     20640 non-null  float32
+ 6   X_6     20640 non-null  float32
+ 7   X_7     20640 non-null  float32
+ 8   X_8     20640 non-null  float32
+dtypes: float32(9)
+memory usage: 886.9 KB
+              X_0        X_1   X_2     X_3     X_4     X_5     X_6     X_7  X_8
+index                                                                          
+0     -122.230003  37.880001  41.0   880.0   129.0   322.0   126.0  8.3252  0.0
+1     -122.220001  37.860001  21.0  7099.0  1106.0  2401.0  1138.0  8.3014  0.0
+2     -122.239998  37.849998  52.0  1467.0   190.0   496.0   177.0  7.2574  0.0
+3     -122.250000  37.849998  52.0  1274.0   235.0   558.0   219.0  5.6431  0.0
+4     -122.250000  37.849998  52.0  1627.0   280.0   565.0   259.0  3.8462  0.0
+...           ...        ...   ...     ...     ...     ...     ...     ...  ...
+20635 -121.089996  39.480000  25.0  1665.0   374.0   845.0   330.0  1.5603  0.0
+20636 -121.209999  39.490002  18.0   697.0   150.0   356.0   114.0  2.5568  0.0
+20637 -121.220001  39.430000  17.0  2254.0   485.0  1007.0   433.0  1.7000  0.0
+20638 -121.320000  39.430000  18.0  1860.0   409.0   741.0   349.0  1.8672  0.0
+20639 -121.239998  39.369999  16.0  2785.0   616.0  1387.0   530.0  2.3886  0.0
 
-[20640 rows x 10 columns]
+[20640 rows x 9 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      20640 non-null  int64  
+ 1   Estimator  20640 non-null  float64
+dtypes: float64(1), int64(1)
+memory usage: 322.6 KB
        index      Estimator
 0          0  407507.286069
 1          1  424028.186751

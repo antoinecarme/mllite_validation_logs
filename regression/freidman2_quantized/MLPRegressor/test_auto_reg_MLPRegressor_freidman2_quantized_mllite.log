@@ -37,7 +37,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 27 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 30 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 32 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.03, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.031, 'TRAINING')
 { ,  "max_iter" : 32 , }
 { ,  "max_iter" : 32 , }
 {
@@ -480,7 +480,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': None, 'dataset': 'freidman2_quantized', 'size': 100, 'mse': 307241.22, 'mae': 434.8366, 'mape': 0.9755133, 'r2': -1.5825416286038365}
 WRITING_PERF_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_freidman2_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': None, 'dataset': 'freidman2_quantized', 'training_time_in_sec': 0.03, 'prediction_time_in_sec': 0.002}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': None, 'dataset': 'freidman2_quantized', 'training_time_in_sec': 0.031, 'prediction_time_in_sec': 0.002}
 WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_freidman2_quantized.sql'
 
 
@@ -524,24 +524,45 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-    X_0  X_1   X_2  X_3  KEY
-0   4.0  3.0   5.0  6.0    0
-1   9.0  9.0  10.0  3.0    1
-2   7.0  2.0   7.0  4.0    2
-3   3.0  2.0   4.0  0.0    3
-4   3.0  4.0   1.0  1.0    4
-..  ...  ...   ...  ...  ...
-95  2.0  6.0   6.0  4.0   95
-96  5.0  8.0   7.0  4.0   96
-97  7.0  9.0   3.0  0.0   97
-98  5.0  3.0   1.0  7.0   98
-99  0.0  0.0   9.0  9.0   99
+<class 'pandas.core.frame.DataFrame'>
+Index: 100 entries, 0 to 99
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     100 non-null    float32
+ 1   X_1     100 non-null    float32
+ 2   X_2     100 non-null    float32
+ 3   X_3     100 non-null    float32
+dtypes: float32(4)
+memory usage: 2.3 KB
+       X_0  X_1   X_2  X_3
+index                     
+0      4.0  3.0   5.0  6.0
+1      9.0  9.0  10.0  3.0
+2      7.0  2.0   7.0  4.0
+3      3.0  2.0   4.0  0.0
+4      3.0  4.0   1.0  1.0
+...    ...  ...   ...  ...
+95     2.0  6.0   6.0  4.0
+96     5.0  8.0   7.0  4.0
+97     7.0  9.0   3.0  0.0
+98     5.0  3.0   1.0  7.0
+99     0.0  0.0   9.0  9.0
 
-[100 rows x 5 columns]
+[100 rows x 4 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      100 non-null    int64  
+ 1   Estimator  100 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 1.7 KB
     index  Estimator
 0       0   6.609977
 1       1  10.900760

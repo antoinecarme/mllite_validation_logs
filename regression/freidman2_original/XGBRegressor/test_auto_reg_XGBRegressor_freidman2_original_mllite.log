@@ -57,7 +57,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 31 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 32 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 33 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 34 34
-('OPERATION_END_ELAPSED', 0.141, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.114, 'TRAINING')
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 {
@@ -19429,7 +19429,7 @@ BEAUTIFIED_JSON_END
   152.2637    108.41761   569.2984     62.857574  631.528      75.18377
   238.13664    85.368866  216.05553    86.17097   643.60803   784.85004
  1161.8271    646.0656     96.58298   154.4046  ]
-('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [ 361.6795   1616.1932    391.65903   244.16422   136.91261   211.39156
  1250.0968     99.40441   484.9739    259.8589    113.35683   338.8391
@@ -19452,7 +19452,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'freidman2_original', 'size': 100, 'mse': 8.553263, 'mae': 1.7370026, 'mape': 0.0056132376, 'r2': 0.9999281048370183}
 WRITING_PERF_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_freidman2_original.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'freidman2_original', 'training_time_in_sec': 0.141, 'prediction_time_in_sec': 0.002}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'freidman2_original', 'training_time_in_sec': 0.114, 'prediction_time_in_sec': 0.002}
 WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_freidman2_original.sql'
 
 
@@ -19503,21 +19503,79 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0          X_1       X_2        X_3  KEY
-0   45.688717   609.092529  0.591968   7.449268    0
-1   92.630493  1621.621948  0.997097   3.905369    1
-2   76.131752   526.791992  0.716619   5.202790    2
-3   40.067005   524.247498  0.463251   1.522912    3
-4   34.726295   778.125916  0.167246   2.339115    4
-..        ...          ...       ...        ...  ...
-95  22.116344  1162.774048  0.675740   4.934592   95
-96  59.325420  1558.844604  0.742170   4.222862   96
-97  74.947220  1754.316162  0.366207   1.961987   97
-98  52.067585   534.256165  0.155164   8.526538   98
-99   0.743929   167.010742  0.924844  10.614025   99
+<class 'pandas.core.frame.DataFrame'>
+Index: 100 entries, 0 to 99
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     100 non-null    float32
+ 1   X_1     100 non-null    float32
+ 2   X_2     100 non-null    float32
+ 3   X_3     100 non-null    float32
+dtypes: float32(4)
+memory usage: 2.3 KB
+             X_0          X_1       X_2        X_3
+index                                             
+0      45.688717   609.092529  0.591968   7.449268
+1      92.630493  1621.621948  0.997097   3.905369
+2      76.131752   526.791992  0.716619   5.202790
+3      40.067005   524.247498  0.463251   1.522912
+4      34.726295   778.125916  0.167246   2.339115
+...          ...          ...       ...        ...
+95     22.116344  1162.774048  0.675740   4.934592
+96     59.325420  1558.844604  0.742170   4.222862
+97     74.947220  1754.316162  0.366207   1.961987
+98     52.067585   534.256165  0.155164   8.526538
+99      0.743929   167.010742  0.924844  10.614025
 
-[100 rows x 5 columns]
+[100 rows x 4 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      100 non-null    int64  
+ 1   Estimator  100 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 1.7 KB
+    index    Estimator
+0       0   361.679575
+1       1  1616.193054
+2       2   391.659065
+3       3   244.164197
+4       4   136.912639
+..    ...          ...
+95     95   784.850084
+96     96  1161.826988
+97     97   646.065697
+98     98    96.582964
+99     99   155.283617
+
+[100 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+    index  SQL_Estimator  Py_Estimator
+84     84     152.263715    152.263702
+85     85     108.417611    108.417610
+86     86     569.298277    569.298401
+87     87      62.857566     62.857574
+88     88     631.528102    631.528015
+89     89      75.183801     75.183769
+90     90     238.136632    238.136642
+91     91      73.594969     85.368866
+92     92     216.055568    216.055527
+93     93      65.154732     86.170967
+94     94     643.608016    643.608032
+95     95     784.850084    784.850037
+96     96    1161.826988   1161.827148
+97     97     646.065697    646.065613
+98     98      96.582964     96.582977
+99     99     155.283617    154.404602
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

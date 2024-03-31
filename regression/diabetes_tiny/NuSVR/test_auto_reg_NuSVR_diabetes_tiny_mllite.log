@@ -37,7 +37,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 1 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 2 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 3 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.006, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.011, 'TRAINING')
 { ,  "max_iter" : 128  , }
 { ,  "max_iter" : 128  , }
 {
@@ -142,11 +142,11 @@ BEAUTIFIED_JSON_END
 [142.50095 142.45372 141.35594 142.80289 140.71558 143.59985 141.80536
  140.49603 143.5722  141.03056 140.76141 141.31168 144.08362 140.84717
  140.44548 141.80865]
-('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'diabetes_tiny', 'size': 16, 'mse': 5732.0957, 'mae': 65.47291, 'mape': 0.60528773, 'r2': 0.02544323853902919}
 WRITING_PERF_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_diabetes_tiny.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'diabetes_tiny', 'training_time_in_sec': 0.006, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'diabetes_tiny', 'training_time_in_sec': 0.011, 'prediction_time_in_sec': 0.001}
 WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_diabetes_tiny.sql'
 
 
@@ -201,29 +201,56 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-         X_0       X_1       X_2       X_3  ...       X_7       X_8       X_9  KEY
-0   0.038076  0.050680 -0.009439  0.002351  ...  0.050176 -0.025953  0.106617    0
-1   0.081666  0.050680  0.001339  0.035644  ...  0.034309  0.084492 -0.030072    1
-2   0.041708 -0.044642 -0.008362 -0.026328  ... -0.039493 -0.048359 -0.030072    2
-3  -0.041840 -0.044642  0.128521  0.063187  ... -0.039493 -0.015999 -0.050783    3
-4   0.023546  0.050680 -0.030996 -0.005670  ... -0.002592 -0.074093 -0.034215    4
-5   0.016281  0.050680  0.014272  0.001215  ...  0.034309  0.074966  0.040343    5
-6  -0.009147  0.050680 -0.039618 -0.040099  ...  0.071210  0.017765 -0.067351    6
-7  -0.085430 -0.044642 -0.004050 -0.009113  ... -0.039493 -0.061176 -0.013504    7
-8  -0.001882 -0.044642  0.033673  0.125158  ... -0.002592  0.026717  0.061054    8
-9  -0.070900  0.050680 -0.089197 -0.074527  ... -0.002592 -0.012909 -0.054925    9
-10 -0.052738 -0.044642  0.071397 -0.074527  ... -0.021412 -0.046883  0.003064   10
-11 -0.060003  0.050680  0.015350 -0.019442  ... -0.002592 -0.030748 -0.001078   11
-12  0.009016  0.050680  0.069241  0.059744  ...  0.034309  0.103297  0.073480   12
-13 -0.096328 -0.044642 -0.076264 -0.043542  ... -0.039493 -0.059471 -0.083920   13
-14 -0.060003  0.050680 -0.047163 -0.022885  ... -0.039493 -0.062917 -0.054925   14
-15  0.045341 -0.044642  0.071397  0.001215  ... -0.039493 -0.041176 -0.071494   15
+<class 'pandas.core.frame.DataFrame'>
+Index: 16 entries, 0 to 15
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     16 non-null     float32
+ 1   X_1     16 non-null     float32
+ 2   X_2     16 non-null     float32
+ 3   X_3     16 non-null     float32
+ 4   X_4     16 non-null     float32
+ 5   X_5     16 non-null     float32
+ 6   X_6     16 non-null     float32
+ 7   X_7     16 non-null     float32
+ 8   X_8     16 non-null     float32
+ 9   X_9     16 non-null     float32
+dtypes: float32(10)
+memory usage: 768.0 bytes
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0      0.038076  0.050680 -0.009439  ...  0.050176 -0.025953  0.106617
+1      0.081666  0.050680  0.001339  ...  0.034309  0.084492 -0.030072
+2      0.041708 -0.044642 -0.008362  ... -0.039493 -0.048359 -0.030072
+3     -0.041840 -0.044642  0.128521  ... -0.039493 -0.015999 -0.050783
+4      0.023546  0.050680 -0.030996  ... -0.002592 -0.074093 -0.034215
+5      0.016281  0.050680  0.014272  ...  0.034309  0.074966  0.040343
+6     -0.009147  0.050680 -0.039618  ...  0.071210  0.017765 -0.067351
+7     -0.085430 -0.044642 -0.004050  ... -0.039493 -0.061176 -0.013504
+8     -0.001882 -0.044642  0.033673  ... -0.002592  0.026717  0.061054
+9     -0.070900  0.050680 -0.089197  ... -0.002592 -0.012909 -0.054925
+10    -0.052738 -0.044642  0.071397  ... -0.021412 -0.046883  0.003064
+11    -0.060003  0.050680  0.015350  ... -0.002592 -0.030748 -0.001078
+12     0.009016  0.050680  0.069241  ...  0.034309  0.103297  0.073480
+13    -0.096328 -0.044642 -0.076264  ... -0.039493 -0.059471 -0.083920
+14    -0.060003  0.050680 -0.047163  ... -0.039493 -0.062917 -0.054925
+15     0.045341 -0.044642  0.071397  ... -0.039493 -0.041176 -0.071494
 
-[16 rows x 11 columns]
+[16 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 16 entries, 0 to 15
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      16 non-null     int64  
+ 1   Estimator  16 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 388.0 bytes
     index   Estimator
 0       0  142.500950
 1       1  142.453720

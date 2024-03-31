@@ -74,7 +74,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 2 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'RANDOM_FOREST_REGRESSOR_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.014, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.01, 'TRAINING')
 { "max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  , }
 { "max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  , }
 {
@@ -1262,7 +1262,7 @@ BEAUTIFIED_JSON_END
  15.585805  14.775302  11.757238  21.775623   6.981481  14.708524
   9.192749   6.249093   9.635343  21.500517  11.852568  18.212233
  15.794835  16.772604  11.239225   4.367383 ]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [15.40611   12.623636  17.680838  13.641684  19.24877   19.186304
  16.067823  12.314008  14.185036  16.341793  11.686896  15.693286
@@ -1281,11 +1281,11 @@ BEAUTIFIED_JSON_END
  15.585805  14.775302  11.757238  21.775623   6.981481  14.708524
   9.192749   6.249093   9.635343  21.500517  11.852568  18.212233
  15.794835  16.772604  11.239225   4.3673825]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'freidman1_quantized', 'size': 100, 'mse': 1.8143331, 'mae': 1.0170308, 'mape': 0.089631416, 'r2': 0.924092315478636}
 WRITING_PERF_CODE 'logs/auto_tests/regression/RandomForestRegressor/mllite.RandomForestRegressor_freidman1_quantized_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'freidman1_quantized', 'training_time_in_sec': 0.014, 'prediction_time_in_sec': 0.002}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'freidman1_quantized', 'training_time_in_sec': 0.01, 'prediction_time_in_sec': 0.001}
 WRITING_SQL_CODE 'logs/auto_tests/regression/RandomForestRegressor/mllite.RandomForestRegressor_freidman1_quantized_option_1.sql'
 
 
@@ -1349,24 +1349,51 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-    X_0  X_1  X_2  X_3  X_4  X_5   X_6  X_7  X_8  X_9  KEY
-0   4.0  3.0  5.0  6.0  9.0  8.0  10.0  3.0  7.0  3.0    0
-1   6.0  4.0  4.0  2.0  4.0  0.0   3.0  5.0  1.0  1.0    1
-2   1.0  6.0  1.0  6.0  8.0  8.0   7.0  2.0  6.0  6.0    2
-3   0.0  7.0  0.0  2.0  9.0  4.0   5.0  1.0  7.0  9.0    3
-4   6.0  8.0  0.0  4.0  0.0  3.0   5.0  5.0  6.0  4.0    4
-..  ...  ...  ...  ...  ...  ...   ...  ...  ...  ...  ...
-95  7.0  6.0  8.0  3.0  7.0  4.0   7.0  4.0  3.0  0.0   95
-96  1.0  9.0  2.0  4.0  8.0  5.0   0.0  4.0  6.0  6.0   96
-97  9.0  7.0  4.0  1.0  8.0  9.0   0.0  3.0  2.0  6.0   97
-98  3.0  2.0  4.0  6.0  3.0  4.0   3.0  8.0  4.0  8.0   98
-99  2.0  2.0  2.0  0.0  1.0  7.0   5.0  0.0  7.0  0.0   99
+<class 'pandas.core.frame.DataFrame'>
+Index: 100 entries, 0 to 99
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     100 non-null    float32
+ 1   X_1     100 non-null    float32
+ 2   X_2     100 non-null    float32
+ 3   X_3     100 non-null    float32
+ 4   X_4     100 non-null    float32
+ 5   X_5     100 non-null    float32
+ 6   X_6     100 non-null    float32
+ 7   X_7     100 non-null    float32
+ 8   X_8     100 non-null    float32
+ 9   X_9     100 non-null    float32
+dtypes: float32(10)
+memory usage: 4.7 KB
+       X_0  X_1  X_2  X_3  X_4  X_5   X_6  X_7  X_8  X_9
+index                                                   
+0      4.0  3.0  5.0  6.0  9.0  8.0  10.0  3.0  7.0  3.0
+1      6.0  4.0  4.0  2.0  4.0  0.0   3.0  5.0  1.0  1.0
+2      1.0  6.0  1.0  6.0  8.0  8.0   7.0  2.0  6.0  6.0
+3      0.0  7.0  0.0  2.0  9.0  4.0   5.0  1.0  7.0  9.0
+4      6.0  8.0  0.0  4.0  0.0  3.0   5.0  5.0  6.0  4.0
+...    ...  ...  ...  ...  ...  ...   ...  ...  ...  ...
+95     7.0  6.0  8.0  3.0  7.0  4.0   7.0  4.0  3.0  0.0
+96     1.0  9.0  2.0  4.0  8.0  5.0   0.0  4.0  6.0  6.0
+97     9.0  7.0  4.0  1.0  8.0  9.0   0.0  3.0  2.0  6.0
+98     3.0  2.0  4.0  6.0  3.0  4.0   3.0  8.0  4.0  8.0
+99     2.0  2.0  2.0  0.0  1.0  7.0   5.0  0.0  7.0  0.0
 
-[100 rows x 11 columns]
+[100 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      100 non-null    int64  
+ 1   Estimator  100 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 1.7 KB
     index  Estimator
 0       0  15.406110
 1       1  12.623637

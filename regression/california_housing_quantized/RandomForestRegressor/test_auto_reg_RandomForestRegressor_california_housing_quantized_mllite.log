@@ -536,7 +536,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 12 12
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 2 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'RANDOM_FOREST_REGRESSOR_FIT' 32 32
-('OPERATION_END_ELAPSED', 1.4, 'TRAINING')
+('OPERATION_END_ELAPSED', 1.565, 'TRAINING')
 { ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  , }
 { ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  , }
 {
@@ -14113,14 +14113,14 @@ BEAUTIFIED_JSON_START
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
 [409333.7  419947.06 462981.06 ... 137605.14 137605.14 137605.14]
-('OPERATION_END_ELAPSED', 0.036, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.054, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [409333.7  419947.06 462981.06 ... 137605.14 137605.14 137605.14]
-('OPERATION_END_ELAPSED', 0.026, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.044, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': None, 'dataset': 'california_housing_quantized', 'size': 20640, 'mse': 6533014000.0, 'mae': 61167.906, 'mape': 0.3939906, 'r2': 0.5093678483888402}
 WRITING_PERF_CODE 'logs/auto_tests/regression/RandomForestRegressor/mllite.RandomForestRegressor_california_housing_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': None, 'dataset': 'california_housing_quantized', 'training_time_in_sec': 1.4, 'prediction_time_in_sec': 0.026}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': None, 'dataset': 'california_housing_quantized', 'training_time_in_sec': 1.565, 'prediction_time_in_sec': 0.044}
 WRITING_SQL_CODE 'logs/auto_tests/regression/RandomForestRegressor/mllite.RandomForestRegressor_california_housing_quantized.sql'
 
 
@@ -14172,21 +14172,84 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-       X_0  X_1   X_2  X_3  X_4  X_5  X_6  X_7  X_8    KEY
-0      1.0  8.0   8.0  0.0  0.0  0.0  0.0  9.0  0.0      0
-1      1.0  7.0   3.0  8.0  8.0  8.0  8.0  9.0  0.0      1
-2      1.0  7.0  10.0  2.0  1.0  1.0  1.0  9.0  0.0      2
-3      1.0  7.0  10.0  1.0  1.0  1.0  1.0  8.0  0.0      3
-4      1.0  7.0  10.0  3.0  2.0  1.0  2.0  5.0  0.0      4
-...    ...  ...   ...  ...  ...  ...  ...  ...  ...    ...
-20635  3.0  9.0   4.0  3.0  3.0  2.0  3.0  0.0  0.0  20635
-20636  3.0  9.0   2.0  0.0  0.0  0.0  0.0  2.0  0.0  20636
-20637  3.0  9.0   2.0  5.0  5.0  3.0  5.0  0.0  0.0  20637
-20638  3.0  9.0   2.0  4.0  4.0  2.0  3.0  1.0  0.0  20638
-20639  3.0  9.0   1.0  6.0  7.0  6.0  6.0  2.0  0.0  20639
+<class 'pandas.core.frame.DataFrame'>
+Index: 20640 entries, 0 to 20639
+Data columns (total 9 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     20640 non-null  float32
+ 1   X_1     20640 non-null  float32
+ 2   X_2     20640 non-null  float32
+ 3   X_3     20640 non-null  float32
+ 4   X_4     20640 non-null  float32
+ 5   X_5     20640 non-null  float32
+ 6   X_6     20640 non-null  float32
+ 7   X_7     20640 non-null  float32
+ 8   X_8     20640 non-null  float32
+dtypes: float32(9)
+memory usage: 886.9 KB
+       X_0  X_1   X_2  X_3  X_4  X_5  X_6  X_7  X_8
+index                                              
+0      1.0  8.0   8.0  0.0  0.0  0.0  0.0  9.0  0.0
+1      1.0  7.0   3.0  8.0  8.0  8.0  8.0  9.0  0.0
+2      1.0  7.0  10.0  2.0  1.0  1.0  1.0  9.0  0.0
+3      1.0  7.0  10.0  1.0  1.0  1.0  1.0  8.0  0.0
+4      1.0  7.0  10.0  3.0  2.0  1.0  2.0  5.0  0.0
+...    ...  ...   ...  ...  ...  ...  ...  ...  ...
+20635  3.0  9.0   4.0  3.0  3.0  2.0  3.0  0.0  0.0
+20636  3.0  9.0   2.0  0.0  0.0  0.0  0.0  2.0  0.0
+20637  3.0  9.0   2.0  5.0  5.0  3.0  5.0  0.0  0.0
+20638  3.0  9.0   2.0  4.0  4.0  2.0  3.0  1.0  0.0
+20639  3.0  9.0   1.0  6.0  7.0  6.0  6.0  2.0  0.0
 
-[20640 rows x 10 columns]
+[20640 rows x 9 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      20640 non-null  int64  
+ 1   Estimator  20640 non-null  float64
+dtypes: float64(1), int64(1)
+memory usage: 322.6 KB
+       index      Estimator
+0          0  409333.704102
+1          1  419947.000977
+2          2  462981.039062
+3          3  367500.702148
+4          4  238172.624023
+...      ...            ...
+20635  20635  137605.136963
+20636  20636  137605.136963
+20637  20637  137605.136963
+20638  20638  137605.136963
+20639  20639  137605.136963
+
+[20640 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+       index  SQL_Estimator   Py_Estimator
+20624  20624  139649.024902  139649.031250
+20625  20625  203430.701660  203430.703125
+20626  20626  137605.136963  137605.140625
+20627  20627  139649.024902  139649.031250
+20628  20628  137605.136963  137605.140625
+20629  20629  137605.136963  137605.140625
+20630  20630  203430.701660  203430.703125
+20631  20631  203430.701660  203430.703125
+20632  20632  139649.024902  139649.031250
+20633  20633  137605.136963  137605.140625
+20634  20634  203430.701660  203430.703125
+20635  20635  137605.136963  137605.140625
+20636  20636  137605.136963  137605.140625
+20637  20637  137605.136963  137605.140625
+20638  20638  137605.136963  137605.140625
+20639  20639  137605.136963  137605.140625
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

@@ -30,7 +30,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 12 64
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 64 64
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 2 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.01, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.006, 'TRAINING')
 { ,  "max_leaf_nodes" : 64 , }
 { ,  "max_leaf_nodes" : 64 , }
 {
@@ -477,7 +477,7 @@ BEAUTIFIED_JSON_END
  1.420956   1.4072871  1.5022862  1.4734858  1.5264595  1.4696276
  1.4254164  1.1939577  1.5105835  1.2601366  0.44937    1.3852009
  1.5339323  1.3847374  1.5184256  1.5556848 ]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [1.270144 0.906663 1.007753 1.460687 1.495246 1.009971 1.332255 1.343157
  1.234627 1.552182 1.531204 1.561464 1.499363 1.405051 1.549644 1.07218
@@ -487,11 +487,11 @@ BEAUTIFIED_JSON_END
  1.562383 1.218874 1.280815 1.51357  1.495207 1.309875 1.526895 1.248302
  1.420956 1.407287 1.502286 1.473486 1.526459 1.469628 1.425416 1.193958
  1.510584 1.260137 0.44937  1.385201 1.533932 1.384737 1.518426 1.555685]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'freidman3_small', 'size': 64, 'mse': 0.0, 'mae': 0.0, 'mape': 0.0, 'r2': 1.0}
 WRITING_PERF_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_freidman3_small.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'freidman3_small', 'training_time_in_sec': 0.01, 'prediction_time_in_sec': 0.002}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'freidman3_small', 'training_time_in_sec': 0.006, 'prediction_time_in_sec': 0.001}
 WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_freidman3_small.sql'
 
 
@@ -559,24 +559,45 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0          X_1       X_2        X_3  KEY
-0   17.761709   423.498322  0.135270  10.148129    0
-1   45.437614   168.841202  0.343817   3.279963    1
-2   69.792320   473.447937  0.233546   3.411072    2
-3   67.667091   938.672607  0.652046   9.523154    3
-4   55.118420  1002.086060  0.726658   4.570618    4
-..        ...          ...       ...        ...  ...
-59  82.923828  1535.997559  0.287537   7.396835   59
-60  17.167280  1104.656250  0.421381   6.591000   60
-61  48.198017   353.104248  0.725143  10.405507   61
-62  17.373148   483.680237  0.685229   2.728044   62
-63   7.321981   487.752838  0.993317   5.340956   63
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+dtypes: float32(4)
+memory usage: 1.5 KB
+             X_0          X_1       X_2        X_3
+index                                             
+0      17.761709   423.498322  0.135270  10.148129
+1      45.437614   168.841202  0.343817   3.279963
+2      69.792320   473.447937  0.233546   3.411072
+3      67.667091   938.672607  0.652046   9.523154
+4      55.118420  1002.086060  0.726658   4.570618
+...          ...          ...       ...        ...
+59     82.923828  1535.997559  0.287537   7.396835
+60     17.167280  1104.656250  0.421381   6.591000
+61     48.198017   353.104248  0.725143  10.405507
+62     17.373148   483.680237  0.685229   2.728044
+63      7.321981   487.752838  0.993317   5.340956
 
-[64 rows x 5 columns]
+[64 rows x 4 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      64 non-null     int64  
+ 1   Estimator  64 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 1.1 KB
     index  Estimator
 0       0   1.270144
 1       1   0.906663

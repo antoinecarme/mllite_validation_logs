@@ -79,7 +79,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 2 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'RANDOM_FOREST_REGRESSOR_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.013, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.015, 'TRAINING')
 { "max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  , }
 { "max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  , }
 {
@@ -1290,7 +1290,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'freidman1_medium', 'size': 100, 'mse': 1.6764354, 'mae': 0.981599, 'mape': 0.08525978, 'r2': 0.9298616627009514}
 WRITING_PERF_CODE 'logs/auto_tests/regression/RandomForestRegressor/mllite.RandomForestRegressor_freidman1_medium_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'freidman1_medium', 'training_time_in_sec': 0.013, 'prediction_time_in_sec': 0.002}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "min_weight_fraction_leaf" : 0.02, "max_leaf_nodes" : 32 }', 'dataset': 'freidman1_medium', 'training_time_in_sec': 0.015, 'prediction_time_in_sec': 0.002}
 WRITING_SQL_CODE 'logs/auto_tests/regression/RandomForestRegressor/mllite.RandomForestRegressor_freidman1_medium_option_1.sql'
 
 
@@ -1354,24 +1354,51 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-         X_0       X_1       X_2       X_3  ...       X_7       X_8       X_9  KEY
-0   0.456887  0.295923  0.591968  0.644927  ...  0.290537  0.761317  0.245544    0
-1   0.716619  0.420279  0.400670  0.243987  ...  0.399395  0.167246  0.133911    1
-2   0.140833  0.617769  0.186105  0.667265  ...  0.198079  0.648067  0.563459    2
-3   0.071195  0.704806  0.073220  0.221647  ...  0.139224  0.725143  0.940551    3
-4   0.710411  0.866302  0.056103  0.505545  ...  0.384208  0.666595  0.305953    4
-..       ...       ...       ...       ...  ...       ...       ...       ...  ...
-95  0.759884  0.645603  0.858346  0.414192  ...  0.314409  0.340241  0.086284   95
-96  0.133898  0.993722  0.247951  0.505180  ...  0.342368  0.685693  0.539265   96
-97  0.907576  0.735434  0.379983  0.157810  ...  0.265155  0.264531  0.516615   97
-98  0.368356  0.189593  0.403483  0.670145  ...  0.840440  0.462841  0.813023   98
-99  0.268993  0.202785  0.253928  0.049719  ...  0.076708  0.743187  0.015995   99
+<class 'pandas.core.frame.DataFrame'>
+Index: 100 entries, 0 to 99
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     100 non-null    float32
+ 1   X_1     100 non-null    float32
+ 2   X_2     100 non-null    float32
+ 3   X_3     100 non-null    float32
+ 4   X_4     100 non-null    float32
+ 5   X_5     100 non-null    float32
+ 6   X_6     100 non-null    float32
+ 7   X_7     100 non-null    float32
+ 8   X_8     100 non-null    float32
+ 9   X_9     100 non-null    float32
+dtypes: float32(10)
+memory usage: 4.7 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0      0.456887  0.295923  0.591968  ...  0.290537  0.761317  0.245544
+1      0.716619  0.420279  0.400670  ...  0.399395  0.167246  0.133911
+2      0.140833  0.617769  0.186105  ...  0.198079  0.648067  0.563459
+3      0.071195  0.704806  0.073220  ...  0.139224  0.725143  0.940551
+4      0.710411  0.866302  0.056103  ...  0.384208  0.666595  0.305953
+...         ...       ...       ...  ...       ...       ...       ...
+95     0.759884  0.645603  0.858346  ...  0.314409  0.340241  0.086284
+96     0.133898  0.993722  0.247951  ...  0.342368  0.685693  0.539265
+97     0.907576  0.735434  0.379983  ...  0.265155  0.264531  0.516615
+98     0.368356  0.189593  0.403483  ...  0.840440  0.462841  0.813023
+99     0.268993  0.202785  0.253928  ...  0.076708  0.743187  0.015995
 
-[100 rows x 11 columns]
+[100 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      100 non-null    int64  
+ 1   Estimator  100 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 1.7 KB
     index  Estimator
 0       0  16.553994
 1       1  13.166294

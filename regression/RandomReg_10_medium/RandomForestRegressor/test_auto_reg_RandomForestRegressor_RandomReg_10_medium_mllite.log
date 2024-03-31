@@ -439,7 +439,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 12 12
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 2 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'RANDOM_FOREST_REGRESSOR_FIT' 32 32
-('OPERATION_END_ELAPSED', 0.143, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.205, 'TRAINING')
 { ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  , }
 { ,  "max_depth" : 12, "max_leaf_nodes" : 64, "n_estimators" : 32  , }
 {
@@ -14143,7 +14143,7 @@ BEAUTIFIED_JSON_END
   4.33981895e+01  2.10070896e+00 -2.24396881e+02 -1.36738312e+02
  -1.41293228e+02  6.29870834e+01  1.61015945e+02  1.56696564e+02
   7.40871048e+01  7.73617554e+01  3.19185376e+00 -1.51487900e+02]
-('OPERATION_END_ELAPSED', 0.008, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.011, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [ 1.36665741e+02  1.16605560e+02  2.79215813e+01 -2.71545429e+01
  -2.43488754e+02 -9.86110611e+01 -1.88862274e+02 -3.84186287e+01
@@ -14277,7 +14277,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': None, 'dataset': 'RandomReg_10_medium', 'size': 512, 'mse': 1645.5635, 'mae': 32.973602, 'mape': 0.89444745, 'r2': 0.9399764935252689}
 WRITING_PERF_CODE 'logs/auto_tests/regression/RandomForestRegressor/mllite.RandomForestRegressor_RandomReg_10_medium.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': None, 'dataset': 'RandomReg_10_medium', 'training_time_in_sec': 0.143, 'prediction_time_in_sec': 0.008}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RandomForestRegressor', 'model_name': 'RandomForestRegressor', 'options': None, 'dataset': 'RandomReg_10_medium', 'training_time_in_sec': 0.205, 'prediction_time_in_sec': 0.008}
 WRITING_SQL_CODE 'logs/auto_tests/regression/RandomForestRegressor/mllite.RandomForestRegressor_RandomReg_10_medium.sql'
 
 
@@ -14329,21 +14329,85 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0       X_1       X_2       X_3  ...       X_7       X_8       X_9  KEY
-0   -0.406366  0.195863  2.332328  0.355015  ...  0.515021  0.796803 -0.085546    0
-1    1.116729 -0.779234  0.112861  1.093308  ...  0.440683  1.410749 -0.260525    1
-2    0.056620  1.388059  0.106218  2.474450  ...  0.488660  0.136112 -1.196185    2
-3   -1.297940  0.977779  1.024266 -0.569342  ...  0.029925  2.801809  0.948310    3
-4   -0.442130  1.306160 -1.825507  1.100284  ... -1.279199 -0.018147  0.535711    4
-..        ...       ...       ...       ...  ...       ...       ...       ...  ...
-507  1.872097 -1.084281 -0.822479  1.762635  ...  0.649553  1.052999 -0.641940  507
-508  1.025244 -0.339974  1.301792 -0.127171  ...  0.792111 -0.413903 -0.913350  508
-509  0.532154 -0.480312  0.072516  1.217920  ... -0.445570  1.222674  0.906587  509
-510  1.231428 -1.048304 -0.670183 -0.246466  ...  0.560021 -0.795053  1.729585  510
-511 -1.154770 -1.982372 -0.428635  0.212139  ...  1.138560 -0.455936  0.296664  511
+<class 'pandas.core.frame.DataFrame'>
+Index: 512 entries, 0 to 511
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     512 non-null    float32
+ 1   X_1     512 non-null    float32
+ 2   X_2     512 non-null    float32
+ 3   X_3     512 non-null    float32
+ 4   X_4     512 non-null    float32
+ 5   X_5     512 non-null    float32
+ 6   X_6     512 non-null    float32
+ 7   X_7     512 non-null    float32
+ 8   X_8     512 non-null    float32
+ 9   X_9     512 non-null    float32
+dtypes: float32(10)
+memory usage: 24.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0     -0.406366  0.195863  2.332328  ...  0.515021  0.796803 -0.085546
+1      1.116729 -0.779234  0.112861  ...  0.440683  1.410749 -0.260525
+2      0.056620  1.388059  0.106218  ...  0.488660  0.136112 -1.196185
+3     -1.297940  0.977779  1.024266  ...  0.029925  2.801809  0.948310
+4     -0.442130  1.306160 -1.825507  ... -1.279199 -0.018147  0.535711
+...         ...       ...       ...  ...       ...       ...       ...
+507    1.872097 -1.084281 -0.822479  ...  0.649553  1.052999 -0.641940
+508    1.025244 -0.339974  1.301792  ...  0.792111 -0.413903 -0.913350
+509    0.532154 -0.480312  0.072516  ... -0.445570  1.222674  0.906587
+510    1.231428 -1.048304 -0.670183  ...  0.560021 -0.795053  1.729585
+511   -1.154770 -1.982372 -0.428635  ...  1.138560 -0.455936  0.296664
 
-[512 rows x 11 columns]
+[512 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 512 entries, 0 to 511
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      512 non-null    int64  
+ 1   Estimator  512 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 8.1 KB
+     index   Estimator
+0        0  136.665749
+1        1  116.605545
+2        2   27.921579
+3        3  -27.154543
+4        4 -243.488790
+..     ...         ...
+507    507  156.696560
+508    508   74.087103
+509    509   77.361753
+510    510    3.191853
+511    511 -151.487919
+
+[512 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+     index  SQL_Estimator  Py_Estimator
+496    496    -181.977633   -181.977600
+497    497    -149.023908   -149.023911
+498    498      88.831578     88.831573
+499    499     152.957241    152.957260
+500    500      43.398190     43.398190
+501    501       2.100709      2.100709
+502    502    -224.396892   -224.396881
+503    503    -136.738326   -136.738312
+504    504    -141.293221   -141.293228
+505    505      62.987086     62.987083
+506    506     161.015928    161.015945
+507    507     156.696560    156.696564
+508    508      74.087103     74.087105
+509    509      77.361753     77.361755
+510    510       3.191853      3.191854
+511    511    -151.487919   -151.487900
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END

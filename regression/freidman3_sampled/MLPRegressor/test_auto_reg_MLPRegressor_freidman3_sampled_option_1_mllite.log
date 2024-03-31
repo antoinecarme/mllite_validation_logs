@@ -36,7 +36,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 27 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 30 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 32 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.008, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.006, 'TRAINING')
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 , }
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 , }
 {
@@ -235,11 +235,11 @@ BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
 [-1.8079348  -2.3142397  -1.276382   -0.3358717   1.9574037  -1.8830647
   0.81944895 -3.8271177  -3.6920512   3.3294048   0.9714484   1.9064097 ]
-('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'freidman3_sampled', 'size': 12, 'mse': 7.6443543, 'mae': 2.252178, 'mape': 1.8834769, 'r2': -156.9582046828247}
 WRITING_PERF_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_freidman3_sampled_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'freidman3_sampled', 'training_time_in_sec': 0.007, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'freidman3_sampled', 'training_time_in_sec': 0.006, 'prediction_time_in_sec': 0.0}
 WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_freidman3_sampled_option_1.sql'
 
 
@@ -305,23 +305,44 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0          X_1       X_2        X_3  KEY
-0   17.761709   423.498322  0.135270  10.148129    0
-1   45.437614   168.841202  0.343817   3.279963    1
-2   69.792320   473.447937  0.233546   3.411072    2
-3   67.667091   938.672607  0.652046   9.523154    3
-4   55.118420  1002.086060  0.726658   4.570618    4
-5   52.067585   534.256165  0.155164   8.526538    5
-6   50.992905   814.561340  0.257439   5.994627    6
-7   34.347893   205.928116  0.720020   9.414678    7
-8   63.010204   221.354385  0.814630   5.897069    8
-9   22.605108  1660.837036  0.731124   9.374556    9
-10  13.280704   643.716797  0.520814   4.842079   10
-11   7.606344  1112.226562  0.732761   6.140375   11
+<class 'pandas.core.frame.DataFrame'>
+Index: 12 entries, 0 to 11
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     12 non-null     float32
+ 1   X_1     12 non-null     float32
+ 2   X_2     12 non-null     float32
+ 3   X_3     12 non-null     float32
+dtypes: float32(4)
+memory usage: 288.0 bytes
+             X_0          X_1       X_2        X_3
+index                                             
+0      17.761709   423.498322  0.135270  10.148129
+1      45.437614   168.841202  0.343817   3.279963
+2      69.792320   473.447937  0.233546   3.411072
+3      67.667091   938.672607  0.652046   9.523154
+4      55.118420  1002.086060  0.726658   4.570618
+5      52.067585   534.256165  0.155164   8.526538
+6      50.992905   814.561340  0.257439   5.994627
+7      34.347893   205.928116  0.720020   9.414678
+8      63.010204   221.354385  0.814630   5.897069
+9      22.605108  1660.837036  0.731124   9.374556
+10     13.280704   643.716797  0.520814   4.842079
+11      7.606344  1112.226562  0.732761   6.140375
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 12 entries, 0 to 11
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      12 non-null     int64  
+ 1   Estimator  12 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 324.0 bytes
     index  Estimator
 0       0  -1.807934
 1       1  -2.314239

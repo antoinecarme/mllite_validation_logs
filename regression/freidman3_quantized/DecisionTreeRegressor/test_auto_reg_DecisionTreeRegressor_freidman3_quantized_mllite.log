@@ -28,7 +28,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 0 100
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 100 100
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 2 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.01, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.009, 'TRAINING')
 { ,  "max_leaf_nodes" : 64 , }
 { ,  "max_leaf_nodes" : 64 , }
 {
@@ -500,7 +500,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'freidman3_quantized', 'size': 100, 'mse': 1.9399122e-05, 'mae': 0.0026674438, 'mape': 0.0018472995, 'r2': 0.99975416887067}
 WRITING_PERF_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_freidman3_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'freidman3_quantized', 'training_time_in_sec': 0.01, 'prediction_time_in_sec': 0.002}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'freidman3_quantized', 'training_time_in_sec': 0.009, 'prediction_time_in_sec': 0.002}
 WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_freidman3_quantized.sql'
 
 
@@ -568,24 +568,45 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-    X_0  X_1   X_2  X_3  KEY
-0   4.0  3.0   5.0  6.0    0
-1   9.0  9.0  10.0  3.0    1
-2   7.0  2.0   7.0  4.0    2
-3   3.0  2.0   4.0  0.0    3
-4   3.0  4.0   1.0  1.0    4
-..  ...  ...   ...  ...  ...
-95  2.0  6.0   6.0  4.0   95
-96  5.0  8.0   7.0  4.0   96
-97  7.0  9.0   3.0  0.0   97
-98  5.0  3.0   1.0  7.0   98
-99  0.0  0.0   9.0  9.0   99
+<class 'pandas.core.frame.DataFrame'>
+Index: 100 entries, 0 to 99
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     100 non-null    float32
+ 1   X_1     100 non-null    float32
+ 2   X_2     100 non-null    float32
+ 3   X_3     100 non-null    float32
+dtypes: float32(4)
+memory usage: 2.3 KB
+       X_0  X_1   X_2  X_3
+index                     
+0      4.0  3.0   5.0  6.0
+1      9.0  9.0  10.0  3.0
+2      7.0  2.0   7.0  4.0
+3      3.0  2.0   4.0  0.0
+4      3.0  4.0   1.0  1.0
+...    ...  ...   ...  ...
+95     2.0  6.0   6.0  4.0
+96     5.0  8.0   7.0  4.0
+97     7.0  9.0   3.0  0.0
+98     5.0  3.0   1.0  7.0
+99     0.0  0.0   9.0  9.0
 
-[100 rows x 5 columns]
+[100 rows x 4 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      100 non-null    int64  
+ 1   Estimator  100 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 1.7 KB
     index  Estimator
 0       0   1.444753
 1       1   1.508772

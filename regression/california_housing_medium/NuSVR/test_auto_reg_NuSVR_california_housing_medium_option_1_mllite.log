@@ -40,7 +40,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 72 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 84 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 96 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.077, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.113, 'TRAINING')
 { "nu" : 0.1,  "max_iter" : 128  , }
 { "nu" : 0.1,  "max_iter" : 128  , }
 {
@@ -343,7 +343,7 @@ BEAUTIFIED_JSON_END
  228609.97 228604.19 228597.19 228603.55 228592.2  228598.23 228592.89
  228595.11 228604.58 228602.86 228610.23 228602.3  228610.42 228607.47
  228610.42]
-('OPERATION_END_ELAPSED', 0.008, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.012, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [228602.16 228602.16 228602.16 228602.16 228602.16 228602.16 228602.16
  228602.16 228602.16 228602.16 228602.16 228602.16 228602.16 228602.16
@@ -419,11 +419,11 @@ BEAUTIFIED_JSON_END
  228602.16 228602.16 228602.16 228602.16 228602.16 228602.16 228602.16
  228602.16 228602.16 228602.16 228602.16 228602.16 228602.16 228602.16
  228602.16]
-('OPERATION_END_ELAPSED', 0.008, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.013, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': '{"nu" : 0.1}', 'dataset': 'california_housing_medium', 'size': 512, 'mse': 11489473000.0, 'mae': 93651.61, 'mape': 0.68820345, 'r2': -0.13855150979848663}
 WRITING_PERF_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_california_housing_medium_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': '{"nu" : 0.1}', 'dataset': 'california_housing_medium', 'training_time_in_sec': 0.077, 'prediction_time_in_sec': 0.008}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': '{"nu" : 0.1}', 'dataset': 'california_housing_medium', 'training_time_in_sec': 0.113, 'prediction_time_in_sec': 0.013}
 WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_california_housing_medium_option_1.sql'
 
 
@@ -480,24 +480,50 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-            X_0        X_1   X_2     X_3  ...     X_6      X_7  X_8  KEY
-0   -122.230003  37.880001  41.0   880.0  ...   126.0   8.3252  0.0    0
-1   -122.220001  37.860001  21.0  7099.0  ...  1138.0   8.3014  0.0    1
-2   -122.239998  37.849998  52.0  1467.0  ...   177.0   7.2574  0.0    2
-3   -122.250000  37.849998  52.0  1274.0  ...   219.0   5.6431  0.0    3
-4   -122.250000  37.849998  52.0  1627.0  ...   259.0   3.8462  0.0    4
-..          ...        ...   ...     ...  ...     ...      ...  ...  ...
-507 -122.279999  37.830002  52.0  3108.0  ...   765.0   2.6997  0.0  507
-508 -122.300003  37.840000  14.0  7355.0  ...  2051.0   4.0018  0.0  508
-509 -122.230003  37.830002  52.0  2990.0  ...   361.0   7.8772  0.0  509
-510 -122.220001  37.820000  39.0  2492.0  ...   315.0  11.8603  0.0  510
-511 -122.220001  37.820000  42.0  2991.0  ...   335.0  13.4990  0.0  511
+<class 'pandas.core.frame.DataFrame'>
+Index: 512 entries, 0 to 511
+Data columns (total 9 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     512 non-null    float32
+ 1   X_1     512 non-null    float32
+ 2   X_2     512 non-null    float32
+ 3   X_3     512 non-null    float32
+ 4   X_4     512 non-null    float32
+ 5   X_5     512 non-null    float32
+ 6   X_6     512 non-null    float32
+ 7   X_7     512 non-null    float32
+ 8   X_8     512 non-null    float32
+dtypes: float32(9)
+memory usage: 22.0 KB
+              X_0        X_1   X_2     X_3  ...     X_5     X_6      X_7  X_8
+index                                       ...                              
+0     -122.230003  37.880001  41.0   880.0  ...   322.0   126.0   8.3252  0.0
+1     -122.220001  37.860001  21.0  7099.0  ...  2401.0  1138.0   8.3014  0.0
+2     -122.239998  37.849998  52.0  1467.0  ...   496.0   177.0   7.2574  0.0
+3     -122.250000  37.849998  52.0  1274.0  ...   558.0   219.0   5.6431  0.0
+4     -122.250000  37.849998  52.0  1627.0  ...   565.0   259.0   3.8462  0.0
+...           ...        ...   ...     ...  ...     ...     ...      ...  ...
+507   -122.279999  37.830002  52.0  3108.0  ...  1623.0   765.0   2.6997  0.0
+508   -122.300003  37.840000  14.0  7355.0  ...  3100.0  2051.0   4.0018  0.0
+509   -122.230003  37.830002  52.0  2990.0  ...   947.0   361.0   7.8772  0.0
+510   -122.220001  37.820000  39.0  2492.0  ...   808.0   315.0  11.8603  0.0
+511   -122.220001  37.820000  42.0  2991.0  ...  1018.0   335.0  13.4990  0.0
 
-[512 rows x 10 columns]
+[512 rows x 9 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 512 entries, 0 to 511
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      512 non-null    int64  
+ 1   Estimator  512 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 8.1 KB
      index     Estimator
 0        0  228602.15625
 1        1  228602.15625

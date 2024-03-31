@@ -38,7 +38,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVR_Global' 108 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVR_Global' 120 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVR_Global' 128 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_REGRESSOR_FIT' 4 4
-('OPERATION_END_ELAPSED', 4.735, 'TRAINING')
+('OPERATION_END_ELAPSED', 5.164, 'TRAINING')
 { "C" : 2,  "max_iter" : 128  , }
 { "C" : 2,  "max_iter" : 128  , }
 {
@@ -880,14 +880,14 @@ BEAUTIFIED_JSON_START
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
 [257500.23 257501.02 257500.75 ... 257497.4  257497.52 257497.12]
-('OPERATION_END_ELAPSED', 0.556, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.495, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [257500.23 257501.02 257500.75 ... 257497.4  257497.52 257497.12]
-('OPERATION_END_ELAPSED', 0.52, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.494, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'california_housing_quantized', 'size': 20640, 'mse': 15880113000.0, 'mae': 108261.51, 'mape': 0.8531531, 'r2': -0.1926032665893771}
 WRITING_PERF_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_california_housing_quantized_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'california_housing_quantized', 'training_time_in_sec': 4.735, 'prediction_time_in_sec': 0.52}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'california_housing_quantized', 'training_time_in_sec': 5.164, 'prediction_time_in_sec': 0.494}
 WRITING_SQL_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_california_housing_quantized_option_1.sql'
 
 
@@ -944,24 +944,50 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-       X_0  X_1   X_2  X_3  X_4  X_5  X_6  X_7  X_8    KEY
-0      1.0  8.0   8.0  0.0  0.0  0.0  0.0  9.0  0.0      0
-1      1.0  7.0   3.0  8.0  8.0  8.0  8.0  9.0  0.0      1
-2      1.0  7.0  10.0  2.0  1.0  1.0  1.0  9.0  0.0      2
-3      1.0  7.0  10.0  1.0  1.0  1.0  1.0  8.0  0.0      3
-4      1.0  7.0  10.0  3.0  2.0  1.0  2.0  5.0  0.0      4
-...    ...  ...   ...  ...  ...  ...  ...  ...  ...    ...
-20635  3.0  9.0   4.0  3.0  3.0  2.0  3.0  0.0  0.0  20635
-20636  3.0  9.0   2.0  0.0  0.0  0.0  0.0  2.0  0.0  20636
-20637  3.0  9.0   2.0  5.0  5.0  3.0  5.0  0.0  0.0  20637
-20638  3.0  9.0   2.0  4.0  4.0  2.0  3.0  1.0  0.0  20638
-20639  3.0  9.0   1.0  6.0  7.0  6.0  6.0  2.0  0.0  20639
+<class 'pandas.core.frame.DataFrame'>
+Index: 20640 entries, 0 to 20639
+Data columns (total 9 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     20640 non-null  float32
+ 1   X_1     20640 non-null  float32
+ 2   X_2     20640 non-null  float32
+ 3   X_3     20640 non-null  float32
+ 4   X_4     20640 non-null  float32
+ 5   X_5     20640 non-null  float32
+ 6   X_6     20640 non-null  float32
+ 7   X_7     20640 non-null  float32
+ 8   X_8     20640 non-null  float32
+dtypes: float32(9)
+memory usage: 886.9 KB
+       X_0  X_1   X_2  X_3  X_4  X_5  X_6  X_7  X_8
+index                                              
+0      1.0  8.0   8.0  0.0  0.0  0.0  0.0  9.0  0.0
+1      1.0  7.0   3.0  8.0  8.0  8.0  8.0  9.0  0.0
+2      1.0  7.0  10.0  2.0  1.0  1.0  1.0  9.0  0.0
+3      1.0  7.0  10.0  1.0  1.0  1.0  1.0  8.0  0.0
+4      1.0  7.0  10.0  3.0  2.0  1.0  2.0  5.0  0.0
+...    ...  ...   ...  ...  ...  ...  ...  ...  ...
+20635  3.0  9.0   4.0  3.0  3.0  2.0  3.0  0.0  0.0
+20636  3.0  9.0   2.0  0.0  0.0  0.0  0.0  2.0  0.0
+20637  3.0  9.0   2.0  5.0  5.0  3.0  5.0  0.0  0.0
+20638  3.0  9.0   2.0  4.0  4.0  2.0  3.0  1.0  0.0
+20639  3.0  9.0   1.0  6.0  7.0  6.0  6.0  2.0  0.0
 
-[20640 rows x 10 columns]
+[20640 rows x 9 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      20640 non-null  int64  
+ 1   Estimator  20640 non-null  float64
+dtypes: float64(1), int64(1)
+memory usage: 322.6 KB
        index      Estimator
 0          0  257500.231009
 1          1  257501.008779

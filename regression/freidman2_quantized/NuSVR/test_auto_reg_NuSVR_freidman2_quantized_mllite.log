@@ -31,7 +31,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 24 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 36 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 48 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.017, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.027, 'TRAINING')
 { ,  "max_iter" : 128  , }
 { ,  "max_iter" : 128  , }
 {
@@ -289,11 +289,11 @@ BEAUTIFIED_JSON_END
  388.55792 389.67496 397.96347 387.72397 399.03537 387.25015 390.74515
  390.1963  389.4855  387.2153  398.50162 402.62674 405.69565 397.5897
  387.351   393.15115]
-('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'freidman2_quantized', 'size': 100, 'mse': 118194.05, 'mae': 258.70255, 'mape': 1.0770717, 'r2': 0.006509988929794153}
 WRITING_PERF_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman2_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'freidman2_quantized', 'training_time_in_sec': 0.016, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'freidman2_quantized', 'training_time_in_sec': 0.027, 'prediction_time_in_sec': 0.002}
 WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman2_quantized.sql'
 
 
@@ -356,24 +356,45 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-    X_0  X_1   X_2  X_3  KEY
-0   4.0  3.0   5.0  6.0    0
-1   9.0  9.0  10.0  3.0    1
-2   7.0  2.0   7.0  4.0    2
-3   3.0  2.0   4.0  0.0    3
-4   3.0  4.0   1.0  1.0    4
-..  ...  ...   ...  ...  ...
-95  2.0  6.0   6.0  4.0   95
-96  5.0  8.0   7.0  4.0   96
-97  7.0  9.0   3.0  0.0   97
-98  5.0  3.0   1.0  7.0   98
-99  0.0  0.0   9.0  9.0   99
+<class 'pandas.core.frame.DataFrame'>
+Index: 100 entries, 0 to 99
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     100 non-null    float32
+ 1   X_1     100 non-null    float32
+ 2   X_2     100 non-null    float32
+ 3   X_3     100 non-null    float32
+dtypes: float32(4)
+memory usage: 2.3 KB
+       X_0  X_1   X_2  X_3
+index                     
+0      4.0  3.0   5.0  6.0
+1      9.0  9.0  10.0  3.0
+2      7.0  2.0   7.0  4.0
+3      3.0  2.0   4.0  0.0
+4      3.0  4.0   1.0  1.0
+...    ...  ...   ...  ...
+95     2.0  6.0   6.0  4.0
+96     5.0  8.0   7.0  4.0
+97     7.0  9.0   3.0  0.0
+98     5.0  3.0   1.0  7.0
+99     0.0  0.0   9.0  9.0
 
-[100 rows x 5 columns]
+[100 rows x 4 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      100 non-null    int64  
+ 1   Estimator  100 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 1.7 KB
     index   Estimator
 0       0  393.990513
 1       1  400.383715

@@ -38,7 +38,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVR_Global' 108 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVR_Global' 120 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVR_Global' 128 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_REGRESSOR_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.028, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.036, 'TRAINING')
 { "C" : 2,  "max_iter" : 128  , }
 { "C" : 2,  "max_iter" : 128  , }
 {
@@ -233,7 +233,7 @@ BEAUTIFIED_JSON_END
  1.1813129  0.5546022  1.32796    1.2894075  1.5703347  1.0055984
  1.3130558  0.15651822 1.2305534  1.242802   1.4598792  1.6139697
  1.5701575  1.3563337  1.0226402  1.466431  ]
-('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [1.4310253  1.4136579  1.3168106  1.307155   1.2481208  1.4036328
  1.531194   0.95576215 1.5124876  1.375843   0.98390174 1.5304401
@@ -252,11 +252,11 @@ BEAUTIFIED_JSON_END
  1.18131    0.5546016  1.3279604  1.2894063  1.570338   1.0055999
  1.3130561  0.15652049 1.2305524  1.2428031  1.4598811  1.6139736
  1.5701612  1.3563316  1.0226407  1.4664322 ]
-('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'freidman3_quantized', 'size': 100, 'mse': 0.0067631984, 'mae': 0.067120396, 'mape': 0.13080977, 'r2': 0.9142948481960071}
 WRITING_PERF_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_freidman3_quantized_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'freidman3_quantized', 'training_time_in_sec': 0.028, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'freidman3_quantized', 'training_time_in_sec': 0.036, 'prediction_time_in_sec': 0.002}
 WRITING_SQL_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_freidman3_quantized_option_1.sql'
 
 
@@ -320,24 +320,45 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-    X_0  X_1   X_2  X_3  KEY
-0   4.0  3.0   5.0  6.0    0
-1   9.0  9.0  10.0  3.0    1
-2   7.0  2.0   7.0  4.0    2
-3   3.0  2.0   4.0  0.0    3
-4   3.0  4.0   1.0  1.0    4
-..  ...  ...   ...  ...  ...
-95  2.0  6.0   6.0  4.0   95
-96  5.0  8.0   7.0  4.0   96
-97  7.0  9.0   3.0  0.0   97
-98  5.0  3.0   1.0  7.0   98
-99  0.0  0.0   9.0  9.0   99
+<class 'pandas.core.frame.DataFrame'>
+Index: 100 entries, 0 to 99
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     100 non-null    float32
+ 1   X_1     100 non-null    float32
+ 2   X_2     100 non-null    float32
+ 3   X_3     100 non-null    float32
+dtypes: float32(4)
+memory usage: 2.3 KB
+       X_0  X_1   X_2  X_3
+index                     
+0      4.0  3.0   5.0  6.0
+1      9.0  9.0  10.0  3.0
+2      7.0  2.0   7.0  4.0
+3      3.0  2.0   4.0  0.0
+4      3.0  4.0   1.0  1.0
+...    ...  ...   ...  ...
+95     2.0  6.0   6.0  4.0
+96     5.0  8.0   7.0  4.0
+97     7.0  9.0   3.0  0.0
+98     5.0  3.0   1.0  7.0
+99     0.0  0.0   9.0  9.0
 
-[100 rows x 5 columns]
+[100 rows x 4 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      100 non-null    int64  
+ 1   Estimator  100 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 1.7 KB
     index  Estimator
 0       0   1.431025
 1       1   1.413658

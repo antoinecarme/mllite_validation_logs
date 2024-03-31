@@ -28,7 +28,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 0 1024
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 1024 1024
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 2 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.012, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.015, 'TRAINING')
 { ,  "max_leaf_nodes" : 64 , }
 { ,  "max_leaf_nodes" : 64 , }
 {
@@ -473,7 +473,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'RandomReg_10_quantized', 'size': 1024, 'mse': 5808.168, 'mae': 58.17389, 'mape': 1.863037, 'r2': 0.7656222297814137}
 WRITING_PERF_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_RandomReg_10_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'RandomReg_10_quantized', 'training_time_in_sec': 0.012, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'RandomReg_10_quantized', 'training_time_in_sec': 0.015, 'prediction_time_in_sec': 0.001}
 WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_RandomReg_10_quantized.sql'
 
 
@@ -539,24 +539,51 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-      X_0  X_1  X_2  X_3  X_4  X_5  X_6  X_7  X_8  X_9   KEY
-0     3.0  5.0  9.0  6.0  5.0  5.0  5.0  6.0  8.0  4.0     0
-1     8.0  2.0  5.0  8.0  3.0  8.0  5.0  6.0  8.0  4.0     1
-2     5.0  9.0  5.0  9.0  4.0  2.0  3.0  6.0  5.0  1.0     2
-3     1.0  8.0  8.0  3.0  7.0  0.0  2.0  5.0  9.0  8.0     3
-4     3.0  8.0  0.0  8.0  1.0  2.0  1.0  1.0  5.0  6.0     4
-...   ...  ...  ...  ...  ...  ...  ...  ...  ...  ...   ...
-1019  6.0  3.0  1.0  1.0  9.0  8.0  7.0  2.0  8.0  2.0  1019
-1020  8.0  4.0  3.0  6.0  4.0  0.0  7.0  3.0  3.0  8.0  1020
-1021  1.0  4.0  9.0  9.0  1.0  9.0  7.0  8.0  5.0  2.0  1021
-1022  4.0  5.0  8.0  1.0  8.0  5.0  3.0  7.0  3.0  8.0  1022
-1023  2.0  6.0  4.0  1.0  1.0  4.0  7.0  2.0  4.0  6.0  1023
+<class 'pandas.core.frame.DataFrame'>
+Index: 1024 entries, 0 to 1023
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     1024 non-null   float32
+ 1   X_1     1024 non-null   float32
+ 2   X_2     1024 non-null   float32
+ 3   X_3     1024 non-null   float32
+ 4   X_4     1024 non-null   float32
+ 5   X_5     1024 non-null   float32
+ 6   X_6     1024 non-null   float32
+ 7   X_7     1024 non-null   float32
+ 8   X_8     1024 non-null   float32
+ 9   X_9     1024 non-null   float32
+dtypes: float32(10)
+memory usage: 48.0 KB
+       X_0  X_1  X_2  X_3  X_4  X_5  X_6  X_7  X_8  X_9
+index                                                  
+0      3.0  5.0  9.0  6.0  5.0  5.0  5.0  6.0  8.0  4.0
+1      8.0  2.0  5.0  8.0  3.0  8.0  5.0  6.0  8.0  4.0
+2      5.0  9.0  5.0  9.0  4.0  2.0  3.0  6.0  5.0  1.0
+3      1.0  8.0  8.0  3.0  7.0  0.0  2.0  5.0  9.0  8.0
+4      3.0  8.0  0.0  8.0  1.0  2.0  1.0  1.0  5.0  6.0
+...    ...  ...  ...  ...  ...  ...  ...  ...  ...  ...
+1019   6.0  3.0  1.0  1.0  9.0  8.0  7.0  2.0  8.0  2.0
+1020   8.0  4.0  3.0  6.0  4.0  0.0  7.0  3.0  3.0  8.0
+1021   1.0  4.0  9.0  9.0  1.0  9.0  7.0  8.0  5.0  2.0
+1022   4.0  5.0  8.0  1.0  8.0  5.0  3.0  7.0  3.0  8.0
+1023   2.0  6.0  4.0  1.0  1.0  4.0  7.0  2.0  4.0  6.0
 
-[1024 rows x 11 columns]
+[1024 rows x 10 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1024 entries, 0 to 1023
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      1024 non-null   int64  
+ 1   Estimator  1024 non-null   float64
+dtypes: float64(1), int64(1)
+memory usage: 16.1 KB
       index   Estimator
 0         0    3.067247
 1         1  188.158447

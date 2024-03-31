@@ -26,7 +26,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 1 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 2 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 3 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.005, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.009, 'TRAINING')
 { "nu" : 0.1,  "max_iter" : 128  , }
 { "nu" : 0.1,  "max_iter" : 128  , }
 {
@@ -107,7 +107,7 @@ BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
 [636.6635  636.71246 636.67755 637.0932  637.1782  636.6992  636.937
  636.69556 636.6914  637.80194 636.7673  637.3282 ]
-('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [636.6608  636.71356 636.6746  637.09216 637.1778  636.696   636.9348
  636.6959  636.6916  637.8046  636.76404 637.3289 ]
@@ -115,7 +115,7 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': '{"nu" : 0.1}', 'dataset': 'freidman2_sampled', 'size': 12, 'mse': 189210.75, 'mae': 392.14462, 'mape': 2.9871988, 'r2': -0.4957968227808387}
 WRITING_PERF_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman2_sampled_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': '{"nu" : 0.1}', 'dataset': 'freidman2_sampled', 'training_time_in_sec': 0.005, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': '{"nu" : 0.1}', 'dataset': 'freidman2_sampled', 'training_time_in_sec': 0.009, 'prediction_time_in_sec': 0.0}
 WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman2_sampled_option_1.sql'
 
 
@@ -186,23 +186,44 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0          X_1       X_2        X_3  KEY
-0   17.761709   423.498322  0.135270  10.148129    0
-1   45.437614   168.841202  0.343817   3.279963    1
-2   69.792320   473.447937  0.233546   3.411072    2
-3   67.667091   938.672607  0.652046   9.523154    3
-4   55.118420  1002.086060  0.726658   4.570618    4
-5   52.067585   534.256165  0.155164   8.526538    5
-6   50.992905   814.561340  0.257439   5.994627    6
-7   34.347893   205.928116  0.720020   9.414678    7
-8   63.010204   221.354385  0.814630   5.897069    8
-9   22.605108  1660.837036  0.731124   9.374556    9
-10  13.280704   643.716797  0.520814   4.842079   10
-11   7.606344  1112.226562  0.732761   6.140375   11
+<class 'pandas.core.frame.DataFrame'>
+Index: 12 entries, 0 to 11
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     12 non-null     float32
+ 1   X_1     12 non-null     float32
+ 2   X_2     12 non-null     float32
+ 3   X_3     12 non-null     float32
+dtypes: float32(4)
+memory usage: 288.0 bytes
+             X_0          X_1       X_2        X_3
+index                                             
+0      17.761709   423.498322  0.135270  10.148129
+1      45.437614   168.841202  0.343817   3.279963
+2      69.792320   473.447937  0.233546   3.411072
+3      67.667091   938.672607  0.652046   9.523154
+4      55.118420  1002.086060  0.726658   4.570618
+5      52.067585   534.256165  0.155164   8.526538
+6      50.992905   814.561340  0.257439   5.994627
+7      34.347893   205.928116  0.720020   9.414678
+8      63.010204   221.354385  0.814630   5.897069
+9      22.605108  1660.837036  0.731124   9.374556
+10     13.280704   643.716797  0.520814   4.842079
+11      7.606344  1112.226562  0.732761   6.140375
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 12 entries, 0 to 11
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      12 non-null     int64  
+ 1   Estimator  12 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 324.0 bytes
     index   Estimator
 0       0  636.660802
 1       1  636.713553

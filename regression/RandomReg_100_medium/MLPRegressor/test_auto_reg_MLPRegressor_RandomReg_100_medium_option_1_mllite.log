@@ -117,7 +117,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 27 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 30 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 32 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.122, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.072, 'TRAINING')
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 , }
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 , }
 {
@@ -726,7 +726,7 @@ BEAUTIFIED_JSON_END
  -1.24954760e-01 -1.55546516e-01 -1.01753819e+00  4.64007944e-01
  -5.04568219e-01 -5.48075736e-02 -6.40271485e-01 -5.86423516e-01
  -5.67849874e-02 -2.01476192e+00 -4.63295668e-01 -3.51626825e+00]
-('OPERATION_END_ELAPSED', 0.011, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.007, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [-1.48878086e+00 -2.04749584e+00 -7.93683171e-01 -1.27087831e-01
  -6.12217784e-02 -1.12974036e+00 -2.03221226e+00 -1.51116216e+00
@@ -856,11 +856,11 @@ BEAUTIFIED_JSON_END
  -1.24955267e-01 -1.55542374e-01 -1.01753438e+00  4.64009047e-01
  -5.04566789e-01 -5.48086464e-02 -6.40270948e-01 -5.86425304e-01
  -5.67843914e-02 -2.01476288e+00 -4.63294953e-01 -3.51626587e+00]
-('OPERATION_END_ELAPSED', 0.011, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.007, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'RandomReg_100_medium', 'size': 512, 'mse': 26171.693, 'mae': 126.53566, 'mape': 1.0060833, 'r2': 0.0057279925081518135}
 WRITING_PERF_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_RandomReg_100_medium_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'RandomReg_100_medium', 'training_time_in_sec': 0.122, 'prediction_time_in_sec': 0.011}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'RandomReg_100_medium', 'training_time_in_sec': 0.072, 'prediction_time_in_sec': 0.007}
 WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_RandomReg_100_medium_option_1.sql'
 
 
@@ -902,24 +902,141 @@ SQL_OUT_PUT_LAST_LINES_END
 
 
 COPY_TRAINING_DATA_TO_SQLITE_START
-          X_0       X_1       X_2       X_3  ...      X_97      X_98      X_99  KEY
-0    1.331256 -0.890219  0.415263  0.788659  ...  0.066743 -1.017662  0.850023    0
-1    0.101475  1.673349  0.646130 -1.256337  ... -0.967804 -0.082562 -0.235254    1
-2    1.143388 -0.121749  1.763748  0.156773  ... -0.006825 -1.210605  0.186911    2
-3   -0.664377  0.702461 -2.030148 -2.034261  ...  1.036630 -1.509694  1.665004    3
-4   -0.183233  0.167641 -1.018050 -1.111411  ...  0.131021 -0.518277 -0.467736    4
-..        ...       ...       ...       ...  ...       ...       ...       ...  ...
-507 -0.085407  0.635354 -0.165095 -0.279844  ...  0.566512 -0.632373 -2.073853  507
-508  0.689048 -0.025340 -0.142676  0.144971  ... -0.129965 -0.697890  0.794571  508
-509 -0.929089 -0.892634  1.709303 -0.132919  ...  1.169236 -2.478970 -0.503891  509
-510  1.078776 -0.630185  0.944048 -1.178004  ... -0.346390 -0.233485 -0.721341  510
-511  0.057106  0.428869 -0.742754  1.312099  ... -0.777635 -0.139843 -0.534295  511
+<class 'pandas.core.frame.DataFrame'>
+Index: 512 entries, 0 to 511
+Data columns (total 100 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     512 non-null    float32
+ 1   X_1     512 non-null    float32
+ 2   X_2     512 non-null    float32
+ 3   X_3     512 non-null    float32
+ 4   X_4     512 non-null    float32
+ 5   X_5     512 non-null    float32
+ 6   X_6     512 non-null    float32
+ 7   X_7     512 non-null    float32
+ 8   X_8     512 non-null    float32
+ 9   X_9     512 non-null    float32
+ 10  X_10    512 non-null    float32
+ 11  X_11    512 non-null    float32
+ 12  X_12    512 non-null    float32
+ 13  X_13    512 non-null    float32
+ 14  X_14    512 non-null    float32
+ 15  X_15    512 non-null    float32
+ 16  X_16    512 non-null    float32
+ 17  X_17    512 non-null    float32
+ 18  X_18    512 non-null    float32
+ 19  X_19    512 non-null    float32
+ 20  X_20    512 non-null    float32
+ 21  X_21    512 non-null    float32
+ 22  X_22    512 non-null    float32
+ 23  X_23    512 non-null    float32
+ 24  X_24    512 non-null    float32
+ 25  X_25    512 non-null    float32
+ 26  X_26    512 non-null    float32
+ 27  X_27    512 non-null    float32
+ 28  X_28    512 non-null    float32
+ 29  X_29    512 non-null    float32
+ 30  X_30    512 non-null    float32
+ 31  X_31    512 non-null    float32
+ 32  X_32    512 non-null    float32
+ 33  X_33    512 non-null    float32
+ 34  X_34    512 non-null    float32
+ 35  X_35    512 non-null    float32
+ 36  X_36    512 non-null    float32
+ 37  X_37    512 non-null    float32
+ 38  X_38    512 non-null    float32
+ 39  X_39    512 non-null    float32
+ 40  X_40    512 non-null    float32
+ 41  X_41    512 non-null    float32
+ 42  X_42    512 non-null    float32
+ 43  X_43    512 non-null    float32
+ 44  X_44    512 non-null    float32
+ 45  X_45    512 non-null    float32
+ 46  X_46    512 non-null    float32
+ 47  X_47    512 non-null    float32
+ 48  X_48    512 non-null    float32
+ 49  X_49    512 non-null    float32
+ 50  X_50    512 non-null    float32
+ 51  X_51    512 non-null    float32
+ 52  X_52    512 non-null    float32
+ 53  X_53    512 non-null    float32
+ 54  X_54    512 non-null    float32
+ 55  X_55    512 non-null    float32
+ 56  X_56    512 non-null    float32
+ 57  X_57    512 non-null    float32
+ 58  X_58    512 non-null    float32
+ 59  X_59    512 non-null    float32
+ 60  X_60    512 non-null    float32
+ 61  X_61    512 non-null    float32
+ 62  X_62    512 non-null    float32
+ 63  X_63    512 non-null    float32
+ 64  X_64    512 non-null    float32
+ 65  X_65    512 non-null    float32
+ 66  X_66    512 non-null    float32
+ 67  X_67    512 non-null    float32
+ 68  X_68    512 non-null    float32
+ 69  X_69    512 non-null    float32
+ 70  X_70    512 non-null    float32
+ 71  X_71    512 non-null    float32
+ 72  X_72    512 non-null    float32
+ 73  X_73    512 non-null    float32
+ 74  X_74    512 non-null    float32
+ 75  X_75    512 non-null    float32
+ 76  X_76    512 non-null    float32
+ 77  X_77    512 non-null    float32
+ 78  X_78    512 non-null    float32
+ 79  X_79    512 non-null    float32
+ 80  X_80    512 non-null    float32
+ 81  X_81    512 non-null    float32
+ 82  X_82    512 non-null    float32
+ 83  X_83    512 non-null    float32
+ 84  X_84    512 non-null    float32
+ 85  X_85    512 non-null    float32
+ 86  X_86    512 non-null    float32
+ 87  X_87    512 non-null    float32
+ 88  X_88    512 non-null    float32
+ 89  X_89    512 non-null    float32
+ 90  X_90    512 non-null    float32
+ 91  X_91    512 non-null    float32
+ 92  X_92    512 non-null    float32
+ 93  X_93    512 non-null    float32
+ 94  X_94    512 non-null    float32
+ 95  X_95    512 non-null    float32
+ 96  X_96    512 non-null    float32
+ 97  X_97    512 non-null    float32
+ 98  X_98    512 non-null    float32
+ 99  X_99    512 non-null    float32
+dtypes: float32(100)
+memory usage: 204.0 KB
+            X_0       X_1       X_2  ...      X_97      X_98      X_99
+index                                ...                              
+0      1.331256 -0.890219  0.415263  ...  0.066743 -1.017662  0.850023
+1      0.101475  1.673349  0.646130  ... -0.967804 -0.082562 -0.235254
+2      1.143388 -0.121749  1.763748  ... -0.006825 -1.210605  0.186911
+3     -0.664377  0.702461 -2.030148  ...  1.036630 -1.509694  1.665004
+4     -0.183233  0.167641 -1.018050  ...  0.131021 -0.518277 -0.467736
+...         ...       ...       ...  ...       ...       ...       ...
+507   -0.085407  0.635354 -0.165095  ...  0.566512 -0.632373 -2.073853
+508    0.689048 -0.025340 -0.142676  ... -0.129965 -0.697890  0.794571
+509   -0.929089 -0.892634  1.709303  ...  1.169236 -2.478970 -0.503891
+510    1.078776 -0.630185  0.944048  ... -0.346390 -0.233485 -0.721341
+511    0.057106  0.428869 -0.742754  ... -0.777635 -0.139843 -0.534295
 
-[512 rows x 101 columns]
+[512 rows x 100 columns]
 COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 512 entries, 0 to 511
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      512 non-null    int64  
+ 1   Estimator  512 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 8.1 KB
      index  Estimator
 0        0  -1.488781
 1        1  -2.047496
