@@ -470,11 +470,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVC_Global_BINARY_2_3' 108 1
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVC_Global_BINARY_2_3' 120 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:SVC_Global_BINARY_2_3' 128 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.815, 'TRAINING')
+('OPERATION_END_ELAPSED', 1.216, 'TRAINING')
 { ,  "max_iter" : 128  }
 { ,  "max_iter" : 128  }
 {
-	"metadata" : { "model" : "Vapnik_SVC_RBF", "version" : "2024-W12", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Vapnik_SVC_RBF", "version" : "2024-W13", "signature" : "ff4_il8"},
 	"options" : {"svm_type" : "c_svc", "kernel" : "rbf", "degree" : 3, "gamma" : 0.051649, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 1, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 512, "dataset_features" : 10 },
 	"classes" : [ 0, 1, 2, 3 ],
@@ -908,7 +908,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING SVC { ,  "max_iter" : 128  }
 MLLITE_MODEL_JSON_AFTER_SETTING SVC None
 MLLITE_RELOADING_MODEL mllite_svm_class.SVC_ff4_il8
 {
-	"metadata" : { "model" : "Vapnik_SVC_RBF", "version" : "2024-W12", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Vapnik_SVC_RBF", "version" : "2024-W13", "signature" : "ff4_il8"},
 	"options" : {"svm_type" : "c_svc", "kernel" : "rbf", "degree" : 3, "gamma" : 0.051649, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 1, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 512, "dataset_features" : 10 },
 	"classes" : [ 0, 1, 2, 3 ],
@@ -1341,7 +1341,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 10,
 		"dataset_rows" : 512
 	},
-	"metadata" :  { "model" : "Vapnik_SVC_RBF", "signature" : "ff4_il8", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Vapnik_SVC_RBF", "signature" : "ff4_il8", "version" : "2024-W13" },
 	"options" :  { "C" : 1.0, "cache_size" : 300, "coef0" : 0.0, "degree" : 3, "epsilon" : 0.0, "gamma" : 0.051649, "kernel" : "rbf", "max_iter" : 128, "nu" : 0.5, "probability" : 1, "random_state" : 1789, "shrinking" : 0, "svm_type" : "c_svc", "tol" : 0.001 },
 	"svm_model" : 	{
 		"L" : 405,
@@ -1767,9 +1767,9 @@ BEAUTIFIED_JSON_START
 }
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.016, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.024, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.02, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.025, 'PREDICT')
 [[0.1302 0.308  0.289  0.2728]
  [0.2731 0.203  0.2139 0.31  ]
  [0.0087 0.0026 0.0479 0.9408]
@@ -1782,36 +1782,35 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': None, 'dataset': 'FourClass_10_medium', 'size': 512, 'accuracy': 0.837890625, 'auc': 0.44434829479430116}
 WRITING_PERF_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_FourClass_10_medium.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': None, 'dataset': 'FourClass_10_medium', 'training_time_in_sec': 0.815, 'prediction_time_in_sec': 0.02}
-WRITING_SQL_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_FourClass_10_medium.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': None, 'dataset': 'FourClass_10_medium', 'training_time_in_sec': 1.216, 'prediction_time_in_sec': 0.025}
+WRITING_SQL_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_FourClass_10_medium_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('FourClass_10_medium', 'SVC', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
   FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- )
-,
+ ),
 "SV_data" AS
  ( SELECT 
-   "Values".sv_idx AS sv_idx,
-   CAST("Values".sv_0 AS FLOAT) sv_0,
-   CAST("Values".sv_1 AS FLOAT) sv_1,
-   CAST("Values".sv_2 AS FLOAT) sv_2,
-   CAST("Values".sv_3 AS FLOAT) sv_3,
-   CAST("Values".sv_4 AS FLOAT) sv_4,
-   CAST("Values".sv_5 AS FLOAT) sv_5,
-   CAST("Values".sv_6 AS FLOAT) sv_6,
-   CAST("Values".sv_7 AS FLOAT) sv_7,
-   CAST("Values".sv_8 AS FLOAT) sv_8,
-   CAST("Values".sv_9 AS FLOAT) sv_9
+   "Values"."sv_idx" AS "sv_idx",
+   CAST("Values"."sv_0" AS FLOAT) AS "sv_0",
+   CAST("Values"."sv_1" AS FLOAT) AS "sv_1",
+   CAST("Values"."sv_2" AS FLOAT) AS "sv_2",
+   CAST("Values"."sv_3" AS FLOAT) AS "sv_3",
+   CAST("Values"."sv_4" AS FLOAT) AS "sv_4",
+   CAST("Values"."sv_5" AS FLOAT) AS "sv_5",
+   CAST("Values"."sv_6" AS FLOAT) AS "sv_6",
+   CAST("Values"."sv_7" AS FLOAT) AS "sv_7",
+   CAST("Values"."sv_8" AS FLOAT) AS "sv_8",
+   CAST("Values"."sv_9" AS FLOAT) AS "sv_9"
   FROM
   (
-     SELECT 0 AS sv_idx, -1.104915 AS sv_0, 0.852920 AS sv_1, 0.507679 AS sv_2, -0.381407 AS sv_3, -0.632111
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
+     SELECT 0 AS "sv_idx", -1.10491
+SQL_OUT_PUT_FIRST_LINES_END ('FourClass_10_medium', 'SVC', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('FourClass_10_medium', 'SVC', 'duckdb')
 ore_0" AS "Score_0",
   arg_max_cte."Proba_0" AS "Proba_0",
   CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
@@ -1827,7 +1826,7 @@ ore_0" AS "Score_0",
   arg_max_cte."argmax_class_idx" AS "Decision",
   arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('FourClass_10_medium', 'SVC', 'duckdb') 
 
 
 
@@ -1869,3 +1868,292 @@ COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 512 entries, 0 to 511
+Data columns (total 15 columns):
+ #   Column         Non-Null Count  Dtype 
+---  ------         --------------  ----- 
+ 0   index          512 non-null    int64 
+ 1   Score_0        512 non-null    int64 
+ 2   Proba_0        0 non-null      object
+ 3   LogProba_0     0 non-null      object
+ 4   Score_1        512 non-null    int64 
+ 5   Proba_1        0 non-null      object
+ 6   LogProba_1     0 non-null      object
+ 7   Score_2        512 non-null    int64 
+ 8   Proba_2        0 non-null      object
+ 9   LogProba_2     0 non-null      object
+ 10  Score_3        512 non-null    int64 
+ 11  Proba_3        0 non-null      object
+ 12  LogProba_3     0 non-null      object
+ 13  Decision       0 non-null      object
+ 14  DecisionProba  0 non-null      object
+dtypes: int64(5), object(10)
+memory usage: 60.1+ KB
+     index  Score_0 Proba_0  ... LogProba_3  Decision DecisionProba
+0        0        3    None  ...       None      None          None
+1        1        3    None  ...       None      None          None
+2        2        3    None  ...       None      None          None
+3        3        3    None  ...       None      None          None
+4        4        3    None  ...       None      None          None
+..     ...      ...     ...  ...        ...       ...           ...
+507    507        3    None  ...       None      None          None
+508    508        3    None  ...       None      None          None
+509    509        3    None  ...       None      None          None
+510    510        3    None  ...       None      None          None
+511    511        3    None  ...       None      None          None
+
+[512 rows x 15 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
+       'LogProba_1', 'Score_2', 'Proba_2', 'LogProba_2', 'Score_3', 'Proba_3',
+       'LogProba_3', 'Decision', 'DecisionProba'],
+      dtype='object')
+     index  Score_0 SQL_Proba_0  ...    Py_Proba_2  Py_Proba_3 Py_Decision
+496    496        3        None  ...  2.583433e-01    0.178423           2
+497    497        3        None  ...  2.783814e-01    0.117282           2
+498    498        3        None  ...  1.640672e-01    0.275067           0
+499    499        3        None  ...  2.398136e-01    0.662489           1
+500    500        3        None  ...  3.072262e-01    0.517975           0
+501    501        3        None  ...  1.162327e-01    0.415378           0
+502    502        3        None  ...  2.852264e-02    0.911792           3
+503    503        3        None  ...  1.655580e-01    0.295984           0
+504    504        3        None  ...  1.497672e-01    0.549941           3
+505    505        3        None  ...  2.936996e-01    0.690683           0
+506    506        3        None  ...  2.517745e-01    0.212151           2
+507    507        3        None  ...  2.218736e-14    1.000000           1
+508    508        3        None  ...  3.600539e-14    1.000000           1
+509    509        3        None  ...  2.414320e-01    0.693150           1
+510    510        3        None  ...  4.878236e-02    0.951216           0
+511    511        3        None  ...  3.316622e-01    0.331834           1
+
+[16 rows x 20 columns]
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_medium', 'SVC', 'duckdb') ('Py_Proba_0', 'SQL_Proba_0') nan
+       Py_Proba_0 SQL_Proba_0 SQL_Error_0
+496  8.458132e-02        None         NaN
+497  2.622669e-01        None         NaN
+498  1.378612e-01        None         NaN
+499  7.681400e-02        None         NaN
+500  4.339949e-06        None         NaN
+501  1.391313e-02        None         NaN
+502  1.890633e-02        None         NaN
+503  1.484530e-01        None         NaN
+504  1.969126e-01        None         NaN
+505  6.529962e-05        None         NaN
+506  1.185337e-01        None         NaN
+507  2.797141e-14        None         NaN
+508  2.678691e-14        None         NaN
+509  6.035876e-02        None         NaN
+510  1.062475e-06        None         NaN
+511  1.695126e-01        None         NaN
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_medium', 'SVC', 'duckdb') ('Py_Proba_1', 'SQL_Proba_1') nan
+       Py_Proba_1 SQL_Proba_1 SQL_Error_1
+496  4.786527e-01        None         NaN
+497  3.420702e-01        None         NaN
+498  4.230047e-01        None         NaN
+499  2.088374e-02        None         NaN
+500  1.747944e-01        None         NaN
+501  4.544763e-01        None         NaN
+502  4.077888e-02        None         NaN
+503  3.900050e-01        None         NaN
+504  1.033790e-01        None         NaN
+505  1.555254e-02        None         NaN
+506  4.175407e-01        None         NaN
+507  4.271608e-14        None         NaN
+508  2.394092e-14        None         NaN
+509  5.059226e-03        None         NaN
+510  9.794834e-07        None         NaN
+511  1.669910e-01        None         NaN
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_medium', 'SVC', 'duckdb') ('Py_Proba_2', 'SQL_Proba_2') nan
+       Py_Proba_2 SQL_Proba_2 SQL_Error_2
+496  2.583433e-01        None         NaN
+497  2.783814e-01        None         NaN
+498  1.640672e-01        None         NaN
+499  2.398136e-01        None         NaN
+500  3.072262e-01        None         NaN
+501  1.162327e-01        None         NaN
+502  2.852264e-02        None         NaN
+503  1.655580e-01        None         NaN
+504  1.497672e-01        None         NaN
+505  2.936996e-01        None         NaN
+506  2.517745e-01        None         NaN
+507  2.218736e-14        None         NaN
+508  3.600539e-14        None         NaN
+509  2.414320e-01        None         NaN
+510  4.878236e-02        None         NaN
+511  3.316622e-01        None         NaN
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_medium', 'SVC', 'duckdb') ('Py_Proba_3', 'SQL_Proba_3') nan
+     Py_Proba_3 SQL_Proba_3 SQL_Error_3
+496    0.178423        None         NaN
+497    0.117282        None         NaN
+498    0.275067        None         NaN
+499    0.662489        None         NaN
+500    0.517975        None         NaN
+501    0.415378        None         NaN
+502    0.911792        None         NaN
+503    0.295984        None         NaN
+504    0.549941        None         NaN
+505    0.690683        None         NaN
+506    0.212151        None         NaN
+507    1.000000        None         NaN
+508    1.000000        None         NaN
+509    0.693150        None         NaN
+510    0.951216        None         NaN
+511    0.331834        None         NaN
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('FourClass_10_medium', 'SVC', 'duckdb', 'Success')
+     Py_Decision SQL_Decision
+496            2         None
+497            2         None
+498            0         None
+499            1         None
+500            0         None
+501            0         None
+502            3         None
+503            0         None
+504            3         None
+505            0         None
+506            2         None
+507            1         None
+508            1         None
+509            1         None
+510            0         None
+511            1         None
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_FourClass_10_medium_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('FourClass_10_medium', 'SVC', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"SV_data" AS
+ ( SELECT 
+   "Values"."sv_idx" AS "sv_idx",
+   CAST("Values"."sv_0" AS FLOAT) AS "sv_0",
+   CAST("Values"."sv_1" AS FLOAT) AS "sv_1",
+   CAST("Values"."sv_2" AS FLOAT) AS "sv_2",
+   CAST("Values"."sv_3" AS FLOAT) AS "sv_3",
+   CAST("Values"."sv_4" AS FLOAT) AS "sv_4",
+   CAST("Values"."sv_5" AS FLOAT) AS "sv_5",
+   CAST("Values"."sv_6" AS FLOAT) AS "sv_6",
+   CAST("Values"."sv_7" AS FLOAT) AS "sv_7",
+   CAST("Values"."sv_8" AS FLOAT) AS "sv_8",
+   CAST("Values"."sv_9" AS FLOAT) AS "sv_9"
+  FROM
+  (
+     SELECT 0 AS "sv_idx", -1.10491
+SQL_OUT_PUT_FIRST_LINES_END ('FourClass_10_medium', 'SVC', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('FourClass_10_medium', 'SVC', 'sqlite')
+ore_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."Score_2" AS "Score_2",
+  arg_max_cte."Proba_2" AS "Proba_2",
+  CASE WHEN (arg_max_cte."Proba_2" IS NULL OR arg_max_cte."Proba_2" > 0.0) THEN LN( arg_max_cte."Proba_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
+  arg_max_cte."Score_3" AS "Score_3",
+  arg_max_cte."Proba_3" AS "Proba_3",
+  CASE WHEN (arg_max_cte."Proba_3" IS NULL OR arg_max_cte."Proba_3" > 0.0) THEN LN( arg_max_cte."Proba_3" ) ELSE -1.79769313486231e+308 END AS "LogProba_3",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('FourClass_10_medium', 'SVC', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 512 entries, 0 to 511
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     512 non-null    float32
+ 1   X_1     512 non-null    float32
+ 2   X_2     512 non-null    float32
+ 3   X_3     512 non-null    float32
+ 4   X_4     512 non-null    float32
+ 5   X_5     512 non-null    float32
+ 6   X_6     512 non-null    float32
+ 7   X_7     512 non-null    float32
+ 8   X_8     512 non-null    float32
+ 9   X_9     512 non-null    float32
+dtypes: float32(10)
+memory usage: 24.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0     -1.104915  0.852920  0.507679  ...  0.479871 -1.472978 -1.793182
+1      1.845877 -1.230132  0.868872  ... -3.816458  0.362403 -0.619445
+2     -2.837179  1.477195  0.565303  ... -0.012256  1.102744  1.483759
+3     -0.817915  0.349464 -0.778337  ... -1.054359 -0.344547 -0.450057
+4      2.867865 -1.912016  0.005109  ... -1.535723 -0.616466 -0.572385
+...         ...       ...       ...  ...       ...       ...       ...
+507    2.438772 -1.661028 -1.497360  ... -0.360560  0.591629 -0.673836
+508    2.240772 -0.702349  0.668354  ...  1.595941  1.042002 -1.470823
+509   -1.085291  0.783440 -0.493113  ...  1.308570  1.430318 -0.063795
+510    0.377241 -1.091754  0.032081  ... -0.311330  1.357257 -0.465549
+511   -0.376689  1.158867 -0.352004  ...  1.244896  1.521553  1.011941
+
+[512 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+MODEL_SQL_EXECUTION_FAILED ('FourClass_10_medium', 'SVC', 'sqlite', '(sqlite3.OperationalError) too many terms in compound SELECT')
+WRITING_SQL_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_FourClass_10_medium_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('FourClass_10_medium', 'SVC', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"SV_data" AS
+ ( SELECT 
+   "Values"."sv_idx" AS "sv_idx",
+   CAST("Values"."sv_0" AS FLOAT) AS "sv_0",
+   CAST("Values"."sv_1" AS FLOAT) AS "sv_1",
+   CAST("Values"."sv_2" AS FLOAT) AS "sv_2",
+   CAST("Values"."sv_3" AS FLOAT) AS "sv_3",
+   CAST("Values"."sv_4" AS FLOAT) AS "sv_4",
+   CAST("Values"."sv_5" AS FLOAT) AS "sv_5",
+   CAST("Values"."sv_6" AS FLOAT) AS "sv_6",
+   CAST("Values"."sv_7" AS FLOAT) AS "sv_7",
+   CAST("Values"."sv_8" AS FLOAT) AS "sv_8",
+   CAST("Values"."sv_9" AS FLOAT) AS "sv_9"
+  FROM
+  (
+     SELECT 0 AS "sv_idx", -1.10491
+SQL_OUT_PUT_FIRST_LINES_END ('FourClass_10_medium', 'SVC', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('FourClass_10_medium', 'SVC', 'pgsql')
+ore_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."Score_2" AS "Score_2",
+  arg_max_cte."Proba_2" AS "Proba_2",
+  CASE WHEN (arg_max_cte."Proba_2" IS NULL OR arg_max_cte."Proba_2" > 0.0) THEN LN( arg_max_cte."Proba_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
+  arg_max_cte."Score_3" AS "Score_3",
+  arg_max_cte."Proba_3" AS "Proba_3",
+  CASE WHEN (arg_max_cte."Proba_3" IS NULL OR arg_max_cte."Proba_3" > 0.0) THEN LN( arg_max_cte."Proba_3" ) ELSE -1.79769313486231e+308 END AS "LogProba_3",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('FourClass_10_medium', 'SVC', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

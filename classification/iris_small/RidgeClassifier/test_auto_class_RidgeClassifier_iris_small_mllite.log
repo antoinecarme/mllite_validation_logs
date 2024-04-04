@@ -46,11 +46,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.008, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.013, 'TRAINING')
 { ,   }
 { ,   }
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_il8"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -77,7 +77,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeClassifier { ,   }
 MLLITE_MODEL_JSON_AFTER_SETTING RidgeClassifier None
 MLLITE_RELOADING_MODEL mllite_ridge_class.RidgeClassifier_ff4_il8
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_il8"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -117,7 +117,7 @@ BEAUTIFIED_JSON_START
 			"intercept" : -1.73124
 		}
 	},
-	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_il8", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_il8", "version" : "2024-W13" },
 	"options" :  { "alpha" : 1.0, "random_state" : 1789 }
 }
 BEAUTIFIED_JSON_END
@@ -194,37 +194,39 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'iris_small', 'size': 64, 'accuracy': 0.8125, 'auc': 0.9540960231064398}
 WRITING_PERF_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_small.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'iris_small', 'training_time_in_sec': 0.007, 'prediction_time_in_sec': 0.0}
-WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_small.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'iris_small', 'training_time_in_sec': 0.013, 'prediction_time_in_sec': 0.0}
+WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_small_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('iris_small', 'RidgeClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
   FROM "MLLITE_INPUT_TABLE" AS "ADS" 
  ),
 model_scores_cte AS 
- (SELECT model_input."index" AS "index",
-   -0.430242 + 0.015209 * X_0 + 0.532474 * X_1 + -0.369107 * X_2 + -0.186778 * X_3 AS "Score_0", CAST(NULL AS FLOAT) AS "Proba_0", CAST(NULL AS FLOAT) AS "LogProba_0",
-   1.161481 + 0.194343 * X_0 + -0.849024 * X_1 + 0.144426 * X_2 + -0.563945 * X_3 AS "Score_1", CAST(NULL AS FLOAT) AS "Proba_1", CAST(NULL AS FLOAT) AS "LogProba_1",
-   -1.731240 + -0.209552 * X_0 + 0.316551 * X_1 + 0.224681 * X_2 + 0.750721 * X_3 AS "Score_2", CAST(NULL AS FLOAT) AS "Proba_2", CAST(NULL AS FLOAT) AS "LogProba_2"
-  FROM model_input
+ (SELECT t."index" AS "index",
+   -0.430242 + 0.015209 * t."X_0" + 0.532474 * t."X_1" + -0.369107 * t."X_2" + -0.186778 * t."X_3" AS "Score_0",
+   CAST(NULL AS FLOAT) AS "Proba_0",
+   CAST(NULL AS FLOAT) AS "LogProba_0",
+   1.161481 + 0.194343 * t."X_0" + -0.849024 * t."X_1" + 0.144426 * t."X_2" + -0.563945 * t."X_3" AS "Score_1",
+   CAST(NULL AS FLOAT) AS "Proba_1",
+   CAST(NULL AS FLOAT) AS "LogProba_1",
+   -1.731240 + -0.209552 * t."X_0" + 0.316551 * t."X_1" + 0.224681 * t."X_2" + 0.750721 * t."X_3" AS "Score_2",
+   CAST(NULL AS FLOAT) AS "Proba_2",
+   CAST(NULL AS FLOAT) AS "LogProba_2"
+  FROM model_input AS t
  ),
 soft_max_orig_cte AS 
 ( SELECT t."index" AS "index", 
    t."Score_0" AS "Score_0",
    t."Proba_0" AS "Proba_0",
-   t."LogProba_0" AS "LogProba_0",
-   t."Score_1" AS "Score_1",
-   t."Proba_1
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
-ba" AS t
-),
-arg_max_cte AS 
- (SELECT t.*,
+   t."LogProba_0
+SQL_OUT_PUT_FIRST_LINES_END ('iris_small', 'RidgeClassifier', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('iris_small', 'RidgeClassifier', 'duckdb')
+roba",
+     t."Max_Score" AS "Max_Score",
      COALESCE(  t."max_idx_0", t."max_idx_1", t."max_idx_2" ) AS argmax_class_idx
    FROM
      "arg_max_cte_with_max_proba_idx" AS t
@@ -242,7 +244,225 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."argmax_class_idx" AS "Decision",
   arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('iris_small', 'RidgeClassifier', 'duckdb') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+dtypes: float32(4)
+memory usage: 1.5 KB
+       X_0  X_1  X_2  X_3
+index                    
+0      6.4  3.2  5.3  2.3
+1      6.3  3.3  4.7  1.6
+2      7.1  3.0  5.9  2.1
+3      6.1  2.6  5.6  1.4
+4      6.8  3.2  5.9  2.3
+...    ...  ...  ...  ...
+59     5.4  3.9  1.7  0.4
+60     5.0  3.4  1.6  0.4
+61     6.3  2.5  5.0  1.9
+62     6.9  3.1  5.1  2.3
+63     6.5  3.0  5.2  2.0
+
+[64 rows x 4 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 12 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          64 non-null     int64  
+ 1   Score_0        64 non-null     float64
+ 2   Proba_0        64 non-null     float64
+ 3   LogProba_0     64 non-null     float64
+ 4   Score_1        64 non-null     float64
+ 5   Proba_1        64 non-null     float64
+ 6   LogProba_1     64 non-null     float64
+ 7   Score_2        64 non-null     float64
+ 8   Proba_2        64 non-null     float64
+ 9   LogProba_2     64 non-null     float64
+ 10  Decision       64 non-null     int64  
+ 11  DecisionProba  64 non-null     float64
+dtypes: float64(10), int64(2)
+memory usage: 6.1 KB
+    index   Score_0   Proba_0  ...  LogProba_2  Decision  DecisionProba
+0       0 -1.014844  0.115017  ...   -0.289776         2       0.748431
+1       1 -0.610909  0.230520  ...   -0.606153         2       0.545445
+2       2 -1.294801  0.095456  ...   -0.421564         2       0.656020
+3       3 -1.281523  0.107590  ...   -0.825152         1       0.454241
+4       4 -1.230225  0.089056  ...   -0.279222         2       0.756372
+..    ...       ...       ...  ...         ...       ...            ...
+59     59  1.026342  0.793165  ...   -2.204091         0       0.793165
+60     60  0.790932  0.727587  ...   -2.151902         0       0.727587
+61     61 -1.203654  0.117515  ...   -0.647803         2       0.523194
+62     62 -0.986666  0.131194  ...   -0.367725         2       0.692308
+63     63 -1.026874  0.134762  ...   -0.451260         2       0.636826
+
+[64 rows x 12 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
+       'LogProba_1', 'Score_2', 'Proba_2', 'LogProba_2', 'Decision',
+       'DecisionProba'],
+      dtype='object')
+    index   Score_0  SQL_Proba_0  ...  Py_Proba_1  Py_Proba_2  Py_Decision
+48     48  0.823400     0.731352  ...    0.171773    0.096875            0
+49     49 -0.520512     0.272939  ...    0.324336    0.402725            2
+50     50 -0.621129     0.234020  ...    0.512693    0.253287            1
+51     51  0.722613     0.683328  ...    0.231920    0.084751            0
+52     52  1.259650     0.845031  ...    0.076023    0.078946            0
+53     53 -1.141674     0.120549  ...    0.269108    0.610343            2
+54     54  0.703935     0.683502  ...    0.223393    0.093105            0
+55     55 -0.818516     0.194370  ...    0.385355    0.420275            2
+56     56 -0.763422     0.205967  ...    0.338114    0.455920            2
+57     57 -0.618001     0.245581  ...    0.352359    0.402060            2
+58     58 -0.948302     0.113222  ...    0.103566    0.783212            2
+59     59  1.026342     0.793165  ...    0.096484    0.110351            0
+60     60  0.790932     0.727587  ...    0.156150    0.116263            0
+61     61 -1.203654     0.117515  ...    0.359291    0.523194            2
+62     62 -0.986666     0.131194  ...    0.176498    0.692308            2
+63     63 -1.026874     0.134762  ...    0.228412    0.636826            2
+
+[16 rows x 16 columns]
+MLLITE_CLASS_SQL_ERROR ('iris_small', 'RidgeClassifier', 'duckdb') ('Py_Proba_0', 'SQL_Proba_0') 1.6832482432741804e-07
+    Py_Proba_0  SQL_Proba_0   SQL_Error_0
+48    0.731352     0.731352 -8.560515e-08
+49    0.272939     0.272939 -2.038754e-07
+50    0.234020     0.234020 -2.417860e-07
+51    0.683328     0.683328 -1.440413e-07
+52    0.845031     0.845031 -8.531550e-08
+53    0.120549     0.120549 -2.353613e-07
+54    0.683502     0.683502 -5.063307e-08
+55    0.194370     0.194370 -2.198047e-07
+56    0.205967     0.205967 -2.776101e-07
+57    0.245581     0.245581 -1.791119e-07
+58    0.113222     0.113222 -1.991552e-07
+59    0.793165     0.793165  4.826100e-08
+60    0.727587     0.727587 -1.532407e-07
+61    0.117515     0.117515 -2.163874e-07
+62    0.131193     0.131194 -2.335685e-07
+63    0.134762     0.134762 -2.085214e-07
+MLLITE_CLASS_SQL_ERROR ('iris_small', 'RidgeClassifier', 'duckdb') ('Py_Proba_1', 'SQL_Proba_1') 5.8293158163155376e-08
+    Py_Proba_1  SQL_Proba_1   SQL_Error_1
+48    0.171773     0.171773  8.984488e-08
+49    0.324336     0.324336  9.309218e-08
+50    0.512693     0.512693  1.243240e-07
+51    0.231920     0.231920  3.706615e-08
+52    0.076023     0.076023  4.677732e-08
+53    0.269108     0.269108  9.238064e-09
+54    0.223393     0.223393  5.738514e-08
+55    0.385355     0.385355 -4.802773e-08
+56    0.338114     0.338114  5.640349e-08
+57    0.352359     0.352359  1.173097e-07
+58    0.103566     0.103566  1.891344e-09
+59    0.096484     0.096484  2.706609e-08
+60    0.156150     0.156150  4.939557e-08
+61    0.359291     0.359291 -4.144850e-08
+62    0.176498     0.176499 -7.109950e-08
+63    0.228412     0.228412 -1.348140e-08
+MLLITE_CLASS_SQL_ERROR ('iris_small', 'RidgeClassifier', 'duckdb') ('Py_Proba_2', 'SQL_Proba_2') 1.4741446666566987e-07
+    Py_Proba_2  SQL_Proba_2   SQL_Error_2
+48    0.096875     0.096875  1.066143e-08
+49    0.402725     0.402725  1.703879e-07
+50    0.253287     0.253287  7.275850e-08
+51    0.084751     0.084751 -1.223418e-08
+52    0.078946     0.078946  1.285279e-09
+53    0.610343     0.610342  1.963209e-07
+54    0.093105     0.093105 -6.752065e-09
+55    0.420275     0.420275  2.380301e-07
+56    0.455920     0.455919  2.957124e-07
+57    0.402060     0.402060  1.661103e-07
+58    0.783212     0.783212  1.153074e-07
+59    0.110351     0.110351  2.153046e-08
+60    0.116263     0.116263 -3.026528e-08
+61    0.523194     0.523194  2.503853e-07
+62    0.692308     0.692308  2.152610e-07
+63    0.636826     0.636826  2.816074e-07
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('iris_small', 'RidgeClassifier', 'duckdb', 'Success')
+    Py_Decision  SQL_Decision
+48            0             0
+49            2             2
+50            1             1
+51            0             0
+52            0             0
+53            2             2
+54            0             0
+55            2             2
+56            2             2
+57            2             2
+58            2             2
+59            0             0
+60            0             0
+61            2             2
+62            2             2
+63            2             2
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_small_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('iris_small', 'RidgeClassifier', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT t."index" AS "index",
+   -0.430242 + 0.015209 * t."X_0" + 0.532474 * t."X_1" + -0.369107 * t."X_2" + -0.186778 * t."X_3" AS "Score_0",
+   CAST(NULL AS FLOAT) AS "Proba_0",
+   CAST(NULL AS FLOAT) AS "LogProba_0",
+   1.161481 + 0.194343 * t."X_0" + -0.849024 * t."X_1" + 0.144426 * t."X_2" + -0.563945 * t."X_3" AS "Score_1",
+   CAST(NULL AS FLOAT) AS "Proba_1",
+   CAST(NULL AS FLOAT) AS "LogProba_1",
+   -1.731240 + -0.209552 * t."X_0" + 0.316551 * t."X_1" + 0.224681 * t."X_2" + 0.750721 * t."X_3" AS "Score_2",
+   CAST(NULL AS FLOAT) AS "Proba_2",
+   CAST(NULL AS FLOAT) AS "LogProba_2"
+  FROM model_input AS t
+ ),
+soft_max_orig_cte AS 
+( SELECT t."index" AS "index", 
+   t."Score_0" AS "Score_0",
+   t."Proba_0" AS "Proba_0",
+   t."LogProba_0
+SQL_OUT_PUT_FIRST_LINES_END ('iris_small', 'RidgeClassifier', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('iris_small', 'RidgeClassifier', 'sqlite')
+roba",
+     t."Max_Score" AS "Max_Score",
+     COALESCE(  t."max_idx_0", t."max_idx_1", t."max_idx_2" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
+SELECT arg_max_cte."index" AS "index",
+  arg_max_cte."Score_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."Score_2" AS "Score_2",
+  arg_max_cte."Proba_2" AS "Proba_2",
+  CASE WHEN (arg_max_cte."Proba_2" IS NULL OR arg_max_cte."Proba_2" > 0.0) THEN LN( arg_max_cte."Proba_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('iris_small', 'RidgeClassifier', 'sqlite') 
 
 
 
@@ -338,60 +558,61 @@ Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
 63     63 -1.026874     0.134762  ...    0.228412    0.636826            2
 
 [16 rows x 16 columns]
-MLLITE_SQL_ERROR ('Py_Proba_0', 'SQL_Proba_0') 1.0975462225321254e-06
-    Py_Proba_0  SQL_Proba_0
-48    0.731352     0.731352
-49    0.272939     0.272939
-50    0.234020     0.234020
-51    0.683328     0.683328
-52    0.845031     0.845031
-53    0.120549     0.120549
-54    0.683502     0.683502
-55    0.194370     0.194370
-56    0.205967     0.205967
-57    0.245581     0.245581
-58    0.113222     0.113222
-59    0.793165     0.793165
-60    0.727587     0.727587
-61    0.117515     0.117515
-62    0.131193     0.131194
-63    0.134762     0.134762
-MLLITE_SQL_ERROR ('Py_Proba_1', 'SQL_Proba_1') 2.8087013610447867e-07
-    Py_Proba_1  SQL_Proba_1
-48    0.171773     0.171773
-49    0.324336     0.324336
-50    0.512693     0.512693
-51    0.231920     0.231920
-52    0.076023     0.076023
-53    0.269108     0.269108
-54    0.223393     0.223393
-55    0.385355     0.385355
-56    0.338114     0.338114
-57    0.352359     0.352359
-58    0.103566     0.103566
-59    0.096484     0.096484
-60    0.156150     0.156150
-61    0.359291     0.359291
-62    0.176498     0.176499
-63    0.228412     0.228412
-MLLITE_SQL_ERROR ('Py_Proba_2', 'SQL_Proba_2') 2.8342150895799797e-07
-    Py_Proba_2  SQL_Proba_2
-48    0.096875     0.096875
-49    0.402725     0.402725
-50    0.253287     0.253287
-51    0.084751     0.084751
-52    0.078946     0.078946
-53    0.610343     0.610343
-54    0.093105     0.093105
-55    0.420275     0.420275
-56    0.455920     0.455919
-57    0.402060     0.402060
-58    0.783212     0.783212
-59    0.110351     0.110351
-60    0.116263     0.116263
-61    0.523194     0.523194
-62    0.692308     0.692308
-63    0.636826     0.636825
+MLLITE_CLASS_SQL_ERROR ('iris_small', 'RidgeClassifier', 'sqlite') ('Py_Proba_0', 'SQL_Proba_0') 1.7656298571420634e-07
+    Py_Proba_0  SQL_Proba_0   SQL_Error_0
+48    0.731352     0.731352 -9.183278e-08
+49    0.272939     0.272939 -2.319329e-07
+50    0.234020     0.234020 -2.557494e-07
+51    0.683328     0.683328 -1.499085e-07
+52    0.845031     0.845031 -9.277847e-08
+53    0.120549     0.120549 -2.354369e-07
+54    0.683502     0.683502 -6.410488e-08
+55    0.194370     0.194370 -2.361147e-07
+56    0.205967     0.205967 -2.875684e-07
+57    0.245581     0.245581 -2.194756e-07
+58    0.113222     0.113222 -2.241534e-07
+59    0.793165     0.793165  2.039859e-08
+60    0.727587     0.727587 -1.833693e-07
+61    0.117515     0.117515 -2.020911e-07
+62    0.131193     0.131194 -2.354682e-07
+63    0.134762     0.134762 -2.344889e-07
+MLLITE_CLASS_SQL_ERROR ('iris_small', 'RidgeClassifier', 'sqlite') ('Py_Proba_1', 'SQL_Proba_1') 6.475575437458678e-08
+    Py_Proba_1  SQL_Proba_1   SQL_Error_1
+48    0.171773     0.171773  9.634376e-08
+49    0.324336     0.324336  1.305945e-07
+50    0.512693     0.512693  1.635590e-07
+51    0.231920     0.231920  4.980796e-08
+52    0.076023     0.076023  6.120394e-08
+53    0.269108     0.269108  5.982565e-08
+54    0.223393     0.223393  7.026443e-08
+55    0.385355     0.385355 -1.176557e-08
+56    0.338114     0.338114  9.875609e-08
+57    0.352359     0.352359  1.069269e-07
+58    0.103566     0.103566  1.367877e-08
+59    0.096484     0.096484  4.284756e-08
+60    0.156150     0.156150  6.137258e-08
+61    0.359291     0.359291 -2.625332e-08
+62    0.176498     0.176499 -5.026787e-08
+63    0.228412     0.228412 -7.687504e-09
+MLLITE_CLASS_SQL_ERROR ('iris_small', 'RidgeClassifier', 'sqlite') ('Py_Proba_2', 'SQL_Proba_2') 1.3354332807874285e-07
+    Py_Proba_2  SQL_Proba_2   SQL_Error_2
+48    0.096875     0.096875  1.039018e-08
+49    0.402725     0.402725  1.609430e-07
+50    0.253287     0.253287  4.748685e-08
+51    0.084751     0.084751 -1.910879e-08
+52    0.078946     0.078946 -5.678368e-09
+53    0.610343     0.610343  1.458089e-07
+54    0.093105     0.093105 -6.159549e-09
+55    0.420275     0.420275  2.180780e-07
+56    0.455920     0.455919  2.633181e-07
+57    0.402060     0.402060  2.168568e-07
+58    0.783212     0.783212  1.285182e-07
+59    0.110351     0.110351  3.361139e-08
+60    0.116263     0.116263 -1.211378e-08
+61    0.523194     0.523194  2.208939e-07
+62    0.692308     0.692308  1.963291e-07
+63    0.636826     0.636825  3.017810e-07
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('iris_small', 'RidgeClassifier', 'sqlite', 'Success')
     Py_Decision  SQL_Decision
 48            0             0
 49            2             2
@@ -410,3 +631,58 @@ MLLITE_SQL_ERROR ('Py_Proba_2', 'SQL_Proba_2') 2.8342150895799797e-07
 62            2             2
 63            2             2
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_small_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('iris_small', 'RidgeClassifier', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT t."index" AS "index",
+   -0.430242 + 0.015209 * t."X_0" + 0.532474 * t."X_1" + -0.369107 * t."X_2" + -0.186778 * t."X_3" AS "Score_0",
+   CAST(NULL AS FLOAT) AS "Proba_0",
+   CAST(NULL AS FLOAT) AS "LogProba_0",
+   1.161481 + 0.194343 * t."X_0" + -0.849024 * t."X_1" + 0.144426 * t."X_2" + -0.563945 * t."X_3" AS "Score_1",
+   CAST(NULL AS FLOAT) AS "Proba_1",
+   CAST(NULL AS FLOAT) AS "LogProba_1",
+   -1.731240 + -0.209552 * t."X_0" + 0.316551 * t."X_1" + 0.224681 * t."X_2" + 0.750721 * t."X_3" AS "Score_2",
+   CAST(NULL AS FLOAT) AS "Proba_2",
+   CAST(NULL AS FLOAT) AS "LogProba_2"
+  FROM model_input AS t
+ ),
+soft_max_orig_cte AS 
+( SELECT t."index" AS "index", 
+   t."Score_0" AS "Score_0",
+   t."Proba_0" AS "Proba_0",
+   t."LogProba_0
+SQL_OUT_PUT_FIRST_LINES_END ('iris_small', 'RidgeClassifier', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('iris_small', 'RidgeClassifier', 'pgsql')
+roba",
+     t."Max_Score" AS "Max_Score",
+     COALESCE(  t."max_idx_0", t."max_idx_1", t."max_idx_2" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
+SELECT arg_max_cte."index" AS "index",
+  arg_max_cte."Score_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."Score_2" AS "Score_2",
+  arg_max_cte."Proba_2" AS "Proba_2",
+  CASE WHEN (arg_max_cte."Proba_2" IS NULL OR arg_max_cte."Proba_2" > 0.0) THEN LN( arg_max_cte."Proba_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('iris_small', 'RidgeClassifier', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

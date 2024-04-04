@@ -32,11 +32,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.413, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.385, 'TRAINING')
 { "alpha" : 0.0000001,   }
 { "alpha" : 0.0000001,   }
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_OO8"},
 	"options" : { "alpha" : 0.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 48842, "dataset_features" : 14 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -55,7 +55,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeClassifier { "alpha" : 0.0000001,   }
 MLLITE_MODEL_JSON_AFTER_SETTING RidgeClassifier None
 MLLITE_RELOADING_MODEL mllite_ridge_class.RidgeClassifier_ff4_OO8
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_OO8"},
 	"options" : { "alpha" : 0.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 48842, "dataset_features" : 14 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -79,53 +79,55 @@ BEAUTIFIED_JSON_START
 			"intercept" : -1.838795
 		}
 	},
-	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_OO8", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_OO8", "version" : "2024-W13" },
 	"options" :  { "alpha" : 0.0, "random_state" : 1789 }
 }
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.031, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.031, 'PREDICT')
-[[0.0669 0.9331]
- [0.9282 0.0718]
- [0.8306 0.1694]
+('OPERATION_END_ELAPSED', 0.03, 'PREDICT')
+[[0.2113 0.7887]
+ [0.7824 0.2176]
+ [0.6889 0.3111]
  ...
- [0.4106 0.5894]
- [0.0669 0.9331]
- [0.4531 0.5469]]
+ [0.4549 0.5451]
+ [0.2113 0.7887]
+ [0.4765 0.5235]]
 (48842, 2)
 (48842,) float32
-MODEL_PERFS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': '{"alpha" : 0.0000001}', 'dataset': 'census_quantized', 'size': 48842, 'accuracy': 0.7663691085541132, 'auc': 0.7823280993272501}
+MODEL_PERFS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': '{"alpha" : 0.0000001}', 'dataset': 'census_quantized', 'size': 48842, 'accuracy': 0.7663691085541132, 'auc': 0.7823280924184769}
 WRITING_PERF_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_census_quantized_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': '{"alpha" : 0.0000001}', 'dataset': 'census_quantized', 'training_time_in_sec': 0.413, 'prediction_time_in_sec': 0.031}
-WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_census_quantized_option_1.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': '{"alpha" : 0.0000001}', 'dataset': 'census_quantized', 'training_time_in_sec': 0.385, 'prediction_time_in_sec': 0.03}
+WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_census_quantized_option_1_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('census_quantized', 'RidgeClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
   FROM "MLLITE_INPUT_TABLE" AS "ADS" 
  ),
 model_scores_cte AS 
- (SELECT model_input."index" AS "index",
-   -1.838795 + 0.025834 * X_0 + 0.000000 * X_1 + 0.002276 * X_2 + 0.000000 * X_3 + 0.046985 * X_4 + 0.000000 * X_5 + 0.000000 * X_6 + 0.000000 * X_7 + 0.000000 * X_8 + 0.000000 * X_9 + 0.209873 * X_10 + 0.039602 * X_11 + 0.183522 * X_12 + 0.000000 * X_13 AS "Score_1", CAST(NULL AS FLOAT) AS "Proba_1", CAST(NULL AS FLOAT) AS "LogProba
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
-S t
-),
-arg_max_cte_with_max_proba_idx AS 
-( SELECT t.*,
-   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
-   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+ (SELECT t."index" AS "index",
+   -0.5 * ( -1.838795 + 0.025834 * t."X_0" + 0.000000 * t."X_1" + 0.002276 * t."X_2" + 0.000000 * t."X_3" + 0.046985 * t."X_4" + 0.000000 * t."X_5" + 0.000000 * t."X_6" + 0.000000 * t."X_7" + 0.000000 * t."X_8" + 0.000000 * t."X_9" + 0.209873 * t."X_10" + 0.039602 * t."X_11" + 0.183522 * t."X_12" + 0.000000 * t."X_13" ) AS "Score_0",
+   CAST(N
+SQL_OUT_PUT_FIRST_LINES_END ('census_quantized', 'RidgeClassifier', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('census_quantized', 'RidgeClassifier', 'duckdb')
+"
   FROM
    "arg_max_cte_with_max_proba" AS t
 ),
 arg_max_cte AS 
- (SELECT t.*,
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
      COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
    FROM
      "arg_max_cte_with_max_proba_idx" AS t
@@ -140,7 +142,7 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."argmax_class_idx" AS "Decision",
   arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('census_quantized', 'RidgeClassifier', 'duckdb') 
 
 
 
@@ -186,3 +188,361 @@ COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 48842 entries, 0 to 48841
+Data columns (total 9 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          48842 non-null  int64  
+ 1   Score_0        48842 non-null  float64
+ 2   Proba_0        48842 non-null  float64
+ 3   LogProba_0     48842 non-null  float64
+ 4   Score_1        48842 non-null  float64
+ 5   Proba_1        48842 non-null  float64
+ 6   LogProba_1     48842 non-null  float64
+ 7   Decision       48842 non-null  int64  
+ 8   DecisionProba  48842 non-null  float64
+dtypes: float64(7), int64(2)
+memory usage: 3.4 MB
+       index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
+0          0 -0.658655  0.211266  ...   -0.237326         1       0.788734
+1          1  0.639901  0.782416  ...   -1.525170         0       0.782416
+2          2  0.397546  0.688924  ...   -1.167717         0       0.688924
+3          3  0.430476  0.702860  ...   -1.213550         0       0.702860
+4          4  0.316558  0.653196  ...   -1.058995         0       0.653196
+...      ...       ...       ...  ...         ...       ...            ...
+48837  48837  0.280083  0.636491  ...   -1.011952         0       0.636491
+48838  48838  0.343602  0.665345  ...   -1.094654         0       0.665345
+48839  48839 -0.090375  0.454935  ...   -0.606851         1       0.545065
+48840  48840 -0.658655  0.211266  ...   -0.237326         1       0.788734
+48841  48841 -0.047072  0.476482  ...   -0.647183         1       0.523518
+
+[48842 rows x 9 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
+       'LogProba_1', 'Decision', 'DecisionProba'],
+      dtype='object')
+       index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
+48826  48826  0.247088     0.621090  ...    0.621089    0.378911        <=50K
+48827  48827  0.658774     0.788773  ...    0.788773    0.211227        <=50K
+48828  48828  0.302438     0.646771  ...    0.646771    0.353229        <=50K
+48829  48829  0.249632     0.622286  ...    0.622286    0.377715        <=50K
+48830  48830  0.438573     0.706230  ...    0.706230    0.293770        <=50K
+48831  48831  0.382353     0.682375  ...    0.682374    0.317626        <=50K
+48832  48832 -0.015476     0.492263  ...    0.492262    0.507738         >50K
+48833  48833  0.432883     0.703864  ...    0.703864    0.296136        <=50K
+48834  48834  0.472772     0.720218  ...    0.720218    0.279782        <=50K
+48835  48835  0.241398     0.618408  ...    0.618407    0.381593        <=50K
+48836  48836  0.317696     0.653711  ...    0.653711    0.346289        <=50K
+48837  48837  0.280083     0.636491  ...    0.636491    0.363509        <=50K
+48838  48838  0.343602     0.665345  ...    0.665344    0.334656        <=50K
+48839  48839 -0.090375     0.454935  ...    0.454935    0.545065         >50K
+48840  48840 -0.658655     0.211266  ...    0.211267    0.788733         >50K
+48841  48841 -0.047072     0.476482  ...    0.476482    0.523518         >50K
+
+[16 rows x 12 columns]
+MLLITE_CLASS_SQL_ERROR ('census_quantized', 'RidgeClassifier', 'duckdb') ('Py_Proba_0', 'SQL_Proba_0') 3.1779688470087675e-07
+       Py_Proba_0  SQL_Proba_0   SQL_Error_0
+48826    0.621089     0.621090 -2.312305e-07
+48827    0.788773     0.788773 -6.530209e-07
+48828    0.646771     0.646771 -4.039850e-07
+48829    0.622286     0.622286 -7.944388e-07
+48830    0.706230     0.706230 -1.592911e-07
+48831    0.682374     0.682375 -6.933133e-07
+48832    0.492262     0.492263 -6.177067e-07
+48833    0.703864     0.703864 -3.044983e-07
+48834    0.720218     0.720218  3.463868e-08
+48835    0.618407     0.618408 -3.788824e-07
+48836    0.653711     0.653711  2.634744e-08
+48837    0.636491     0.636491 -2.743318e-07
+48838    0.665344     0.665345 -9.399051e-07
+48839    0.454935     0.454935 -2.244318e-07
+48840    0.211267     0.211266  5.247313e-07
+48841    0.476482     0.476482  3.052261e-07
+MLLITE_CLASS_SQL_ERROR ('census_quantized', 'RidgeClassifier', 'duckdb') ('Py_Proba_1', 'SQL_Proba_1') 3.1724244025653236e-07
+       Py_Proba_1  SQL_Proba_1   SQL_Error_1
+48826    0.378911     0.378910  2.312305e-07
+48827    0.211227     0.211227  5.785151e-07
+48828    0.353229     0.353229  3.741826e-07
+48829    0.377715     0.377714  8.540434e-07
+48830    0.293770     0.293770  6.988412e-08
+48831    0.317626     0.317625  6.635110e-07
+48832    0.507738     0.507737  5.581021e-07
+48833    0.296136     0.296136  2.746960e-07
+48834    0.279782     0.279782 -3.463868e-08
+48835    0.381593     0.381592  4.384871e-07
+48836    0.346289     0.346289  3.325720e-08
+48837    0.363509     0.363509  3.041341e-07
+48838    0.334656     0.334655  9.995097e-07
+48839    0.545065     0.545065  2.244318e-07
+48840    0.788733     0.788734 -4.651266e-07
+48841    0.523518     0.523518 -3.052261e-07
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('census_quantized', 'RidgeClassifier', 'duckdb', 'Success')
+      Py_Decision  SQL_Decision
+48826       <=50K             0
+48827       <=50K             0
+48828       <=50K             0
+48829       <=50K             0
+48830       <=50K             0
+48831       <=50K             0
+48832        >50K             1
+48833       <=50K             0
+48834       <=50K             0
+48835       <=50K             0
+48836       <=50K             0
+48837       <=50K             0
+48838       <=50K             0
+48839        >50K             1
+48840        >50K             1
+48841        >50K             1
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_census_quantized_option_1_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('census_quantized', 'RidgeClassifier', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT t."index" AS "index",
+   -0.5 * ( -1.838795 + 0.025834 * t."X_0" + 0.000000 * t."X_1" + 0.002276 * t."X_2" + 0.000000 * t."X_3" + 0.046985 * t."X_4" + 0.000000 * t."X_5" + 0.000000 * t."X_6" + 0.000000 * t."X_7" + 0.000000 * t."X_8" + 0.000000 * t."X_9" + 0.209873 * t."X_10" + 0.039602 * t."X_11" + 0.183522 * t."X_12" + 0.000000 * t."X_13" ) AS "Score_0",
+   CAST(N
+SQL_OUT_PUT_FIRST_LINES_END ('census_quantized', 'RidgeClassifier', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('census_quantized', 'RidgeClassifier', 'sqlite')
+"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
+SELECT arg_max_cte."index" AS "index",
+  arg_max_cte."Score_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('census_quantized', 'RidgeClassifier', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 48842 entries, 0 to 48841
+Data columns (total 14 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     48842 non-null  float32
+ 1   X_1     48842 non-null  float32
+ 2   X_2     48842 non-null  float32
+ 3   X_3     48842 non-null  float32
+ 4   X_4     48842 non-null  float32
+ 5   X_5     48842 non-null  float32
+ 6   X_6     48842 non-null  float32
+ 7   X_7     48842 non-null  float32
+ 8   X_8     48842 non-null  float32
+ 9   X_9     48842 non-null  float32
+ 10  X_10    48842 non-null  float32
+ 11  X_11    48842 non-null  float32
+ 12  X_12    48842 non-null  float32
+ 13  X_13    48842 non-null  float32
+dtypes: float32(14)
+memory usage: 3.0 MB
+        X_0  X_1  X_2  X_3  X_4  X_5  ...  X_8  X_9  X_10  X_11  X_12  X_13
+index                                 ...                                  
+0       6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   9.0   0.0   4.0   0.0
+1       7.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   0.0   0.0
+2       6.0  0.0  6.0  0.0  3.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+3       7.0  0.0  7.0  0.0  1.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+4       3.0  0.0  8.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+...     ...  ...  ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...
+48837   6.0  0.0  6.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+48838  10.0  0.0  8.0  0.0  3.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+48839   6.0  0.0  9.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   8.0   0.0
+48840   6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   9.0   0.0   4.0   0.0
+48841   3.0  0.0  5.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   8.0   0.0
+
+[48842 rows x 14 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 48842 entries, 0 to 48841
+Data columns (total 9 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          48842 non-null  int64  
+ 1   Score_0        48842 non-null  float64
+ 2   Proba_0        48842 non-null  float64
+ 3   LogProba_0     48842 non-null  float64
+ 4   Score_1        48842 non-null  float64
+ 5   Proba_1        48842 non-null  float64
+ 6   LogProba_1     48842 non-null  float64
+ 7   Decision       48842 non-null  int64  
+ 8   DecisionProba  48842 non-null  float64
+dtypes: float64(7), int64(2)
+memory usage: 3.4 MB
+       index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
+0          0 -0.658655  0.211266  ...   -0.237326         1       0.788734
+1          1  0.639900  0.782416  ...   -1.525170         0       0.782416
+2          2  0.397546  0.688924  ...   -1.167717         0       0.688924
+3          3  0.430476  0.702860  ...   -1.213550         0       0.702860
+4          4  0.316559  0.653196  ...   -1.058995         0       0.653196
+...      ...       ...       ...  ...         ...       ...            ...
+48837  48837  0.280084  0.636491  ...   -1.011952         0       0.636491
+48838  48838  0.343602  0.665345  ...   -1.094654         0       0.665345
+48839  48839 -0.090374  0.454935  ...   -0.606851         1       0.545065
+48840  48840 -0.658655  0.211266  ...   -0.237326         1       0.788734
+48841  48841 -0.047071  0.476482  ...   -0.647183         1       0.523518
+
+[48842 rows x 9 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
+       'LogProba_1', 'Decision', 'DecisionProba'],
+      dtype='object')
+       index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
+48826  48826  0.247088     0.621090  ...    0.621089    0.378911        <=50K
+48827  48827  0.658774     0.788773  ...    0.788773    0.211227        <=50K
+48828  48828  0.302438     0.646771  ...    0.646771    0.353229        <=50K
+48829  48829  0.249632     0.622286  ...    0.622286    0.377715        <=50K
+48830  48830  0.438573     0.706230  ...    0.706230    0.293770        <=50K
+48831  48831  0.382353     0.682375  ...    0.682374    0.317626        <=50K
+48832  48832 -0.015476     0.492263  ...    0.492262    0.507738         >50K
+48833  48833  0.432883     0.703864  ...    0.703864    0.296136        <=50K
+48834  48834  0.472772     0.720218  ...    0.720218    0.279782        <=50K
+48835  48835  0.241398     0.618408  ...    0.618407    0.381593        <=50K
+48836  48836  0.317696     0.653711  ...    0.653711    0.346289        <=50K
+48837  48837  0.280084     0.636491  ...    0.636491    0.363509        <=50K
+48838  48838  0.343602     0.665345  ...    0.665344    0.334656        <=50K
+48839  48839 -0.090374     0.454935  ...    0.454935    0.545065         >50K
+48840  48840 -0.658655     0.211266  ...    0.211267    0.788733         >50K
+48841  48841 -0.047071     0.476482  ...    0.476482    0.523518         >50K
+
+[16 rows x 12 columns]
+MLLITE_CLASS_SQL_ERROR ('census_quantized', 'RidgeClassifier', 'sqlite') ('Py_Proba_0', 'SQL_Proba_0') 3.206579476261852e-07
+       Py_Proba_0  SQL_Proba_0   SQL_Error_0
+48826    0.621089     0.621090 -2.381601e-07
+48827    0.788773     0.788773 -6.469271e-07
+48828    0.646771     0.646771 -4.081411e-07
+48829    0.622286     0.622286 -8.080147e-07
+48830    0.706230     0.706230 -1.704890e-07
+48831    0.682374     0.682375 -7.028537e-07
+48832    0.492262     0.492263 -6.119021e-07
+48833    0.703864     0.703864 -3.068273e-07
+48834    0.720218     0.720218  2.352285e-08
+48835    0.618407     0.618408 -4.038618e-07
+48836    0.653711     0.653711  1.817228e-08
+48837    0.636491     0.636491 -2.985356e-07
+48838    0.665344     0.665345 -9.524343e-07
+48839    0.454935     0.454935 -2.389934e-07
+48840    0.211267     0.211266  5.089289e-07
+48841    0.476482     0.476482  2.969875e-07
+MLLITE_CLASS_SQL_ERROR ('census_quantized', 'RidgeClassifier', 'sqlite') ('Py_Proba_1', 'SQL_Proba_1') 3.199460162816148e-07
+       Py_Proba_1  SQL_Proba_1   SQL_Error_1
+48826    0.378911     0.378910  2.381601e-07
+48827    0.211227     0.211227  5.724213e-07
+48828    0.353229     0.353229  3.783388e-07
+48829    0.377715     0.377714  8.676193e-07
+48830    0.293770     0.293770  8.108208e-08
+48831    0.317626     0.317625  6.730514e-07
+48832    0.507738     0.507737  5.522975e-07
+48833    0.296136     0.296136  2.770249e-07
+48834    0.279782     0.279782 -2.352285e-08
+48835    0.381593     0.381592  4.634665e-07
+48836    0.346289     0.346289  4.143237e-08
+48837    0.363509     0.363509  3.283379e-07
+48838    0.334656     0.334655  1.012039e-06
+48839    0.545065     0.545065  2.389934e-07
+48840    0.788733     0.788734 -4.493243e-07
+48841    0.523518     0.523518 -2.969875e-07
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('census_quantized', 'RidgeClassifier', 'sqlite', 'Success')
+      Py_Decision  SQL_Decision
+48826       <=50K             0
+48827       <=50K             0
+48828       <=50K             0
+48829       <=50K             0
+48830       <=50K             0
+48831       <=50K             0
+48832        >50K             1
+48833       <=50K             0
+48834       <=50K             0
+48835       <=50K             0
+48836       <=50K             0
+48837       <=50K             0
+48838       <=50K             0
+48839        >50K             1
+48840        >50K             1
+48841        >50K             1
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_census_quantized_option_1_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('census_quantized', 'RidgeClassifier', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT t."index" AS "index",
+   -0.5 * ( -1.838795 + 0.025834 * t."X_0" + 0.000000 * t."X_1" + 0.002276 * t."X_2" + 0.000000 * t."X_3" + 0.046985 * t."X_4" + 0.000000 * t."X_5" + 0.000000 * t."X_6" + 0.000000 * t."X_7" + 0.000000 * t."X_8" + 0.000000 * t."X_9" + 0.209873 * t."X_10" + 0.039602 * t."X_11" + 0.183522 * t."X_12" + 0.000000 * t."X_13" ) AS "Score_0",
+   CAST(N
+SQL_OUT_PUT_FIRST_LINES_END ('census_quantized', 'RidgeClassifier', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('census_quantized', 'RidgeClassifier', 'pgsql')
+"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
+SELECT arg_max_cte."index" AS "index",
+  arg_max_cte."Score_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('census_quantized', 'RidgeClassifier', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

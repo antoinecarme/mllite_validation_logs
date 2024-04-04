@@ -37,11 +37,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.015, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.02, 'TRAINING')
 { ,   }
 { ,   }
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_il8"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 569, "dataset_features" : 30 },
 	"classes" : [ 0, 1 ],
@@ -60,7 +60,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeClassifier { ,   }
 MLLITE_MODEL_JSON_AFTER_SETTING RidgeClassifier None
 MLLITE_RELOADING_MODEL mllite_ridge_class.RidgeClassifier_ff4_il8
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_il8"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 569, "dataset_features" : 30 },
 	"classes" : [ 0, 1 ],
@@ -84,7 +84,7 @@ BEAUTIFIED_JSON_START
 			"intercept" : 2.004765
 		}
 	},
-	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_il8", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_il8", "version" : "2024-W13" },
 	"options" :  { "alpha" : 1.0, "random_state" : 1789 }
 }
 BEAUTIFIED_JSON_END
@@ -92,40 +92,41 @@ BEAUTIFIED_JSON_END
 ('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
-[[0.8819 0.1181]
- [0.8504 0.1496]
- [0.892  0.108 ]
+[[0.732  0.268 ]
+ [0.7045 0.2955]
+ [0.7419 0.2581]
  ...
- [0.6399 0.3601]
- [0.9376 0.0624]
- [0.1218 0.8782]]
+ [0.5714 0.4286]
+ [0.7949 0.2051]
+ [0.2713 0.7287]]
 (569, 2)
 (569,) float32
 MODEL_PERFS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'BreastCancer_quantized', 'size': 569, 'accuracy': 0.9806678383128296, 'auc': 0.9962739812906294}
 WRITING_PERF_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_BreastCancer_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'BreastCancer_quantized', 'training_time_in_sec': 0.015, 'prediction_time_in_sec': 0.0}
-WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_BreastCancer_quantized.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'BreastCancer_quantized', 'training_time_in_sec': 0.02, 'prediction_time_in_sec': 0.0}
+WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_BreastCancer_quantized_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('BreastCancer_quantized', 'RidgeClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
-S t
-),
-arg_max_cte_with_max_proba_idx AS 
-( SELECT t.*,
-   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
-   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+SQL_OUT_PUT_FIRST_LINES_END ('BreastCancer_quantized', 'RidgeClassifier', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('BreastCancer_quantized', 'RidgeClassifier', 'duckdb')
+"
   FROM
    "arg_max_cte_with_max_proba" AS t
 ),
 arg_max_cte AS 
- (SELECT t.*,
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
      COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
    FROM
      "arg_max_cte_with_max_proba_idx" AS t
@@ -140,7 +141,7 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."argmax_class_idx" AS "Decision",
   arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('BreastCancer_quantized', 'RidgeClassifier', 'duckdb') 
 
 
 
@@ -202,3 +203,365 @@ COPY_TRAINING_DATA_TO_SQLITE_END
 
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 569 entries, 0 to 568
+Data columns (total 9 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          569 non-null    int64  
+ 1   Score_0        569 non-null    float64
+ 2   Proba_0        569 non-null    float64
+ 3   LogProba_0     569 non-null    float64
+ 4   Score_1        569 non-null    float64
+ 5   Proba_1        569 non-null    float64
+ 6   LogProba_1     569 non-null    float64
+ 7   Decision       569 non-null    int64  
+ 8   DecisionProba  569 non-null    float64
+dtypes: float64(7), int64(2)
+memory usage: 40.1 KB
+     index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
+0        0  0.502518  0.732048  ...   -1.316946         0       0.732048
+1        1  0.434362  0.704480  ...   -1.219020         0       0.704480
+2        2  0.527879  0.741879  ...   -1.354328         0       0.741879
+3        3  0.352228  0.669175  ...   -1.106166         0       0.669175
+4        4  0.258022  0.626222  ...   -0.984094         0       0.626222
+..     ...       ...       ...  ...         ...       ...            ...
+564    564  0.674552  0.793983  ...   -1.579797         0       0.793983
+565    565  0.424403  0.700317  ...   -1.205029         0       0.700317
+566    566  0.143701  0.571360  ...   -0.847138         0       0.571360
+567    567  0.677420  0.794920  ...   -1.584354         0       0.794920
+568    568 -0.493972  0.271318  ...   -0.316518         1       0.728682
+
+[569 rows x 9 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
+       'LogProba_1', 'Decision', 'DecisionProba'],
+      dtype='object')
+     index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
+553    553 -0.597712     0.232290  ...    0.232290    0.767710            1
+554    554 -0.275413     0.365673  ...    0.365673    0.634327            1
+555    555 -0.474407     0.279123  ...    0.279123    0.720877            1
+556    556 -0.783967     0.172511  ...    0.172510    0.827489            1
+557    557 -0.484990     0.274884  ...    0.274883    0.725117            1
+558    558 -0.296646     0.355880  ...    0.355881    0.644119            1
+559    559 -0.305131     0.351999  ...    0.351999    0.648001            1
+560    560 -0.193252     0.404559  ...    0.404559    0.595441            1
+561    561 -0.540206     0.253428  ...    0.253427    0.746573            1
+562    562  0.364960     0.674788  ...    0.674788    0.325212            0
+563    563  0.586585     0.763717  ...    0.763718    0.236282            0
+564    564  0.674552     0.793983  ...    0.793984    0.206016            0
+565    565  0.424403     0.700317  ...    0.700317    0.299683            0
+566    566  0.143701     0.571360  ...    0.571361    0.428639            0
+567    567  0.677420     0.794920  ...    0.794921    0.205079            0
+568    568 -0.493972     0.271318  ...    0.271318    0.728682            1
+
+[16 rows x 12 columns]
+MLLITE_CLASS_SQL_ERROR ('BreastCancer_quantized', 'RidgeClassifier', 'duckdb') ('Py_Proba_0', 'SQL_Proba_0') 8.245687164403554e-07
+     Py_Proba_0  SQL_Proba_0   SQL_Error_0
+553    0.232290     0.232290 -4.090970e-07
+554    0.365673     0.365673  5.273172e-07
+555    0.279123     0.279123 -3.170039e-07
+556    0.172510     0.172511 -6.485400e-07
+557    0.274883     0.274884 -9.857223e-07
+558    0.355881     0.355880  6.880381e-07
+559    0.351999     0.351999  3.028442e-09
+560    0.404559     0.404559 -1.885377e-07
+561    0.253427     0.253428 -1.030280e-06
+562    0.674788     0.674788  7.312806e-07
+563    0.763718     0.763717  1.013963e-06
+564    0.793984     0.793983  9.433009e-07
+565    0.700317     0.700317  1.334686e-07
+566    0.571361     0.571360  1.044123e-06
+567    0.794921     0.794920  8.341779e-07
+568    0.271318     0.271318 -4.487547e-07
+MLLITE_CLASS_SQL_ERROR ('BreastCancer_quantized', 'RidgeClassifier', 'duckdb') ('Py_Proba_1', 'SQL_Proba_1') 8.275272611312729e-07
+     Py_Proba_1  SQL_Proba_1   SQL_Error_1
+553    0.767710     0.767710  3.494923e-07
+554    0.634327     0.634327 -5.571195e-07
+555    0.720877     0.720877  3.468062e-07
+556    0.827489     0.827489  5.889353e-07
+557    0.725117     0.725116  1.015525e-06
+558    0.644119     0.644120 -6.582358e-07
+559    0.648001     0.648001 -3.028442e-09
+560    0.595441     0.595441  1.885377e-07
+561    0.746573     0.746572  1.060082e-06
+562    0.325212     0.325212 -6.716759e-07
+563    0.236282     0.236283 -9.692596e-07
+564    0.206016     0.206017 -9.134986e-07
+565    0.299683     0.299683 -1.632709e-07
+566    0.428639     0.428640 -1.133530e-06
+567    0.205079     0.205080 -7.894744e-07
+568    0.728682     0.728682  4.785571e-07
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('BreastCancer_quantized', 'RidgeClassifier', 'duckdb', 'Success')
+     Py_Decision  SQL_Decision
+553            1             1
+554            1             1
+555            1             1
+556            1             1
+557            1             1
+558            1             1
+559            1             1
+560            1             1
+561            1             1
+562            0             0
+563            0             0
+564            0             0
+565            0             0
+566            0             0
+567            0             0
+568            1             1
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_BreastCancer_quantized_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('BreastCancer_quantized', 'RidgeClassifier', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
+SQL_OUT_PUT_FIRST_LINES_END ('BreastCancer_quantized', 'RidgeClassifier', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('BreastCancer_quantized', 'RidgeClassifier', 'sqlite')
+"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
+SELECT arg_max_cte."index" AS "index",
+  arg_max_cte."Score_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('BreastCancer_quantized', 'RidgeClassifier', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 569 entries, 0 to 568
+Data columns (total 30 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     569 non-null    float32
+ 1   X_1     569 non-null    float32
+ 2   X_2     569 non-null    float32
+ 3   X_3     569 non-null    float32
+ 4   X_4     569 non-null    float32
+ 5   X_5     569 non-null    float32
+ 6   X_6     569 non-null    float32
+ 7   X_7     569 non-null    float32
+ 8   X_8     569 non-null    float32
+ 9   X_9     569 non-null    float32
+ 10  X_10    569 non-null    float32
+ 11  X_11    569 non-null    float32
+ 12  X_12    569 non-null    float32
+ 13  X_13    569 non-null    float32
+ 14  X_14    569 non-null    float32
+ 15  X_15    569 non-null    float32
+ 16  X_16    569 non-null    float32
+ 17  X_17    569 non-null    float32
+ 18  X_18    569 non-null    float32
+ 19  X_19    569 non-null    float32
+ 20  X_20    569 non-null    float32
+ 21  X_21    569 non-null    float32
+ 22  X_22    569 non-null    float32
+ 23  X_23    569 non-null    float32
+ 24  X_24    569 non-null    float32
+ 25  X_25    569 non-null    float32
+ 26  X_26    569 non-null    float32
+ 27  X_27    569 non-null    float32
+ 28  X_28    569 non-null    float32
+ 29  X_29    569 non-null    float32
+dtypes: float32(30)
+memory usage: 71.1 KB
+       X_0  X_1  X_2  X_3  X_4  X_5  ...  X_24  X_25  X_26  X_27  X_28  X_29
+index                                ...                                    
+0      8.0  0.0  8.0  8.0  8.0  9.0  ...   8.0   9.0   9.0   9.0   9.0   9.0
+1      9.0  3.0  8.0  9.0  2.0  3.0  ...   3.0   4.0   5.0   8.0   4.0   7.0
+2      8.0  7.0  8.0  8.0  8.0  8.0  ...   7.0   8.0   8.0   9.0   8.0   6.0
+3      2.0  6.0  3.0  1.0  9.0  9.0  ...   9.0   9.0   9.0   9.0  10.0   9.0
+4      9.0  1.0  9.0  9.0  6.0  7.0  ...   5.0   4.0   7.0   7.0   1.0   4.0
+...    ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...   ...   ...
+564    9.0  7.0  9.0  9.0  8.0  6.0  ...   6.0   4.0   7.0   9.0   0.0   2.0
+565    9.0  9.0  8.0  8.0  5.0  5.0  ...   2.0   4.0   6.0   7.0   3.0   1.0
+566    7.0  9.0  7.0  7.0  2.0  5.0  ...   2.0   7.0   6.0   6.0   1.0   4.0
+567    9.0  9.0  9.0  8.0  8.0  9.0  ...   8.0   9.0   9.0   9.0   9.0   9.0
+568    0.0  8.0  0.0  0.0  0.0  0.0  ...   0.0   0.0   0.0   0.0   5.0   2.0
+
+[569 rows x 30 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 569 entries, 0 to 568
+Data columns (total 9 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          569 non-null    int64  
+ 1   Score_0        569 non-null    float64
+ 2   Proba_0        569 non-null    float64
+ 3   LogProba_0     569 non-null    float64
+ 4   Score_1        569 non-null    float64
+ 5   Proba_1        569 non-null    float64
+ 6   LogProba_1     569 non-null    float64
+ 7   Decision       569 non-null    int64  
+ 8   DecisionProba  569 non-null    float64
+dtypes: float64(7), int64(2)
+memory usage: 40.1 KB
+     index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
+0        0  0.502518  0.732048  ...   -1.316946         0       0.732048
+1        1  0.434363  0.704480  ...   -1.219020         0       0.704480
+2        2  0.527879  0.741879  ...   -1.354328         0       0.741879
+3        3  0.352228  0.669175  ...   -1.106166         0       0.669175
+4        4  0.258022  0.626222  ...   -0.984094         0       0.626222
+..     ...       ...       ...  ...         ...       ...            ...
+564    564  0.674552  0.793983  ...   -1.579797         0       0.793983
+565    565  0.424403  0.700317  ...   -1.205029         0       0.700317
+566    566  0.143701  0.571360  ...   -0.847138         0       0.571360
+567    567  0.677420  0.794920  ...   -1.584354         0       0.794920
+568    568 -0.493972  0.271318  ...   -0.316518         1       0.728682
+
+[569 rows x 9 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
+       'LogProba_1', 'Decision', 'DecisionProba'],
+      dtype='object')
+     index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
+553    553 -0.597711     0.232290  ...    0.232290    0.767710            1
+554    554 -0.275413     0.365673  ...    0.365673    0.634327            1
+555    555 -0.474408     0.279123  ...    0.279123    0.720877            1
+556    556 -0.783967     0.172511  ...    0.172510    0.827489            1
+557    557 -0.484990     0.274884  ...    0.274883    0.725117            1
+558    558 -0.296646     0.355880  ...    0.355881    0.644119            1
+559    559 -0.305131     0.351999  ...    0.351999    0.648001            1
+560    560 -0.193251     0.404559  ...    0.404559    0.595441            1
+561    561 -0.540206     0.253428  ...    0.253427    0.746573            1
+562    562  0.364960     0.674788  ...    0.674788    0.325212            0
+563    563  0.586585     0.763717  ...    0.763718    0.236282            0
+564    564  0.674552     0.793983  ...    0.793984    0.206016            0
+565    565  0.424403     0.700317  ...    0.700317    0.299683            0
+566    566  0.143701     0.571360  ...    0.571361    0.428639            0
+567    567  0.677420     0.794920  ...    0.794921    0.205079            0
+568    568 -0.493972     0.271318  ...    0.271318    0.728682            1
+
+[16 rows x 12 columns]
+MLLITE_CLASS_SQL_ERROR ('BreastCancer_quantized', 'RidgeClassifier', 'sqlite') ('Py_Proba_0', 'SQL_Proba_0') 8.220539821836524e-07
+     Py_Proba_0  SQL_Proba_0   SQL_Error_0
+553    0.232290     0.232290 -4.103473e-07
+554    0.365673     0.365673  5.350268e-07
+555    0.279123     0.279123 -2.786370e-07
+556    0.172510     0.172511 -6.707327e-07
+557    0.274883     0.274884 -1.009772e-06
+558    0.355881     0.355880  6.642350e-07
+559    0.351999     0.351999 -3.244795e-08
+560    0.404559     0.404559 -2.199012e-07
+561    0.253427     0.253428 -1.058552e-06
+562    0.674788     0.674788  6.985445e-07
+563    0.763718     0.763717  1.017002e-06
+564    0.793984     0.793983  9.509597e-07
+565    0.700317     0.700317  1.134023e-07
+566    0.571361     0.571360  9.648166e-07
+567    0.794921     0.794920  8.407325e-07
+568    0.271318     0.271318 -4.383387e-07
+MLLITE_CLASS_SQL_ERROR ('BreastCancer_quantized', 'RidgeClassifier', 'sqlite') ('Py_Proba_1', 'SQL_Proba_1') 8.250564640538894e-07
+     Py_Proba_1  SQL_Proba_1   SQL_Error_1
+553    0.767710     0.767710  3.507427e-07
+554    0.634327     0.634327 -5.648292e-07
+555    0.720877     0.720877  3.084393e-07
+556    0.827489     0.827489  6.111280e-07
+557    0.725117     0.725116  1.039575e-06
+558    0.644119     0.644120 -6.344327e-07
+559    0.648001     0.648001  3.244795e-08
+560    0.595441     0.595441  2.199012e-07
+561    0.746573     0.746572  1.088354e-06
+562    0.325212     0.325212 -6.389398e-07
+563    0.236282     0.236283 -9.722980e-07
+564    0.206016     0.206017 -9.211574e-07
+565    0.299683     0.299683 -1.432046e-07
+566    0.428639     0.428640 -1.054224e-06
+567    0.205079     0.205080 -7.960290e-07
+568    0.728682     0.728682  4.681410e-07
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('BreastCancer_quantized', 'RidgeClassifier', 'sqlite', 'Success')
+     Py_Decision  SQL_Decision
+553            1             1
+554            1             1
+555            1             1
+556            1             1
+557            1             1
+558            1             1
+559            1             1
+560            1             1
+561            1             1
+562            0             0
+563            0             0
+564            0             0
+565            0             0
+566            0             0
+567            0             0
+568            1             1
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_BreastCancer_quantized_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('BreastCancer_quantized', 'RidgeClassifier', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
+SQL_OUT_PUT_FIRST_LINES_END ('BreastCancer_quantized', 'RidgeClassifier', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('BreastCancer_quantized', 'RidgeClassifier', 'pgsql')
+"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
+SELECT arg_max_cte."index" AS "index",
+  arg_max_cte."Score_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('BreastCancer_quantized', 'RidgeClassifier', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

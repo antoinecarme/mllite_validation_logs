@@ -80,11 +80,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 32 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 33 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 34 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_CLASSIFIER_FIT' 3 3
-('OPERATION_END_ELAPSED', 4.102, 'TRAINING')
+('OPERATION_END_ELAPSED', 3.749, 'TRAINING')
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  }
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  }
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W12", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_il8"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.000000, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 1024, "dataset_features" : 100 },
 	"classes" : [ 0, 1 ],
@@ -1791,7 +1791,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING XGBClassifier { ,  "nthread" : 1, "max_bin" :
 MLLITE_MODEL_JSON_AFTER_SETTING XGBClassifier None
 MLLITE_RELOADING_MODEL mllite_xgb_class.XGBClassifier_ff4_il8
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W12", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_il8"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.000000, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 1024, "dataset_features" : 100 },
 	"classes" : [ 0, 1 ],
@@ -16573,14 +16573,14 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 100,
 		"dataset_rows" : 1024
 	},
-	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_il8", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_il8", "version" : "2024-W13" },
 	"options" :  { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.0, "grow_policy" : 0, "learning_rate" : 0.3, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.0, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.0, "reg_lambda" : 1.0, "tree_method" : "auto" }
 }
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.004, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.006, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.006, 'PREDICT')
 [[0.0659 0.9341]
  [0.9682 0.0318]
  [0.996  0.004 ]
@@ -16593,28 +16593,29 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': None, 'dataset': 'BinaryClass_100_quantized', 'size': 1024, 'accuracy': 1.0, 'auc': 1.0}
 WRITING_PERF_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_BinaryClass_100_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': None, 'dataset': 'BinaryClass_100_quantized', 'training_time_in_sec': 4.102, 'prediction_time_in_sec': 0.003}
-WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_BinaryClass_100_quantized.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': None, 'dataset': 'BinaryClass_100_quantized', 'training_time_in_sec': 3.749, 'prediction_time_in_sec': 0.006}
+WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_BinaryClass_100_quantized_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('BinaryClass_100_quantized', 'XGBClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
-S t
-),
-arg_max_cte_with_max_proba_idx AS 
-( SELECT t.*,
-   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
-   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+SQL_OUT_PUT_FIRST_LINES_END ('BinaryClass_100_quantized', 'XGBClassifier', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('BinaryClass_100_quantized', 'XGBClassifier', 'duckdb')
+"
   FROM
    "arg_max_cte_with_max_proba" AS t
 ),
 arg_max_cte AS 
- (SELECT t.*,
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
      COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
    FROM
      "arg_max_cte_with_max_proba_idx" AS t
@@ -16629,7 +16630,7 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."argmax_class_idx" AS "Decision",
   arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('BinaryClass_100_quantized', 'XGBClassifier', 'duckdb') 
 
 
 
@@ -16778,17 +16779,17 @@ Data columns (total 9 columns):
 dtypes: float64(7), int64(2)
 memory usage: 72.1 KB
       index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
-0         0 -1.825464  0.025310  ...   -0.025636         1       0.974690
-1         1  1.207411  0.917951  ...   -2.500434         0       0.917951
-2         2  2.260961  0.989249  ...   -4.532731         0       0.989249
-3         3 -3.522284  0.000871  ...   -0.000872         1       0.999129
-4         4  1.439438  0.946792  ...   -2.933552         0       0.946792
+0         0 -0.825462  0.065932  ...   -0.068206         1       0.934068
+1         1  2.207411  0.968165  ...   -3.447175         0       0.968165
+2         2  3.260962  0.996018  ...   -5.525913         0       0.996018
+3         3 -2.522284  0.002365  ...   -0.002368         1       0.997635
+4         4  2.439438  0.979745  ...   -3.899339         0       0.979745
 ...     ...       ...       ...  ...         ...       ...            ...
-1019   1019  1.620302  0.962334  ...   -3.278998         0       0.962334
-1020   1020  1.159118  0.910376  ...   -2.412133         0       0.910376
-1021   1021  2.596813  0.994479  ...   -5.199162         0       0.994479
-1022   1022  1.786205  0.972679  ...   -3.600111         0       0.972679
-1023   1023 -1.731517  0.030383  ...   -0.030854         1       0.969617
+1019   1019  2.620302  0.985805  ...   -4.254900         0       0.985805
+1020   1020  2.159119  0.965049  ...   -3.353813         0       0.965049
+1021   1021  3.596813  0.997962  ...   -6.195666         0       0.997962
+1022   1022  2.786205  0.989773  ...   -4.582690         0       0.989773
+1023   1023 -0.731517  0.078491  ...   -0.081742         1       0.921509
 
 [1024 rows x 9 columns]
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
@@ -16799,60 +16800,61 @@ Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
        'LogProba_1', 'Decision', 'DecisionProba'],
       dtype='object')
       index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
-1008   1008 -3.625449     0.000709  ...    0.001925    0.998075            1
-1009   1009 -2.970523     0.002622  ...    0.007096    0.992904            1
-1010   1010 -1.766415     0.028392  ...    0.073589    0.926411            1
-1011   1011 -2.528711     0.006322  ...    0.017000    0.983001            1
-1012   1012  3.078138     0.997884  ...    0.999221    0.000779            0
-1013   1013  1.328508     0.934442  ...    0.974840    0.025160            0
-1014   1014  1.740563     0.970146  ...    0.988806    0.011194            0
-1015   1015 -3.550128     0.000824  ...    0.002237    0.997763            1
-1016   1016  1.175639     0.913036  ...    0.966147    0.033853            0
-1017   1017  2.658827     0.995120  ...    0.998199    0.001801            0
-1018   1018 -2.734906     0.004194  ...    0.011320    0.988680            1
-1019   1019  1.620302     0.962334  ...    0.985805    0.014194            0
-1020   1020  1.159118     0.910376  ...    0.965049    0.034951            0
-1021   1021  2.596813     0.994479  ...    0.997962    0.002038            0
-1022   1022  1.786205     0.972679  ...    0.989773    0.010227            0
-1023   1023 -1.731517     0.030383  ...    0.078491    0.921509            1
+1008   1008 -2.625449     0.001925  ...    0.001925    0.998075            1
+1009   1009 -1.970523     0.007096  ...    0.007096    0.992904            1
+1010   1010 -0.766413     0.073589  ...    0.073589    0.926411            1
+1011   1011 -1.528711     0.017000  ...    0.017000    0.983001            1
+1012   1012  4.078139     0.999221  ...    0.999221    0.000779            0
+1013   1013  2.328509     0.974840  ...    0.974840    0.025160            0
+1014   1014  2.740565     0.988806  ...    0.988806    0.011194            0
+1015   1015 -2.550128     0.002237  ...    0.002237    0.997763            1
+1016   1016  2.175639     0.966147  ...    0.966147    0.033853            0
+1017   1017  3.658827     0.998199  ...    0.998199    0.001801            0
+1018   1018 -1.734906     0.011320  ...    0.011320    0.988680            1
+1019   1019  2.620302     0.985805  ...    0.985805    0.014194            0
+1020   1020  2.159119     0.965049  ...    0.965049    0.034951            0
+1021   1021  3.596813     0.997962  ...    0.997962    0.002038            0
+1022   1022  2.786205     0.989773  ...    0.989773    0.010227            0
+1023   1023 -0.731517     0.078491  ...    0.078491    0.921509            1
 
 [16 rows x 12 columns]
-MLLITE_SQL_ERROR ('Py_Proba_0', 'SQL_Proba_0') 0.471380980666009
-      Py_Proba_0  SQL_Proba_0
-1008    0.001925     0.000709
-1009    0.007096     0.002622
-1010    0.073589     0.028392
-1011    0.017000     0.006322
-1012    0.999221     0.997884
-1013    0.974840     0.934442
-1014    0.988806     0.970146
-1015    0.002237     0.000824
-1016    0.966147     0.913036
-1017    0.998199     0.995120
-1018    0.011320     0.004194
-1019    0.985805     0.962334
-1020    0.965049     0.910376
-1021    0.997962     0.994479
-1022    0.989773     0.972679
-1023    0.078491     0.030383
-MLLITE_SQL_ERROR ('Py_Proba_1', 'SQL_Proba_1') 0.4566479274651536
-      Py_Proba_1  SQL_Proba_1
-1008    0.998075     0.999291
-1009    0.992904     0.997378
-1010    0.926411     0.971608
-1011    0.983001     0.993678
-1012    0.000779     0.002116
-1013    0.025160     0.065558
-1014    0.011194     0.029854
-1015    0.997763     0.999176
-1016    0.033853     0.086964
-1017    0.001801     0.004880
-1018    0.988680     0.995806
-1019    0.014194     0.037666
-1020    0.034951     0.089624
-1021    0.002038     0.005521
-1022    0.010227     0.027321
-1023    0.921509     0.969617
+MLLITE_CLASS_SQL_ERROR ('BinaryClass_100_quantized', 'XGBClassifier', 'duckdb') ('Py_Proba_0', 'SQL_Proba_0') 6.340238594762231e-08
+      Py_Proba_0  SQL_Proba_0   SQL_Error_0
+1008    0.001925     0.001925 -7.174847e-09
+1009    0.007096     0.007096 -3.936631e-09
+1010    0.073589     0.073589  1.972688e-08
+1011    0.017000     0.017000 -2.300835e-09
+1012    0.999221     0.999221  1.433638e-08
+1013    0.974840     0.974840  8.012359e-09
+1014    0.988806     0.988806  1.021493e-07
+1015    0.002237     0.002237 -2.908274e-09
+1016    0.966147     0.966147  4.686555e-08
+1017    0.998199     0.998199 -1.515918e-07
+1018    0.011320     0.011320  5.583632e-09
+1019    0.985805     0.985805 -1.006284e-07
+1020    0.965049     0.965049  9.131054e-08
+1021    0.997962     0.997962 -5.542292e-08
+1022    0.989773     0.989773  8.465666e-08
+1023    0.078491     0.078491  3.797949e-07
+MLLITE_CLASS_SQL_ERROR ('BinaryClass_100_quantized', 'XGBClassifier', 'duckdb') ('Py_Proba_1', 'SQL_Proba_1') 6.093615947233088e-08
+      Py_Proba_1  SQL_Proba_1   SQL_Error_1
+1008    0.998075     0.998075 -4.265091e-08
+1009    0.992904     0.992904  1.091761e-07
+1010    0.926411     0.926411 -1.091339e-07
+1011    0.983001     0.983000  7.866929e-08
+1012    0.000779     0.000779 -1.588904e-09
+1013    0.025160     0.025160 -3.595204e-08
+1014    0.011194     0.011194 -9.017085e-09
+1015    0.997763     0.997763  7.624993e-08
+1016    0.033853     0.033853 -4.686555e-08
+1017    0.001801     0.001801  5.956257e-09
+1018    0.988680     0.988680 -7.357018e-08
+1019    0.014194     0.014195 -1.019901e-08
+1020    0.034951     0.034951  5.025049e-08
+1021    0.002038     0.002038 -1.070098e-08
+1022    0.010227     0.010227 -4.181582e-08
+1023    0.921509     0.921509 -4.244984e-07
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('BinaryClass_100_quantized', 'XGBClassifier', 'duckdb', 'Success')
       Py_Decision  SQL_Decision
 1008            1             1
 1009            1             1
@@ -16871,3 +16873,324 @@ MLLITE_SQL_ERROR ('Py_Proba_1', 'SQL_Proba_1') 0.4566479274651536
 1022            0             0
 1023            1             1
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_BinaryClass_100_quantized_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('BinaryClass_100_quantized', 'XGBClassifier', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
+SQL_OUT_PUT_FIRST_LINES_END ('BinaryClass_100_quantized', 'XGBClassifier', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('BinaryClass_100_quantized', 'XGBClassifier', 'sqlite')
+"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
+SELECT arg_max_cte."index" AS "index",
+  arg_max_cte."Score_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('BinaryClass_100_quantized', 'XGBClassifier', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 1024 entries, 0 to 1023
+Data columns (total 100 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     1024 non-null   float32
+ 1   X_1     1024 non-null   float32
+ 2   X_2     1024 non-null   float32
+ 3   X_3     1024 non-null   float32
+ 4   X_4     1024 non-null   float32
+ 5   X_5     1024 non-null   float32
+ 6   X_6     1024 non-null   float32
+ 7   X_7     1024 non-null   float32
+ 8   X_8     1024 non-null   float32
+ 9   X_9     1024 non-null   float32
+ 10  X_10    1024 non-null   float32
+ 11  X_11    1024 non-null   float32
+ 12  X_12    1024 non-null   float32
+ 13  X_13    1024 non-null   float32
+ 14  X_14    1024 non-null   float32
+ 15  X_15    1024 non-null   float32
+ 16  X_16    1024 non-null   float32
+ 17  X_17    1024 non-null   float32
+ 18  X_18    1024 non-null   float32
+ 19  X_19    1024 non-null   float32
+ 20  X_20    1024 non-null   float32
+ 21  X_21    1024 non-null   float32
+ 22  X_22    1024 non-null   float32
+ 23  X_23    1024 non-null   float32
+ 24  X_24    1024 non-null   float32
+ 25  X_25    1024 non-null   float32
+ 26  X_26    1024 non-null   float32
+ 27  X_27    1024 non-null   float32
+ 28  X_28    1024 non-null   float32
+ 29  X_29    1024 non-null   float32
+ 30  X_30    1024 non-null   float32
+ 31  X_31    1024 non-null   float32
+ 32  X_32    1024 non-null   float32
+ 33  X_33    1024 non-null   float32
+ 34  X_34    1024 non-null   float32
+ 35  X_35    1024 non-null   float32
+ 36  X_36    1024 non-null   float32
+ 37  X_37    1024 non-null   float32
+ 38  X_38    1024 non-null   float32
+ 39  X_39    1024 non-null   float32
+ 40  X_40    1024 non-null   float32
+ 41  X_41    1024 non-null   float32
+ 42  X_42    1024 non-null   float32
+ 43  X_43    1024 non-null   float32
+ 44  X_44    1024 non-null   float32
+ 45  X_45    1024 non-null   float32
+ 46  X_46    1024 non-null   float32
+ 47  X_47    1024 non-null   float32
+ 48  X_48    1024 non-null   float32
+ 49  X_49    1024 non-null   float32
+ 50  X_50    1024 non-null   float32
+ 51  X_51    1024 non-null   float32
+ 52  X_52    1024 non-null   float32
+ 53  X_53    1024 non-null   float32
+ 54  X_54    1024 non-null   float32
+ 55  X_55    1024 non-null   float32
+ 56  X_56    1024 non-null   float32
+ 57  X_57    1024 non-null   float32
+ 58  X_58    1024 non-null   float32
+ 59  X_59    1024 non-null   float32
+ 60  X_60    1024 non-null   float32
+ 61  X_61    1024 non-null   float32
+ 62  X_62    1024 non-null   float32
+ 63  X_63    1024 non-null   float32
+ 64  X_64    1024 non-null   float32
+ 65  X_65    1024 non-null   float32
+ 66  X_66    1024 non-null   float32
+ 67  X_67    1024 non-null   float32
+ 68  X_68    1024 non-null   float32
+ 69  X_69    1024 non-null   float32
+ 70  X_70    1024 non-null   float32
+ 71  X_71    1024 non-null   float32
+ 72  X_72    1024 non-null   float32
+ 73  X_73    1024 non-null   float32
+ 74  X_74    1024 non-null   float32
+ 75  X_75    1024 non-null   float32
+ 76  X_76    1024 non-null   float32
+ 77  X_77    1024 non-null   float32
+ 78  X_78    1024 non-null   float32
+ 79  X_79    1024 non-null   float32
+ 80  X_80    1024 non-null   float32
+ 81  X_81    1024 non-null   float32
+ 82  X_82    1024 non-null   float32
+ 83  X_83    1024 non-null   float32
+ 84  X_84    1024 non-null   float32
+ 85  X_85    1024 non-null   float32
+ 86  X_86    1024 non-null   float32
+ 87  X_87    1024 non-null   float32
+ 88  X_88    1024 non-null   float32
+ 89  X_89    1024 non-null   float32
+ 90  X_90    1024 non-null   float32
+ 91  X_91    1024 non-null   float32
+ 92  X_92    1024 non-null   float32
+ 93  X_93    1024 non-null   float32
+ 94  X_94    1024 non-null   float32
+ 95  X_95    1024 non-null   float32
+ 96  X_96    1024 non-null   float32
+ 97  X_97    1024 non-null   float32
+ 98  X_98    1024 non-null   float32
+ 99  X_99    1024 non-null   float32
+dtypes: float32(100)
+memory usage: 408.0 KB
+       X_0  X_1  X_2  X_3  X_4  X_5  ...  X_94  X_95  X_96  X_97  X_98  X_99
+index                                ...                                    
+0      5.0  3.0  0.0  8.0  4.0  4.0  ...   8.0   6.0   6.0   5.0   5.0   4.0
+1      7.0  3.0  7.0  3.0  5.0  7.0  ...   3.0   9.0   1.0   2.0   5.0   1.0
+2      8.0  5.0  5.0  8.0  7.0  8.0  ...   3.0   2.0   8.0   7.0   1.0   0.0
+3      0.0  9.0  5.0  2.0  9.0  3.0  ...   1.0   0.0   7.0   5.0   0.0   2.0
+4      6.0  3.0  9.0  5.0  4.0  1.0  ...   7.0   9.0   9.0   5.0   1.0   7.0
+...    ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...   ...   ...
+1019   5.0  2.0  5.0  3.0  3.0  1.0  ...   7.0   6.0   0.0   6.0   5.0   6.0
+1020   4.0  5.0  8.0  6.0  6.0  7.0  ...   8.0   1.0   3.0   5.0   8.0   4.0
+1021   3.0  1.0  8.0  1.0  2.0  5.0  ...   8.0   1.0   4.0   5.0   3.0   9.0
+1022   7.0  1.0  0.0  5.0  2.0  2.0  ...   2.0   2.0   4.0   6.0   0.0   5.0
+1023   6.0  4.0  5.0  7.0  4.0  1.0  ...   8.0   4.0   3.0   6.0   0.0   6.0
+
+[1024 rows x 100 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1024 entries, 0 to 1023
+Data columns (total 9 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          1024 non-null   int64  
+ 1   Score_0        1024 non-null   float64
+ 2   Proba_0        1024 non-null   float64
+ 3   LogProba_0     1024 non-null   float64
+ 4   Score_1        1024 non-null   float64
+ 5   Proba_1        1024 non-null   float64
+ 6   LogProba_1     1024 non-null   float64
+ 7   Decision       1024 non-null   int64  
+ 8   DecisionProba  1024 non-null   float64
+dtypes: float64(7), int64(2)
+memory usage: 72.1 KB
+      index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
+0         0 -0.825462  0.065932  ...   -0.068206         1       0.934068
+1         1  2.207411  0.968165  ...   -3.447175         0       0.968165
+2         2  3.260962  0.996018  ...   -5.525913         0       0.996018
+3         3 -2.522284  0.002365  ...   -0.002368         1       0.997635
+4         4  2.439438  0.979745  ...   -3.899339         0       0.979745
+...     ...       ...       ...  ...         ...       ...            ...
+1019   1019  2.620302  0.985805  ...   -4.254900         0       0.985805
+1020   1020  2.159119  0.965049  ...   -3.353813         0       0.965049
+1021   1021  3.596813  0.997962  ...   -6.195666         0       0.997962
+1022   1022  2.786205  0.989773  ...   -4.582690         0       0.989773
+1023   1023 -0.731517  0.078491  ...   -0.081742         1       0.921509
+
+[1024 rows x 9 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
+       'LogProba_1', 'Decision', 'DecisionProba'],
+      dtype='object')
+      index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
+1008   1008 -2.625449     0.001925  ...    0.001925    0.998075            1
+1009   1009 -1.970523     0.007096  ...    0.007096    0.992904            1
+1010   1010 -0.766413     0.073589  ...    0.073589    0.926411            1
+1011   1011 -1.528711     0.017000  ...    0.017000    0.983001            1
+1012   1012  4.078139     0.999221  ...    0.999221    0.000779            0
+1013   1013  2.328509     0.974840  ...    0.974840    0.025160            0
+1014   1014  2.740565     0.988806  ...    0.988806    0.011194            0
+1015   1015 -2.550128     0.002237  ...    0.002237    0.997763            1
+1016   1016  2.175639     0.966147  ...    0.966147    0.033853            0
+1017   1017  3.658827     0.998199  ...    0.998199    0.001801            0
+1018   1018 -1.734906     0.011320  ...    0.011320    0.988680            1
+1019   1019  2.620302     0.985805  ...    0.985805    0.014194            0
+1020   1020  2.159119     0.965049  ...    0.965049    0.034951            0
+1021   1021  3.596813     0.997962  ...    0.997962    0.002038            0
+1022   1022  2.786205     0.989773  ...    0.989773    0.010227            0
+1023   1023 -0.731517     0.078491  ...    0.078491    0.921509            1
+
+[16 rows x 12 columns]
+MLLITE_CLASS_SQL_ERROR ('BinaryClass_100_quantized', 'XGBClassifier', 'sqlite') ('Py_Proba_0', 'SQL_Proba_0') 6.34023859472043e-08
+      Py_Proba_0  SQL_Proba_0   SQL_Error_0
+1008    0.001925     0.001925 -7.174847e-09
+1009    0.007096     0.007096 -3.936631e-09
+1010    0.073589     0.073589  1.972688e-08
+1011    0.017000     0.017000 -2.300835e-09
+1012    0.999221     0.999221  1.433638e-08
+1013    0.974840     0.974840  8.012359e-09
+1014    0.988806     0.988806  1.021493e-07
+1015    0.002237     0.002237 -2.908274e-09
+1016    0.966147     0.966147  4.686555e-08
+1017    0.998199     0.998199 -1.515918e-07
+1018    0.011320     0.011320  5.583632e-09
+1019    0.985805     0.985805 -1.006284e-07
+1020    0.965049     0.965049  9.131054e-08
+1021    0.997962     0.997962 -5.542292e-08
+1022    0.989773     0.989773  8.465666e-08
+1023    0.078491     0.078491  3.797949e-07
+MLLITE_CLASS_SQL_ERROR ('BinaryClass_100_quantized', 'XGBClassifier', 'sqlite') ('Py_Proba_1', 'SQL_Proba_1') 6.093615947174293e-08
+      Py_Proba_1  SQL_Proba_1   SQL_Error_1
+1008    0.998075     0.998075 -4.265091e-08
+1009    0.992904     0.992904  1.091761e-07
+1010    0.926411     0.926411 -1.091339e-07
+1011    0.983001     0.983000  7.866929e-08
+1012    0.000779     0.000779 -1.588904e-09
+1013    0.025160     0.025160 -3.595204e-08
+1014    0.011194     0.011194 -9.017085e-09
+1015    0.997763     0.997763  7.624993e-08
+1016    0.033853     0.033853 -4.686555e-08
+1017    0.001801     0.001801  5.956257e-09
+1018    0.988680     0.988680 -7.357018e-08
+1019    0.014194     0.014195 -1.019901e-08
+1020    0.034951     0.034951  5.025049e-08
+1021    0.002038     0.002038 -1.070098e-08
+1022    0.010227     0.010227 -4.181582e-08
+1023    0.921509     0.921509 -4.244984e-07
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('BinaryClass_100_quantized', 'XGBClassifier', 'sqlite', 'Success')
+      Py_Decision  SQL_Decision
+1008            1             1
+1009            1             1
+1010            1             1
+1011            1             1
+1012            0             0
+1013            0             0
+1014            0             0
+1015            1             1
+1016            0             0
+1017            0             0
+1018            1             1
+1019            0             0
+1020            0             0
+1021            0             0
+1022            0             0
+1023            1             1
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_BinaryClass_100_quantized_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('BinaryClass_100_quantized', 'XGBClassifier', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
+SQL_OUT_PUT_FIRST_LINES_END ('BinaryClass_100_quantized', 'XGBClassifier', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('BinaryClass_100_quantized', 'XGBClassifier', 'pgsql')
+"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
+SELECT arg_max_cte."index" AS "index",
+  arg_max_cte."Score_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('BinaryClass_100_quantized', 'XGBClassifier', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

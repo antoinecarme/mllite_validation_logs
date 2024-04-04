@@ -77,11 +77,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 64 64
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 2 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 3 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_CLASSIFIER_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.009, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.014, 'TRAINING')
 { ,  "max_leaf_nodes" : 64 }
 { ,  "max_leaf_nodes" : 64 }
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W12", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_il8"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : null, "max_features" : null, "max_leaf_nodes" : 64, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 10 },
 	"classes" : [ 0, 1, 2, 3 ],
@@ -143,7 +143,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING DecisionTreeClassifier { ,  "max_leaf_nodes" 
 MLLITE_MODEL_JSON_AFTER_SETTING DecisionTreeClassifier None
 MLLITE_RELOADING_MODEL mllite_decision_tree_class.DecisionTreeClassifier_ff4_il8
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W12", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_il8"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : null, "max_features" : null, "max_leaf_nodes" : 64, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 10 },
 	"classes" : [ 0, 1, 2, 3 ],
@@ -204,7 +204,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 10,
 		"dataset_rows" : 64
 	},
-	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_il8", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_il8", "version" : "2024-W13" },
 	"options" :  { "ccp_alpha" : 0.0, "criterion" : "", "max_depth" : null, "max_features" : null, "max_leaf_nodes" : 64, "min_impurity_decrease" : 0.0, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.0, "random_state" : 1789, "splitter" : "best" },
 	"tree" : 	{
 		"features" : 10,
@@ -330,12 +330,12 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.DecisionTreeClassifier', 'model_name': 'DecisionTreeClassifier', 'options': None, 'dataset': 'FourClass_10_small', 'size': 64, 'accuracy': 1.0, 'auc': 1.0}
 WRITING_PERF_CODE 'logs/auto_tests/classification/DecisionTreeClassifier/mllite.DecisionTreeClassifier_FourClass_10_small.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeClassifier', 'model_name': 'DecisionTreeClassifier', 'options': None, 'dataset': 'FourClass_10_small', 'training_time_in_sec': 0.009, 'prediction_time_in_sec': 0.0}
-WRITING_SQL_CODE 'logs/auto_tests/classification/DecisionTreeClassifier/mllite.DecisionTreeClassifier_FourClass_10_small.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeClassifier', 'model_name': 'DecisionTreeClassifier', 'options': None, 'dataset': 'FourClass_10_small', 'training_time_in_sec': 0.014, 'prediction_time_in_sec': 0.0}
+WRITING_SQL_CODE 'logs/auto_tests/classification/DecisionTreeClassifier/mllite.DecisionTreeClassifier_FourClass_10_small_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('FourClass_10_small', 'DecisionTreeClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -346,14 +346,13 @@ WITH model_input AS
     t."index" AS "index",
     COALESCE( t1."Leaf_4", t1."Leaf_7", t1."Leaf_8", t1."Leaf_11", t1."Leaf_13", t1."Leaf_14", t1."Leaf_16", t1."Leaf_19", t1."Leaf_20", t1."Leaf_21", t1."Leaf_24", t1."Leaf_26", t1."Leaf_27", t1."Leaf_29", t1."Leaf_31", t1."Leaf_32", t1."Leaf_33", t1."Leaf_36", t1."Leaf_37", t1."Leaf_39", t1."Leaf_40" ) AS node_id
   FROM
-    model_input t
+    "model_input" AS t
     LEFT OUTER JOIN
    (SELECT
       t."index" AS "index",
-      CASE WHEN((t."X_8" > 0.191088) AND (t."X_3" > 1.240127)) THEN 4 ELSE NULL END AS Leaf_4,
- 
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
+      CASE WHEN((t."X_8" > 0.191088) AND (t."X_3" > 1.240127)) THEN 4 ELSE NULL END AS "Lea
+SQL_OUT_PUT_FIRST_LINES_END ('FourClass_10_small', 'DecisionTreeClassifier', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('FourClass_10_small', 'DecisionTreeClassifier', 'duckdb')
 e_id = t2.nid
  )
 SELECT
@@ -373,7 +372,7 @@ SELECT
    "DT_Output"."D" AS "Decision",
    "DT_Output"."DP" AS "DecisionProba"
 FROM "DT_Output"
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('FourClass_10_small', 'DecisionTreeClassifier', 'duckdb') 
 
 
 
@@ -478,78 +477,553 @@ Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
 63     63    None          0.0  ...         0.0        0.0            1
 
 [16 rows x 20 columns]
-MLLITE_SQL_ERROR ('Py_Proba_0', 'SQL_Proba_0') 0.0
-    Py_Proba_0  SQL_Proba_0
-48    1.000000     1.000000
-49    1.000000     1.000000
-50    1.000000     1.000000
-51    0.000001     0.000001
-52    0.000001     0.000001
-53    0.000001     0.000001
-54    0.000001     0.000001
-55    0.000001     0.000001
-56    0.000001     0.000001
-57    0.000001     0.000001
-58    0.000001     0.000001
-59    0.000001     0.000001
-60    1.000000     1.000000
-61    0.000001     0.000001
-62    0.000001     0.000001
-63    0.000001     0.000001
-MLLITE_SQL_ERROR ('Py_Proba_1', 'SQL_Proba_1') 0.0
-    Py_Proba_1  SQL_Proba_1
-48    0.000001     0.000001
-49    0.000001     0.000001
-50    0.000001     0.000001
-51    1.000000     1.000000
-52    0.000001     0.000001
-53    0.000001     0.000001
-54    1.000000     1.000000
-55    0.000001     0.000001
-56    0.000001     0.000001
-57    0.000001     0.000001
-58    0.000001     0.000001
-59    1.000000     1.000000
-60    0.000001     0.000001
-61    0.000001     0.000001
-62    0.000001     0.000001
-63    1.000000     1.000000
-MLLITE_SQL_ERROR ('Py_Proba_2', 'SQL_Proba_2') 0.0
-    Py_Proba_2  SQL_Proba_2
-48    0.000001     0.000001
-49    0.000001     0.000001
-50    0.000001     0.000001
-51    0.000001     0.000001
-52    1.000000     1.000000
-53    0.000001     0.000001
-54    0.000001     0.000001
-55    1.000000     1.000000
-56    0.000001     0.000001
-57    1.000000     1.000000
-58    0.000001     0.000001
-59    0.000001     0.000001
-60    0.000001     0.000001
-61    0.000001     0.000001
-62    1.000000     1.000000
-63    0.000001     0.000001
-MLLITE_SQL_ERROR ('Py_Proba_3', 'SQL_Proba_3') 0.0
-    Py_Proba_3  SQL_Proba_3
-48    0.000001     0.000001
-49    0.000001     0.000001
-50    0.000001     0.000001
-51    0.000001     0.000001
-52    0.000001     0.000001
-53    1.000000     1.000000
-54    0.000001     0.000001
-55    0.000001     0.000001
-56    1.000000     1.000000
-57    0.000001     0.000001
-58    1.000000     1.000000
-59    0.000001     0.000001
-60    0.000001     0.000001
-61    1.000000     1.000000
-62    0.000001     0.000001
-63    0.000001     0.000001
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'duckdb') ('Py_Proba_0', 'SQL_Proba_0') 0.0
+    Py_Proba_0  SQL_Proba_0  SQL_Error_0
+48         1.0          1.0          0.0
+49         1.0          1.0          0.0
+50         1.0          1.0          0.0
+51         0.0          0.0          0.0
+52         0.0          0.0          0.0
+53         0.0          0.0          0.0
+54         0.0          0.0          0.0
+55         0.0          0.0          0.0
+56         0.0          0.0          0.0
+57         0.0          0.0          0.0
+58         0.0          0.0          0.0
+59         0.0          0.0          0.0
+60         1.0          1.0          0.0
+61         0.0          0.0          0.0
+62         0.0          0.0          0.0
+63         0.0          0.0          0.0
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'duckdb') ('Py_Proba_1', 'SQL_Proba_1') 0.0
+    Py_Proba_1  SQL_Proba_1  SQL_Error_1
+48         0.0          0.0          0.0
+49         0.0          0.0          0.0
+50         0.0          0.0          0.0
+51         1.0          1.0          0.0
+52         0.0          0.0          0.0
+53         0.0          0.0          0.0
+54         1.0          1.0          0.0
+55         0.0          0.0          0.0
+56         0.0          0.0          0.0
+57         0.0          0.0          0.0
+58         0.0          0.0          0.0
+59         1.0          1.0          0.0
+60         0.0          0.0          0.0
+61         0.0          0.0          0.0
+62         0.0          0.0          0.0
+63         1.0          1.0          0.0
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'duckdb') ('Py_Proba_2', 'SQL_Proba_2') 0.0
+    Py_Proba_2  SQL_Proba_2  SQL_Error_2
+48         0.0          0.0          0.0
+49         0.0          0.0          0.0
+50         0.0          0.0          0.0
+51         0.0          0.0          0.0
+52         1.0          1.0          0.0
+53         0.0          0.0          0.0
+54         0.0          0.0          0.0
+55         1.0          1.0          0.0
+56         0.0          0.0          0.0
+57         1.0          1.0          0.0
+58         0.0          0.0          0.0
+59         0.0          0.0          0.0
+60         0.0          0.0          0.0
+61         0.0          0.0          0.0
+62         1.0          1.0          0.0
+63         0.0          0.0          0.0
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'duckdb') ('Py_Proba_3', 'SQL_Proba_3') 0.0
+    Py_Proba_3  SQL_Proba_3  SQL_Error_3
+48         0.0          0.0          0.0
+49         0.0          0.0          0.0
+50         0.0          0.0          0.0
+51         0.0          0.0          0.0
+52         0.0          0.0          0.0
+53         1.0          1.0          0.0
+54         0.0          0.0          0.0
+55         0.0          0.0          0.0
+56         1.0          1.0          0.0
+57         0.0          0.0          0.0
+58         1.0          1.0          0.0
+59         0.0          0.0          0.0
+60         0.0          0.0          0.0
+61         1.0          1.0          0.0
+62         0.0          0.0          0.0
+63         0.0          0.0          0.0
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('FourClass_10_small', 'DecisionTreeClassifier', 'duckdb', 'Success')
+    Py_Decision  SQL_Decision
+48            0             0
+49            0             0
+50            0             0
+51            1             1
+52            2             2
+53            3             3
+54            1             1
+55            2             2
+56            3             3
+57            2             2
+58            3             3
+59            1             1
+60            0             0
+61            3             3
+62            2             2
+63            1             1
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/DecisionTreeClassifier/mllite.DecisionTreeClassifier_FourClass_10_small_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('FourClass_10_small', 'DecisionTreeClassifier', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup" AS 
+ (SELECT
+    t."index" AS "index",
+    COALESCE( t1."Leaf_4", t1."Leaf_7", t1."Leaf_8", t1."Leaf_11", t1."Leaf_13", t1."Leaf_14", t1."Leaf_16", t1."Leaf_19", t1."Leaf_20", t1."Leaf_21", t1."Leaf_24", t1."Leaf_26", t1."Leaf_27", t1."Leaf_29", t1."Leaf_31", t1."Leaf_32", t1."Leaf_33", t1."Leaf_36", t1."Leaf_37", t1."Leaf_39", t1."Leaf_40" ) AS node_id
+  FROM
+    "model_input" AS t
+    LEFT OUTER JOIN
+   (SELECT
+      t."index" AS "index",
+      CASE WHEN((t."X_8" > 0.191088) AND (t."X_3" > 1.240127)) THEN 4 ELSE NULL END AS "Lea
+SQL_OUT_PUT_FIRST_LINES_END ('FourClass_10_small', 'DecisionTreeClassifier', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('FourClass_10_small', 'DecisionTreeClassifier', 'sqlite')
+e_id = t2.nid
+ )
+SELECT
+   "DT_Output"."index" AS "index",
+   CAST(NULL AS FLOAT)  AS "Score_0",
+   "DT_Output"."P_0" AS "Proba_0",
+   CASE WHEN ("DT_Output"."P_0" IS NULL OR "DT_Output"."P_0" > 0.0) THEN LN( "DT_Output"."P_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+   CAST(NULL AS FLOAT)  AS "Score_1",
+   "DT_Output"."P_1" AS "Proba_1",
+   CASE WHEN ("DT_Output"."P_1" IS NULL OR "DT_Output"."P_1" > 0.0) THEN LN( "DT_Output"."P_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+   CAST(NULL AS FLOAT)  AS "Score_2",
+   "DT_Output"."P_2" AS "Proba_2",
+   CASE WHEN ("DT_Output"."P_2" IS NULL OR "DT_Output"."P_2" > 0.0) THEN LN( "DT_Output"."P_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
+   CAST(NULL AS FLOAT)  AS "Score_3",
+   "DT_Output"."P_3" AS "Proba_3",
+   CASE WHEN ("DT_Output"."P_3" IS NULL OR "DT_Output"."P_3" > 0.0) THEN LN( "DT_Output"."P_3" ) ELSE -1.79769313486231e+308 END AS "LogProba_3",
+   "DT_Output"."D" AS "Decision",
+   "DT_Output"."DP" AS "DecisionProba"
+FROM "DT_Output"
+SQL_OUT_PUT_LAST_LINES_END ('FourClass_10_small', 'DecisionTreeClassifier', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+ 4   X_4     64 non-null     float32
+ 5   X_5     64 non-null     float32
+ 6   X_6     64 non-null     float32
+ 7   X_7     64 non-null     float32
+ 8   X_8     64 non-null     float32
+ 9   X_9     64 non-null     float32
+dtypes: float32(10)
+memory usage: 3.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0     -1.050659  0.920640 -0.455125  ...  1.021308 -0.010797 -1.586949
+1      1.869880 -2.312190 -1.153852  ... -1.335399 -1.648043  2.109906
+2     -0.124049  0.768644 -1.040184  ...  0.342352  1.247335 -1.413962
+3      0.928858 -1.177375  0.542731  ... -0.053731  0.485529  1.106564
+4     -1.598324  1.482463  1.664691  ... -1.347481  1.816532  0.637000
+...         ...       ...       ...  ...       ...       ...       ...
+59     1.914430 -1.187978 -1.908593  ...  0.100255  1.147780 -0.640430
+60    -2.300030  2.981089  1.310992  ...  0.945393  0.000418  0.598406
+61    -0.438059 -0.593217  0.535711  ...  1.507209 -0.652815 -1.264657
+62     0.855164 -0.934582 -1.885349  ... -0.362082 -2.566222  0.077759
+63     0.141928 -0.408314  0.402207  ... -0.685914  0.317499 -0.049391
+
+[64 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 15 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          64 non-null     int64  
+ 1   Score_0        0 non-null      object 
+ 2   Proba_0        64 non-null     float64
+ 3   LogProba_0     64 non-null     float64
+ 4   Score_1        0 non-null      object 
+ 5   Proba_1        64 non-null     float64
+ 6   LogProba_1     64 non-null     float64
+ 7   Score_2        0 non-null      object 
+ 8   Proba_2        64 non-null     float64
+ 9   LogProba_2     64 non-null     float64
+ 10  Score_3        0 non-null      object 
+ 11  Proba_3        64 non-null     float64
+ 12  LogProba_3     64 non-null     float64
+ 13  Decision       64 non-null     int64  
+ 14  DecisionProba  64 non-null     float64
+dtypes: float64(9), int64(2), object(4)
+memory usage: 7.6+ KB
+    index Score_0  Proba_0  ...     LogProba_3 Decision  DecisionProba
+0       0    None      0.0  ... -1.797693e+308        2            1.0
+1       1    None      0.0  ...   0.000000e+00        3            1.0
+2       2    None      0.0  ... -1.797693e+308        1            1.0
+3       3    None      1.0  ... -1.797693e+308        0            1.0
+4       4    None      0.0  ...   0.000000e+00        3            1.0
+..    ...     ...      ...  ...            ...      ...            ...
+59     59    None      0.0  ... -1.797693e+308        1            1.0
+60     60    None      1.0  ... -1.797693e+308        0            1.0
+61     61    None      0.0  ...   0.000000e+00        3            1.0
+62     62    None      0.0  ... -1.797693e+308        2            1.0
+63     63    None      0.0  ... -1.797693e+308        1            1.0
+
+[64 rows x 15 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
+       'LogProba_1', 'Score_2', 'Proba_2', 'LogProba_2', 'Score_3', 'Proba_3',
+       'LogProba_3', 'Decision', 'DecisionProba'],
+      dtype='object')
+    index Score_0  SQL_Proba_0  ...  Py_Proba_2 Py_Proba_3  Py_Decision
+48     48    None          1.0  ...         0.0        0.0            0
+49     49    None          1.0  ...         0.0        0.0            0
+50     50    None          1.0  ...         0.0        0.0            0
+51     51    None          0.0  ...         0.0        0.0            1
+52     52    None          0.0  ...         1.0        0.0            2
+53     53    None          0.0  ...         0.0        1.0            3
+54     54    None          0.0  ...         0.0        0.0            1
+55     55    None          0.0  ...         1.0        0.0            2
+56     56    None          0.0  ...         0.0        1.0            3
+57     57    None          0.0  ...         1.0        0.0            2
+58     58    None          0.0  ...         0.0        1.0            3
+59     59    None          0.0  ...         0.0        0.0            1
+60     60    None          1.0  ...         0.0        0.0            0
+61     61    None          0.0  ...         0.0        1.0            3
+62     62    None          0.0  ...         1.0        0.0            2
+63     63    None          0.0  ...         0.0        0.0            1
+
+[16 rows x 20 columns]
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'sqlite') ('Py_Proba_0', 'SQL_Proba_0') 0.0
+    Py_Proba_0  SQL_Proba_0  SQL_Error_0
+48         1.0          1.0          0.0
+49         1.0          1.0          0.0
+50         1.0          1.0          0.0
+51         0.0          0.0          0.0
+52         0.0          0.0          0.0
+53         0.0          0.0          0.0
+54         0.0          0.0          0.0
+55         0.0          0.0          0.0
+56         0.0          0.0          0.0
+57         0.0          0.0          0.0
+58         0.0          0.0          0.0
+59         0.0          0.0          0.0
+60         1.0          1.0          0.0
+61         0.0          0.0          0.0
+62         0.0          0.0          0.0
+63         0.0          0.0          0.0
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'sqlite') ('Py_Proba_1', 'SQL_Proba_1') 0.0
+    Py_Proba_1  SQL_Proba_1  SQL_Error_1
+48         0.0          0.0          0.0
+49         0.0          0.0          0.0
+50         0.0          0.0          0.0
+51         1.0          1.0          0.0
+52         0.0          0.0          0.0
+53         0.0          0.0          0.0
+54         1.0          1.0          0.0
+55         0.0          0.0          0.0
+56         0.0          0.0          0.0
+57         0.0          0.0          0.0
+58         0.0          0.0          0.0
+59         1.0          1.0          0.0
+60         0.0          0.0          0.0
+61         0.0          0.0          0.0
+62         0.0          0.0          0.0
+63         1.0          1.0          0.0
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'sqlite') ('Py_Proba_2', 'SQL_Proba_2') 0.0
+    Py_Proba_2  SQL_Proba_2  SQL_Error_2
+48         0.0          0.0          0.0
+49         0.0          0.0          0.0
+50         0.0          0.0          0.0
+51         0.0          0.0          0.0
+52         1.0          1.0          0.0
+53         0.0          0.0          0.0
+54         0.0          0.0          0.0
+55         1.0          1.0          0.0
+56         0.0          0.0          0.0
+57         1.0          1.0          0.0
+58         0.0          0.0          0.0
+59         0.0          0.0          0.0
+60         0.0          0.0          0.0
+61         0.0          0.0          0.0
+62         1.0          1.0          0.0
+63         0.0          0.0          0.0
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'sqlite') ('Py_Proba_3', 'SQL_Proba_3') 0.0
+    Py_Proba_3  SQL_Proba_3  SQL_Error_3
+48         0.0          0.0          0.0
+49         0.0          0.0          0.0
+50         0.0          0.0          0.0
+51         0.0          0.0          0.0
+52         0.0          0.0          0.0
+53         1.0          1.0          0.0
+54         0.0          0.0          0.0
+55         0.0          0.0          0.0
+56         1.0          1.0          0.0
+57         0.0          0.0          0.0
+58         1.0          1.0          0.0
+59         0.0          0.0          0.0
+60         0.0          0.0          0.0
+61         1.0          1.0          0.0
+62         0.0          0.0          0.0
+63         0.0          0.0          0.0
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('FourClass_10_small', 'DecisionTreeClassifier', 'sqlite', 'Success')
+    Py_Decision  SQL_Decision
+48            0             0
+49            0             0
+50            0             0
+51            1             1
+52            2             2
+53            3             3
+54            1             1
+55            2             2
+56            3             3
+57            2             2
+58            3             3
+59            1             1
+60            0             0
+61            3             3
+62            2             2
+63            1             1
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/DecisionTreeClassifier/mllite.DecisionTreeClassifier_FourClass_10_small_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('FourClass_10_small', 'DecisionTreeClassifier', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup" AS 
+ (SELECT
+    t."index" AS "index",
+    COALESCE( t1."Leaf_4", t1."Leaf_7", t1."Leaf_8", t1."Leaf_11", t1."Leaf_13", t1."Leaf_14", t1."Leaf_16", t1."Leaf_19", t1."Leaf_20", t1."Leaf_21", t1."Leaf_24", t1."Leaf_26", t1."Leaf_27", t1."Leaf_29", t1."Leaf_31", t1."Leaf_32", t1."Leaf_33", t1."Leaf_36", t1."Leaf_37", t1."Leaf_39", t1."Leaf_40" ) AS node_id
+  FROM
+    "model_input" AS t
+    LEFT OUTER JOIN
+   (SELECT
+      t."index" AS "index",
+      CASE WHEN((t."X_8" > 0.191088) AND (t."X_3" > 1.240127)) THEN 4 ELSE NULL END AS "Lea
+SQL_OUT_PUT_FIRST_LINES_END ('FourClass_10_small', 'DecisionTreeClassifier', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('FourClass_10_small', 'DecisionTreeClassifier', 'pgsql')
+e_id = t2.nid
+ )
+SELECT
+   "DT_Output"."index" AS "index",
+   CAST(NULL AS FLOAT)  AS "Score_0",
+   "DT_Output"."P_0" AS "Proba_0",
+   CASE WHEN ("DT_Output"."P_0" IS NULL OR "DT_Output"."P_0" > 0.0) THEN LN( "DT_Output"."P_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+   CAST(NULL AS FLOAT)  AS "Score_1",
+   "DT_Output"."P_1" AS "Proba_1",
+   CASE WHEN ("DT_Output"."P_1" IS NULL OR "DT_Output"."P_1" > 0.0) THEN LN( "DT_Output"."P_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+   CAST(NULL AS FLOAT)  AS "Score_2",
+   "DT_Output"."P_2" AS "Proba_2",
+   CASE WHEN ("DT_Output"."P_2" IS NULL OR "DT_Output"."P_2" > 0.0) THEN LN( "DT_Output"."P_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
+   CAST(NULL AS FLOAT)  AS "Score_3",
+   "DT_Output"."P_3" AS "Proba_3",
+   CASE WHEN ("DT_Output"."P_3" IS NULL OR "DT_Output"."P_3" > 0.0) THEN LN( "DT_Output"."P_3" ) ELSE -1.79769313486231e+308 END AS "LogProba_3",
+   "DT_Output"."D" AS "Decision",
+   "DT_Output"."DP" AS "DecisionProba"
+FROM "DT_Output"
+SQL_OUT_PUT_LAST_LINES_END ('FourClass_10_small', 'DecisionTreeClassifier', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+ 4   X_4     64 non-null     float32
+ 5   X_5     64 non-null     float32
+ 6   X_6     64 non-null     float32
+ 7   X_7     64 non-null     float32
+ 8   X_8     64 non-null     float32
+ 9   X_9     64 non-null     float32
+dtypes: float32(10)
+memory usage: 3.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0     -1.050659  0.920640 -0.455125  ...  1.021308 -0.010797 -1.586949
+1      1.869880 -2.312190 -1.153852  ... -1.335399 -1.648043  2.109906
+2     -0.124049  0.768644 -1.040184  ...  0.342352  1.247335 -1.413962
+3      0.928858 -1.177375  0.542731  ... -0.053731  0.485529  1.106564
+4     -1.598324  1.482463  1.664691  ... -1.347481  1.816532  0.637000
+...         ...       ...       ...  ...       ...       ...       ...
+59     1.914430 -1.187978 -1.908593  ...  0.100255  1.147780 -0.640430
+60    -2.300030  2.981089  1.310992  ...  0.945393  0.000418  0.598406
+61    -0.438059 -0.593217  0.535711  ...  1.507209 -0.652815 -1.264657
+62     0.855164 -0.934582 -1.885349  ... -0.362082 -2.566222  0.077759
+63     0.141928 -0.408314  0.402207  ... -0.685914  0.317499 -0.049391
+
+[64 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 15 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          64 non-null     int64  
+ 1   Score_0        0 non-null      object 
+ 2   Proba_0        64 non-null     float64
+ 3   LogProba_0     64 non-null     float64
+ 4   Score_1        0 non-null      object 
+ 5   Proba_1        64 non-null     float64
+ 6   LogProba_1     64 non-null     float64
+ 7   Score_2        0 non-null      object 
+ 8   Proba_2        64 non-null     float64
+ 9   LogProba_2     64 non-null     float64
+ 10  Score_3        0 non-null      object 
+ 11  Proba_3        64 non-null     float64
+ 12  LogProba_3     64 non-null     float64
+ 13  Decision       64 non-null     int64  
+ 14  DecisionProba  64 non-null     float64
+dtypes: float64(9), int64(2), object(4)
+memory usage: 7.6+ KB
+    index Score_0  Proba_0  ...     LogProba_3 Decision  DecisionProba
+0       0    None      0.0  ... -1.797693e+308        2            1.0
+1       1    None      0.0  ...   0.000000e+00        3            1.0
+2       2    None      0.0  ... -1.797693e+308        1            1.0
+3       3    None      1.0  ... -1.797693e+308        0            1.0
+4       4    None      0.0  ...   0.000000e+00        3            1.0
+..    ...     ...      ...  ...            ...      ...            ...
+59     59    None      0.0  ... -1.797693e+308        1            1.0
+60     60    None      1.0  ... -1.797693e+308        0            1.0
+61     61    None      0.0  ...   0.000000e+00        3            1.0
+62     62    None      0.0  ... -1.797693e+308        2            1.0
+63     63    None      0.0  ... -1.797693e+308        1            1.0
+
+[64 rows x 15 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
+       'LogProba_1', 'Score_2', 'Proba_2', 'LogProba_2', 'Score_3', 'Proba_3',
+       'LogProba_3', 'Decision', 'DecisionProba'],
+      dtype='object')
+    index Score_0  SQL_Proba_0  ...  Py_Proba_2 Py_Proba_3  Py_Decision
+48     48    None          1.0  ...         0.0        0.0            0
+49     49    None          1.0  ...         0.0        0.0            0
+50     50    None          1.0  ...         0.0        0.0            0
+51     51    None          0.0  ...         0.0        0.0            1
+52     52    None          0.0  ...         1.0        0.0            2
+53     53    None          0.0  ...         0.0        1.0            3
+54     54    None          0.0  ...         0.0        0.0            1
+55     55    None          0.0  ...         1.0        0.0            2
+56     56    None          0.0  ...         0.0        1.0            3
+57     57    None          0.0  ...         1.0        0.0            2
+58     58    None          0.0  ...         0.0        1.0            3
+59     59    None          0.0  ...         0.0        0.0            1
+60     60    None          1.0  ...         0.0        0.0            0
+61     61    None          0.0  ...         0.0        1.0            3
+62     62    None          0.0  ...         1.0        0.0            2
+63     63    None          0.0  ...         0.0        0.0            1
+
+[16 rows x 20 columns]
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'pgsql') ('Py_Proba_0', 'SQL_Proba_0') 0.0
+    Py_Proba_0  SQL_Proba_0  SQL_Error_0
+48         1.0          1.0          0.0
+49         1.0          1.0          0.0
+50         1.0          1.0          0.0
+51         0.0          0.0          0.0
+52         0.0          0.0          0.0
+53         0.0          0.0          0.0
+54         0.0          0.0          0.0
+55         0.0          0.0          0.0
+56         0.0          0.0          0.0
+57         0.0          0.0          0.0
+58         0.0          0.0          0.0
+59         0.0          0.0          0.0
+60         1.0          1.0          0.0
+61         0.0          0.0          0.0
+62         0.0          0.0          0.0
+63         0.0          0.0          0.0
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'pgsql') ('Py_Proba_1', 'SQL_Proba_1') 0.0
+    Py_Proba_1  SQL_Proba_1  SQL_Error_1
+48         0.0          0.0          0.0
+49         0.0          0.0          0.0
+50         0.0          0.0          0.0
+51         1.0          1.0          0.0
+52         0.0          0.0          0.0
+53         0.0          0.0          0.0
+54         1.0          1.0          0.0
+55         0.0          0.0          0.0
+56         0.0          0.0          0.0
+57         0.0          0.0          0.0
+58         0.0          0.0          0.0
+59         1.0          1.0          0.0
+60         0.0          0.0          0.0
+61         0.0          0.0          0.0
+62         0.0          0.0          0.0
+63         1.0          1.0          0.0
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'pgsql') ('Py_Proba_2', 'SQL_Proba_2') 0.0
+    Py_Proba_2  SQL_Proba_2  SQL_Error_2
+48         0.0          0.0          0.0
+49         0.0          0.0          0.0
+50         0.0          0.0          0.0
+51         0.0          0.0          0.0
+52         1.0          1.0          0.0
+53         0.0          0.0          0.0
+54         0.0          0.0          0.0
+55         1.0          1.0          0.0
+56         0.0          0.0          0.0
+57         1.0          1.0          0.0
+58         0.0          0.0          0.0
+59         0.0          0.0          0.0
+60         0.0          0.0          0.0
+61         0.0          0.0          0.0
+62         1.0          1.0          0.0
+63         0.0          0.0          0.0
+MLLITE_CLASS_SQL_ERROR ('FourClass_10_small', 'DecisionTreeClassifier', 'pgsql') ('Py_Proba_3', 'SQL_Proba_3') 0.0
+    Py_Proba_3  SQL_Proba_3  SQL_Error_3
+48         0.0          0.0          0.0
+49         0.0          0.0          0.0
+50         0.0          0.0          0.0
+51         0.0          0.0          0.0
+52         0.0          0.0          0.0
+53         1.0          1.0          0.0
+54         0.0          0.0          0.0
+55         0.0          0.0          0.0
+56         1.0          1.0          0.0
+57         0.0          0.0          0.0
+58         1.0          1.0          0.0
+59         0.0          0.0          0.0
+60         0.0          0.0          0.0
+61         1.0          1.0          0.0
+62         0.0          0.0          0.0
+63         0.0          0.0          0.0
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('FourClass_10_small', 'DecisionTreeClassifier', 'pgsql', 'Success')
     Py_Decision  SQL_Decision
 48            0             0
 49            0             0

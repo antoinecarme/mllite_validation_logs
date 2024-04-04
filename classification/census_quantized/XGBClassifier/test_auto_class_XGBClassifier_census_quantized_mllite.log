@@ -60,11 +60,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 32 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 33 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 34 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_CLASSIFIER_FIT' 3 3
-('OPERATION_END_ELAPSED', 43.524, 'TRAINING')
+('OPERATION_END_ELAPSED', 42.066, 'TRAINING')
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  }
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  }
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W12", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_OO8"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.000000, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 48842, "dataset_features" : 14 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -2903,7 +2903,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING XGBClassifier { ,  "nthread" : 1, "max_bin" :
 MLLITE_MODEL_JSON_AFTER_SETTING XGBClassifier None
 MLLITE_RELOADING_MODEL mllite_xgb_class.XGBClassifier_ff4_OO8
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W12", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_OO8"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.000000, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 48842, "dataset_features" : 14 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -27873,14 +27873,14 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 14,
 		"dataset_rows" : 48842
 	},
-	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_OO8", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_OO8", "version" : "2024-W13" },
 	"options" :  { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.0, "grow_policy" : 0, "learning_rate" : 0.3, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.0, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.0, "reg_lambda" : 1.0, "tree_method" : "auto" }
 }
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.164, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.239, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.164, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.237, 'PREDICT')
 [[0.5511 0.4489]
  [0.741  0.259 ]
  [0.7946 0.2054]
@@ -27893,12 +27893,12 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': None, 'dataset': 'census_quantized', 'size': 48842, 'accuracy': 0.809282994144384, 'auc': 0.8308578426961433}
 WRITING_PERF_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_census_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': None, 'dataset': 'census_quantized', 'training_time_in_sec': 43.524, 'prediction_time_in_sec': 0.164}
-WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_census_quantized.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': None, 'dataset': 'census_quantized', 'training_time_in_sec': 42.066, 'prediction_time_in_sec': 0.237}
+WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_census_quantized_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('census_quantized', 'XGBClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
@@ -27908,19 +27908,20 @@ WITH model_input AS
  (SELECT
     t."index" AS "index",
     CASE WHEN (t."X_4" < 8.000000) THEN CASE WHEN (t."X_0" < 6.000000) THEN CASE WHEN (t."X_0" < 3.000000) THEN CASE WHEN (t."X_10" < 10.000000) THEN CASE WHEN (t."X_12" < 8.000000) THEN CASE WHEN (t."X_11" < 10.000000) THEN 47 ELSE 48 END ELSE 28 END ELSE CASE WHEN (t."X_12" < 4.000000) THEN CASE WHEN (t."X_2" < 8.000000) THEN 49 ELSE 5
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
-S t
-),
-arg_max_cte_with_max_proba_idx AS 
-( SELECT t.*,
-   CASE WHEN(t."Proba_0" = t."Max_Proba") THEN 0 else NULL END AS "max_idx_0",
-   CASE WHEN(t."Proba_1" = t."Max_Proba") THEN 1 else NULL END AS "max_idx_1"
+SQL_OUT_PUT_FIRST_LINES_END ('census_quantized', 'XGBClassifier', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('census_quantized', 'XGBClassifier', 'duckdb')
+"
   FROM
    "arg_max_cte_with_max_proba" AS t
 ),
 arg_max_cte AS 
- (SELECT t.*,
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
      COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
    FROM
      "arg_max_cte_with_max_proba_idx" AS t
@@ -27935,7 +27936,7 @@ SELECT arg_max_cte."index" AS "index",
   arg_max_cte."argmax_class_idx" AS "Decision",
   arg_max_cte."Max_Proba" AS "DecisionProba"
 FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('census_quantized', 'XGBClassifier', 'duckdb') 
 
 
 
@@ -27998,17 +27999,17 @@ Data columns (total 9 columns):
 dtypes: float64(7), int64(2)
 memory usage: 3.4 MB
        index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
-0          0 -0.397435  0.311124  ...   -0.372694         1       0.688876
-1          1  0.025703  0.512849  ...   -0.719180         0       0.512849
-2          2  0.176504  0.587347  ...   -0.885148         0       0.587347
-3          3  0.476770  0.721827  ...   -1.279510         0       0.721827
-4          4 -0.059968  0.470052  ...   -0.634976         1       0.529948
+0          0  0.602566  0.551104  ...   -0.800963         0       0.551104
+1          1  1.025704  0.741045  ...   -1.351101         0       0.741045
+2          2  1.176504  0.794621  ...   -1.582898         0       0.794621
+3          3  1.476770  0.875832  ...   -2.086121         0       0.875832
+4          4  0.940032  0.706835  ...   -1.227021         0       0.706835
 ...      ...       ...       ...  ...         ...       ...            ...
-48837  48837 -0.533948  0.255803  ...   -0.295450         1       0.744197
-48838  48838  0.113542  0.556528  ...   -0.813121         0       0.556528
-48839  48839 -0.847365  0.155155  ...   -0.168602         1       0.844845
-48840  48840 -0.397435  0.311124  ...   -0.372694         1       0.688876
-48841  48841 -0.473070  0.279662  ...   -0.328034         1       0.720338
+48837  48837  0.466052  0.483033  ...   -0.659775         1       0.516967
+48838  48838  1.113542  0.773308  ...   -1.484162         0       0.773308
+48839  48839  0.152635  0.332982  ...   -0.404938         1       0.667018
+48840  48840  0.602566  0.551104  ...   -0.800963         0       0.551104
+48841  48841  0.526930  0.513462  ...   -0.720440         0       0.513462
 
 [48842 rows x 9 columns]
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
@@ -28019,75 +28020,323 @@ Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
        'LogProba_1', 'Decision', 'DecisionProba'],
       dtype='object')
        index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
-48826  48826 -0.707740     0.195371  ...    0.397598    0.602402         >50K
-48827  48827  0.701443     0.802641  ...    0.917047    0.082953        <=50K
-48828  48828 -0.127426     0.436630  ...    0.678122    0.321879        <=50K
-48829  48829 -0.199213     0.401691  ...    0.646017    0.353983        <=50K
-48830  48830  0.640191     0.782515  ...    0.907239    0.092761        <=50K
-48831  48831  0.020326     0.510162  ...    0.738976    0.261024        <=50K
-48832  48832 -0.149880     0.425616  ...    0.668241    0.331759        <=50K
-48833  48833  0.617310     0.774626  ...    0.903316    0.096684        <=50K
-48834  48834  1.790029     0.972882  ...    0.989850    0.010150        <=50K
-48835  48835 -0.678996     0.204567  ...    0.411446    0.588554         >50K
-48836  48836 -0.052852     0.473599  ...    0.709777    0.290223        <=50K
-48837  48837 -0.533948     0.255803  ...    0.483033    0.516967         >50K
-48838  48838  0.113542     0.556528  ...    0.773308    0.226692        <=50K
-48839  48839 -0.847365     0.155155  ...    0.332982    0.667018         >50K
-48840  48840 -0.397435     0.311124  ...    0.551103    0.448897        <=50K
-48841  48841 -0.473070     0.279662  ...    0.513463    0.486537        <=50K
+48826  48826  0.292260     0.397599  ...    0.397598    0.602402         >50K
+48827  48827  1.701442     0.917047  ...    0.917047    0.082953        <=50K
+48828  48828  0.872574     0.678121  ...    0.678122    0.321879        <=50K
+48829  48829  0.800787     0.646016  ...    0.646017    0.353983        <=50K
+48830  48830  1.640191     0.907239  ...    0.907239    0.092761        <=50K
+48831  48831  1.020326     0.738976  ...    0.738976    0.261024        <=50K
+48832  48832  0.850120     0.668241  ...    0.668241    0.331759        <=50K
+48833  48833  1.617310     0.903316  ...    0.903316    0.096684        <=50K
+48834  48834  2.790025     0.989850  ...    0.989850    0.010150        <=50K
+48835  48835  0.321004     0.411446  ...    0.411446    0.588554         >50K
+48836  48836  0.947148     0.709776  ...    0.709777    0.290223        <=50K
+48837  48837  0.466052     0.483033  ...    0.483033    0.516967         >50K
+48838  48838  1.113542     0.773308  ...    0.773308    0.226692        <=50K
+48839  48839  0.152635     0.332982  ...    0.332982    0.667018         >50K
+48840  48840  0.602566     0.551104  ...    0.551103    0.448897        <=50K
+48841  48841  0.526930     0.513462  ...    0.513463    0.486537        <=50K
 
 [16 rows x 12 columns]
-MLLITE_SQL_ERROR ('Py_Proba_0', 'SQL_Proba_0') 0.30385534219254334
-       Py_Proba_0  SQL_Proba_0
-48826    0.397598     0.195371
-48827    0.917047     0.802641
-48828    0.678122     0.436630
-48829    0.646017     0.401691
-48830    0.907239     0.782515
-48831    0.738976     0.510162
-48832    0.668241     0.425616
-48833    0.903316     0.774626
-48834    0.989850     0.972882
-48835    0.411446     0.204567
-48836    0.709777     0.473599
-48837    0.483033     0.255803
-48838    0.773308     0.556528
-48839    0.332982     0.155155
-48840    0.551103     0.311124
-48841    0.513463     0.279662
-MLLITE_SQL_ERROR ('Py_Proba_1', 'SQL_Proba_1') 0.6539474929356067
-       Py_Proba_1  SQL_Proba_1
-48826    0.602402     0.804629
-48827    0.082953     0.197359
-48828    0.321879     0.563370
-48829    0.353983     0.598309
-48830    0.092761     0.217485
-48831    0.261024     0.489838
-48832    0.331759     0.574384
-48833    0.096684     0.225374
-48834    0.010150     0.027118
-48835    0.588554     0.795433
-48836    0.290223     0.526401
-48837    0.516967     0.744197
-48838    0.226692     0.443472
-48839    0.667018     0.844845
-48840    0.448897     0.688876
-48841    0.486537     0.720338
+MLLITE_CLASS_SQL_ERROR ('census_quantized', 'XGBClassifier', 'duckdb') ('Py_Proba_0', 'SQL_Proba_0') 2.811393681727228e-07
+       Py_Proba_0  SQL_Proba_0   SQL_Error_0
+48826    0.397598     0.397599 -4.947316e-07
+48827    0.917047     0.917047  4.858905e-08
+48828    0.678122     0.678121  1.011955e-06
+48829    0.646017     0.646016  8.637884e-07
+48830    0.907239     0.907239  2.971421e-07
+48831    0.738976     0.738976  2.710129e-07
+48832    0.668241     0.668241 -3.743249e-07
+48833    0.903316     0.903316  2.358855e-07
+48834    0.989850     0.989850  1.833624e-07
+48835    0.411446     0.411446  2.722280e-07
+48836    0.709777     0.709776  1.316051e-06
+48837    0.483033     0.483033  5.433754e-07
+48838    0.773308     0.773308  3.593214e-07
+48839    0.332982     0.332982  5.237866e-07
+48840    0.551103     0.551104 -6.219294e-07
+48841    0.513463     0.513462  7.975947e-07
+MLLITE_CLASS_SQL_ERROR ('census_quantized', 'XGBClassifier', 'duckdb') ('Py_Proba_1', 'SQL_Proba_1') 2.728300208629174e-07
+       Py_Proba_1  SQL_Proba_1   SQL_Error_1
+48826    0.602402     0.602401  4.649293e-07
+48827    0.082953     0.082953  3.565018e-09
+48828    0.321879     0.321879 -9.225482e-07
+48829    0.353983     0.353984 -8.041838e-07
+48830    0.092761     0.092761 -2.822409e-07
+48831    0.261024     0.261024 -2.710129e-07
+48832    0.331759     0.331759  2.551156e-07
+48833    0.096684     0.096684 -2.507867e-07
+48834    0.010150     0.010150 -2.038094e-08
+48835    0.588554     0.588554 -3.020304e-07
+48836    0.290223     0.290224 -1.286249e-06
+48837    0.516967     0.516967 -4.241662e-07
+48838    0.226692     0.226692 -3.742225e-07
+48839    0.667018     0.667018 -4.939843e-07
+48840    0.448897     0.448896  6.219294e-07
+48841    0.486537     0.486538 -7.975947e-07
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('census_quantized', 'XGBClassifier', 'duckdb', 'Success')
       Py_Decision  SQL_Decision
 48826        >50K             1
 48827       <=50K             0
-48828       <=50K             1
-48829       <=50K             1
+48828       <=50K             0
+48829       <=50K             0
 48830       <=50K             0
 48831       <=50K             0
-48832       <=50K             1
+48832       <=50K             0
 48833       <=50K             0
 48834       <=50K             0
 48835        >50K             1
-48836       <=50K             1
+48836       <=50K             0
 48837        >50K             1
 48838       <=50K             0
 48839        >50K             1
-48840       <=50K             1
-48841       <=50K             1
+48840       <=50K             0
+48841       <=50K             0
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_census_quantized_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('census_quantized', 'XGBClassifier', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup_0" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_4" < 8.000000) THEN CASE WHEN (t."X_0" < 6.000000) THEN CASE WHEN (t."X_0" < 3.000000) THEN CASE WHEN (t."X_10" < 10.000000) THEN CASE WHEN (t."X_12" < 8.000000) THEN CASE WHEN (t."X_11" < 10.000000) THEN 47 ELSE 48 END ELSE 28 END ELSE CASE WHEN (t."X_12" < 4.000000) THEN CASE WHEN (t."X_2" < 8.000000) THEN 49 ELSE 5
+SQL_OUT_PUT_FIRST_LINES_END ('census_quantized', 'XGBClassifier', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('census_quantized', 'XGBClassifier', 'sqlite')
+"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
+SELECT arg_max_cte."index" AS "index",
+  arg_max_cte."Score_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('census_quantized', 'XGBClassifier', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 48842 entries, 0 to 48841
+Data columns (total 14 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     48842 non-null  float32
+ 1   X_1     48842 non-null  float32
+ 2   X_2     48842 non-null  float32
+ 3   X_3     48842 non-null  float32
+ 4   X_4     48842 non-null  float32
+ 5   X_5     48842 non-null  float32
+ 6   X_6     48842 non-null  float32
+ 7   X_7     48842 non-null  float32
+ 8   X_8     48842 non-null  float32
+ 9   X_9     48842 non-null  float32
+ 10  X_10    48842 non-null  float32
+ 11  X_11    48842 non-null  float32
+ 12  X_12    48842 non-null  float32
+ 13  X_13    48842 non-null  float32
+dtypes: float32(14)
+memory usage: 3.0 MB
+        X_0  X_1  X_2  X_3  X_4  X_5  ...  X_8  X_9  X_10  X_11  X_12  X_13
+index                                 ...                                  
+0       6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   9.0   0.0   4.0   0.0
+1       7.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   0.0   0.0
+2       6.0  0.0  6.0  0.0  3.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+3       7.0  0.0  7.0  0.0  1.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+4       3.0  0.0  8.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+...     ...  ...  ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...
+48837   6.0  0.0  6.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+48838  10.0  0.0  8.0  0.0  3.0  0.0  ...  0.0  0.0   0.0   0.0   4.0   0.0
+48839   6.0  0.0  9.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   8.0   0.0
+48840   6.0  0.0  1.0  0.0  8.0  0.0  ...  0.0  0.0   9.0   0.0   4.0   0.0
+48841   3.0  0.0  5.0  0.0  8.0  0.0  ...  0.0  0.0   0.0   0.0   8.0   0.0
+
+[48842 rows x 14 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 48842 entries, 0 to 48841
+Data columns (total 9 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   index          48842 non-null  int64  
+ 1   Score_0        48842 non-null  float64
+ 2   Proba_0        48842 non-null  float64
+ 3   LogProba_0     48842 non-null  float64
+ 4   Score_1        48842 non-null  float64
+ 5   Proba_1        48842 non-null  float64
+ 6   LogProba_1     48842 non-null  float64
+ 7   Decision       48842 non-null  int64  
+ 8   DecisionProba  48842 non-null  float64
+dtypes: float64(7), int64(2)
+memory usage: 3.4 MB
+       index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
+0          0  0.602566  0.551104  ...   -0.800963         0       0.551104
+1          1  1.025704  0.741045  ...   -1.351101         0       0.741045
+2          2  1.176504  0.794621  ...   -1.582898         0       0.794621
+3          3  1.476770  0.875832  ...   -2.086121         0       0.875832
+4          4  0.940032  0.706835  ...   -1.227021         0       0.706835
+...      ...       ...       ...  ...         ...       ...            ...
+48837  48837  0.466052  0.483033  ...   -0.659775         1       0.516967
+48838  48838  1.113542  0.773308  ...   -1.484162         0       0.773308
+48839  48839  0.152635  0.332982  ...   -0.404938         1       0.667018
+48840  48840  0.602566  0.551104  ...   -0.800963         0       0.551104
+48841  48841  0.526930  0.513462  ...   -0.720440         0       0.513462
+
+[48842 rows x 9 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
+       'LogProba_1', 'Decision', 'DecisionProba'],
+      dtype='object')
+       index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
+48826  48826  0.292260     0.397599  ...    0.397598    0.602402         >50K
+48827  48827  1.701442     0.917047  ...    0.917047    0.082953        <=50K
+48828  48828  0.872574     0.678121  ...    0.678122    0.321879        <=50K
+48829  48829  0.800787     0.646016  ...    0.646017    0.353983        <=50K
+48830  48830  1.640191     0.907239  ...    0.907239    0.092761        <=50K
+48831  48831  1.020326     0.738976  ...    0.738976    0.261024        <=50K
+48832  48832  0.850120     0.668241  ...    0.668241    0.331759        <=50K
+48833  48833  1.617310     0.903316  ...    0.903316    0.096684        <=50K
+48834  48834  2.790025     0.989850  ...    0.989850    0.010150        <=50K
+48835  48835  0.321004     0.411446  ...    0.411446    0.588554         >50K
+48836  48836  0.947148     0.709776  ...    0.709777    0.290223        <=50K
+48837  48837  0.466052     0.483033  ...    0.483033    0.516967         >50K
+48838  48838  1.113542     0.773308  ...    0.773308    0.226692        <=50K
+48839  48839  0.152635     0.332982  ...    0.332982    0.667018         >50K
+48840  48840  0.602566     0.551104  ...    0.551103    0.448897        <=50K
+48841  48841  0.526930     0.513462  ...    0.513463    0.486537        <=50K
+
+[16 rows x 12 columns]
+MLLITE_CLASS_SQL_ERROR ('census_quantized', 'XGBClassifier', 'sqlite') ('Py_Proba_0', 'SQL_Proba_0') 2.811393681735184e-07
+       Py_Proba_0  SQL_Proba_0   SQL_Error_0
+48826    0.397598     0.397599 -4.947316e-07
+48827    0.917047     0.917047  4.858905e-08
+48828    0.678122     0.678121  1.011955e-06
+48829    0.646017     0.646016  8.637884e-07
+48830    0.907239     0.907239  2.971421e-07
+48831    0.738976     0.738976  2.710129e-07
+48832    0.668241     0.668241 -3.743249e-07
+48833    0.903316     0.903316  2.358855e-07
+48834    0.989850     0.989850  1.833624e-07
+48835    0.411446     0.411446  2.722280e-07
+48836    0.709777     0.709776  1.316051e-06
+48837    0.483033     0.483033  5.433754e-07
+48838    0.773308     0.773308  3.593214e-07
+48839    0.332982     0.332982  5.237866e-07
+48840    0.551103     0.551104 -6.219294e-07
+48841    0.513463     0.513462  7.975947e-07
+MLLITE_CLASS_SQL_ERROR ('census_quantized', 'XGBClassifier', 'sqlite') ('Py_Proba_1', 'SQL_Proba_1') 2.728300208629993e-07
+       Py_Proba_1  SQL_Proba_1   SQL_Error_1
+48826    0.602402     0.602401  4.649293e-07
+48827    0.082953     0.082953  3.565018e-09
+48828    0.321879     0.321879 -9.225482e-07
+48829    0.353983     0.353984 -8.041838e-07
+48830    0.092761     0.092761 -2.822409e-07
+48831    0.261024     0.261024 -2.710129e-07
+48832    0.331759     0.331759  2.551156e-07
+48833    0.096684     0.096684 -2.507867e-07
+48834    0.010150     0.010150 -2.038094e-08
+48835    0.588554     0.588554 -3.020304e-07
+48836    0.290223     0.290224 -1.286249e-06
+48837    0.516967     0.516967 -4.241662e-07
+48838    0.226692     0.226692 -3.742225e-07
+48839    0.667018     0.667018 -4.939843e-07
+48840    0.448897     0.448896  6.219294e-07
+48841    0.486537     0.486538 -7.975947e-07
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('census_quantized', 'XGBClassifier', 'sqlite', 'Success')
+      Py_Decision  SQL_Decision
+48826        >50K             1
+48827       <=50K             0
+48828       <=50K             0
+48829       <=50K             0
+48830       <=50K             0
+48831       <=50K             0
+48832       <=50K             0
+48833       <=50K             0
+48834       <=50K             0
+48835        >50K             1
+48836       <=50K             0
+48837        >50K             1
+48838       <=50K             0
+48839        >50K             1
+48840       <=50K             0
+48841       <=50K             0
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_census_quantized_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('census_quantized', 'XGBClassifier', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup_0" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_4" < 8.000000) THEN CASE WHEN (t."X_0" < 6.000000) THEN CASE WHEN (t."X_0" < 3.000000) THEN CASE WHEN (t."X_10" < 10.000000) THEN CASE WHEN (t."X_12" < 8.000000) THEN CASE WHEN (t."X_11" < 10.000000) THEN 47 ELSE 48 END ELSE 28 END ELSE CASE WHEN (t."X_12" < 4.000000) THEN CASE WHEN (t."X_2" < 8.000000) THEN 49 ELSE 5
+SQL_OUT_PUT_FIRST_LINES_END ('census_quantized', 'XGBClassifier', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('census_quantized', 'XGBClassifier', 'pgsql')
+"
+  FROM
+   "arg_max_cte_with_max_proba" AS t
+),
+arg_max_cte AS 
+( SELECT t."index" as "index",
+     t."Proba_0" AS "Proba_0",
+     t."Score_0" AS "Score_0",
+     t."Proba_1" AS "Proba_1",
+     t."Score_1" AS "Score_1",
+     t."Max_Proba" AS "Max_Proba",
+     t."Max_Score" AS "Max_Score",
+     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
+   FROM
+     "arg_max_cte_with_max_proba_idx" AS t
+)
+SELECT arg_max_cte."index" AS "index",
+  arg_max_cte."Score_0" AS "Score_0",
+  arg_max_cte."Proba_0" AS "Proba_0",
+  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
+  arg_max_cte."Score_1" AS "Score_1",
+  arg_max_cte."Proba_1" AS "Proba_1",
+  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
+  arg_max_cte."argmax_class_idx" AS "Decision",
+  arg_max_cte."Max_Proba" AS "DecisionProba"
+FROM arg_max_cte
+SQL_OUT_PUT_LAST_LINES_END ('census_quantized', 'XGBClassifier', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
