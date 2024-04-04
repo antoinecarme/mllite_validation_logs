@@ -51,7 +51,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
 { ,  "max_iter" : 32 , }
 { ,  "max_iter" : 32 , }
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {  "hidden_layer_sizes" : [ 100 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 10 },
 	"layers" : {
@@ -193,7 +193,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING MLPRegressor { ,  "max_iter" : 32 , }
 MLLITE_MODEL_JSON_AFTER_SETTING MLPRegressor None
 MLLITE_RELOADING_MODEL mllite_mlp_reg.MLPRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {  "hidden_layer_sizes" : [ 100 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 10 },
 	"layers" : {
@@ -463,7 +463,7 @@ BEAUTIFIED_JSON_START
 		},
 		"sizes" : [ 10, 100, 1 ]
 	},
-	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "activation" : "relu", "alpha" : 0.0001, "batch_size" : null, "beta_1" : 0.9, "beta_2" : 0.999, "early_stopping" : 0, "epsilon" : 0.0, "hidden_layer_sizes" : [ 100 ], "learning_rate" : "constant", "learning_rate_init" : 0.001, "max_fun" : 15000, "max_iter" : 32, "momentum" : 0.9, "n_iter_no_change" : 10, "nesterovs_momentum" : 1, "power_t" : 0.5, "random_state" : 1789, "shuffle" : 1, "solver" : "adam", "tol" : 0.0001, "validation_fraction" : 0.1, "verbose" : 0, "warm_start" : 0 }
 }
 BEAUTIFIED_JSON_END
@@ -481,11 +481,11 @@ MODEL_PERFS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 
 WRITING_PERF_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_diabetes_tiny.perf'
 
 MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': None, 'dataset': 'diabetes_tiny', 'training_time_in_sec': 0.016, 'prediction_time_in_sec': 0.001}
-WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_diabetes_tiny.sql'
+WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_diabetes_tiny_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_tiny', 'MLPRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -494,33 +494,33 @@ WITH model_input AS
 "Input_Layer_BA" AS
  ( SELECT
     t."index" as "index",
-    t.X_0 AS OUT_0,
-    t.X_1 AS OUT_1,
-    t.X_2 AS OUT_2,
-    t.X_3 AS OUT_3,
-    t.X_4 AS OUT_4,
-    t.X_5 AS OUT_5,
-    t.X_6 AS OUT_6,
-    t.X_7 AS OUT_7,
-    t.X_8 AS OUT_8,
-    t.X_9 AS OUT_9
- FROM model_input AS t
+    t."X_0" AS "OUT_0",
+    t."X_1" AS "OUT_1",
+    t."X_2" AS "OUT_2",
+    t."X_3" AS "OUT_3",
+    t."X_4" AS "OUT_4",
+    t."X_5" AS "OUT_5",
+    t."X_6" AS "OUT_6",
+    t."X_7" AS "OUT_7",
+    t."X_8" AS "OUT_8",
+    t."X_9" AS "OUT_9"
+ FROM "model_input" AS t
 ),
 "Hidden_Layer_1_BA" AS
  ( SELECT
     t."index" as "index",
-    0.195942 + -0.052593 * t.OUT_0  + 0.128642 * t.OUT_1  + -0.061830 * t.OUT_2  + 0.143582 * t.OUT_3  + -0.085980 * t.OUT_4  + 0.118972 * t.OUT_5  + 0.109582 * t.OUT_6  + -0.143370 * t.OUT_7  + 0.184454 * t.OUT_8
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
-0 * t.OUT_62  + 0.128698 * t.OUT_63  + -0.059785 * t.OUT_64  + -0.052343 * t.OUT_65  + 0.045936 * t.OUT_66  + 0.217973 * t.OUT_67  + -0.073368 * t.OUT_68  + -0.091521 * t.OUT_69  + -0.128868 * t.OUT_70  + 0.149806 * t.OUT_71  + 0.179077 * t.OUT_72  + -0.118373 * t.OUT_73  + 0.076559 * t.OUT_74  + -0.179245 * t.OUT_75  + 0.202475 * t.OUT_76  + -0.050163 * t.OUT_77  + -0.065042 * t.OUT_78  + 0.006858 * t.OUT_79  + 0.251461 * t.OUT_80  + -0.041473 * t.OUT_81  + 0.155141 * t.OUT_82  + 0.227965 * t.OUT_83  + 0.144925 * t.OUT_84  + -0.162956 * t.OUT_85  + -0.003184 * t.OUT_86  + -0.073941 * t.OUT_87  + -0.165139 * t.OUT_88  + 0.020980 * t.OUT_89  + 0.006499 * t.OUT_90  + 0.102978 * t.OUT_91  + 0.247462 * t.OUT_92  + -0.039389 * t.OUT_93  + -0.130068 * t.OUT_94  + -0.003247 * t.OUT_95  + 0.118202 * t.OUT_96  + 0.001689 * t.OUT_97  + -0.038168 * t.OUT_98  + 0.236532 * t.OUT_99 AS OUT_0
-   FROM Hidden_Layer_1_Activation AS t
+    0.195942 + -0.052593 * t."OUT_0"  + 0.128642 * t."OUT_1"  + -0.061830 * t."OUT_2"  + 0.143582 * t."OUT_3"  + -0.085980 * t."OUT_4"  + 0.118972 * t."OUT_5"  + 0.109582 
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_tiny', 'MLPRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_tiny', 'MLPRegressor', 'duckdb')
+ t."OUT_65"  + 0.045936 * t."OUT_66"  + 0.217973 * t."OUT_67"  + -0.073368 * t."OUT_68"  + -0.091521 * t."OUT_69"  + -0.128868 * t."OUT_70"  + 0.149806 * t."OUT_71"  + 0.179077 * t."OUT_72"  + -0.118373 * t."OUT_73"  + 0.076559 * t."OUT_74"  + -0.179245 * t."OUT_75"  + 0.202475 * t."OUT_76"  + -0.050163 * t."OUT_77"  + -0.065042 * t."OUT_78"  + 0.006858 * t."OUT_79"  + 0.251461 * t."OUT_80"  + -0.041473 * t."OUT_81"  + 0.155141 * t."OUT_82"  + 0.227965 * t."OUT_83"  + 0.144925 * t."OUT_84"  + -0.162956 * t."OUT_85"  + -0.003184 * t."OUT_86"  + -0.073941 * t."OUT_87"  + -0.165139 * t."OUT_88"  + 0.020980 * t."OUT_89"  + 0.006499 * t."OUT_90"  + 0.102978 * t."OUT_91"  + 0.247462 * t."OUT_92"  + -0.039389 * t."OUT_93"  + -0.130068 * t."OUT_94"  + -0.003247 * t."OUT_95"  + 0.118202 * t."OUT_96"  + 0.001689 * t."OUT_97"  + -0.038168 * t."OUT_98"  + 0.236532 * t."OUT_99" AS "OUT_0"
+   FROM "Hidden_Layer_1_Activation" AS t
  )
  SELECT
     t."index" AS "index",
     t.OUT_0 AS "Estimator"
   FROM "Output_Layer_BA" AS t
 
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_tiny', 'MLPRegressor', 'duckdb') 
 
 
 
@@ -598,21 +598,205 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-    index  SQL_Estimator  Py_Estimator
-0       0       0.529014      0.529013
-1       1       0.606448      0.606448
-2       2       0.490702      0.490702
-3       3       0.524128      0.524129
-4       4       0.506240      0.506240
-5       5       0.563240      0.563240
-6       6       0.528063      0.528063
-7       7       0.467424      0.467424
-8       8       0.496521      0.496521
-9       9       0.489766      0.489766
-10     10       0.507123      0.507123
-11     11       0.554932      0.554932
-12     12       0.586859      0.586859
-13     13       0.434959      0.434959
-14     14       0.488480      0.488480
-15     15       0.512080      0.512080
+MLLITE_REG_SQL_L1_ERROR ('diabetes_tiny', 'MLPRegressor') Estimator 8.381903171539307e-08
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+0       0       0.529014      0.529013  1.788139e-07
+1       1       0.606448      0.606448  5.960464e-08
+2       2       0.490702      0.490702  0.000000e+00
+3       3       0.524128      0.524129 -5.960464e-08
+4       4       0.506240      0.506240  2.384186e-07
+5       5       0.563240      0.563240 -2.384186e-07
+6       6       0.528063      0.528063  0.000000e+00
+7       7       0.467424      0.467424  8.940697e-08
+8       8       0.496521      0.496521  5.960464e-08
+9       9       0.489766      0.489766  5.960464e-08
+10     10       0.507123      0.507123  5.960464e-08
+11     11       0.554932      0.554932 -1.192093e-07
+12     12       0.586859      0.586859  5.960464e-08
+13     13       0.434959      0.434959  2.980232e-08
+14     14       0.488480      0.488480  8.940697e-08
+15     15       0.512080      0.512080  0.000000e+00
+MLLITE_REG_SQL_EXECUTION_STATUS ('diabetes_tiny', 'MLPRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_diabetes_tiny_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_tiny', 'MLPRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"Input_Layer_BA" AS
+ ( SELECT
+    t."index" as "index",
+    t."X_0" AS "OUT_0",
+    t."X_1" AS "OUT_1",
+    t."X_2" AS "OUT_2",
+    t."X_3" AS "OUT_3",
+    t."X_4" AS "OUT_4",
+    t."X_5" AS "OUT_5",
+    t."X_6" AS "OUT_6",
+    t."X_7" AS "OUT_7",
+    t."X_8" AS "OUT_8",
+    t."X_9" AS "OUT_9"
+ FROM "model_input" AS t
+),
+"Hidden_Layer_1_BA" AS
+ ( SELECT
+    t."index" as "index",
+    0.195942 + -0.052593 * t."OUT_0"  + 0.128642 * t."OUT_1"  + -0.061830 * t."OUT_2"  + 0.143582 * t."OUT_3"  + -0.085980 * t."OUT_4"  + 0.118972 * t."OUT_5"  + 0.109582 
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_tiny', 'MLPRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_tiny', 'MLPRegressor', 'sqlite')
+ t."OUT_65"  + 0.045936 * t."OUT_66"  + 0.217973 * t."OUT_67"  + -0.073368 * t."OUT_68"  + -0.091521 * t."OUT_69"  + -0.128868 * t."OUT_70"  + 0.149806 * t."OUT_71"  + 0.179077 * t."OUT_72"  + -0.118373 * t."OUT_73"  + 0.076559 * t."OUT_74"  + -0.179245 * t."OUT_75"  + 0.202475 * t."OUT_76"  + -0.050163 * t."OUT_77"  + -0.065042 * t."OUT_78"  + 0.006858 * t."OUT_79"  + 0.251461 * t."OUT_80"  + -0.041473 * t."OUT_81"  + 0.155141 * t."OUT_82"  + 0.227965 * t."OUT_83"  + 0.144925 * t."OUT_84"  + -0.162956 * t."OUT_85"  + -0.003184 * t."OUT_86"  + -0.073941 * t."OUT_87"  + -0.165139 * t."OUT_88"  + 0.020980 * t."OUT_89"  + 0.006499 * t."OUT_90"  + 0.102978 * t."OUT_91"  + 0.247462 * t."OUT_92"  + -0.039389 * t."OUT_93"  + -0.130068 * t."OUT_94"  + -0.003247 * t."OUT_95"  + 0.118202 * t."OUT_96"  + 0.001689 * t."OUT_97"  + -0.038168 * t."OUT_98"  + 0.236532 * t."OUT_99" AS "OUT_0"
+   FROM "Hidden_Layer_1_Activation" AS t
+ )
+ SELECT
+    t."index" AS "index",
+    t.OUT_0 AS "Estimator"
+  FROM "Output_Layer_BA" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_tiny', 'MLPRegressor', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 16 entries, 0 to 15
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     16 non-null     float32
+ 1   X_1     16 non-null     float32
+ 2   X_2     16 non-null     float32
+ 3   X_3     16 non-null     float32
+ 4   X_4     16 non-null     float32
+ 5   X_5     16 non-null     float32
+ 6   X_6     16 non-null     float32
+ 7   X_7     16 non-null     float32
+ 8   X_8     16 non-null     float32
+ 9   X_9     16 non-null     float32
+dtypes: float32(10)
+memory usage: 768.0 bytes
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0      0.038076  0.050680 -0.009439  ...  0.050176 -0.025953  0.106617
+1      0.081666  0.050680  0.001339  ...  0.034309  0.084492 -0.030072
+2      0.041708 -0.044642 -0.008362  ... -0.039493 -0.048359 -0.030072
+3     -0.041840 -0.044642  0.128521  ... -0.039493 -0.015999 -0.050783
+4      0.023546  0.050680 -0.030996  ... -0.002592 -0.074093 -0.034215
+5      0.016281  0.050680  0.014272  ...  0.034309  0.074966  0.040343
+6     -0.009147  0.050680 -0.039618  ...  0.071210  0.017765 -0.067351
+7     -0.085430 -0.044642 -0.004050  ... -0.039493 -0.061176 -0.013504
+8     -0.001882 -0.044642  0.033673  ... -0.002592  0.026717  0.061054
+9     -0.070900  0.050680 -0.089197  ... -0.002592 -0.012909 -0.054925
+10    -0.052738 -0.044642  0.071397  ... -0.021412 -0.046883  0.003064
+11    -0.060003  0.050680  0.015350  ... -0.002592 -0.030748 -0.001078
+12     0.009016  0.050680  0.069241  ...  0.034309  0.103297  0.073480
+13    -0.096328 -0.044642 -0.076264  ... -0.039493 -0.059471 -0.083920
+14    -0.060003  0.050680 -0.047163  ... -0.039493 -0.062917 -0.054925
+15     0.045341 -0.044642  0.071397  ... -0.039493 -0.041176 -0.071494
+
+[16 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 16 entries, 0 to 15
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      16 non-null     int64  
+ 1   Estimator  16 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 388.0 bytes
+    index  Estimator
+0       0   0.529014
+1       1   0.606448
+2       2   0.490702
+3       3   0.524128
+4       4   0.506240
+5       5   0.563240
+6       6   0.528063
+7       7   0.467424
+8       8   0.496521
+9       9   0.489766
+10     10   0.507123
+11     11   0.554932
+12     12   0.586859
+13     13   0.434959
+14     14   0.488480
+15     15   0.512080
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('diabetes_tiny', 'MLPRegressor') Estimator 6.641356566430834e-08
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+0       0       0.529014      0.529013  2.271473e-07
+1       1       0.606448      0.606448  8.675277e-08
+2       2       0.490702      0.490702 -1.529022e-08
+3       3       0.524128      0.524129 -9.998343e-08
+4       4       0.506240      0.506240  1.215912e-07
+5       5       0.563240      0.563240 -8.269154e-08
+6       6       0.528063      0.528063  4.430903e-08
+7       7       0.467424      0.467424  2.892192e-08
+8       8       0.496521      0.496521  6.966772e-08
+9       9       0.489766      0.489766  9.742784e-08
+10     10       0.507123      0.507123  5.560895e-08
+11     11       0.554932      0.554932 -1.164878e-08
+12     12       0.586859      0.586859  6.557839e-08
+13     13       0.434959      0.434959  1.318842e-08
+14     14       0.488480      0.488480  3.834032e-08
+15     15       0.512080      0.512080 -4.469250e-09
+MLLITE_REG_SQL_EXECUTION_STATUS ('diabetes_tiny', 'MLPRegressor', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_diabetes_tiny_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_tiny', 'MLPRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"Input_Layer_BA" AS
+ ( SELECT
+    t."index" as "index",
+    t."X_0" AS "OUT_0",
+    t."X_1" AS "OUT_1",
+    t."X_2" AS "OUT_2",
+    t."X_3" AS "OUT_3",
+    t."X_4" AS "OUT_4",
+    t."X_5" AS "OUT_5",
+    t."X_6" AS "OUT_6",
+    t."X_7" AS "OUT_7",
+    t."X_8" AS "OUT_8",
+    t."X_9" AS "OUT_9"
+ FROM "model_input" AS t
+),
+"Hidden_Layer_1_BA" AS
+ ( SELECT
+    t."index" as "index",
+    0.195942 + -0.052593 * t."OUT_0"  + 0.128642 * t."OUT_1"  + -0.061830 * t."OUT_2"  + 0.143582 * t."OUT_3"  + -0.085980 * t."OUT_4"  + 0.118972 * t."OUT_5"  + 0.109582 
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_tiny', 'MLPRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_tiny', 'MLPRegressor', 'pgsql')
+ t."OUT_65"  + 0.045936 * t."OUT_66"  + 0.217973 * t."OUT_67"  + -0.073368 * t."OUT_68"  + -0.091521 * t."OUT_69"  + -0.128868 * t."OUT_70"  + 0.149806 * t."OUT_71"  + 0.179077 * t."OUT_72"  + -0.118373 * t."OUT_73"  + 0.076559 * t."OUT_74"  + -0.179245 * t."OUT_75"  + 0.202475 * t."OUT_76"  + -0.050163 * t."OUT_77"  + -0.065042 * t."OUT_78"  + 0.006858 * t."OUT_79"  + 0.251461 * t."OUT_80"  + -0.041473 * t."OUT_81"  + 0.155141 * t."OUT_82"  + 0.227965 * t."OUT_83"  + 0.144925 * t."OUT_84"  + -0.162956 * t."OUT_85"  + -0.003184 * t."OUT_86"  + -0.073941 * t."OUT_87"  + -0.165139 * t."OUT_88"  + 0.020980 * t."OUT_89"  + 0.006499 * t."OUT_90"  + 0.102978 * t."OUT_91"  + 0.247462 * t."OUT_92"  + -0.039389 * t."OUT_93"  + -0.130068 * t."OUT_94"  + -0.003247 * t."OUT_95"  + 0.118202 * t."OUT_96"  + 0.001689 * t."OUT_97"  + -0.038168 * t."OUT_98"  + 0.236532 * t."OUT_99" AS "OUT_0"
+   FROM "Hidden_Layer_1_Activation" AS t
+ )
+ SELECT
+    t."index" AS "index",
+    t.OUT_0 AS "Estimator"
+  FROM "Output_Layer_BA" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_tiny', 'MLPRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

@@ -35,11 +35,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 12 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 24 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 36 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.021, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.022, 'TRAINING')
 { ,  "max_iter" : 128  , }
 { ,  "max_iter" : 128  , }
 {
-	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "nu_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 1.117212, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 10 },
 	"svm_model" : {
@@ -102,7 +102,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING NuSVR { ,  "max_iter" : 128  , }
 MLLITE_MODEL_JSON_AFTER_SETTING NuSVR None
 MLLITE_RELOADING_MODEL mllite_nu_svm_reg.NuSVR_ff4_ff4
 {
-	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "nu_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 1.117212, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 10 },
 	"svm_model" : {
@@ -163,7 +163,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 10,
 		"dataset_rows" : 64
 	},
-	"metadata" :  { "model" : "Vapnik_NuSVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Vapnik_NuSVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "C" : 1.0, "cache_size" : 300, "coef0" : 0.0, "degree" : 3, "epsilon" : 0.0, "gamma" : 1.117212, "kernel" : "rbf", "max_iter" : 128, "nu" : 0.5, "probability" : 0, "random_state" : 1789, "shrinking" : 0, "svm_type" : "nu_svr", "tol" : 0.001 },
 	"svm_model" : 	{
 		"L" : 37,
@@ -247,12 +247,12 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'freidman1_small', 'size': 64, 'mse': 10.945798, 'mae': 2.763978, 'mape': 0.23703496, 'r2': 0.47981753140821326}
 WRITING_PERF_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman1_small.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'freidman1_small', 'training_time_in_sec': 0.021, 'prediction_time_in_sec': 0.002}
-WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman1_small.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'freidman1_small', 'training_time_in_sec': 0.022, 'prediction_time_in_sec': 0.002}
+WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman1_small_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_small', 'NuSVR', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -275,17 +275,16 @@ WITH model_input AS
   FROM
   (
      SELECT 0 AS "sv_idx", 1.000000 AS "coeff", 0.652811 AS "sv_0", 0.757719 AS "sv_1", 0.306902 AS "sv_2", 0.828286 AS "sv_3", 0.763064 AS "sv_4", 0.859
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
-    dp."dot_product" AS "Estimator"
-   FROM
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_small', 'NuSVR', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_small', 'NuSVR', 'duckdb')
+
     (SELECT
       full_join_data_sv."index" AS "index",
       sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -14.879629 AS dot_product
      FROM
        (SELECT
           model_input."index" AS "index",
-          "SV_data"."coeff" *  exp(min(max(-32.0, -1.117212 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2) + power(model_input."X_9" - "SV_data".sv_9, 2))), 32.0))  AS "dot_prod" 
+          "SV_data"."coeff" *  EXP( LEAST( GREATEST( CAST(-32.0 AS FLOAT), -1.117212 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2) + power(model_input."X_9" - "SV_data".sv_9, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
         FROM
           model_input, "SV_data"
        ) AS full_join_data_sv
@@ -296,7 +295,7 @@ SELECT
   t."Estimator" as "Estimator"
 FROM "Kernel_DotProd" AS t
 
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_small', 'NuSVR', 'duckdb') 
 
 
 
@@ -366,21 +365,213 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-    index  SQL_Estimator  Py_Estimator
-48     48      14.371400     14.371401
-49     49      14.584210     14.584209
-50     50      15.483297     15.483298
-51     51      14.655250     14.655250
-52     52      14.715578     14.715578
-53     53      15.238907     15.238907
-54     54      17.118731     17.118731
-55     55      15.643512     15.643511
-56     56      13.568308     13.568308
-57     57      15.486521     15.486520
-58     58      16.293749     16.293749
-59     59      16.954817     16.954815
-60     60      16.745167     16.745167
-61     61      15.011827     15.011827
-62     62      14.885259     14.885259
-63     63      14.949161     14.949161
+MLLITE_REG_SQL_L1_ERROR ('freidman1_small', 'NuSVR') Estimator 6.59743020131609e-07
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+48     48      14.371400     14.371401 -5.622597e-07
+49     49      14.584209     14.584209  5.002673e-08
+50     50      15.483297     15.483298 -1.232695e-06
+51     51      14.655250     14.655250  2.446732e-07
+52     52      14.715578     14.715578  3.786090e-07
+53     53      15.238907     15.238907 -2.310581e-07
+54     54      17.118731     17.118731  4.215662e-07
+55     55      15.643513     15.643511  1.733334e-06
+56     56      13.568308     13.568308  3.943250e-07
+57     57      15.486521     15.486520  7.376338e-07
+58     58      16.293749     16.293749 -2.656334e-07
+59     59      16.954817     16.954815  1.642064e-06
+60     60      16.745167     16.745167  3.698822e-08
+61     61      15.011827     15.011827  1.328562e-07
+62     62      14.885259     14.885259  3.746509e-07
+63     63      14.949161     14.949161  5.262236e-07
+MLLITE_REG_SQL_EXECUTION_STATUS ('freidman1_small', 'NuSVR', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman1_small_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_small', 'NuSVR', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ )
+,"SV_data" AS
+ ( SELECT 
+   "Values"."sv_idx" AS "sv_idx",
+   "Values"."coeff" AS "coeff",
+   "Values"."sv_0" AS "sv_0",
+   "Values"."sv_1" AS "sv_1",
+   "Values"."sv_2" AS "sv_2",
+   "Values"."sv_3" AS "sv_3",
+   "Values"."sv_4" AS "sv_4",
+   "Values"."sv_5" AS "sv_5",
+   "Values"."sv_6" AS "sv_6",
+   "Values"."sv_7" AS "sv_7",
+   "Values"."sv_8" AS "sv_8",
+   "Values"."sv_9" AS "sv_9"
+  FROM
+  (
+     SELECT 0 AS "sv_idx", 1.000000 AS "coeff", 0.652811 AS "sv_0", 0.757719 AS "sv_1", 0.306902 AS "sv_2", 0.828286 AS "sv_3", 0.763064 AS "sv_4", 0.859
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_small', 'NuSVR', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_small', 'NuSVR', 'sqlite')
+   FROM
+    (SELECT
+      full_join_data_sv."index" AS "index",
+      sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -14.879629 AS dot_product
+     FROM
+       (SELECT
+          model_input."index" AS "index",
+          "SV_data"."coeff" *  EXP( MIN( MAX( CAST(-32.0 AS FLOAT), -1.117212 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2) + power(model_input."X_9" - "SV_data".sv_9, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
+        FROM
+          model_input, "SV_data"
+       ) AS full_join_data_sv
+     GROUP BY full_join_data_sv."index"
+    ) AS dp )
+SELECT
+  t."index" as "index",
+  t."Estimator" as "Estimator"
+FROM "Kernel_DotProd" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_small', 'NuSVR', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+ 4   X_4     64 non-null     float32
+ 5   X_5     64 non-null     float32
+ 6   X_6     64 non-null     float32
+ 7   X_7     64 non-null     float32
+ 8   X_8     64 non-null     float32
+ 9   X_9     64 non-null     float32
+dtypes: float32(10)
+memory usage: 3.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0      0.544738  0.515912  0.990435  ...  0.041089  0.898018  0.377159
+1      0.783459  0.095321  0.135945  ...  0.422766  0.019766  0.833486
+2      0.652811  0.757719  0.306902  ...  0.146070  0.894295  0.086598
+3      0.226051  0.939732  0.731124  ...  0.843453  0.185038  0.248943
+4      0.764610  0.378970  0.823855  ...  0.361050  0.814980  0.123688
+...         ...       ...       ...  ...       ...       ...       ...
+59     0.652046  0.852315  0.661294  ...  0.609463  0.682591  0.243739
+60     0.133169  0.898182  0.993566  ...  0.033415  0.014059  0.907372
+61     0.771820  0.489723  0.677121  ...  0.565222  0.039136  0.218690
+62     0.059807  0.098960  0.941488  ...  0.265461  0.196262  0.732540
+63     0.672520  0.960422  0.271050  ...  0.514037  0.918325  0.297702
+
+[64 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      64 non-null     int64  
+ 1   Estimator  64 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 1.1 KB
+    index  Estimator
+0       0  14.535302
+1       1  14.626285
+2       2  17.158626
+3       3  17.117099
+4       4  15.848841
+..    ...        ...
+59     59  16.954817
+60     60  16.745167
+61     61  15.011827
+62     62  14.885259
+63     63  14.949161
+
+[64 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('freidman1_small', 'NuSVR') Estimator 6.556984360750473e-07
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+48     48      14.371400     14.371401 -5.587482e-07
+49     49      14.584210     14.584209  1.435952e-07
+50     50      15.483297     15.483298 -1.171088e-06
+51     51      14.655250     14.655250  2.966857e-07
+52     52      14.715578     14.715578  4.069090e-07
+53     53      15.238907     15.238907 -2.154841e-07
+54     54      17.118731     17.118731  3.366136e-07
+55     55      15.643512     15.643511  1.650490e-06
+56     56      13.568308     13.568308  4.262930e-07
+57     57      15.486521     15.486520  8.123717e-07
+58     58      16.293749     16.293749 -2.709784e-07
+59     59      16.954817     16.954815  1.596562e-06
+60     60      16.745167     16.745167  8.157051e-08
+61     61      15.011827     15.011827  6.935038e-08
+62     62      14.885259     14.885259  3.732208e-07
+63     63      14.949161     14.949161  4.657017e-07
+MLLITE_REG_SQL_EXECUTION_STATUS ('freidman1_small', 'NuSVR', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman1_small_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_small', 'NuSVR', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ )
+,"SV_data" AS
+ ( SELECT 
+   "Values"."sv_idx" AS "sv_idx",
+   "Values"."coeff" AS "coeff",
+   "Values"."sv_0" AS "sv_0",
+   "Values"."sv_1" AS "sv_1",
+   "Values"."sv_2" AS "sv_2",
+   "Values"."sv_3" AS "sv_3",
+   "Values"."sv_4" AS "sv_4",
+   "Values"."sv_5" AS "sv_5",
+   "Values"."sv_6" AS "sv_6",
+   "Values"."sv_7" AS "sv_7",
+   "Values"."sv_8" AS "sv_8",
+   "Values"."sv_9" AS "sv_9"
+  FROM
+  (
+     SELECT 0 AS "sv_idx", 1.000000 AS "coeff", 0.652811 AS "sv_0", 0.757719 AS "sv_1", 0.306902 AS "sv_2", 0.828286 AS "sv_3", 0.763064 AS "sv_4", 0.859
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_small', 'NuSVR', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_small', 'NuSVR', 'pgsql')
+
+    (SELECT
+      full_join_data_sv."index" AS "index",
+      sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -14.879629 AS dot_product
+     FROM
+       (SELECT
+          model_input."index" AS "index",
+          "SV_data"."coeff" *  EXP( LEAST( GREATEST( CAST(-32.0 AS FLOAT), -1.117212 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2) + power(model_input."X_9" - "SV_data".sv_9, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
+        FROM
+          model_input, "SV_data"
+       ) AS full_join_data_sv
+     GROUP BY full_join_data_sv."index"
+    ) AS dp )
+SELECT
+  t."index" as "index",
+  t."Estimator" as "Estimator"
+FROM "Kernel_DotProd" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_small', 'NuSVR', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

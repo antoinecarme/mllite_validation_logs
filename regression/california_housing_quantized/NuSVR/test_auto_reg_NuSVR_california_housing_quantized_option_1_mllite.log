@@ -38,11 +38,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 108 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 120 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 128 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 4 4
-('OPERATION_END_ELAPSED', 34.182, 'TRAINING')
+('OPERATION_END_ELAPSED', 31.927, 'TRAINING')
 { "nu" : 0.1,  "max_iter" : 128  , }
 { "nu" : 0.1,  "max_iter" : 128  , }
 {
-	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "nu_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 0.012586, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.100000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 20640, "dataset_features" : 9 },
 	"svm_model" : {
@@ -319,7 +319,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING NuSVR { "nu" : 0.1,  "max_iter" : 128  , }
 MLLITE_MODEL_JSON_AFTER_SETTING NuSVR None
 MLLITE_RELOADING_MODEL mllite_nu_svm_reg.NuSVR_ff4_ff4
 {
-	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "nu_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 0.012586, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.100000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 20640, "dataset_features" : 9 },
 	"svm_model" : {
@@ -594,7 +594,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 9,
 		"dataset_rows" : 20640
 	},
-	"metadata" :  { "model" : "Vapnik_NuSVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Vapnik_NuSVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "C" : 1.0, "cache_size" : 300, "coef0" : 0.0, "degree" : 3, "epsilon" : 0.0, "gamma" : 0.012586, "kernel" : "rbf", "max_iter" : 128, "nu" : 0.1, "probability" : 0, "random_state" : 1789, "shrinking" : 0, "svm_type" : "nu_svr", "tol" : 0.001 },
 	"svm_model" : 	{
 		"L" : 251,
@@ -865,19 +865,19 @@ BEAUTIFIED_JSON_START
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
 [75855.61  75857.58  75856.99  ... 75853.19  75852.234 75854.58 ]
-('OPERATION_END_ELAPSED', 0.437, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.388, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [75855.61  75857.58  75856.99  ... 75853.19  75852.234 75854.58 ]
-('OPERATION_END_ELAPSED', 0.424, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.451, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': '{"nu" : 0.1}', 'dataset': 'california_housing_quantized', 'size': 20640, 'mse': 30476196000.0, 'mae': 133350.88, 'mape': 0.54049665, 'r2': -1.288775437307712}
 WRITING_PERF_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_california_housing_quantized_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': '{"nu" : 0.1}', 'dataset': 'california_housing_quantized', 'training_time_in_sec': 34.182, 'prediction_time_in_sec': 0.424}
-WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_california_housing_quantized_option_1.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': '{"nu" : 0.1}', 'dataset': 'california_housing_quantized', 'training_time_in_sec': 31.927, 'prediction_time_in_sec': 0.451}
+WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_california_housing_quantized_option_1_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('california_housing_quantized', 'NuSVR', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
@@ -899,11 +899,9 @@ WITH model_input AS
   FROM
   (
      SELECT 0 AS "sv_idx", 1.000000 AS "coeff", 1.000000 AS "sv_0", 8.000000 AS "sv_1", 8.000000 AS "sv_2", 0.000000 AS "sv_3", 0.000000 AS "sv_4", 0.000000 AS "sv_5", 0.000000 AS "sv_6", 9.000000 AS "sv_7", 0.000000 AS 
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
-od" AS
- ( SELECT
-    dp."index" as "index",
+SQL_OUT_PUT_FIRST_LINES_END ('california_housing_quantized', 'NuSVR', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('california_housing_quantized', 'NuSVR', 'duckdb')
+
     dp."dot_product" AS "Estimator"
    FROM
     (SELECT
@@ -912,7 +910,7 @@ od" AS
      FROM
        (SELECT
           model_input."index" AS "index",
-          "SV_data"."coeff" *  exp(min(max(-32.0, -0.012586 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2))), 32.0))  AS "dot_prod" 
+          "SV_data"."coeff" *  EXP( LEAST( GREATEST( CAST(-32.0 AS FLOAT), -0.012586 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
         FROM
           model_input, "SV_data"
        ) AS full_join_data_sv
@@ -923,7 +921,144 @@ SELECT
   t."Estimator" as "Estimator"
 FROM "Kernel_DotProd" AS t
 
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('california_housing_quantized', 'NuSVR', 'duckdb') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 20640 entries, 0 to 20639
+Data columns (total 9 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     20640 non-null  float32
+ 1   X_1     20640 non-null  float32
+ 2   X_2     20640 non-null  float32
+ 3   X_3     20640 non-null  float32
+ 4   X_4     20640 non-null  float32
+ 5   X_5     20640 non-null  float32
+ 6   X_6     20640 non-null  float32
+ 7   X_7     20640 non-null  float32
+ 8   X_8     20640 non-null  float32
+dtypes: float32(9)
+memory usage: 886.9 KB
+       X_0  X_1   X_2  X_3  X_4  X_5  X_6  X_7  X_8
+index                                              
+0      1.0  8.0   8.0  0.0  0.0  0.0  0.0  9.0  0.0
+1      1.0  7.0   3.0  8.0  8.0  8.0  8.0  9.0  0.0
+2      1.0  7.0  10.0  2.0  1.0  1.0  1.0  9.0  0.0
+3      1.0  7.0  10.0  1.0  1.0  1.0  1.0  8.0  0.0
+4      1.0  7.0  10.0  3.0  2.0  1.0  2.0  5.0  0.0
+...    ...  ...   ...  ...  ...  ...  ...  ...  ...
+20635  3.0  9.0   4.0  3.0  3.0  2.0  3.0  0.0  0.0
+20636  3.0  9.0   2.0  0.0  0.0  0.0  0.0  2.0  0.0
+20637  3.0  9.0   2.0  5.0  5.0  3.0  5.0  0.0  0.0
+20638  3.0  9.0   2.0  4.0  4.0  2.0  3.0  1.0  0.0
+20639  3.0  9.0   1.0  6.0  7.0  6.0  6.0  2.0  0.0
+
+[20640 rows x 9 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      20640 non-null  int64  
+ 1   Estimator  20640 non-null  float64
+dtypes: float64(1), int64(1)
+memory usage: 322.6 KB
+       index     Estimator
+0          0  75855.608152
+1          1  75857.581835
+2          2  75856.995167
+3          3  75855.384907
+4          4  75852.706343
+...      ...           ...
+20635  20635  75850.929099
+20636  20636  75852.195764
+20637  20637  75853.185045
+20638  20638  75852.234289
+20639  20639  75854.576614
+
+[20640 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('california_housing_quantized', 'NuSVR') Estimator 0.001943404627137036
+       index  SQL_Estimator  Py_Estimator  SQL_Error
+20624  20624   75852.049453  75852.046875   0.002578
+20625  20625   75851.762041  75851.765625  -0.003584
+20626  20626   75849.397277  75849.398438  -0.001161
+20627  20627   75853.571076  75853.570312   0.000763
+20628  20628   75851.937955  75851.937500   0.000455
+20629  20629   75856.109719  75856.109375   0.000344
+20630  20630   75854.787319  75854.789062  -0.001744
+20631  20631   75853.908172  75853.906250   0.001922
+20632  20632   75852.907010  75852.906250   0.000760
+20633  20633   75850.833238  75850.835938  -0.002699
+20634  20634   75852.329556  75852.328125   0.001431
+20635  20635   75850.929099  75850.929688  -0.000588
+20636  20636   75852.195764  75852.195312   0.000451
+20637  20637   75853.185045  75853.187500  -0.002455
+20638  20638   75852.234289  75852.234375  -0.000086
+20639  20639   75854.576614  75854.578125  -0.001511
+MLLITE_REG_SQL_EXECUTION_STATUS ('california_housing_quantized', 'NuSVR', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_california_housing_quantized_option_1_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('california_housing_quantized', 'NuSVR', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ )
+,"SV_data" AS
+ ( SELECT 
+   "Values"."sv_idx" AS "sv_idx",
+   "Values"."coeff" AS "coeff",
+   "Values"."sv_0" AS "sv_0",
+   "Values"."sv_1" AS "sv_1",
+   "Values"."sv_2" AS "sv_2",
+   "Values"."sv_3" AS "sv_3",
+   "Values"."sv_4" AS "sv_4",
+   "Values"."sv_5" AS "sv_5",
+   "Values"."sv_6" AS "sv_6",
+   "Values"."sv_7" AS "sv_7",
+   "Values"."sv_8" AS "sv_8"
+  FROM
+  (
+     SELECT 0 AS "sv_idx", 1.000000 AS "coeff", 1.000000 AS "sv_0", 8.000000 AS "sv_1", 8.000000 AS "sv_2", 0.000000 AS "sv_3", 0.000000 AS "sv_4", 0.000000 AS "sv_5", 0.000000 AS "sv_6", 9.000000 AS "sv_7", 0.000000 AS 
+SQL_OUT_PUT_FIRST_LINES_END ('california_housing_quantized', 'NuSVR', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('california_housing_quantized', 'NuSVR', 'sqlite')
+index",
+    dp."dot_product" AS "Estimator"
+   FROM
+    (SELECT
+      full_join_data_sv."index" AS "index",
+      sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -75857.718750 AS dot_product
+     FROM
+       (SELECT
+          model_input."index" AS "index",
+          "SV_data"."coeff" *  EXP( MIN( MAX( CAST(-32.0 AS FLOAT), -0.012586 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
+        FROM
+          model_input, "SV_data"
+       ) AS full_join_data_sv
+     GROUP BY full_join_data_sv."index"
+    ) AS dp )
+SELECT
+  t."index" as "index",
+  t."Estimator" as "Estimator"
+FROM "Kernel_DotProd" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('california_housing_quantized', 'NuSVR', 'sqlite') 
 
 
 
@@ -992,21 +1127,77 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-       index  SQL_Estimator  Py_Estimator
-20624  20624   75852.049453  75852.046875
-20625  20625   75851.762041  75851.765625
-20626  20626   75849.397277  75849.398438
-20627  20627   75853.571076  75853.570312
-20628  20628   75851.937956  75851.937500
-20629  20629   75856.109719  75856.109375
-20630  20630   75854.787319  75854.789062
-20631  20631   75853.908172  75853.906250
-20632  20632   75852.907010  75852.906250
-20633  20633   75850.833239  75850.835938
-20634  20634   75852.329557  75852.328125
-20635  20635   75850.929100  75850.929688
-20636  20636   75852.195764  75852.195312
-20637  20637   75853.185045  75853.187500
-20638  20638   75852.234289  75852.234375
-20639  20639   75854.576614  75854.578125
+MLLITE_REG_SQL_L1_ERROR ('california_housing_quantized', 'NuSVR') Estimator 0.0019434039629104942
+       index  SQL_Estimator  Py_Estimator  SQL_Error
+20624  20624   75852.049453  75852.046875   0.002578
+20625  20625   75851.762041  75851.765625  -0.003584
+20626  20626   75849.397277  75849.398438  -0.001161
+20627  20627   75853.571076  75853.570312   0.000763
+20628  20628   75851.937956  75851.937500   0.000456
+20629  20629   75856.109719  75856.109375   0.000344
+20630  20630   75854.787319  75854.789062  -0.001744
+20631  20631   75853.908172  75853.906250   0.001922
+20632  20632   75852.907010  75852.906250   0.000760
+20633  20633   75850.833239  75850.835938  -0.002699
+20634  20634   75852.329557  75852.328125   0.001432
+20635  20635   75850.929100  75850.929688  -0.000588
+20636  20636   75852.195764  75852.195312   0.000451
+20637  20637   75853.185045  75853.187500  -0.002455
+20638  20638   75852.234289  75852.234375  -0.000086
+20639  20639   75854.576614  75854.578125  -0.001511
+MLLITE_REG_SQL_EXECUTION_STATUS ('california_housing_quantized', 'NuSVR', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_california_housing_quantized_option_1_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('california_housing_quantized', 'NuSVR', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ )
+,"SV_data" AS
+ ( SELECT 
+   "Values"."sv_idx" AS "sv_idx",
+   "Values"."coeff" AS "coeff",
+   "Values"."sv_0" AS "sv_0",
+   "Values"."sv_1" AS "sv_1",
+   "Values"."sv_2" AS "sv_2",
+   "Values"."sv_3" AS "sv_3",
+   "Values"."sv_4" AS "sv_4",
+   "Values"."sv_5" AS "sv_5",
+   "Values"."sv_6" AS "sv_6",
+   "Values"."sv_7" AS "sv_7",
+   "Values"."sv_8" AS "sv_8"
+  FROM
+  (
+     SELECT 0 AS "sv_idx", 1.000000 AS "coeff", 1.000000 AS "sv_0", 8.000000 AS "sv_1", 8.000000 AS "sv_2", 0.000000 AS "sv_3", 0.000000 AS "sv_4", 0.000000 AS "sv_5", 0.000000 AS "sv_6", 9.000000 AS "sv_7", 0.000000 AS 
+SQL_OUT_PUT_FIRST_LINES_END ('california_housing_quantized', 'NuSVR', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('california_housing_quantized', 'NuSVR', 'pgsql')
+
+    dp."dot_product" AS "Estimator"
+   FROM
+    (SELECT
+      full_join_data_sv."index" AS "index",
+      sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -75857.718750 AS dot_product
+     FROM
+       (SELECT
+          model_input."index" AS "index",
+          "SV_data"."coeff" *  EXP( LEAST( GREATEST( CAST(-32.0 AS FLOAT), -0.012586 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
+        FROM
+          model_input, "SV_data"
+       ) AS full_join_data_sv
+     GROUP BY full_join_data_sv."index"
+    ) AS dp )
+SELECT
+  t."index" as "index",
+  t."Estimator" as "Estimator"
+FROM "Kernel_DotProd" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('california_housing_quantized', 'NuSVR', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

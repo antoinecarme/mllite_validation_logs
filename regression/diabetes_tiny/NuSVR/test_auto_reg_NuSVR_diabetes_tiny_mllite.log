@@ -37,11 +37,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 1 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 2 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 3 4
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 4 4
-('OPERATION_END_ELAPSED', 0.011, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.01, 'TRAINING')
 { ,  "max_iter" : 128  , }
 { ,  "max_iter" : 128  , }
 {
-	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "nu_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 43.773697, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 10 },
 	"svm_model" : {
@@ -75,7 +75,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING NuSVR { ,  "max_iter" : 128  , }
 MLLITE_MODEL_JSON_AFTER_SETTING NuSVR None
 MLLITE_RELOADING_MODEL mllite_nu_svm_reg.NuSVR_ff4_ff4
 {
-	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "nu_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 43.773697, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 10 },
 	"svm_model" : {
@@ -107,7 +107,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 10,
 		"dataset_rows" : 16
 	},
-	"metadata" :  { "model" : "Vapnik_NuSVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Vapnik_NuSVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "C" : 1.0, "cache_size" : 300, "coef0" : 0.0, "degree" : 3, "epsilon" : 0.0, "gamma" : 43.773697, "kernel" : "rbf", "max_iter" : 128, "nu" : 0.5, "probability" : 0, "random_state" : 1789, "shrinking" : 0, "svm_type" : "nu_svr", "tol" : 0.001 },
 	"svm_model" : 	{
 		"L" : 8,
@@ -146,12 +146,12 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'diabetes_tiny', 'size': 16, 'mse': 5732.0957, 'mae': 65.47291, 'mape': 0.60528773, 'r2': 0.02544323853902919}
 WRITING_PERF_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_diabetes_tiny.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'diabetes_tiny', 'training_time_in_sec': 0.011, 'prediction_time_in_sec': 0.001}
-WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_diabetes_tiny.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'diabetes_tiny', 'training_time_in_sec': 0.01, 'prediction_time_in_sec': 0.001}
+WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_diabetes_tiny_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_tiny', 'NuSVR', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -174,17 +174,15 @@ WITH model_input AS
   FROM
   (
      SELECT 0 AS "sv_idx", 1.000000 AS "coeff", -0.041840 AS "sv_0", -0.044642 AS "sv_1", 0.128521 AS "sv_2", 0.063187 AS "sv_3", -0.033216 AS "sv_4", -0
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
-  dp."dot_product" AS "Estimator"
-   FROM
-    (SELECT
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_tiny', 'NuSVR', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_tiny', 'NuSVR', 'duckdb')
+   (SELECT
       full_join_data_sv."index" AS "index",
       sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -142.185349 AS dot_product
      FROM
        (SELECT
           model_input."index" AS "index",
-          "SV_data"."coeff" *  exp(min(max(-32.0, -43.773697 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2) + power(model_input."X_9" - "SV_data".sv_9, 2))), 32.0))  AS "dot_prod" 
+          "SV_data"."coeff" *  EXP( LEAST( GREATEST( CAST(-32.0 AS FLOAT), -43.773697 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2) + power(model_input."X_9" - "SV_data".sv_9, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
         FROM
           model_input, "SV_data"
        ) AS full_join_data_sv
@@ -195,7 +193,152 @@ SELECT
   t."Estimator" as "Estimator"
 FROM "Kernel_DotProd" AS t
 
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_tiny', 'NuSVR', 'duckdb') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 16 entries, 0 to 15
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     16 non-null     float32
+ 1   X_1     16 non-null     float32
+ 2   X_2     16 non-null     float32
+ 3   X_3     16 non-null     float32
+ 4   X_4     16 non-null     float32
+ 5   X_5     16 non-null     float32
+ 6   X_6     16 non-null     float32
+ 7   X_7     16 non-null     float32
+ 8   X_8     16 non-null     float32
+ 9   X_9     16 non-null     float32
+dtypes: float32(10)
+memory usage: 768.0 bytes
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0      0.038076  0.050680 -0.009439  ...  0.050176 -0.025953  0.106617
+1      0.081666  0.050680  0.001339  ...  0.034309  0.084492 -0.030072
+2      0.041708 -0.044642 -0.008362  ... -0.039493 -0.048359 -0.030072
+3     -0.041840 -0.044642  0.128521  ... -0.039493 -0.015999 -0.050783
+4      0.023546  0.050680 -0.030996  ... -0.002592 -0.074093 -0.034215
+5      0.016281  0.050680  0.014272  ...  0.034309  0.074966  0.040343
+6     -0.009147  0.050680 -0.039618  ...  0.071210  0.017765 -0.067351
+7     -0.085430 -0.044642 -0.004050  ... -0.039493 -0.061176 -0.013504
+8     -0.001882 -0.044642  0.033673  ... -0.002592  0.026717  0.061054
+9     -0.070900  0.050680 -0.089197  ... -0.002592 -0.012909 -0.054925
+10    -0.052738 -0.044642  0.071397  ... -0.021412 -0.046883  0.003064
+11    -0.060003  0.050680  0.015350  ... -0.002592 -0.030748 -0.001078
+12     0.009016  0.050680  0.069241  ...  0.034309  0.103297  0.073480
+13    -0.096328 -0.044642 -0.076264  ... -0.039493 -0.059471 -0.083920
+14    -0.060003  0.050680 -0.047163  ... -0.039493 -0.062917 -0.054925
+15     0.045341 -0.044642  0.071397  ... -0.039493 -0.041176 -0.071494
+
+[16 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 16 entries, 0 to 15
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      16 non-null     int64  
+ 1   Estimator  16 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 388.0 bytes
+    index   Estimator
+0       0  142.500950
+1       1  142.453720
+2       2  141.355946
+3       3  142.802886
+4       4  140.715576
+5       5  143.599852
+6       6  141.805362
+7       7  140.496029
+8       8  143.572207
+9       9  141.030569
+10     10  140.761415
+11     11  141.311682
+12     12  144.083624
+13     13  140.847168
+14     14  140.445480
+15     15  141.808648
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('diabetes_tiny', 'NuSVR') Estimator 3.2174676398710744e-06
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+0       0     142.500950    142.500946  4.134454e-06
+1       1     142.453720    142.453720 -2.786176e-07
+2       2     141.355946    141.355942  4.680209e-06
+3       3     142.802886    142.802887 -7.028351e-07
+4       4     140.715576    140.715576  1.837840e-07
+5       5     143.599852    143.599854 -1.775719e-06
+6       6     141.805362    141.805359  3.398710e-06
+7       7     140.496029    140.496033 -3.884233e-06
+8       8     143.572207    143.572205  2.737471e-06
+9       9     141.030569    141.030563  5.203613e-06
+10     10     140.761415    140.761414  1.428031e-06
+11     11     141.311682    141.311676  6.464623e-06
+12     12     144.083624    144.083633 -9.386487e-06
+13     13     140.847168    140.847168  1.134692e-07
+14     14     140.445480    140.445480 -1.496295e-07
+15     15     141.808648    141.808655 -6.957597e-06
+MLLITE_REG_SQL_EXECUTION_STATUS ('diabetes_tiny', 'NuSVR', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_diabetes_tiny_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_tiny', 'NuSVR', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ )
+,"SV_data" AS
+ ( SELECT 
+   "Values"."sv_idx" AS "sv_idx",
+   "Values"."coeff" AS "coeff",
+   "Values"."sv_0" AS "sv_0",
+   "Values"."sv_1" AS "sv_1",
+   "Values"."sv_2" AS "sv_2",
+   "Values"."sv_3" AS "sv_3",
+   "Values"."sv_4" AS "sv_4",
+   "Values"."sv_5" AS "sv_5",
+   "Values"."sv_6" AS "sv_6",
+   "Values"."sv_7" AS "sv_7",
+   "Values"."sv_8" AS "sv_8",
+   "Values"."sv_9" AS "sv_9"
+  FROM
+  (
+     SELECT 0 AS "sv_idx", 1.000000 AS "coeff", -0.041840 AS "sv_0", -0.044642 AS "sv_1", 0.128521 AS "sv_2", 0.063187 AS "sv_3", -0.033216 AS "sv_4", -0
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_tiny', 'NuSVR', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_tiny', 'NuSVR', 'sqlite')
+ FROM
+    (SELECT
+      full_join_data_sv."index" AS "index",
+      sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -142.185349 AS dot_product
+     FROM
+       (SELECT
+          model_input."index" AS "index",
+          "SV_data"."coeff" *  EXP( MIN( MAX( CAST(-32.0 AS FLOAT), -43.773697 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2) + power(model_input."X_9" - "SV_data".sv_9, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
+        FROM
+          model_input, "SV_data"
+       ) AS full_join_data_sv
+     GROUP BY full_join_data_sv."index"
+    ) AS dp )
+SELECT
+  t."index" as "index",
+  t."Estimator" as "Estimator"
+FROM "Kernel_DotProd" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_tiny', 'NuSVR', 'sqlite') 
 
 
 
@@ -273,21 +416,75 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-    index  SQL_Estimator  Py_Estimator
-0       0     142.500950    142.500946
-1       1     142.453720    142.453720
-2       2     141.355946    141.355942
-3       3     142.802886    142.802887
-4       4     140.715576    140.715576
-5       5     143.599852    143.599854
-6       6     141.805362    141.805359
-7       7     140.496029    140.496033
-8       8     143.572207    143.572205
-9       9     141.030569    141.030563
-10     10     140.761415    140.761414
-11     11     141.311683    141.311676
-12     12     144.083624    144.083633
-13     13     140.847168    140.847168
-14     14     140.445480    140.445480
-15     15     141.808648    141.808655
+MLLITE_REG_SQL_L1_ERROR ('diabetes_tiny', 'NuSVR') Estimator 3.2212070326664843e-06
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+0       0     142.500950    142.500946  4.166360e-06
+1       1     142.453720    142.453720 -2.840584e-07
+2       2     141.355946    141.355942  4.628305e-06
+3       3     142.802886    142.802887 -7.322776e-07
+4       4     140.715576    140.715576  1.876832e-07
+5       5     143.599852    143.599854 -1.779922e-06
+6       6     141.805362    141.805359  3.401197e-06
+7       7     140.496029    140.496033 -3.884528e-06
+8       8     143.572207    143.572205  2.720996e-06
+9       9     141.030569    141.030563  5.176644e-06
+10     10     140.761415    140.761414  1.439801e-06
+11     11     141.311683    141.311676  6.520557e-06
+12     12     144.083624    144.083633 -9.379906e-06
+13     13     140.847168    140.847168  1.461502e-07
+14     14     140.445480    140.445480 -1.324514e-07
+15     15     141.808648    141.808655 -6.958476e-06
+MLLITE_REG_SQL_EXECUTION_STATUS ('diabetes_tiny', 'NuSVR', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_diabetes_tiny_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_tiny', 'NuSVR', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ )
+,"SV_data" AS
+ ( SELECT 
+   "Values"."sv_idx" AS "sv_idx",
+   "Values"."coeff" AS "coeff",
+   "Values"."sv_0" AS "sv_0",
+   "Values"."sv_1" AS "sv_1",
+   "Values"."sv_2" AS "sv_2",
+   "Values"."sv_3" AS "sv_3",
+   "Values"."sv_4" AS "sv_4",
+   "Values"."sv_5" AS "sv_5",
+   "Values"."sv_6" AS "sv_6",
+   "Values"."sv_7" AS "sv_7",
+   "Values"."sv_8" AS "sv_8",
+   "Values"."sv_9" AS "sv_9"
+  FROM
+  (
+     SELECT 0 AS "sv_idx", 1.000000 AS "coeff", -0.041840 AS "sv_0", -0.044642 AS "sv_1", 0.128521 AS "sv_2", 0.063187 AS "sv_3", -0.033216 AS "sv_4", -0
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_tiny', 'NuSVR', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_tiny', 'NuSVR', 'pgsql')
+   (SELECT
+      full_join_data_sv."index" AS "index",
+      sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -142.185349 AS dot_product
+     FROM
+       (SELECT
+          model_input."index" AS "index",
+          "SV_data"."coeff" *  EXP( LEAST( GREATEST( CAST(-32.0 AS FLOAT), -43.773697 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2) + power(model_input."X_9" - "SV_data".sv_9, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
+        FROM
+          model_input, "SV_data"
+       ) AS full_join_data_sv
+     GROUP BY full_join_data_sv."index"
+    ) AS dp )
+SELECT
+  t."index" as "index",
+  t."Estimator" as "Estimator"
+FROM "Kernel_DotProd" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_tiny', 'NuSVR', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

@@ -80,11 +80,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_REGRESSOR_FIT' 2 2
-('OPERATION_END_ELAPSED', 0.007, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.01, 'TRAINING')
 { ,   , }
 { ,   , }
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 55, "dataset_features" : 10 },
 	"equations" : {
@@ -100,7 +100,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeRegressor { ,   , }
 MLLITE_MODEL_JSON_AFTER_SETTING RidgeRegressor None
 MLLITE_RELOADING_MODEL mllite_ridge_reg.RidgeRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 55, "dataset_features" : 10 },
 	"equations" : {
@@ -118,7 +118,7 @@ BEAUTIFIED_JSON_START
 		"coeffs" : [ 60.182159, -522.883667, 445.421112, 659.995239, -257.227692, -141.481125, -250.421204, 355.438965, 632.936768, -91.463654 ],
 		"intercept" : 157.151749
 	},
-	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "alpha" : 1.0, "random_state" : 1789 }
 }
 BEAUTIFIED_JSON_END
@@ -133,7 +133,7 @@ BEAUTIFIED_JSON_END
  100.269356 151.02687   72.522026 238.99568  101.1439   148.42279
  205.04144  150.79016   90.606544 165.41753   53.25823  145.0503
  269.1418  ]
-('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [129.96942  177.90987   93.679855 267.60522   79.71524  205.56412
  144.98326  109.94291  280.92444   56.164513 125.38128   79.636765
@@ -149,12 +149,12 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': None, 'dataset': 'diabetes_sampled', 'size': 55, 'mse': 1858.7698, 'mae': 33.695072, 'mape': 0.28645957, 'r2': 0.7206519561360576}
 WRITING_PERF_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_diabetes_sampled.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': None, 'dataset': 'diabetes_sampled', 'training_time_in_sec': 0.007, 'prediction_time_in_sec': 0.001}
-WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_diabetes_sampled.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': None, 'dataset': 'diabetes_sampled', 'training_time_in_sec': 0.01, 'prediction_time_in_sec': 0.001}
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_diabetes_sampled_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_sampled', 'RidgeRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -162,17 +162,17 @@ WITH model_input AS
  ),
 model_scores_cte AS 
  (SELECT
-  model_input."index" AS "index",
-   157.151749 + 60.182159 * X_0 + -522.883667 * X_1 + 445.421112 * X_2 + 659.995239 * X_3 + -257.227692 * X_4 + -141.481125 * X_5 + -250.421204 * X_6 + 355.438965 * X_7 + 632.936768 * X_8 + -91.463654 * X_9 AS "Estimator"
-  FROM model_input
+  t."index" AS "index",
+   157.151749 + 60.182159 * t."X_0" + -522.883667 * t."X_1" + 445.421112 * t."X_2" + 659.995239 * t."X_3" + -257.227692 * t."X_4" + -141.481125 * t."X_5" + -250.421204 * t."X_6" + 355.438965 * t."X_7" + 632.936768 * t."X_8" + -91.463654 * t."X_9" AS "Estimator"
+  FROM model_input AS t
  )
 SELECT
   model_scores_cte."index" as "index",
   model_scores_cte."Estimator" as "Estimator"
 FROM  model_scores_cte
 
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_sampled', 'RidgeRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_sampled', 'RidgeRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -180,16 +180,231 @@ WITH model_input AS
  ),
 model_scores_cte AS 
  (SELECT
-  model_input."index" AS "index",
-   157.151749 + 60.182159 * X_0 + -522.883667 * X_1 + 445.421112 * X_2 + 659.995239 * X_3 + -257.227692 * X_4 + -141.481125 * X_5 + -250.421204 * X_6 + 355.438965 * X_7 + 632.936768 * X_8 + -91.463654 * X_9 AS "Estimator"
-  FROM model_input
+  t."index" AS "index",
+   157.151749 + 60.182159 * t."X_0" + -522.883667 * t."X_1" + 445.421112 * t."X_2" + 659.995239 * t."X_3" + -257.227692 * t."X_4" + -141.481125 * t."X_5" + -250.421204 * t."X_6" + 355.438965 * t."X_7" + 632.936768 * t."X_8" + -91.463654 * t."X_9" AS "Estimator"
+  FROM model_input AS t
  )
 SELECT
   model_scores_cte."index" as "index",
   model_scores_cte."Estimator" as "Estimator"
 FROM  model_scores_cte
 
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_sampled', 'RidgeRegressor', 'duckdb') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 55 entries, 0 to 54
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     55 non-null     float32
+ 1   X_1     55 non-null     float32
+ 2   X_2     55 non-null     float32
+ 3   X_3     55 non-null     float32
+ 4   X_4     55 non-null     float32
+ 5   X_5     55 non-null     float32
+ 6   X_6     55 non-null     float32
+ 7   X_7     55 non-null     float32
+ 8   X_8     55 non-null     float32
+ 9   X_9     55 non-null     float32
+dtypes: float32(10)
+memory usage: 2.6 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0      0.038076  0.050680 -0.009439  ...  0.050176 -0.025953  0.106617
+1      0.081666  0.050680  0.001339  ...  0.034309  0.084492 -0.030072
+2      0.041708 -0.044642 -0.008362  ... -0.039493 -0.048359 -0.030072
+3     -0.041840 -0.044642  0.128521  ... -0.039493 -0.015999 -0.050783
+4      0.023546  0.050680 -0.030996  ... -0.002592 -0.074093 -0.034215
+5      0.016281  0.050680  0.014272  ...  0.034309  0.074966  0.040343
+6     -0.009147  0.050680 -0.039618  ...  0.071210  0.017765 -0.067351
+7     -0.085430 -0.044642 -0.004050  ... -0.039493 -0.061176 -0.013504
+8     -0.001882 -0.044642  0.033673  ... -0.002592  0.026717  0.061054
+9     -0.070900  0.050680 -0.089197  ... -0.002592 -0.012909 -0.054925
+10    -0.052738 -0.044642  0.071397  ... -0.021412 -0.046883  0.003064
+11    -0.060003  0.050680  0.015350  ... -0.002592 -0.030748 -0.001078
+12     0.009016  0.050680  0.069241  ...  0.034309  0.103297  0.073480
+13    -0.096328 -0.044642 -0.076264  ... -0.039493 -0.059471 -0.083920
+14    -0.060003  0.050680 -0.047163  ... -0.039493 -0.062917 -0.054925
+15     0.045341 -0.044642  0.071397  ... -0.039493 -0.041176 -0.071494
+16     0.027178 -0.044642 -0.007284  ... -0.002592  0.043444  0.015491
+17     0.067136 -0.044642 -0.061174  ... -0.039493 -0.056153 -0.059067
+18     0.030811 -0.044642 -0.033151  ... -0.076395 -0.039809 -0.054925
+19     0.074401 -0.044642  0.114509  ... -0.002592 -0.000612 -0.005220
+20     0.016281  0.050680 -0.021295  ... -0.002592 -0.012909  0.023775
+21     0.001751  0.050680 -0.005128  ... -0.039493 -0.006081 -0.067351
+22    -0.103593  0.050680 -0.023451  ... -0.039493 -0.078140 -0.071494
+23     0.023546  0.050680 -0.020218  ... -0.039493 -0.096435 -0.017646
+24    -0.016412  0.050680  0.002417  ...  0.034309  0.085531  0.081764
+25     0.056239  0.050680  0.009961  ...  0.034309  0.060791  0.032059
+26     0.067136 -0.044642  0.036907  ... -0.039493 -0.025953 -0.038357
+27    -0.052738  0.050680  0.039062  ... -0.039493  0.016307  0.003064
+28     0.067136  0.050680 -0.014828  ...  0.012906 -0.005142  0.048628
+29     0.038076  0.050680 -0.029918  ... -0.002592  0.003709 -0.030072
+30    -0.070900 -0.044642 -0.004050  ... -0.076395 -0.051404 -0.034215
+31     0.019913  0.050680  0.104809  ... -0.002592  0.003709  0.040343
+32    -0.016412 -0.044642 -0.052552  ... -0.039493 -0.068332 -0.030072
+33    -0.005515  0.050680  0.001339  ... -0.039493 -0.041176 -0.088062
+34     0.045341  0.050680 -0.008362  ...  0.034309  0.029935  0.027917
+35    -0.001882  0.050680  0.030440  ...  0.071210  0.025395  0.027917
+36     0.012648  0.050680 -0.020218  ...  0.034309 -0.005142 -0.009362
+37     0.009016 -0.044642 -0.032073  ... -0.076395 -0.011897 -0.038357
+38     0.016281 -0.044642  0.020739  ... -0.002592  0.013317  0.040343
+39     0.041708  0.050680  0.071397  ...  0.034309  0.073407  0.085907
+40     0.048974  0.050680  0.074630  ...  0.034309  0.033654  0.019633
+41     0.067136  0.050680 -0.029918  ... -0.050564 -0.038460  0.007207
+42    -0.027310  0.050680 -0.055785  ... -0.039493 -0.005142 -0.050783
+43    -0.052738 -0.044642  0.054152  ... -0.039493 -0.074093 -0.059067
+44    -0.041840 -0.044642 -0.066563  ... -0.039493 -0.056153 -0.013504
+45     0.009016 -0.044642 -0.012673  ...  0.034309  0.023371 -0.005220
+46     0.001751 -0.044642 -0.046085  ... -0.069383 -0.061176 -0.079778
+47     0.045341 -0.044642 -0.006206  ...  0.034309  0.032432 -0.005220
+48    -0.023677 -0.044642  0.030440  ...  0.071210  0.033043  0.003064
+49     0.023546  0.050680 -0.019140  ... -0.039493 -0.025953 -0.013504
+50     0.009016 -0.044642 -0.020218  ... -0.039493 -0.010903 -0.001078
+51     0.034443 -0.044642 -0.038540  ... -0.002592  0.031193  0.098333
+52    -0.099961 -0.044642 -0.067641  ... -0.039493 -0.049872 -0.009362
+53     0.005383 -0.044642  0.058463  ... -0.076395 -0.051404 -0.025930
+54    -0.049105 -0.044642  0.160855  ...  0.034309  0.028020  0.011349
+
+[55 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 55 entries, 0 to 54
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      55 non-null     int64  
+ 1   Estimator  55 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 1012.0 bytes
+    index   Estimator
+0       0  129.969421
+1       1  177.909866
+2       2   93.679855
+3       3  267.605225
+4       4   79.715240
+5       5  205.564117
+6       6  144.983261
+7       7  109.942909
+8       8  280.924438
+9       9   56.164513
+10     10  125.381279
+11     11   79.636765
+12     12  282.847046
+13     13   82.603653
+14     14   70.357300
+15     15  181.051987
+16     16  134.842789
+17     17   88.390862
+18     18  102.708969
+19     19  239.463867
+20     20   89.101685
+21     21  112.321930
+22     22   78.252754
+23     23   16.187973
+24     24  201.555359
+25     25  232.543030
+26     26  139.503830
+27     27  114.745132
+28     28  199.282440
+29     29   78.505310
+30     30  106.463463
+31     31  241.803192
+32     32   91.360298
+33     33   35.924294
+34     34  147.921005
+35     35  209.535751
+36     36  114.999229
+37     37   68.908279
+38     38  216.072098
+39     39  213.412903
+40     40  256.230377
+41     41   99.939796
+42     42  100.269356
+43     43  151.026871
+44     44   72.522026
+45     45  238.995682
+46     46  101.143898
+47     47  148.422791
+48     48  205.041443
+49     49  150.790161
+50     50   90.606544
+51     51  165.417526
+52     52   53.258228
+53     53  145.050293
+54     54  269.141815
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('diabetes_sampled', 'RidgeRegressor') Estimator 0.0
+    index  SQL_Estimator  Py_Estimator  SQL_Error
+39     39     213.412903    213.412903        0.0
+40     40     256.230377    256.230377        0.0
+41     41      99.939796     99.939796        0.0
+42     42     100.269356    100.269356        0.0
+43     43     151.026871    151.026871        0.0
+44     44      72.522026     72.522026        0.0
+45     45     238.995682    238.995682        0.0
+46     46     101.143898    101.143898        0.0
+47     47     148.422791    148.422791        0.0
+48     48     205.041443    205.041443        0.0
+49     49     150.790161    150.790161        0.0
+50     50      90.606544     90.606544        0.0
+51     51     165.417526    165.417526        0.0
+52     52      53.258228     53.258228        0.0
+53     53     145.050293    145.050293        0.0
+54     54     269.141815    269.141815        0.0
+MLLITE_REG_SQL_EXECUTION_STATUS ('diabetes_sampled', 'RidgeRegressor', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_diabetes_sampled_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_sampled', 'RidgeRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   157.151749 + 60.182159 * t."X_0" + -522.883667 * t."X_1" + 445.421112 * t."X_2" + 659.995239 * t."X_3" + -257.227692 * t."X_4" + -141.481125 * t."X_5" + -250.421204 * t."X_6" + 355.438965 * t."X_7" + 632.936768 * t."X_8" + -91.463654 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_sampled', 'RidgeRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_sampled', 'RidgeRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   157.151749 + 60.182159 * t."X_0" + -522.883667 * t."X_1" + 445.421112 * t."X_2" + 659.995239 * t."X_3" + -257.227692 * t."X_4" + -141.481125 * t."X_5" + -250.421204 * t."X_6" + 355.438965 * t."X_7" + 632.936768 * t."X_8" + -91.463654 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_sampled', 'RidgeRegressor', 'sqlite') 
 
 
 
@@ -345,21 +560,68 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-    index  SQL_Estimator  Py_Estimator
-39     39     213.412936    213.412903
-40     40     256.230374    256.230377
-41     41      99.939780     99.939796
-42     42     100.269346    100.269356
-43     43     151.026893    151.026871
-44     44      72.522033     72.522026
-45     45     238.995696    238.995682
-46     46     101.143917    101.143898
-47     47     148.422808    148.422791
-48     48     205.041436    205.041443
-49     49     150.790154    150.790161
-50     50      90.606572     90.606544
-51     51     165.417523    165.417526
-52     52      53.258228     53.258228
-53     53     145.050284    145.050293
-54     54     269.141826    269.141815
+MLLITE_REG_SQL_L1_ERROR ('diabetes_sampled', 'RidgeRegressor') Estimator 1.0210739754447993e-05
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+39     39     213.412936    213.412903  3.292258e-05
+40     40     256.230374    256.230377 -2.729809e-06
+41     41      99.939780     99.939796 -1.638299e-05
+42     42     100.269346    100.269356 -9.588245e-06
+43     43     151.026893    151.026871  2.183483e-05
+44     44      72.522033     72.522026  7.011345e-06
+45     45     238.995696    238.995682  1.464569e-05
+46     46     101.143917    101.143898  1.898145e-05
+47     47     148.422808    148.422791  1.746322e-05
+48     48     205.041436    205.041443 -6.742426e-06
+49     49     150.790154    150.790161 -7.012353e-06
+50     50      90.606572     90.606544  2.724514e-05
+51     51     165.417523    165.417526 -2.813088e-06
+52     52      53.258228     53.258228 -5.775714e-07
+53     53     145.050284    145.050293 -9.290040e-06
+54     54     269.141826    269.141815  1.083211e-05
+MLLITE_REG_SQL_EXECUTION_STATUS ('diabetes_sampled', 'RidgeRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_diabetes_sampled_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_sampled', 'RidgeRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   157.151749 + 60.182159 * t."X_0" + -522.883667 * t."X_1" + 445.421112 * t."X_2" + 659.995239 * t."X_3" + -257.227692 * t."X_4" + -141.481125 * t."X_5" + -250.421204 * t."X_6" + 355.438965 * t."X_7" + 632.936768 * t."X_8" + -91.463654 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_sampled', 'RidgeRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_sampled', 'RidgeRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   157.151749 + 60.182159 * t."X_0" + -522.883667 * t."X_1" + 445.421112 * t."X_2" + 659.995239 * t."X_3" + -257.227692 * t."X_4" + -141.481125 * t."X_5" + -250.421204 * t."X_6" + 355.438965 * t."X_7" + 632.936768 * t."X_8" + -91.463654 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_sampled', 'RidgeRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

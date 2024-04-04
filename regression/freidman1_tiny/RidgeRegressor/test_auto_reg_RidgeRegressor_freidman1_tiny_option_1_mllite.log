@@ -45,7 +45,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_REGRESSOR_FIT' 2 2
 { "alpha" : 0.0000001,   , }
 { "alpha" : 0.0000001,   , }
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "alpha" : 0.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 10 },
 	"equations" : {
@@ -61,7 +61,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeRegressor { "alpha" : 0.0000001,   , }
 MLLITE_MODEL_JSON_AFTER_SETTING RidgeRegressor None
 MLLITE_RELOADING_MODEL mllite_ridge_reg.RidgeRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "alpha" : 0.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 10 },
 	"equations" : {
@@ -79,7 +79,7 @@ BEAUTIFIED_JSON_START
 		"coeffs" : [ 10.790152, 7.858099, 6.379314, 10.51088, 3.06552, 1.299748, -1.495082, -2.421443, 0.452585, -1.499503 ],
 		"intercept" : -3.849333
 	},
-	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "alpha" : 0.0, "random_state" : 1789 }
 }
 BEAUTIFIED_JSON_END
@@ -97,11 +97,11 @@ MODEL_PERFS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegresso
 WRITING_PERF_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman1_tiny_option_1.perf'
 
 MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': '{"alpha" : 0.0000001}', 'dataset': 'freidman1_tiny', 'training_time_in_sec': 0.006, 'prediction_time_in_sec': 0.0}
-WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman1_tiny_option_1.sql'
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman1_tiny_option_1_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_tiny', 'RidgeRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -109,17 +109,17 @@ WITH model_input AS
  ),
 model_scores_cte AS 
  (SELECT
-  model_input."index" AS "index",
-   -3.849333 + 10.790152 * X_0 + 7.858099 * X_1 + 6.379314 * X_2 + 10.510880 * X_3 + 3.065520 * X_4 + 1.299748 * X_5 + -1.495082 * X_6 + -2.421443 * X_7 + 0.452585 * X_8 + -1.499503 * X_9 AS "Estimator"
-  FROM model_input
+  t."index" AS "index",
+   -3.849333 + 10.790152 * t."X_0" + 7.858099 * t."X_1" + 6.379314 * t."X_2" + 10.510880 * t."X_3" + 3.065520 * t."X_4" + 1.299748 * t."X_5" + -1.495082 * t."X_6" + -2.421443 * t."X_7" + 0.452585 * t."X_8" + -1.499503 * t."X_9" AS "Estimator"
+  FROM model_input AS t
  )
 SELECT
   model_scores_cte."index" as "index",
   model_scores_cte."Estimator" as "Estimator"
 FROM  model_scores_cte
 
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_tiny', 'RidgeRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_tiny', 'RidgeRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -127,16 +127,153 @@ WITH model_input AS
  ),
 model_scores_cte AS 
  (SELECT
-  model_input."index" AS "index",
-   -3.849333 + 10.790152 * X_0 + 7.858099 * X_1 + 6.379314 * X_2 + 10.510880 * X_3 + 3.065520 * X_4 + 1.299748 * X_5 + -1.495082 * X_6 + -2.421443 * X_7 + 0.452585 * X_8 + -1.499503 * X_9 AS "Estimator"
-  FROM model_input
+  t."index" AS "index",
+   -3.849333 + 10.790152 * t."X_0" + 7.858099 * t."X_1" + 6.379314 * t."X_2" + 10.510880 * t."X_3" + 3.065520 * t."X_4" + 1.299748 * t."X_5" + -1.495082 * t."X_6" + -2.421443 * t."X_7" + 0.452585 * t."X_8" + -1.499503 * t."X_9" AS "Estimator"
+  FROM model_input AS t
  )
 SELECT
   model_scores_cte."index" as "index",
   model_scores_cte."Estimator" as "Estimator"
 FROM  model_scores_cte
 
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_tiny', 'RidgeRegressor', 'duckdb') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 16 entries, 0 to 15
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     16 non-null     float32
+ 1   X_1     16 non-null     float32
+ 2   X_2     16 non-null     float32
+ 3   X_3     16 non-null     float32
+ 4   X_4     16 non-null     float32
+ 5   X_5     16 non-null     float32
+ 6   X_6     16 non-null     float32
+ 7   X_7     16 non-null     float32
+ 8   X_8     16 non-null     float32
+ 9   X_9     16 non-null     float32
+dtypes: float32(10)
+memory usage: 768.0 bytes
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0      0.544738  0.515912  0.990435  ...  0.041089  0.898018  0.377159
+1      0.783459  0.095321  0.135945  ...  0.422766  0.019766  0.833486
+2      0.652811  0.757719  0.306902  ...  0.146070  0.894295  0.086598
+3      0.226051  0.939732  0.731124  ...  0.843453  0.185038  0.248943
+4      0.764610  0.378970  0.823855  ...  0.361050  0.814980  0.123688
+5      0.368356  0.189593  0.403483  ...  0.840440  0.462841  0.813023
+6      0.888102  0.149216  0.426902  ...  0.653572  0.865909  0.986362
+7      0.825366  0.284076  0.971058  ...  0.900471  0.780397  0.355315
+8      0.235384  0.117604  0.514017  ...  0.091568  0.527227  0.211281
+9      0.834709  0.502155  0.670056  ...  0.848192  0.038824  0.113899
+10     0.287599  0.939261  0.380885  ...  0.812585  0.329620  0.003549
+11     0.992031  0.233387  0.782862  ...  0.403574  0.461541  0.895167
+12     0.020119  0.541789  0.751033  ...  0.708677  0.950842  0.143679
+13     0.830477  0.389094  0.475292  ...  0.634453  0.479506  0.035941
+14     0.399336  0.628863  0.606025  ...  0.040244  0.521303  0.455322
+15     0.634220  0.486969  0.969793  ...  0.716476  0.697923  0.212891
+
+[16 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 16 entries, 0 to 15
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      16 non-null     int64  
+ 1   Estimator  16 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 388.0 bytes
+    index  Estimator
+0       0  14.398654
+1       1  13.750391
+2       2  21.883764
+3       3  19.692259
+4       4  22.434839
+5       5   9.591914
+6       6  10.489932
+7       7  14.100232
+8       8  10.449339
+9       9  12.886694
+10     10  15.532292
+11     11  14.332883
+12     12  17.259254
+13     13  13.020111
+14     14  19.980568
+15     15  19.014326
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('freidman1_tiny', 'RidgeRegressor') Estimator 4.76837158203125e-07
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+0       0      14.398654     14.398655 -9.536743e-07
+1       1      13.750391     13.750390  9.536743e-07
+2       2      21.883764     21.883764  0.000000e+00
+3       3      19.692259     19.692259  0.000000e+00
+4       4      22.434839     22.434839  0.000000e+00
+5       5       9.591914      9.591914  0.000000e+00
+6       6      10.489932     10.489932  0.000000e+00
+7       7      14.100232     14.100232  0.000000e+00
+8       8      10.449339     10.449339  0.000000e+00
+9       9      12.886694     12.886696 -1.907349e-06
+10     10      15.532292     15.532292  0.000000e+00
+11     11      14.332883     14.332883  0.000000e+00
+12     12      17.259254     17.259256 -1.907349e-06
+13     13      13.020111     13.020111  0.000000e+00
+14     14      19.980568     19.980568  0.000000e+00
+15     15      19.014326     19.014328 -1.907349e-06
+MLLITE_REG_SQL_EXECUTION_STATUS ('freidman1_tiny', 'RidgeRegressor', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman1_tiny_option_1_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_tiny', 'RidgeRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   -3.849333 + 10.790152 * t."X_0" + 7.858099 * t."X_1" + 6.379314 * t."X_2" + 10.510880 * t."X_3" + 3.065520 * t."X_4" + 1.299748 * t."X_5" + -1.495082 * t."X_6" + -2.421443 * t."X_7" + 0.452585 * t."X_8" + -1.499503 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_tiny', 'RidgeRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_tiny', 'RidgeRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   -3.849333 + 10.790152 * t."X_0" + 7.858099 * t."X_1" + 6.379314 * t."X_2" + 10.510880 * t."X_3" + 3.065520 * t."X_4" + 1.299748 * t."X_5" + -1.495082 * t."X_6" + -2.421443 * t."X_7" + 0.452585 * t."X_8" + -1.499503 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_tiny', 'RidgeRegressor', 'sqlite') 
 
 
 
@@ -214,21 +351,68 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-    index  SQL_Estimator  Py_Estimator
-0       0      14.398653     14.398655
-1       1      13.750391     13.750390
-2       2      21.883763     21.883764
-3       3      19.692259     19.692259
-4       4      22.434838     22.434839
-5       5       9.591915      9.591914
-6       6      10.489932     10.489932
-7       7      14.100231     14.100232
-8       8      10.449339     10.449339
-9       9      12.886694     12.886696
-10     10      15.532292     15.532292
-11     11      14.332882     14.332883
-12     12      17.259255     17.259256
-13     13      13.020112     13.020111
-14     14      19.980567     19.980568
-15     15      19.014327     19.014328
+MLLITE_REG_SQL_L1_ERROR ('freidman1_tiny', 'RidgeRegressor') Estimator 8.965191531373762e-07
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+0       0      14.398653     14.398655 -1.776051e-06
+1       1      13.750391     13.750390  9.946146e-07
+2       2      21.883763     21.883764 -1.483585e-06
+3       3      19.692259     19.692259 -1.808862e-07
+4       4      22.434838     22.434839 -7.622333e-07
+5       5       9.591915      9.591914  8.353847e-07
+6       6      10.489932     10.489932  7.974928e-08
+7       7      14.100231     14.100232 -8.990381e-07
+8       8      10.449339     10.449339  2.252646e-09
+9       9      12.886694     12.886696 -1.577322e-06
+10     10      15.532292     15.532292 -8.001198e-07
+11     11      14.332882     14.332883 -8.212467e-07
+12     12      17.259255     17.259256 -9.362988e-07
+13     13      13.020112     13.020111  1.310762e-06
+14     14      19.980567     19.980568 -1.219097e-06
+15     15      19.014327     19.014328 -6.656654e-07
+MLLITE_REG_SQL_EXECUTION_STATUS ('freidman1_tiny', 'RidgeRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman1_tiny_option_1_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_tiny', 'RidgeRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   -3.849333 + 10.790152 * t."X_0" + 7.858099 * t."X_1" + 6.379314 * t."X_2" + 10.510880 * t."X_3" + 3.065520 * t."X_4" + 1.299748 * t."X_5" + -1.495082 * t."X_6" + -2.421443 * t."X_7" + 0.452585 * t."X_8" + -1.499503 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_tiny', 'RidgeRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_tiny', 'RidgeRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   -3.849333 + 10.790152 * t."X_0" + 7.858099 * t."X_1" + 6.379314 * t."X_2" + 10.510880 * t."X_3" + 3.065520 * t."X_4" + 1.299748 * t."X_5" + -1.495082 * t."X_6" + -2.421443 * t."X_7" + 0.452585 * t."X_8" + -1.499503 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_tiny', 'RidgeRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

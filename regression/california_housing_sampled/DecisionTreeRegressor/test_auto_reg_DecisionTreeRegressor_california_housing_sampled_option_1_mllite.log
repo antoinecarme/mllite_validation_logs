@@ -41,7 +41,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
 { "max_depth" : 6, "max_leaf_nodes" : 32,  "max_leaf_nodes" : 64 , }
 { "max_depth" : 6, "max_leaf_nodes" : 32,  "max_leaf_nodes" : 64 , }
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : 6, "max_features" : null, "max_leaf_nodes" : 32, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 2580, "dataset_features" : 9 },
 	"tree" : {
@@ -124,7 +124,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING DecisionTreeRegressor { "max_depth" : 6, "max
 MLLITE_MODEL_JSON_AFTER_SETTING DecisionTreeRegressor None
 MLLITE_RELOADING_MODEL mllite_decision_tree_reg.DecisionTreeRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : 6, "max_features" : null, "max_leaf_nodes" : 32, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 2580, "dataset_features" : 9 },
 	"tree" : {
@@ -205,7 +205,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 9,
 		"dataset_rows" : 2580
 	},
-	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "ccp_alpha" : 0.0, "criterion" : "", "max_depth" : 6, "max_features" : null, "max_leaf_nodes" : 32, "min_impurity_decrease" : 0.0, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.0, "random_state" : 1789, "splitter" : "best" },
 	"tree" : 	{
 		"features" : 9,
@@ -290,11 +290,11 @@ MODEL_PERFS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'Decisi
 WRITING_PERF_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_california_housing_sampled_option_1.perf'
 
 MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': '{"max_depth" : 6, "max_leaf_nodes" : 32}', 'dataset': 'california_housing_sampled', 'training_time_in_sec': 0.023, 'prediction_time_in_sec': 0.001}
-WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_california_housing_sampled_option_1.sql'
+WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_california_housing_sampled_option_1_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('california_housing_sampled', 'DecisionTreeRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
@@ -304,8 +304,8 @@ WITH model_input AS
  (SELECT
     model_input."index" AS "index",
     CASE WHEN (model_input."X_7" <= 3.908200) THEN CASE WHEN (model_input."X_7" <= 2.908500) THEN 17 ELSE CASE WHEN (model_input."X_2" <= 42.500000) THEN 19 ELSE CASE WHEN (model_input."X_0" <= -122.400002) THEN CASE WHEN (model_input."X_4" <= 407.000000) THEN CASE WHEN (model_input."X_5" <= 571.500000) THEN 25 ELSE 26 END ELSE CASE WHEN (model_input."X_1" <= 37.785000) THEN 27 ELSE 28 END END ELSE CASE WHEN (model_input."X_1" <= 34.125000) THEN CASE WHEN (model_input."X_0" <= -118.354996) THEN 31 ELSE 32 END ELSE CASE
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_END ('california_housing_sampled', 'DecisionTreeRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('california_housing_sampled', 'DecisionTreeRegressor', 'duckdb')
 2500 AS "E"
     UNION ALL
     SELECT 51 AS nid, 140950.000000 AS "E"
@@ -333,7 +333,7 @@ SQL_OUT_PUT_LAST_LINES_START
     SELECT 62 AS nid, 269792.468750 AS "E"
   ) AS "Values"
  ),
-"DT_output" AS 
+"DT_Output" AS 
  (SELECT
    t1."index" AS "index",
    t1.node_id AS node_id,
@@ -349,7 +349,7 @@ SELECT
    "DT_Output"."index" AS "index",
    "DT_Output"."E" AS "Estimator"
 FROM "DT_Output"
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('california_housing_sampled', 'DecisionTreeRegressor', 'duckdb') 
 
 
 
@@ -418,21 +418,236 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-      index  SQL_Estimator   Py_Estimator
-2564   2564  260281.453125  260281.453125
-2565   2565  133574.375000  133574.375000
-2566   2566  133574.375000  133574.375000
-2567   2567  334523.250000  334523.250000
-2568   2568  162489.890625  162489.890625
-2569   2569  179502.671875  179502.671875
-2570   2570  179502.671875  179502.671875
-2571   2571  179502.671875  179502.671875
-2572   2572  179502.671875  179502.671875
-2573   2573  223328.843750  223328.843750
-2574   2574  133574.375000  133574.375000
-2575   2575  133574.375000  133574.375000
-2576   2576  133574.375000  133574.375000
-2577   2577  133574.375000  133574.375000
-2578   2578  133574.375000  133574.375000
-2579   2579  133574.375000  133574.375000
+MLLITE_REG_SQL_L1_ERROR ('california_housing_sampled', 'DecisionTreeRegressor') Estimator 0.0
+      index  SQL_Estimator   Py_Estimator  SQL_Error
+2564   2564  260281.453125  260281.453125        0.0
+2565   2565  133574.375000  133574.375000        0.0
+2566   2566  133574.375000  133574.375000        0.0
+2567   2567  334523.250000  334523.250000        0.0
+2568   2568  162489.890625  162489.890625        0.0
+2569   2569  179502.671875  179502.671875        0.0
+2570   2570  179502.671875  179502.671875        0.0
+2571   2571  179502.671875  179502.671875        0.0
+2572   2572  179502.671875  179502.671875        0.0
+2573   2573  223328.843750  223328.843750        0.0
+2574   2574  133574.375000  133574.375000        0.0
+2575   2575  133574.375000  133574.375000        0.0
+2576   2576  133574.375000  133574.375000        0.0
+2577   2577  133574.375000  133574.375000        0.0
+2578   2578  133574.375000  133574.375000        0.0
+2579   2579  133574.375000  133574.375000        0.0
+MLLITE_REG_SQL_EXECUTION_STATUS ('california_housing_sampled', 'DecisionTreeRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_california_housing_sampled_option_1_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('california_housing_sampled', 'DecisionTreeRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup" AS 
+ (SELECT
+    model_input."index" AS "index",
+    CASE WHEN (model_input."X_7" <= 3.908200) THEN CASE WHEN (model_input."X_7" <= 2.908500) THEN 17 ELSE CASE WHEN (model_input."X_2" <= 42.500000) THEN 19 ELSE CASE WHEN (model_input."X_0" <= -122.400002) THEN CASE WHEN (model_input."X_4" <= 407.000000) THEN CASE WHEN (model_input."X_5" <= 571.500000) THEN 25 ELSE 26 END ELSE CASE WHEN (model_input."X_1" <= 37.785000) THEN 27 ELSE 28 END END ELSE CASE WHEN (model_input."X_1" <= 34.125000) THEN CASE WHEN (model_input."X_0" <= -118.354996) THEN 31 ELSE 32 END ELSE CASE
+SQL_OUT_PUT_FIRST_LINES_END ('california_housing_sampled', 'DecisionTreeRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('california_housing_sampled', 'DecisionTreeRegressor', 'sqlite')
+2500 AS "E"
+    UNION ALL
+    SELECT 51 AS nid, 140950.000000 AS "E"
+    UNION ALL
+    SELECT 52 AS nid, 276121.750000 AS "E"
+    UNION ALL
+    SELECT 53 AS nid, 98900.000000 AS "E"
+    UNION ALL
+    SELECT 54 AS nid, 183000.000000 AS "E"
+    UNION ALL
+    SELECT 55 AS nid, 162489.890625 AS "E"
+    UNION ALL
+    SELECT 56 AS nid, 437500.000000 AS "E"
+    UNION ALL
+    SELECT 57 AS nid, 277507.500000 AS "E"
+    UNION ALL
+    SELECT 58 AS nid, 223328.843750 AS "E"
+    UNION ALL
+    SELECT 59 AS nid, 321947.937500 AS "E"
+    UNION ALL
+    SELECT 60 AS nid, 260281.453125 AS "E"
+    UNION ALL
+    SELECT 61 AS nid, 386896.437500 AS "E"
+    UNION ALL
+    SELECT 62 AS nid, 269792.468750 AS "E"
+  ) AS "Values"
+ ),
+"DT_Output" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data" AS t2
+   ON t1.node_id = t2.nid
+ )
+SELECT
+   "DT_Output"."index" AS "index",
+   "DT_Output"."E" AS "Estimator"
+FROM "DT_Output"
+SQL_OUT_PUT_LAST_LINES_END ('california_housing_sampled', 'DecisionTreeRegressor', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 2580 entries, 0 to 2579
+Data columns (total 9 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     2580 non-null   float32
+ 1   X_1     2580 non-null   float32
+ 2   X_2     2580 non-null   float32
+ 3   X_3     2580 non-null   float32
+ 4   X_4     2580 non-null   float32
+ 5   X_5     2580 non-null   float32
+ 6   X_6     2580 non-null   float32
+ 7   X_7     2580 non-null   float32
+ 8   X_8     2580 non-null   float32
+dtypes: float32(9)
+memory usage: 110.9 KB
+              X_0        X_1   X_2     X_3    X_4     X_5    X_6     X_7  X_8
+index                                                                        
+0     -121.910004  36.630001  42.0   817.0  194.0   391.0  193.0  2.1776  0.0
+1     -121.430000  38.660000  35.0  1814.0  367.0  1076.0  372.0  2.7179  0.0
+2     -121.580002  39.500000  29.0  1947.0  383.0   925.0  337.0  2.1658  0.0
+3     -120.239998  39.349998   8.0  4195.0  725.0   291.0  115.0  3.4792  0.0
+4     -122.019997  38.369999  16.0  2495.0  331.0  1118.0  338.0  6.4894  0.0
+...           ...        ...   ...     ...    ...     ...    ...     ...  ...
+2575  -122.099998  39.470001  43.0  1320.0  215.0   512.0  197.0  2.4917  0.0
+2576  -122.239998  38.110001  42.0  1743.0  388.0   889.0  341.0  2.3241  0.0
+2577  -120.430000  34.950001  50.0  1966.0  413.0   985.0  403.0  2.3506  0.0
+2578  -120.849998  37.490002  42.0   264.0   72.0   310.0   70.0  1.4063  0.0
+2579  -120.050003  36.720001  24.0  1961.0  422.0  1559.0  374.0  1.8299  0.0
+
+[2580 rows x 9 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 2580 entries, 0 to 2579
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      2580 non-null   int64  
+ 1   Estimator  2580 non-null   float64
+dtypes: float64(1), int64(1)
+memory usage: 40.4 KB
+      index      Estimator
+0         0  133574.375000
+1         1  133574.375000
+2         2  133574.375000
+3         3  179502.671875
+4         4  334523.250000
+...     ...            ...
+2575   2575  133574.375000
+2576   2576  133574.375000
+2577   2577  133574.375000
+2578   2578  133574.375000
+2579   2579  133574.375000
+
+[2580 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('california_housing_sampled', 'DecisionTreeRegressor') Estimator 0.0
+      index  SQL_Estimator   Py_Estimator  SQL_Error
+2564   2564  260281.453125  260281.453125        0.0
+2565   2565  133574.375000  133574.375000        0.0
+2566   2566  133574.375000  133574.375000        0.0
+2567   2567  334523.250000  334523.250000        0.0
+2568   2568  162489.890625  162489.890625        0.0
+2569   2569  179502.671875  179502.671875        0.0
+2570   2570  179502.671875  179502.671875        0.0
+2571   2571  179502.671875  179502.671875        0.0
+2572   2572  179502.671875  179502.671875        0.0
+2573   2573  223328.843750  223328.843750        0.0
+2574   2574  133574.375000  133574.375000        0.0
+2575   2575  133574.375000  133574.375000        0.0
+2576   2576  133574.375000  133574.375000        0.0
+2577   2577  133574.375000  133574.375000        0.0
+2578   2578  133574.375000  133574.375000        0.0
+2579   2579  133574.375000  133574.375000        0.0
+MLLITE_REG_SQL_EXECUTION_STATUS ('california_housing_sampled', 'DecisionTreeRegressor', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_california_housing_sampled_option_1_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('california_housing_sampled', 'DecisionTreeRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup" AS 
+ (SELECT
+    model_input."index" AS "index",
+    CASE WHEN (model_input."X_7" <= 3.908200) THEN CASE WHEN (model_input."X_7" <= 2.908500) THEN 17 ELSE CASE WHEN (model_input."X_2" <= 42.500000) THEN 19 ELSE CASE WHEN (model_input."X_0" <= -122.400002) THEN CASE WHEN (model_input."X_4" <= 407.000000) THEN CASE WHEN (model_input."X_5" <= 571.500000) THEN 25 ELSE 26 END ELSE CASE WHEN (model_input."X_1" <= 37.785000) THEN 27 ELSE 28 END END ELSE CASE WHEN (model_input."X_1" <= 34.125000) THEN CASE WHEN (model_input."X_0" <= -118.354996) THEN 31 ELSE 32 END ELSE CASE
+SQL_OUT_PUT_FIRST_LINES_END ('california_housing_sampled', 'DecisionTreeRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('california_housing_sampled', 'DecisionTreeRegressor', 'pgsql')
+2500 AS "E"
+    UNION ALL
+    SELECT 51 AS nid, 140950.000000 AS "E"
+    UNION ALL
+    SELECT 52 AS nid, 276121.750000 AS "E"
+    UNION ALL
+    SELECT 53 AS nid, 98900.000000 AS "E"
+    UNION ALL
+    SELECT 54 AS nid, 183000.000000 AS "E"
+    UNION ALL
+    SELECT 55 AS nid, 162489.890625 AS "E"
+    UNION ALL
+    SELECT 56 AS nid, 437500.000000 AS "E"
+    UNION ALL
+    SELECT 57 AS nid, 277507.500000 AS "E"
+    UNION ALL
+    SELECT 58 AS nid, 223328.843750 AS "E"
+    UNION ALL
+    SELECT 59 AS nid, 321947.937500 AS "E"
+    UNION ALL
+    SELECT 60 AS nid, 260281.453125 AS "E"
+    UNION ALL
+    SELECT 61 AS nid, 386896.437500 AS "E"
+    UNION ALL
+    SELECT 62 AS nid, 269792.468750 AS "E"
+  ) AS "Values"
+ ),
+"DT_Output" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data" AS t2
+   ON t1.node_id = t2.nid
+ )
+SELECT
+   "DT_Output"."index" AS "index",
+   "DT_Output"."E" AS "Estimator"
+FROM "DT_Output"
+SQL_OUT_PUT_LAST_LINES_END ('california_housing_sampled', 'DecisionTreeRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

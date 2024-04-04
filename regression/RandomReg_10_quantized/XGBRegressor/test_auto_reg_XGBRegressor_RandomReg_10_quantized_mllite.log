@@ -57,11 +57,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 31 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 32 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 33 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 34 34
-('OPERATION_END_ELAPSED', 1.111, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.94, 'TRAINING')
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.000000, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 1024, "dataset_features" : 10 },
 	"booster" : {
@@ -3179,7 +3179,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING XGBRegressor { ,  "nthread" : 1, "max_bin" : 
 MLLITE_MODEL_JSON_AFTER_SETTING XGBRegressor None
 MLLITE_RELOADING_MODEL mllite_xgb_reg.XGBRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.000000, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 1024, "dataset_features" : 10 },
 	"booster" : {
@@ -30667,7 +30667,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 10,
 		"dataset_rows" : 1024
 	},
-	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.0, "grow_policy" : 0, "learning_rate" : 0.3, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.0, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.0, "reg_lambda" : 1.0, "tree_method" : "auto" }
 }
 BEAUTIFIED_JSON_END
@@ -30680,12 +30680,12 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'RandomReg_10_quantized', 'size': 1024, 'mse': 259.54874, 'mae': 11.644066, 'mape': 0.4578015, 'r2': 0.9895263950908297}
 WRITING_PERF_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_RandomReg_10_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'RandomReg_10_quantized', 'training_time_in_sec': 1.111, 'prediction_time_in_sec': 0.006}
-WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_RandomReg_10_quantized.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'RandomReg_10_quantized', 'training_time_in_sec': 0.94, 'prediction_time_in_sec': 0.006}
+WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_RandomReg_10_quantized_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_10_quantized', 'XGBRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -30695,8 +30695,8 @@ WITH model_input AS
  (SELECT
     t."index" AS "index",
     CASE WHEN (t."X_0" < 7.000000) THEN CASE WHEN (t."X_6" < 6.000000) THEN CASE WHEN (t."X_2" < 5.000000) THEN CASE WHEN (t."X_0" < 2.000000) THEN CASE WHEN (t."X_6" < 2.000000) THEN 31 ELSE CASE WHEN (t."X_1" < 3.000000) THEN 63 ELSE 64 END END ELSE CASE WHEN (t."X_6" < 2.000000) THEN CASE WHEN (t."X_0" < 5.000000) THEN 65 ELSE 66 END ELSE CASE WHEN (t."X_1" < 5.000000) THEN 67 ELSE 68 END END END ELSE CASE WHEN (t."X_0" < 2.000000) THEN CASE WHEN (t."X_2" < 8.000000) THEN CASE WHEN (t."X
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_10_quantized', 'XGBRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_10_quantized', 'XGBRegressor', 'duckdb')
 ROM "DT_output_21" AS t
     UNION ALL
     SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_22" AS t
@@ -30725,7 +30725,7 @@ SELECT
    4.245648 + SUM(t."E") AS "Estimator"
 FROM "union_of_trees" AS t
 GROUP BY t."index"
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_10_quantized', 'XGBRegressor', 'duckdb') 
 
 
 
@@ -30795,21 +30795,207 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-      index  SQL_Estimator  Py_Estimator
-1008   1008     -58.413127    -58.413139
-1009   1009    -265.360589   -265.360535
-1010   1010     -15.304414    -15.304417
-1011   1011      63.707195     63.707211
-1012   1012     155.749762    155.749786
-1013   1013      -8.931902     -8.931896
-1014   1014      64.695084     64.695053
-1015   1015      65.114759     65.114746
-1016   1016     -78.008874    -78.008881
-1017   1017     -73.001351    -73.001343
-1018   1018     270.206478    270.206482
-1019   1019      13.982969     13.982965
-1020   1020      43.858567     43.858570
-1021   1021     182.640940    182.640900
-1022   1022     115.630036    115.630043
-1023   1023     -45.991175    -45.991180
+MLLITE_REG_SQL_L1_ERROR ('RandomReg_10_quantized', 'XGBRegressor') Estimator 1.4434408206624852e-05
+      index  SQL_Estimator  Py_Estimator  SQL_Error
+1008   1008     -58.413127    -58.413139   0.000012
+1009   1009    -265.360589   -265.360535  -0.000054
+1010   1010     -15.304414    -15.304417   0.000003
+1011   1011      63.707195     63.707211  -0.000016
+1012   1012     155.749762    155.749786  -0.000024
+1013   1013      -8.931902     -8.931896  -0.000006
+1014   1014      64.695084     64.695053   0.000031
+1015   1015      65.114759     65.114746   0.000013
+1016   1016     -78.008874    -78.008881   0.000007
+1017   1017     -73.001351    -73.001343  -0.000008
+1018   1018     270.206478    270.206482  -0.000004
+1019   1019      13.982969     13.982965   0.000004
+1020   1020      43.858567     43.858570  -0.000003
+1021   1021     182.640940    182.640900   0.000040
+1022   1022     115.630036    115.630043  -0.000007
+1023   1023     -45.991175    -45.991180   0.000005
+MLLITE_REG_SQL_EXECUTION_STATUS ('RandomReg_10_quantized', 'XGBRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_RandomReg_10_quantized_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_10_quantized', 'XGBRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup_0" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_0" < 7.000000) THEN CASE WHEN (t."X_6" < 6.000000) THEN CASE WHEN (t."X_2" < 5.000000) THEN CASE WHEN (t."X_0" < 2.000000) THEN CASE WHEN (t."X_6" < 2.000000) THEN 31 ELSE CASE WHEN (t."X_1" < 3.000000) THEN 63 ELSE 64 END END ELSE CASE WHEN (t."X_6" < 2.000000) THEN CASE WHEN (t."X_0" < 5.000000) THEN 65 ELSE 66 END ELSE CASE WHEN (t."X_1" < 5.000000) THEN 67 ELSE 68 END END END ELSE CASE WHEN (t."X_0" < 2.000000) THEN CASE WHEN (t."X_2" < 8.000000) THEN CASE WHEN (t."X
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_10_quantized', 'XGBRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_10_quantized', 'XGBRegressor', 'sqlite')
+ROM "DT_output_21" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_22" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_23" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_24" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_25" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_26" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_27" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_28" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_29" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_30" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_31" AS t
+  ) AS scu
+)
+SELECT
+   t."index" AS "index",
+   4.245648 + SUM(t."E") AS "Estimator"
+FROM "union_of_trees" AS t
+GROUP BY t."index"
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_10_quantized', 'XGBRegressor', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 1024 entries, 0 to 1023
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     1024 non-null   float32
+ 1   X_1     1024 non-null   float32
+ 2   X_2     1024 non-null   float32
+ 3   X_3     1024 non-null   float32
+ 4   X_4     1024 non-null   float32
+ 5   X_5     1024 non-null   float32
+ 6   X_6     1024 non-null   float32
+ 7   X_7     1024 non-null   float32
+ 8   X_8     1024 non-null   float32
+ 9   X_9     1024 non-null   float32
+dtypes: float32(10)
+memory usage: 48.0 KB
+       X_0  X_1  X_2  X_3  X_4  X_5  X_6  X_7  X_8  X_9
+index                                                  
+0      3.0  5.0  9.0  6.0  5.0  5.0  5.0  6.0  8.0  4.0
+1      8.0  2.0  5.0  8.0  3.0  8.0  5.0  6.0  8.0  4.0
+2      5.0  9.0  5.0  9.0  4.0  2.0  3.0  6.0  5.0  1.0
+3      1.0  8.0  8.0  3.0  7.0  0.0  2.0  5.0  9.0  8.0
+4      3.0  8.0  0.0  8.0  1.0  2.0  1.0  1.0  5.0  6.0
+...    ...  ...  ...  ...  ...  ...  ...  ...  ...  ...
+1019   6.0  3.0  1.0  1.0  9.0  8.0  7.0  2.0  8.0  2.0
+1020   8.0  4.0  3.0  6.0  4.0  0.0  7.0  3.0  3.0  8.0
+1021   1.0  4.0  9.0  9.0  1.0  9.0  7.0  8.0  5.0  2.0
+1022   4.0  5.0  8.0  1.0  8.0  5.0  3.0  7.0  3.0  8.0
+1023   2.0  6.0  4.0  1.0  1.0  4.0  7.0  2.0  4.0  6.0
+
+[1024 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1024 entries, 0 to 1023
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      1024 non-null   int64  
+ 1   Estimator  1024 non-null   float64
+dtypes: float64(1), int64(1)
+memory usage: 16.1 KB
+      index   Estimator
+0         0  173.875223
+1         1  210.115628
+2         2   52.759564
+3         3   -7.656138
+4         4 -257.492206
+...     ...         ...
+1019   1019   13.982969
+1020   1020   43.858567
+1021   1021  182.640940
+1022   1022  115.630036
+1023   1023  -45.991175
+
+[1024 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('RandomReg_10_quantized', 'XGBRegressor') Estimator 1.4434408203884991e-05
+      index  SQL_Estimator  Py_Estimator  SQL_Error
+1008   1008     -58.413127    -58.413139   0.000012
+1009   1009    -265.360589   -265.360535  -0.000054
+1010   1010     -15.304414    -15.304417   0.000003
+1011   1011      63.707195     63.707211  -0.000016
+1012   1012     155.749762    155.749786  -0.000024
+1013   1013      -8.931902     -8.931896  -0.000006
+1014   1014      64.695084     64.695053   0.000031
+1015   1015      65.114759     65.114746   0.000013
+1016   1016     -78.008874    -78.008881   0.000007
+1017   1017     -73.001351    -73.001343  -0.000008
+1018   1018     270.206478    270.206482  -0.000004
+1019   1019      13.982969     13.982965   0.000004
+1020   1020      43.858567     43.858570  -0.000003
+1021   1021     182.640940    182.640900   0.000040
+1022   1022     115.630036    115.630043  -0.000007
+1023   1023     -45.991175    -45.991180   0.000005
+MLLITE_REG_SQL_EXECUTION_STATUS ('RandomReg_10_quantized', 'XGBRegressor', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_RandomReg_10_quantized_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_10_quantized', 'XGBRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup_0" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_0" < 7.000000) THEN CASE WHEN (t."X_6" < 6.000000) THEN CASE WHEN (t."X_2" < 5.000000) THEN CASE WHEN (t."X_0" < 2.000000) THEN CASE WHEN (t."X_6" < 2.000000) THEN 31 ELSE CASE WHEN (t."X_1" < 3.000000) THEN 63 ELSE 64 END END ELSE CASE WHEN (t."X_6" < 2.000000) THEN CASE WHEN (t."X_0" < 5.000000) THEN 65 ELSE 66 END ELSE CASE WHEN (t."X_1" < 5.000000) THEN 67 ELSE 68 END END END ELSE CASE WHEN (t."X_0" < 2.000000) THEN CASE WHEN (t."X_2" < 8.000000) THEN CASE WHEN (t."X
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_10_quantized', 'XGBRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_10_quantized', 'XGBRegressor', 'pgsql')
+ROM "DT_output_21" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_22" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_23" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_24" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_25" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_26" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_27" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_28" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_29" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_30" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_31" AS t
+  ) AS scu
+)
+SELECT
+   t."index" AS "index",
+   4.245648 + SUM(t."E") AS "Estimator"
+FROM "union_of_trees" AS t
+GROUP BY t."index"
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_10_quantized', 'XGBRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

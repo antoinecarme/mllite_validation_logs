@@ -36,11 +36,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_REGRESSOR_FIT' 2 2
-('OPERATION_END_ELAPSED', 0.01, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.006, 'TRAINING')
 { ,   , }
 { ,   , }
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 100, "dataset_features" : 10 },
 	"equations" : {
@@ -56,7 +56,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeRegressor { ,   , }
 MLLITE_MODEL_JSON_AFTER_SETTING RidgeRegressor None
 MLLITE_RELOADING_MODEL mllite_ridge_reg.RidgeRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 100, "dataset_features" : 10 },
 	"equations" : {
@@ -74,7 +74,7 @@ BEAUTIFIED_JSON_START
 		"coeffs" : [ 6.345413, 7.447799, 1.872425, 10.319371, 4.512089, 0.862391, -0.339141, 0.239347, -0.654346, 0.90586 ],
 		"intercept" : -1.052393
 	},
-	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "alpha" : 1.0, "random_state" : 1789 }
 }
 BEAUTIFIED_JSON_END
@@ -96,7 +96,7 @@ BEAUTIFIED_JSON_END
  16.593058  13.529529  11.578797  23.382967   5.5986104 15.728923
   7.8062015  5.812352  12.27866   23.986006  11.603569  17.922775
  17.068588  17.635248  13.153525   4.181925 ]
-('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [16.239311  12.018031  16.072067  12.17665   15.858469  18.121122
  14.713088  10.050348  13.959818  14.705838  11.924614  16.888885
@@ -115,16 +115,16 @@ BEAUTIFIED_JSON_END
  16.593058  13.529529  11.578798  23.382967   5.598612  15.728923
   7.806202   5.812352  12.278661  23.986008  11.60357   17.922775
  17.068588  17.635248  13.153525   4.181926 ]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': None, 'dataset': 'freidman1_original', 'size': 100, 'mse': 4.0858703, 'mae': 1.6037705, 'mape': 0.12733637, 'r2': 0.8290562147809749}
 WRITING_PERF_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman1_original.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': None, 'dataset': 'freidman1_original', 'training_time_in_sec': 0.01, 'prediction_time_in_sec': 0.002}
-WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman1_original.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': None, 'dataset': 'freidman1_original', 'training_time_in_sec': 0.005, 'prediction_time_in_sec': 0.001}
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman1_original_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_original', 'RidgeRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -132,17 +132,17 @@ WITH model_input AS
  ),
 model_scores_cte AS 
  (SELECT
-  model_input."index" AS "index",
-   -1.052393 + 6.345413 * X_0 + 7.447799 * X_1 + 1.872425 * X_2 + 10.319371 * X_3 + 4.512089 * X_4 + 0.862391 * X_5 + -0.339141 * X_6 + 0.239347 * X_7 + -0.654346 * X_8 + 0.905860 * X_9 AS "Estimator"
-  FROM model_input
+  t."index" AS "index",
+   -1.052393 + 6.345413 * t."X_0" + 7.447799 * t."X_1" + 1.872425 * t."X_2" + 10.319371 * t."X_3" + 4.512089 * t."X_4" + 0.862391 * t."X_5" + -0.339141 * t."X_6" + 0.239347 * t."X_7" + -0.654346 * t."X_8" + 0.905860 * t."X_9" AS "Estimator"
+  FROM model_input AS t
  )
 SELECT
   model_scores_cte."index" as "index",
   model_scores_cte."Estimator" as "Estimator"
 FROM  model_scores_cte
 
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_original', 'RidgeRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_original', 'RidgeRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -150,16 +150,145 @@ WITH model_input AS
  ),
 model_scores_cte AS 
  (SELECT
-  model_input."index" AS "index",
-   -1.052393 + 6.345413 * X_0 + 7.447799 * X_1 + 1.872425 * X_2 + 10.319371 * X_3 + 4.512089 * X_4 + 0.862391 * X_5 + -0.339141 * X_6 + 0.239347 * X_7 + -0.654346 * X_8 + 0.905860 * X_9 AS "Estimator"
-  FROM model_input
+  t."index" AS "index",
+   -1.052393 + 6.345413 * t."X_0" + 7.447799 * t."X_1" + 1.872425 * t."X_2" + 10.319371 * t."X_3" + 4.512089 * t."X_4" + 0.862391 * t."X_5" + -0.339141 * t."X_6" + 0.239347 * t."X_7" + -0.654346 * t."X_8" + 0.905860 * t."X_9" AS "Estimator"
+  FROM model_input AS t
  )
 SELECT
   model_scores_cte."index" as "index",
   model_scores_cte."Estimator" as "Estimator"
 FROM  model_scores_cte
 
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_original', 'RidgeRegressor', 'duckdb') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 100 entries, 0 to 99
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     100 non-null    float32
+ 1   X_1     100 non-null    float32
+ 2   X_2     100 non-null    float32
+ 3   X_3     100 non-null    float32
+ 4   X_4     100 non-null    float32
+ 5   X_5     100 non-null    float32
+ 6   X_6     100 non-null    float32
+ 7   X_7     100 non-null    float32
+ 8   X_8     100 non-null    float32
+ 9   X_9     100 non-null    float32
+dtypes: float32(10)
+memory usage: 4.7 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0      0.456887  0.295923  0.591968  ...  0.290537  0.761317  0.245544
+1      0.716619  0.420279  0.400670  ...  0.399395  0.167246  0.133911
+2      0.140833  0.617769  0.186105  ...  0.198079  0.648067  0.563459
+3      0.071195  0.704806  0.073220  ...  0.139224  0.725143  0.940551
+4      0.710411  0.866302  0.056103  ...  0.384208  0.666595  0.305953
+...         ...       ...       ...  ...       ...       ...       ...
+95     0.759884  0.645603  0.858346  ...  0.314409  0.340241  0.086284
+96     0.133898  0.993722  0.247951  ...  0.342368  0.685693  0.539265
+97     0.907576  0.735434  0.379983  ...  0.265155  0.264531  0.516615
+98     0.368356  0.189593  0.403483  ...  0.840440  0.462841  0.813023
+99     0.268993  0.202785  0.253928  ...  0.076708  0.743187  0.015995
+
+[100 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      100 non-null    int64  
+ 1   Estimator  100 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 1.7 KB
+    index  Estimator
+0       0  16.239311
+1       1  12.018031
+2       2  16.072067
+3       3  12.176650
+4       4  15.858469
+..    ...        ...
+95     95  17.922775
+96     96  17.068588
+97     97  17.635248
+98     98  13.153525
+99     99   4.181926
+
+[100 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('freidman1_original', 'RidgeRegressor') Estimator 8.535385131835938e-07
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+84     84      16.593058     16.593058  0.000000e+00
+85     85      13.529529     13.529529  0.000000e+00
+86     86      11.578798     11.578797  9.536743e-07
+87     87      23.382967     23.382967  0.000000e+00
+88     88       5.598612      5.598610  1.430511e-06
+89     89      15.728923     15.728923  0.000000e+00
+90     90       7.806202      7.806201  4.768372e-07
+91     91       5.812352      5.812352  0.000000e+00
+92     92      12.278661     12.278660  9.536743e-07
+93     93      23.986008     23.986006  1.907349e-06
+94     94      11.603570     11.603569  9.536743e-07
+95     95      17.922775     17.922775  0.000000e+00
+96     96      17.068588     17.068588  0.000000e+00
+97     97      17.635248     17.635248  0.000000e+00
+98     98      13.153525     13.153525  0.000000e+00
+99     99       4.181926      4.181925  9.536743e-07
+MLLITE_REG_SQL_EXECUTION_STATUS ('freidman1_original', 'RidgeRegressor', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman1_original_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_original', 'RidgeRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   -1.052393 + 6.345413 * t."X_0" + 7.447799 * t."X_1" + 1.872425 * t."X_2" + 10.319371 * t."X_3" + 4.512089 * t."X_4" + 0.862391 * t."X_5" + -0.339141 * t."X_6" + 0.239347 * t."X_7" + -0.654346 * t."X_8" + 0.905860 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_original', 'RidgeRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_original', 'RidgeRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   -1.052393 + 6.345413 * t."X_0" + 7.447799 * t."X_1" + 1.872425 * t."X_2" + 10.319371 * t."X_3" + 4.512089 * t."X_4" + 0.862391 * t."X_5" + -0.339141 * t."X_6" + 0.239347 * t."X_7" + -0.654346 * t."X_8" + 0.905860 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_original', 'RidgeRegressor', 'sqlite') 
 
 
 
@@ -229,21 +358,68 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-    index  SQL_Estimator  Py_Estimator
-84     84      16.593057     16.593058
-85     85      13.529528     13.529529
-86     86      11.578797     11.578797
-87     87      23.382968     23.382967
-88     88       5.598611      5.598610
-89     89      15.728923     15.728923
-90     90       7.806202      7.806201
-91     91       5.812352      5.812352
-92     92      12.278661     12.278660
-93     93      23.986006     23.986006
-94     94      11.603568     11.603569
-95     95      17.922774     17.922775
-96     96      17.068588     17.068588
-97     97      17.635248     17.635248
-98     98      13.153526     13.153525
-99     99       4.181926      4.181925
+MLLITE_REG_SQL_L1_ERROR ('freidman1_original', 'RidgeRegressor') Estimator 9.44485194018796e-07
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+84     84      16.593057     16.593058 -6.521831e-07
+85     85      13.529528     13.529529 -4.497108e-07
+86     86      11.578797     11.578797  5.757472e-08
+87     87      23.382968     23.382967  5.355099e-07
+88     88       5.598611      5.598610  9.752086e-07
+89     89      15.728923     15.728923  5.629313e-08
+90     90       7.806202      7.806201  1.618223e-07
+91     91       5.812352      5.812352  2.787998e-07
+92     92      12.278661     12.278660  1.176930e-06
+93     93      23.986006     23.986006  6.815632e-08
+94     94      11.603568     11.603569 -8.900055e-07
+95     95      17.922774     17.922775 -1.756990e-06
+96     96      17.068588     17.068588  4.575293e-08
+97     97      17.635248     17.635248 -5.227043e-07
+98     98      13.153526     13.153525  1.113780e-06
+99     99       4.181926      4.181925  9.997672e-07
+MLLITE_REG_SQL_EXECUTION_STATUS ('freidman1_original', 'RidgeRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_freidman1_original_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_original', 'RidgeRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   -1.052393 + 6.345413 * t."X_0" + 7.447799 * t."X_1" + 1.872425 * t."X_2" + 10.319371 * t."X_3" + 4.512089 * t."X_4" + 0.862391 * t."X_5" + -0.339141 * t."X_6" + 0.239347 * t."X_7" + -0.654346 * t."X_8" + 0.905860 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_original', 'RidgeRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_original', 'RidgeRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+model_scores_cte AS 
+ (SELECT
+  t."index" AS "index",
+   -1.052393 + 6.345413 * t."X_0" + 7.447799 * t."X_1" + 1.872425 * t."X_2" + 10.319371 * t."X_3" + 4.512089 * t."X_4" + 0.862391 * t."X_5" + -0.339141 * t."X_6" + 0.239347 * t."X_7" + -0.654346 * t."X_8" + 0.905860 * t."X_9" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_original', 'RidgeRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

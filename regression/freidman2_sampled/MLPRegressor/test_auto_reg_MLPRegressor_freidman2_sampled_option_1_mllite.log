@@ -40,7 +40,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 , }
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 , }
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {  "hidden_layer_sizes" : [ 4, 8, 6 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 12, "dataset_features" : 4 },
 	"layers" : {
@@ -106,7 +106,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING MLPRegressor { "hidden_layer_sizes" : [4, 8, 
 MLLITE_MODEL_JSON_AFTER_SETTING MLPRegressor None
 MLLITE_RELOADING_MODEL mllite_mlp_reg.MLPRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {  "hidden_layer_sizes" : [ 4, 8, 6 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 12, "dataset_features" : 4 },
 	"layers" : {
@@ -224,7 +224,7 @@ BEAUTIFIED_JSON_START
 		},
 		"sizes" : [ 4, 4, 8, 6, 1 ]
 	},
-	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "activation" : "relu", "alpha" : 0.0001, "batch_size" : null, "beta_1" : 0.9, "beta_2" : 0.999, "early_stopping" : 0, "epsilon" : 0.0, "hidden_layer_sizes" : [ 4, 8, 6 ], "learning_rate" : "constant", "learning_rate_init" : 0.001, "max_fun" : 15000, "max_iter" : 32, "momentum" : 0.9, "n_iter_no_change" : 10, "nesterovs_momentum" : 1, "power_t" : 0.5, "random_state" : 1789, "shuffle" : 1, "solver" : "adam", "tol" : 0.0001, "validation_fraction" : 0.1, "verbose" : 0, "warm_start" : 0 }
 }
 BEAUTIFIED_JSON_END
@@ -240,11 +240,11 @@ MODEL_PERFS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 
 WRITING_PERF_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_freidman2_sampled_option_1.perf'
 
 MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'freidman2_sampled', 'training_time_in_sec': 0.01, 'prediction_time_in_sec': 0.0}
-WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_freidman2_sampled_option_1.sql'
+WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_freidman2_sampled_option_1_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('freidman2_sampled', 'MLPRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
@@ -253,53 +253,184 @@ WITH model_input AS
 "Input_Layer_BA" AS
  ( SELECT
     t."index" as "index",
-    t.X_0 AS OUT_0,
-    t.X_1 AS OUT_1,
-    t.X_2 AS OUT_2,
-    t.X_3 AS OUT_3
- FROM model_input AS t
+    t."X_0" AS "OUT_0",
+    t."X_1" AS "OUT_1",
+    t."X_2" AS "OUT_2",
+    t."X_3" AS "OUT_3"
+ FROM "model_input" AS t
 ),
 "Hidden_Layer_1_BA" AS
  ( SELECT
     t."index" as "index",
-    0.418948 + -0.109065 * t.OUT_0  + 0.126179 * t.OUT_1  + 0.705071 * t.OUT_2  + 0.827314 * t.OUT_3 AS OUT_0,
-    -0.414892 + 0.418140 * t.OUT_0  + -0.576250 * t.OUT_1  + 0.153970 * t.OUT_2  + -0.734272 * t.OUT_3 AS OUT_1,
-    -0.460387 + -0.369564 * t.OUT_0  + 0.229978 * t.OUT_1  + 0.698960 * t.OUT_2  + -0.382029 * t.OUT_3 AS OUT_2,
-    -0.639570 + -0.031295 * t.OUT_0  + 0.059917 * t.OUT_1  + -0.103307 * t.OUT_2  + 0.354675 * t.OUT_3 AS OUT_3
-   FROM Input_Layer_BA AS t
+    0.418948 + -0.109065 * t."OUT_0"  + 0.126179 * t."OUT_1"  + 0.705071 * t."OUT_2"  + 0.827314 * t."OUT_3" AS "OUT_0",
+    -0.414892 + 0.418140 * t."OUT_0"  + -0.576250 * t."OUT_1"  + 0.153970 * t."OUT_2"  + -0.734272 * t."OUT_3" AS "OUT_1",
+    -0.460387 + -0.369564 * t."OUT_0"  + 0.229978 * t."OUT_1"  + 0.698960 * t."OUT_2"  + -0.382029 * t."OUT_3" AS "OUT_2",
+    -0.639570 + -0.031295 * t."OUT_0"  + 0.059917 * t."OUT_1"  + -0.103307 * t."OUT_2"  + 0.354675 * t."OUT_3" AS "OUT_3"
+   FROM "Input_Layer_BA" AS t
  ),
-"Hidden_Layer_1_Activation" AS
- ( SELECT
-    t."index" as "index",
-    CAS
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
-.422645 * t.OUT_0  + -0.556621 * t.OUT_1  + 0.355750 * t.OUT_2  + -0.089785 * t.OUT_3  + -0.587979 * t.OUT_4  + -0.621922 * t.OUT_5  + -0.485597 * t.OUT_6  + 0.341145 * t.OUT_7 AS OUT_5
-   FROM Hidden_Layer_2_Activation AS t
+"Hidden_Layer_
+SQL_OUT_PUT_FIRST_LINES_END ('freidman2_sampled', 'MLPRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('freidman2_sampled', 'MLPRegressor', 'duckdb')
+0.587979 * t."OUT_4"  + -0.621922 * t."OUT_5"  + -0.485597 * t."OUT_6"  + 0.341145 * t."OUT_7" AS "OUT_5"
+   FROM "Hidden_Layer_2_Activation" AS t
  ),
 "Hidden_Layer_3_Activation" AS
  ( SELECT
     t."index" as "index",
-    CASE WHEN (OUT_0 > 0) THEN OUT_0 ELSE 0 END AS OUT_0,
-    CASE WHEN (OUT_1 > 0) THEN OUT_1 ELSE 0 END AS OUT_1,
-    CASE WHEN (OUT_2 > 0) THEN OUT_2 ELSE 0 END AS OUT_2,
-    CASE WHEN (OUT_3 > 0) THEN OUT_3 ELSE 0 END AS OUT_3,
-    CASE WHEN (OUT_4 > 0) THEN OUT_4 ELSE 0 END AS OUT_4,
-    CASE WHEN (OUT_5 > 0) THEN OUT_5 ELSE 0 END AS OUT_5
-   FROM Hidden_Layer_3_BA AS t
+    CASE WHEN (t."OUT_0" > 0) THEN t."OUT_0" ELSE 0 END AS "OUT_0",
+    CASE WHEN (t."OUT_1" > 0) THEN t."OUT_1" ELSE 0 END AS "OUT_1",
+    CASE WHEN (t."OUT_2" > 0) THEN t."OUT_2" ELSE 0 END AS "OUT_2",
+    CASE WHEN (t."OUT_3" > 0) THEN t."OUT_3" ELSE 0 END AS "OUT_3",
+    CASE WHEN (t."OUT_4" > 0) THEN t."OUT_4" ELSE 0 END AS "OUT_4",
+    CASE WHEN (t."OUT_5" > 0) THEN t."OUT_5" ELSE 0 END AS "OUT_5"
+   FROM "Hidden_Layer_3_BA" AS t
  ),
 "Output_Layer_BA" AS
  ( SELECT
     t."index" as "index",
-    0.518730 + 0.567920 * t.OUT_0  + 0.675540 * t.OUT_1  + 0.183325 * t.OUT_2  + -0.288031 * t.OUT_3  + -0.222359 * t.OUT_4  + -0.431270 * t.OUT_5 AS OUT_0
-   FROM Hidden_Layer_3_Activation AS t
+    0.518730 + 0.567920 * t."OUT_0"  + 0.675540 * t."OUT_1"  + 0.183325 * t."OUT_2"  + -0.288031 * t."OUT_3"  + -0.222359 * t."OUT_4"  + -0.431270 * t."OUT_5" AS "OUT_0"
+   FROM "Hidden_Layer_3_Activation" AS t
  )
  SELECT
     t."index" AS "index",
     t.OUT_0 AS "Estimator"
   FROM "Output_Layer_BA" AS t
 
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('freidman2_sampled', 'MLPRegressor', 'duckdb') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 12 entries, 0 to 11
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     12 non-null     float32
+ 1   X_1     12 non-null     float32
+ 2   X_2     12 non-null     float32
+ 3   X_3     12 non-null     float32
+dtypes: float32(4)
+memory usage: 288.0 bytes
+             X_0          X_1       X_2        X_3
+index                                             
+0      17.761709   423.498322  0.135270  10.148129
+1      45.437614   168.841202  0.343817   3.279963
+2      69.792320   473.447937  0.233546   3.411072
+3      67.667091   938.672607  0.652046   9.523154
+4      55.118420  1002.086060  0.726658   4.570618
+5      52.067585   534.256165  0.155164   8.526538
+6      50.992905   814.561340  0.257439   5.994627
+7      34.347893   205.928116  0.720020   9.414678
+8      63.010204   221.354385  0.814630   5.897069
+9      22.605108  1660.837036  0.731124   9.374556
+10     13.280704   643.716797  0.520814   4.842079
+11      7.606344  1112.226562  0.732761   6.140375
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 12 entries, 0 to 11
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      12 non-null     int64  
+ 1   Estimator  12 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 324.0 bytes
+    index  Estimator
+0       0   4.583458
+1       1  -0.037180
+2       2   5.429576
+3       3  13.499201
+4       4  17.086975
+5       5   5.911695
+6       6  12.866104
+7       7  -0.850257
+8       8  -0.722747
+9       9  30.231752
+10     10  11.229619
+11     11  20.020836
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('freidman2_sampled', 'MLPRegressor') Estimator 0.0001405477523803711
+    index  SQL_Estimator  Py_Estimator  SQL_Error
+0       0       4.583458      4.583533  -0.000075
+1       1      -0.037180     -0.037135  -0.000045
+2       2       5.429576      5.429675  -0.000099
+3       3      13.499201     13.499383  -0.000182
+4       4      17.086975     17.087160  -0.000185
+5       5       5.911695      5.911797  -0.000102
+6       6      12.866104     12.866269  -0.000165
+7       7      -0.850257     -0.850214  -0.000044
+8       8      -0.722747     -0.722693  -0.000055
+9       9      30.231752     30.232132  -0.000380
+10     10      11.229619     11.229731  -0.000112
+11     11      20.020836     20.021080  -0.000244
+MLLITE_REG_SQL_EXECUTION_STATUS ('freidman2_sampled', 'MLPRegressor', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_freidman2_sampled_option_1_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('freidman2_sampled', 'MLPRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"Input_Layer_BA" AS
+ ( SELECT
+    t."index" as "index",
+    t."X_0" AS "OUT_0",
+    t."X_1" AS "OUT_1",
+    t."X_2" AS "OUT_2",
+    t."X_3" AS "OUT_3"
+ FROM "model_input" AS t
+),
+"Hidden_Layer_1_BA" AS
+ ( SELECT
+    t."index" as "index",
+    0.418948 + -0.109065 * t."OUT_0"  + 0.126179 * t."OUT_1"  + 0.705071 * t."OUT_2"  + 0.827314 * t."OUT_3" AS "OUT_0",
+    -0.414892 + 0.418140 * t."OUT_0"  + -0.576250 * t."OUT_1"  + 0.153970 * t."OUT_2"  + -0.734272 * t."OUT_3" AS "OUT_1",
+    -0.460387 + -0.369564 * t."OUT_0"  + 0.229978 * t."OUT_1"  + 0.698960 * t."OUT_2"  + -0.382029 * t."OUT_3" AS "OUT_2",
+    -0.639570 + -0.031295 * t."OUT_0"  + 0.059917 * t."OUT_1"  + -0.103307 * t."OUT_2"  + 0.354675 * t."OUT_3" AS "OUT_3"
+   FROM "Input_Layer_BA" AS t
+ ),
+"Hidden_Layer_
+SQL_OUT_PUT_FIRST_LINES_END ('freidman2_sampled', 'MLPRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('freidman2_sampled', 'MLPRegressor', 'sqlite')
+0.587979 * t."OUT_4"  + -0.621922 * t."OUT_5"  + -0.485597 * t."OUT_6"  + 0.341145 * t."OUT_7" AS "OUT_5"
+   FROM "Hidden_Layer_2_Activation" AS t
+ ),
+"Hidden_Layer_3_Activation" AS
+ ( SELECT
+    t."index" as "index",
+    CASE WHEN (t."OUT_0" > 0) THEN t."OUT_0" ELSE 0 END AS "OUT_0",
+    CASE WHEN (t."OUT_1" > 0) THEN t."OUT_1" ELSE 0 END AS "OUT_1",
+    CASE WHEN (t."OUT_2" > 0) THEN t."OUT_2" ELSE 0 END AS "OUT_2",
+    CASE WHEN (t."OUT_3" > 0) THEN t."OUT_3" ELSE 0 END AS "OUT_3",
+    CASE WHEN (t."OUT_4" > 0) THEN t."OUT_4" ELSE 0 END AS "OUT_4",
+    CASE WHEN (t."OUT_5" > 0) THEN t."OUT_5" ELSE 0 END AS "OUT_5"
+   FROM "Hidden_Layer_3_BA" AS t
+ ),
+"Output_Layer_BA" AS
+ ( SELECT
+    t."index" as "index",
+    0.518730 + 0.567920 * t."OUT_0"  + 0.675540 * t."OUT_1"  + 0.183325 * t."OUT_2"  + -0.288031 * t."OUT_3"  + -0.222359 * t."OUT_4"  + -0.431270 * t."OUT_5" AS "OUT_0"
+   FROM "Hidden_Layer_3_Activation" AS t
+ )
+ SELECT
+    t."index" AS "index",
+    t.OUT_0 AS "Estimator"
+  FROM "Output_Layer_BA" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('freidman2_sampled', 'MLPRegressor', 'sqlite') 
 
 
 
@@ -361,17 +492,81 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-    index  SQL_Estimator  Py_Estimator
-0       0       4.583459      4.583533
-1       1      -0.037180     -0.037135
-2       2       5.429574      5.429675
-3       3      13.499208     13.499383
-4       4      17.086968     17.087160
-5       5       5.911692      5.911797
-6       6      12.866104     12.866269
-7       7      -0.850257     -0.850214
-8       8      -0.722750     -0.722693
-9       9      30.231732     30.232132
-10     10      11.229614     11.229731
-11     11      20.020823     20.021080
+MLLITE_REG_SQL_L1_ERROR ('freidman2_sampled', 'MLPRegressor') Estimator 0.0001442088081116307
+    index  SQL_Estimator  Py_Estimator  SQL_Error
+0       0       4.583459      4.583533  -0.000075
+1       1      -0.037180     -0.037135  -0.000045
+2       2       5.429574      5.429675  -0.000100
+3       3      13.499208     13.499383  -0.000175
+4       4      17.086968     17.087160  -0.000192
+5       5       5.911692      5.911797  -0.000105
+6       6      12.866104     12.866269  -0.000165
+7       7      -0.850257     -0.850214  -0.000043
+8       8      -0.722750     -0.722693  -0.000058
+9       9      30.231732     30.232132  -0.000400
+10     10      11.229614     11.229731  -0.000117
+11     11      20.020823     20.021080  -0.000257
+MLLITE_REG_SQL_EXECUTION_STATUS ('freidman2_sampled', 'MLPRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_freidman2_sampled_option_1_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('freidman2_sampled', 'MLPRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"Input_Layer_BA" AS
+ ( SELECT
+    t."index" as "index",
+    t."X_0" AS "OUT_0",
+    t."X_1" AS "OUT_1",
+    t."X_2" AS "OUT_2",
+    t."X_3" AS "OUT_3"
+ FROM "model_input" AS t
+),
+"Hidden_Layer_1_BA" AS
+ ( SELECT
+    t."index" as "index",
+    0.418948 + -0.109065 * t."OUT_0"  + 0.126179 * t."OUT_1"  + 0.705071 * t."OUT_2"  + 0.827314 * t."OUT_3" AS "OUT_0",
+    -0.414892 + 0.418140 * t."OUT_0"  + -0.576250 * t."OUT_1"  + 0.153970 * t."OUT_2"  + -0.734272 * t."OUT_3" AS "OUT_1",
+    -0.460387 + -0.369564 * t."OUT_0"  + 0.229978 * t."OUT_1"  + 0.698960 * t."OUT_2"  + -0.382029 * t."OUT_3" AS "OUT_2",
+    -0.639570 + -0.031295 * t."OUT_0"  + 0.059917 * t."OUT_1"  + -0.103307 * t."OUT_2"  + 0.354675 * t."OUT_3" AS "OUT_3"
+   FROM "Input_Layer_BA" AS t
+ ),
+"Hidden_Layer_
+SQL_OUT_PUT_FIRST_LINES_END ('freidman2_sampled', 'MLPRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('freidman2_sampled', 'MLPRegressor', 'pgsql')
+0.587979 * t."OUT_4"  + -0.621922 * t."OUT_5"  + -0.485597 * t."OUT_6"  + 0.341145 * t."OUT_7" AS "OUT_5"
+   FROM "Hidden_Layer_2_Activation" AS t
+ ),
+"Hidden_Layer_3_Activation" AS
+ ( SELECT
+    t."index" as "index",
+    CASE WHEN (t."OUT_0" > 0) THEN t."OUT_0" ELSE 0 END AS "OUT_0",
+    CASE WHEN (t."OUT_1" > 0) THEN t."OUT_1" ELSE 0 END AS "OUT_1",
+    CASE WHEN (t."OUT_2" > 0) THEN t."OUT_2" ELSE 0 END AS "OUT_2",
+    CASE WHEN (t."OUT_3" > 0) THEN t."OUT_3" ELSE 0 END AS "OUT_3",
+    CASE WHEN (t."OUT_4" > 0) THEN t."OUT_4" ELSE 0 END AS "OUT_4",
+    CASE WHEN (t."OUT_5" > 0) THEN t."OUT_5" ELSE 0 END AS "OUT_5"
+   FROM "Hidden_Layer_3_BA" AS t
+ ),
+"Output_Layer_BA" AS
+ ( SELECT
+    t."index" as "index",
+    0.518730 + 0.567920 * t."OUT_0"  + 0.675540 * t."OUT_1"  + 0.183325 * t."OUT_2"  + -0.288031 * t."OUT_3"  + -0.222359 * t."OUT_4"  + -0.431270 * t."OUT_5" AS "OUT_0"
+   FROM "Hidden_Layer_3_Activation" AS t
+ )
+ SELECT
+    t."index" AS "index",
+    t.OUT_0 AS "Estimator"
+  FROM "Output_Layer_BA" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('freidman2_sampled', 'MLPRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

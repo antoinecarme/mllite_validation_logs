@@ -35,11 +35,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 4 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 5 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 6 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 7 7
-('OPERATION_END_ELAPSED', 0.02, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.018, 'TRAINING')
 { "max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 { "max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 32, "min_child_weight" : 5.000000, "n_estimators" : 5, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 10 },
 	"booster" : {
@@ -164,7 +164,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING XGBRegressor { "max_depth" : 6, "n_estimators
 MLLITE_MODEL_JSON_AFTER_SETTING XGBRegressor None
 MLLITE_RELOADING_MODEL mllite_xgb_reg.XGBRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 32, "min_child_weight" : 5.000000, "n_estimators" : 5, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 10 },
 	"booster" : {
@@ -1093,7 +1093,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 10,
 		"dataset_rows" : 64
 	},
-	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.0, "grow_policy" : 0, "learning_rate" : 0.3, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 32, "min_child_weight" : 5.0, "n_estimators" : 5, "objective" : "reg:squarederror", "reg_alpha" : 0.0, "reg_lambda" : 1.0, "tree_method" : "auto" }
 }
 BEAUTIFIED_JSON_END
@@ -1126,12 +1126,12 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'freidman1_small', 'size': 64, 'mse': 2.7491531, 'mae': 1.3095587, 'mape': 0.11007558, 'r2': 0.8693506604805923}
 WRITING_PERF_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_freidman1_small_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'freidman1_small', 'training_time_in_sec': 0.02, 'prediction_time_in_sec': 0.001}
-WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_freidman1_small_option_1.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'freidman1_small', 'training_time_in_sec': 0.018, 'prediction_time_in_sec': 0.001}
+WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_freidman1_small_option_1_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_small', 'XGBRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -1145,8 +1145,8 @@ WITH model_input AS
  )
 ,
 "DT_node_data_0" AS 
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_small', 'XGBRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_small', 'XGBRegressor', 'duckdb')
 N ALL
     SELECT 18 AS nid,  -0.129523 AS "E"
     UNION ALL
@@ -1188,7 +1188,158 @@ SELECT
    14.969233 + SUM(t."E") AS "Estimator"
 FROM "union_of_trees" AS t
 GROUP BY t."index"
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_small', 'XGBRegressor', 'duckdb') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+ 4   X_4     64 non-null     float32
+ 5   X_5     64 non-null     float32
+ 6   X_6     64 non-null     float32
+ 7   X_7     64 non-null     float32
+ 8   X_8     64 non-null     float32
+ 9   X_9     64 non-null     float32
+dtypes: float32(10)
+memory usage: 3.0 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0      0.544738  0.515912  0.990435  ...  0.041089  0.898018  0.377159
+1      0.783459  0.095321  0.135945  ...  0.422766  0.019766  0.833486
+2      0.652811  0.757719  0.306902  ...  0.146070  0.894295  0.086598
+3      0.226051  0.939732  0.731124  ...  0.843453  0.185038  0.248943
+4      0.764610  0.378970  0.823855  ...  0.361050  0.814980  0.123688
+...         ...       ...       ...  ...       ...       ...       ...
+59     0.652046  0.852315  0.661294  ...  0.609463  0.682591  0.243739
+60     0.133169  0.898182  0.993566  ...  0.033415  0.014059  0.907372
+61     0.771820  0.489723  0.677121  ...  0.565222  0.039136  0.218690
+62     0.059807  0.098960  0.941488  ...  0.265461  0.196262  0.732540
+63     0.672520  0.960422  0.271050  ...  0.514037  0.918325  0.297702
+
+[64 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      64 non-null     int64  
+ 1   Estimator  64 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 1.1 KB
+    index  Estimator
+0       0  15.375158
+1       1  15.121880
+2       2  20.545678
+3       3  17.516171
+4       4  19.206868
+..    ...        ...
+59     59  17.806574
+60     60  17.516171
+61     61  15.127801
+62     62  14.386086
+63     63  13.821396
+
+[64 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('freidman1_small', 'XGBRegressor') Estimator 0.1273353926982878
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+48     48      14.521506     14.521505  6.441650e-07
+49     49      12.990966     12.990966  1.567993e-07
+50     50      14.032163     14.032164 -6.199951e-07
+51     51      15.409463     15.409463  7.122803e-08
+52     52      13.546598     13.546597  5.192261e-07
+53     53      13.564718     13.564718 -2.464600e-07
+54     54      18.133163     18.133163 -4.521484e-07
+55     55      14.274367     14.274366  6.212158e-07
+56     56       9.557035      9.557035 -4.461670e-07
+57     57      14.932549     14.932547  2.384399e-06
+58     58      16.985559     15.964756  1.020803e+00
+59     59      17.806574     17.806572  2.039551e-06
+60     60      17.516171     17.516172 -1.409058e-06
+61     61      15.127801     15.127801  5.853271e-08
+62     62      14.386086     14.386084  2.397095e-06
+63     63      13.821396     14.573264 -7.518681e-01
+MLLITE_REG_SQL_EXECUTION_STATUS ('freidman1_small', 'XGBRegressor', 'Failure')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_freidman1_small_option_1_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_small', 'XGBRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup_0" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_1" < 0.233387) THEN CASE WHEN (t."X_3" < 0.458178) THEN 3 ELSE CASE WHEN (t."X_9" < 0.389115) THEN 7 ELSE 8 END END ELSE CASE WHEN (t."X_3" < 0.378696) THEN CASE WHEN (t."X_9" < 0.149271) THEN 9 ELSE CASE WHEN (t."X_6" < 0.745771) THEN 13 ELSE 14 END END ELSE CASE WHEN (t."X_0" < 0.341289) THEN CASE WHEN (t."X_5" < 0.385768) THEN 15 ELSE 16 END ELSE CASE WHEN (t."X_4" < 0.683117) THEN 17 ELSE 18 END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_0" AS 
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_small', 'XGBRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_small', 'XGBRegressor', 'sqlite')
+N ALL
+    SELECT 18 AS nid,  -0.129523 AS "E"
+    UNION ALL
+    SELECT 19 AS nid,  0.143394 AS "E"
+    UNION ALL
+    SELECT 20 AS nid,  -0.103467 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_4" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_4" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_4" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"union_of_trees" AS
+ (SELECT scu."index_u" AS "index", scu."E" AS "E"
+ FROM (
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_0" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_1" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_2" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_3" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_4" AS t
+  ) AS scu
+)
+SELECT
+   t."index" AS "index",
+   14.969233 + SUM(t."E") AS "Estimator"
+FROM "union_of_trees" AS t
+GROUP BY t."index"
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_small', 'XGBRegressor', 'sqlite') 
 
 
 
@@ -1258,21 +1409,90 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-    index  SQL_Estimator  Py_Estimator
-48     48      14.521506     14.521505
-49     49      12.990966     12.990966
-50     50      14.032163     14.032164
-51     51      15.409463     15.409463
-52     52      13.546598     13.546597
-53     53      13.564718     13.564718
-54     54      18.133163     18.133163
-55     55      14.274367     14.274366
-56     56       9.557035      9.557035
-57     57      14.932549     14.932547
-58     58      16.985559     15.964756
-59     59      16.857286     17.806572
-60     60      17.516171     17.516172
-61     61      15.127801     15.127801
-62     62      14.386086     14.386084
-63     63      13.821396     14.573264
+MLLITE_REG_SQL_L1_ERROR ('freidman1_small', 'XGBRegressor') Estimator 0.15526068242073063
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+48     48      14.521506     14.521505  6.441650e-07
+49     49      12.990966     12.990966  1.567993e-07
+50     50      14.032163     14.032164 -6.199951e-07
+51     51      15.409463     15.409463  7.122803e-08
+52     52      13.546598     13.546597  5.192261e-07
+53     53      13.564718     13.564718 -2.464600e-07
+54     54      18.133163     18.133163 -4.521484e-07
+55     55      14.274367     14.274366  6.212158e-07
+56     56       9.557035      9.557035 -4.461670e-07
+57     57      14.932549     14.932547  2.384399e-06
+58     58      16.985559     15.964756  1.020803e+00
+59     59      16.857286     17.806572 -9.492860e-01
+60     60      17.516171     17.516172 -1.409058e-06
+61     61      15.127801     15.127801  5.853271e-08
+62     62      14.386086     14.386084  2.397095e-06
+63     63      13.821396     14.573264 -7.518681e-01
+MLLITE_REG_SQL_EXECUTION_STATUS ('freidman1_small', 'XGBRegressor', 'Failure')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_freidman1_small_option_1_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('freidman1_small', 'XGBRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup_0" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_1" < 0.233387) THEN CASE WHEN (t."X_3" < 0.458178) THEN 3 ELSE CASE WHEN (t."X_9" < 0.389115) THEN 7 ELSE 8 END END ELSE CASE WHEN (t."X_3" < 0.378696) THEN CASE WHEN (t."X_9" < 0.149271) THEN 9 ELSE CASE WHEN (t."X_6" < 0.745771) THEN 13 ELSE 14 END END ELSE CASE WHEN (t."X_0" < 0.341289) THEN CASE WHEN (t."X_5" < 0.385768) THEN 15 ELSE 16 END ELSE CASE WHEN (t."X_4" < 0.683117) THEN 17 ELSE 18 END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_0" AS 
+SQL_OUT_PUT_FIRST_LINES_END ('freidman1_small', 'XGBRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('freidman1_small', 'XGBRegressor', 'pgsql')
+N ALL
+    SELECT 18 AS nid,  -0.129523 AS "E"
+    UNION ALL
+    SELECT 19 AS nid,  0.143394 AS "E"
+    UNION ALL
+    SELECT 20 AS nid,  -0.103467 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_4" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_4" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_4" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"union_of_trees" AS
+ (SELECT scu."index_u" AS "index", scu."E" AS "E"
+ FROM (
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_0" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_1" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_2" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_3" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_4" AS t
+  ) AS scu
+)
+SELECT
+   t."index" AS "index",
+   14.969233 + SUM(t."E") AS "Estimator"
+FROM "union_of_trees" AS t
+GROUP BY t."index"
+SQL_OUT_PUT_LAST_LINES_END ('freidman1_small', 'XGBRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

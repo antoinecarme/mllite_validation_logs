@@ -32,11 +32,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 2 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.014, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.015, 'TRAINING')
 { "max_depth" : 6, "max_leaf_nodes" : 32,  "max_leaf_nodes" : 64 , }
 { "max_depth" : 6, "max_leaf_nodes" : 32,  "max_leaf_nodes" : 64 , }
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : 6, "max_features" : null, "max_leaf_nodes" : 32, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 1024, "dataset_features" : 10 },
 	"tree" : {
@@ -119,7 +119,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING DecisionTreeRegressor { "max_depth" : 6, "max
 MLLITE_MODEL_JSON_AFTER_SETTING DecisionTreeRegressor None
 MLLITE_RELOADING_MODEL mllite_decision_tree_reg.DecisionTreeRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : 6, "max_features" : null, "max_leaf_nodes" : 32, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 1024, "dataset_features" : 10 },
 	"tree" : {
@@ -200,7 +200,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 10,
 		"dataset_rows" : 1024
 	},
-	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "ccp_alpha" : 0.0, "criterion" : "", "max_depth" : 6, "max_features" : null, "max_leaf_nodes" : 32, "min_impurity_decrease" : 0.0, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.0, "random_state" : 1789, "splitter" : "best" },
 	"tree" : 	{
 		"features" : 10,
@@ -284,12 +284,12 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': '{"max_depth" : 6, "max_leaf_nodes" : 32}', 'dataset': 'RandomReg_10_quantized', 'size': 1024, 'mse': 7753.1543, 'mae': 69.37361, 'mape': 2.1564531, 'r2': 0.6871359427556056}
 WRITING_PERF_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_RandomReg_10_quantized_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': '{"max_depth" : 6, "max_leaf_nodes" : 32}', 'dataset': 'RandomReg_10_quantized', 'training_time_in_sec': 0.014, 'prediction_time_in_sec': 0.001}
-WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_RandomReg_10_quantized_option_1.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': '{"max_depth" : 6, "max_leaf_nodes" : 32}', 'dataset': 'RandomReg_10_quantized', 'training_time_in_sec': 0.015, 'prediction_time_in_sec': 0.001}
+WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_RandomReg_10_quantized_option_1_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -299,8 +299,8 @@ WITH model_input AS
  (SELECT
     model_input."index" AS "index",
     CASE WHEN (model_input."X_0" <= 6.500000) THEN CASE WHEN (model_input."X_6" <= 5.500000) THEN CASE WHEN (model_input."X_0" <= 1.500000) THEN CASE WHEN (model_input."X_2" <= 6.500000) THEN CASE WHEN (model_input."X_6" <= 1.500000) THEN CASE WHEN (model_input."X_5" <= 8.500000) THEN 35 ELSE 36 END ELSE 34 END ELSE 32 END ELSE CASE WHEN (model_input."X_2" <= 3.500000) THEN CASE WHEN (model_input."X_6" <= 1.500000) THEN 41 ELSE 42 END ELSE 40 END END ELSE CASE WHEN (model_input."X_2
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'duckdb')
   UNION ALL
     SELECT 50 AS nid, 180.340195 AS "E"
     UNION ALL
@@ -329,7 +329,7 @@ SQL_OUT_PUT_LAST_LINES_START
     SELECT 62 AS nid, 323.116241 AS "E"
   ) AS "Values"
  ),
-"DT_output" AS 
+"DT_Output" AS 
  (SELECT
    t1."index" AS "index",
    t1.node_id AS node_id,
@@ -345,7 +345,7 @@ SELECT
    "DT_Output"."index" AS "index",
    "DT_Output"."E" AS "Estimator"
 FROM "DT_Output"
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'duckdb') 
 
 
 
@@ -415,21 +415,239 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-      index  SQL_Estimator  Py_Estimator
-1008   1008     -96.770668    -96.770668
-1009   1009    -190.080536   -190.080536
-1010   1010      78.821114     78.821114
-1011   1011     -90.751289    -90.751289
-1012   1012     180.340195    180.340195
-1013   1013     -96.770668    -96.770668
-1014   1014      21.458447     21.458447
-1015   1015      21.458447     21.458447
-1016   1016     -96.770668    -96.770668
-1017   1017     -27.465996    -27.465996
-1018   1018     222.377869    222.377869
-1019   1019      21.458447     21.458447
-1020   1020      77.364822     77.364822
-1021   1021     267.067078    267.067078
-1022   1022     -27.465996    -27.465996
-1023   1023     -96.770668    -96.770668
+MLLITE_REG_SQL_L1_ERROR ('RandomReg_10_quantized', 'DecisionTreeRegressor') Estimator 2.256864298968292e-07
+      index  SQL_Estimator  Py_Estimator     SQL_Error
+1008   1008     -96.770668    -96.770668  2.978516e-08
+1009   1009    -190.080536   -190.080536 -1.113281e-07
+1010   1010      78.821114     78.821114  4.135742e-07
+1011   1011     -90.751289    -90.751289  3.676758e-07
+1012   1012     180.340195    180.340195  2.978516e-07
+1013   1013     -96.770668    -96.770668  2.978516e-08
+1014   1014      21.458447     21.458447  4.973145e-07
+1015   1015      21.458447     21.458447  4.973145e-07
+1016   1016     -96.770668    -96.770668  2.978516e-08
+1017   1017     -27.465996    -27.465996 -2.114258e-07
+1018   1018     222.377869    222.377869  3.476563e-07
+1019   1019      21.458447     21.458447  4.973145e-07
+1020   1020      77.364822     77.364822 -3.876953e-07
+1021   1021     267.067078    267.067078  3.632812e-07
+1022   1022     -27.465996    -27.465996 -2.114258e-07
+1023   1023     -96.770668    -96.770668  2.978516e-08
+MLLITE_REG_SQL_EXECUTION_STATUS ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_RandomReg_10_quantized_option_1_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup" AS 
+ (SELECT
+    model_input."index" AS "index",
+    CASE WHEN (model_input."X_0" <= 6.500000) THEN CASE WHEN (model_input."X_6" <= 5.500000) THEN CASE WHEN (model_input."X_0" <= 1.500000) THEN CASE WHEN (model_input."X_2" <= 6.500000) THEN CASE WHEN (model_input."X_6" <= 1.500000) THEN CASE WHEN (model_input."X_5" <= 8.500000) THEN 35 ELSE 36 END ELSE 34 END ELSE 32 END ELSE CASE WHEN (model_input."X_2" <= 3.500000) THEN CASE WHEN (model_input."X_6" <= 1.500000) THEN 41 ELSE 42 END ELSE 40 END END ELSE CASE WHEN (model_input."X_2
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'sqlite')
+  UNION ALL
+    SELECT 50 AS nid, 180.340195 AS "E"
+    UNION ALL
+    SELECT 51 AS nid, -9.622414 AS "E"
+    UNION ALL
+    SELECT 52 AS nid, 104.443001 AS "E"
+    UNION ALL
+    SELECT 53 AS nid, -97.672241 AS "E"
+    UNION ALL
+    SELECT 54 AS nid, 34.402504 AS "E"
+    UNION ALL
+    SELECT 55 AS nid, 3.021622 AS "E"
+    UNION ALL
+    SELECT 56 AS nid, 128.545135 AS "E"
+    UNION ALL
+    SELECT 57 AS nid, -96.770668 AS "E"
+    UNION ALL
+    SELECT 58 AS nid, -1.815137 AS "E"
+    UNION ALL
+    SELECT 59 AS nid, -118.183037 AS "E"
+    UNION ALL
+    SELECT 60 AS nid, 21.458447 AS "E"
+    UNION ALL
+    SELECT 61 AS nid, 222.377869 AS "E"
+    UNION ALL
+    SELECT 62 AS nid, 323.116241 AS "E"
+  ) AS "Values"
+ ),
+"DT_Output" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data" AS t2
+   ON t1.node_id = t2.nid
+ )
+SELECT
+   "DT_Output"."index" AS "index",
+   "DT_Output"."E" AS "Estimator"
+FROM "DT_Output"
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 1024 entries, 0 to 1023
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     1024 non-null   float32
+ 1   X_1     1024 non-null   float32
+ 2   X_2     1024 non-null   float32
+ 3   X_3     1024 non-null   float32
+ 4   X_4     1024 non-null   float32
+ 5   X_5     1024 non-null   float32
+ 6   X_6     1024 non-null   float32
+ 7   X_7     1024 non-null   float32
+ 8   X_8     1024 non-null   float32
+ 9   X_9     1024 non-null   float32
+dtypes: float32(10)
+memory usage: 48.0 KB
+       X_0  X_1  X_2  X_3  X_4  X_5  X_6  X_7  X_8  X_9
+index                                                  
+0      3.0  5.0  9.0  6.0  5.0  5.0  5.0  6.0  8.0  4.0
+1      8.0  2.0  5.0  8.0  3.0  8.0  5.0  6.0  8.0  4.0
+2      5.0  9.0  5.0  9.0  4.0  2.0  3.0  6.0  5.0  1.0
+3      1.0  8.0  8.0  3.0  7.0  0.0  2.0  5.0  9.0  8.0
+4      3.0  8.0  0.0  8.0  1.0  2.0  1.0  1.0  5.0  6.0
+...    ...  ...  ...  ...  ...  ...  ...  ...  ...  ...
+1019   6.0  3.0  1.0  1.0  9.0  8.0  7.0  2.0  8.0  2.0
+1020   8.0  4.0  3.0  6.0  4.0  0.0  7.0  3.0  3.0  8.0
+1021   1.0  4.0  9.0  9.0  1.0  9.0  7.0  8.0  5.0  2.0
+1022   4.0  5.0  8.0  1.0  8.0  5.0  3.0  7.0  3.0  8.0
+1023   2.0  6.0  4.0  1.0  1.0  4.0  7.0  2.0  4.0  6.0
+
+[1024 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1024 entries, 0 to 1023
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      1024 non-null   int64  
+ 1   Estimator  1024 non-null   float64
+dtypes: float64(1), int64(1)
+memory usage: 16.1 KB
+      index   Estimator
+0         0  -27.465996
+1         1  222.377869
+2         2  -27.465996
+3         3  -82.521652
+4         4 -197.018158
+...     ...         ...
+1019   1019   21.458447
+1020   1020   77.364822
+1021   1021  267.067078
+1022   1022  -27.465996
+1023   1023  -96.770668
+
+[1024 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('RandomReg_10_quantized', 'DecisionTreeRegressor') Estimator 2.256864298968292e-07
+      index  SQL_Estimator  Py_Estimator     SQL_Error
+1008   1008     -96.770668    -96.770668  2.978516e-08
+1009   1009    -190.080536   -190.080536 -1.113281e-07
+1010   1010      78.821114     78.821114  4.135742e-07
+1011   1011     -90.751289    -90.751289  3.676758e-07
+1012   1012     180.340195    180.340195  2.978516e-07
+1013   1013     -96.770668    -96.770668  2.978516e-08
+1014   1014      21.458447     21.458447  4.973145e-07
+1015   1015      21.458447     21.458447  4.973145e-07
+1016   1016     -96.770668    -96.770668  2.978516e-08
+1017   1017     -27.465996    -27.465996 -2.114258e-07
+1018   1018     222.377869    222.377869  3.476563e-07
+1019   1019      21.458447     21.458447  4.973145e-07
+1020   1020      77.364822     77.364822 -3.876953e-07
+1021   1021     267.067078    267.067078  3.632812e-07
+1022   1022     -27.465996    -27.465996 -2.114258e-07
+1023   1023     -96.770668    -96.770668  2.978516e-08
+MLLITE_REG_SQL_EXECUTION_STATUS ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_RandomReg_10_quantized_option_1_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup" AS 
+ (SELECT
+    model_input."index" AS "index",
+    CASE WHEN (model_input."X_0" <= 6.500000) THEN CASE WHEN (model_input."X_6" <= 5.500000) THEN CASE WHEN (model_input."X_0" <= 1.500000) THEN CASE WHEN (model_input."X_2" <= 6.500000) THEN CASE WHEN (model_input."X_6" <= 1.500000) THEN CASE WHEN (model_input."X_5" <= 8.500000) THEN 35 ELSE 36 END ELSE 34 END ELSE 32 END ELSE CASE WHEN (model_input."X_2" <= 3.500000) THEN CASE WHEN (model_input."X_6" <= 1.500000) THEN 41 ELSE 42 END ELSE 40 END END ELSE CASE WHEN (model_input."X_2
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'pgsql')
+  UNION ALL
+    SELECT 50 AS nid, 180.340195 AS "E"
+    UNION ALL
+    SELECT 51 AS nid, -9.622414 AS "E"
+    UNION ALL
+    SELECT 52 AS nid, 104.443001 AS "E"
+    UNION ALL
+    SELECT 53 AS nid, -97.672241 AS "E"
+    UNION ALL
+    SELECT 54 AS nid, 34.402504 AS "E"
+    UNION ALL
+    SELECT 55 AS nid, 3.021622 AS "E"
+    UNION ALL
+    SELECT 56 AS nid, 128.545135 AS "E"
+    UNION ALL
+    SELECT 57 AS nid, -96.770668 AS "E"
+    UNION ALL
+    SELECT 58 AS nid, -1.815137 AS "E"
+    UNION ALL
+    SELECT 59 AS nid, -118.183037 AS "E"
+    UNION ALL
+    SELECT 60 AS nid, 21.458447 AS "E"
+    UNION ALL
+    SELECT 61 AS nid, 222.377869 AS "E"
+    UNION ALL
+    SELECT 62 AS nid, 323.116241 AS "E"
+  ) AS "Values"
+ ),
+"DT_Output" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data" AS t2
+   ON t1.node_id = t2.nid
+ )
+SELECT
+   "DT_Output"."index" AS "index",
+   "DT_Output"."E" AS "Estimator"
+FROM "DT_Output"
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_10_quantized', 'DecisionTreeRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

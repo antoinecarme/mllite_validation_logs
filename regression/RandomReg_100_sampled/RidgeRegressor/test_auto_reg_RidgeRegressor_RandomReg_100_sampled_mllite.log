@@ -151,11 +151,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_REGRESSOR_FIT' 2 2
-('OPERATION_END_ELAPSED', 0.026, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.024, 'TRAINING')
 { ,   , }
 { ,   , }
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 128, "dataset_features" : 100 },
 	"equations" : {
@@ -171,7 +171,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeRegressor { ,   , }
 MLLITE_MODEL_JSON_AFTER_SETTING RidgeRegressor None
 MLLITE_RELOADING_MODEL mllite_ridge_reg.RidgeRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 128, "dataset_features" : 100 },
 	"equations" : {
@@ -189,7 +189,7 @@ BEAUTIFIED_JSON_START
 		"coeffs" : [ 0.113191, 0.867221, 0.48391, -0.51185, 0.346939, 0.241576, -0.330267, 1.122997, 1.556676, 0.869201, -0.817263, 0.797011, 0.764926, 0.134486, -0.143827, -0.294179, -0.84996, -1.087872, -2.147968, 0.933798, -0.385104, 0.884212, 32.159081, -0.929194, 0.125897, -0.093982, 1.905243, 0.421053, 0.074526, -0.632217, 64.258774, 0.3507, 43.027081, 3.915625, 0.024901, -0.169214, 44.467342, -0.273275, -0.965291, 0.525832, 1.858124, -0.299598, 0.483461, 0.432628, -0.760547, -1.667794, 73.190216, -0.751925, 0.004452, -0.102401, -0.06086, -0.426547, -0.066743, -1.287305, 2.041963, 0.458496, 0.819802, -0.661396, -0.595773, 42.710735, 0.839297, -1.067163, 1.116437, 0.987225, -1.832241, -0.314059, 0.033474, 0.646711, -0.033377, 0.477688, 0.186164, 0.670128, -0.218455, 1.151254, 0.629816, -0.681191, 1.062782, 64.371201, 0.645222, -0.596891, -0.817211, 0.493784, 0.663202, 0.021065, -0.154125, 0.060545, -1.028077, -2.529538, 0.705998, 0.530682, 17.932276, 1.034203, -1.701234, -1.452242, 0.019902, 29.95019, -0.448817, -0.930368, 0.199898, -0.714913 ],
 		"intercept" : 1.114459
 	},
-	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "alpha" : 1.0, "random_state" : 1789 }
 }
 BEAUTIFIED_JSON_END
@@ -248,30 +248,228 @@ BEAUTIFIED_JSON_END
  -252.51733    382.10403   -107.22821   -254.33516   -138.73935
    69.22403   -285.5224     -77.04086    -69.85264    121.29653
    62.676582    62.848278    73.69407  ]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': None, 'dataset': 'RandomReg_100_sampled', 'size': 128, 'mse': 4.690077, 'mae': 1.7375042, 'mape': 0.035083897, 'r2': 0.9998013072800442}
 WRITING_PERF_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_RandomReg_100_sampled.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': None, 'dataset': 'RandomReg_100_sampled', 'training_time_in_sec': 0.026, 'prediction_time_in_sec': 0.002}
-WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_RandomReg_100_sampled.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': None, 'dataset': 'RandomReg_100_sampled', 'training_time_in_sec': 0.024, 'prediction_time_in_sec': 0.003}
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_RandomReg_100_sampled_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_100_sampled', 'RidgeRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
-52 + -1.287305 * X_53 + 2.041963 * X_54 + 0.458496 * X_55 + 0.819802 * X_56 + -0.661396 * X_57 + -0.595773 * X_58 + 42.710735 * X_59 + 0.839297 * X_60 + -1.067163 * X_61 + 1.116437 * X_62 + 0.987225 * X_63 + -1.832241 * X_64 + -0.314059 * X_65 + 0.033474 * X_66 + 0.646711 * X_67 + -0.033377 * X_68 + 0.477688 * X_69 + 0.186164 * X_70 + 0.670128 * X_71 + -0.218455 * X_72 + 1.151254 * X_73 + 0.629816 * X_74 + -0.681191 * X_75 + 1.062782 * X_76 + 64.371201 * X_77 + 0.645222 * X_78 + -0.596891 * X_79 + -0.817211 * X_80 + 0.493784 * X_81 + 0.663202 * X_82 + 0.021065 * X_83 + -0.154125 * X_84 + 0.060545 * X_85 + -1.028077 * X_86 + -2.529538 * X_87 + 0.705998 * X_88 + 0.530682 * X_89 + 17.932276 * X_90 + 1.034203 * X_91 + -1.701234 * X_92 + -1.452242 * X_93 + 0.019902 * X_94 + 29.950190 * X_95 + -0.448817 * X_96 + -0.930368 * X_97 + 0.199898 * X_98 + -0.714913 * X_99 AS "Estimator"
-  FROM model_input
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_100_sampled', 'RidgeRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_100_sampled', 'RidgeRegressor', 'duckdb')
+3 * t."X_61" + 1.116437 * t."X_62" + 0.987225 * t."X_63" + -1.832241 * t."X_64" + -0.314059 * t."X_65" + 0.033474 * t."X_66" + 0.646711 * t."X_67" + -0.033377 * t."X_68" + 0.477688 * t."X_69" + 0.186164 * t."X_70" + 0.670128 * t."X_71" + -0.218455 * t."X_72" + 1.151254 * t."X_73" + 0.629816 * t."X_74" + -0.681191 * t."X_75" + 1.062782 * t."X_76" + 64.371201 * t."X_77" + 0.645222 * t."X_78" + -0.596891 * t."X_79" + -0.817211 * t."X_80" + 0.493784 * t."X_81" + 0.663202 * t."X_82" + 0.021065 * t."X_83" + -0.154125 * t."X_84" + 0.060545 * t."X_85" + -1.028077 * t."X_86" + -2.529538 * t."X_87" + 0.705998 * t."X_88" + 0.530682 * t."X_89" + 17.932276 * t."X_90" + 1.034203 * t."X_91" + -1.701234 * t."X_92" + -1.452242 * t."X_93" + 0.019902 * t."X_94" + 29.950190 * t."X_95" + -0.448817 * t."X_96" + -0.930368 * t."X_97" + 0.199898 * t."X_98" + -0.714913 * t."X_99" AS "Estimator"
+  FROM model_input AS t
  )
 SELECT
   model_scores_cte."index" as "index",
   model_scores_cte."Estimator" as "Estimator"
 FROM  model_scores_cte
 
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_100_sampled', 'RidgeRegressor', 'duckdb') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 128 entries, 0 to 127
+Data columns (total 100 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     128 non-null    float32
+ 1   X_1     128 non-null    float32
+ 2   X_2     128 non-null    float32
+ 3   X_3     128 non-null    float32
+ 4   X_4     128 non-null    float32
+ 5   X_5     128 non-null    float32
+ 6   X_6     128 non-null    float32
+ 7   X_7     128 non-null    float32
+ 8   X_8     128 non-null    float32
+ 9   X_9     128 non-null    float32
+ 10  X_10    128 non-null    float32
+ 11  X_11    128 non-null    float32
+ 12  X_12    128 non-null    float32
+ 13  X_13    128 non-null    float32
+ 14  X_14    128 non-null    float32
+ 15  X_15    128 non-null    float32
+ 16  X_16    128 non-null    float32
+ 17  X_17    128 non-null    float32
+ 18  X_18    128 non-null    float32
+ 19  X_19    128 non-null    float32
+ 20  X_20    128 non-null    float32
+ 21  X_21    128 non-null    float32
+ 22  X_22    128 non-null    float32
+ 23  X_23    128 non-null    float32
+ 24  X_24    128 non-null    float32
+ 25  X_25    128 non-null    float32
+ 26  X_26    128 non-null    float32
+ 27  X_27    128 non-null    float32
+ 28  X_28    128 non-null    float32
+ 29  X_29    128 non-null    float32
+ 30  X_30    128 non-null    float32
+ 31  X_31    128 non-null    float32
+ 32  X_32    128 non-null    float32
+ 33  X_33    128 non-null    float32
+ 34  X_34    128 non-null    float32
+ 35  X_35    128 non-null    float32
+ 36  X_36    128 non-null    float32
+ 37  X_37    128 non-null    float32
+ 38  X_38    128 non-null    float32
+ 39  X_39    128 non-null    float32
+ 40  X_40    128 non-null    float32
+ 41  X_41    128 non-null    float32
+ 42  X_42    128 non-null    float32
+ 43  X_43    128 non-null    float32
+ 44  X_44    128 non-null    float32
+ 45  X_45    128 non-null    float32
+ 46  X_46    128 non-null    float32
+ 47  X_47    128 non-null    float32
+ 48  X_48    128 non-null    float32
+ 49  X_49    128 non-null    float32
+ 50  X_50    128 non-null    float32
+ 51  X_51    128 non-null    float32
+ 52  X_52    128 non-null    float32
+ 53  X_53    128 non-null    float32
+ 54  X_54    128 non-null    float32
+ 55  X_55    128 non-null    float32
+ 56  X_56    128 non-null    float32
+ 57  X_57    128 non-null    float32
+ 58  X_58    128 non-null    float32
+ 59  X_59    128 non-null    float32
+ 60  X_60    128 non-null    float32
+ 61  X_61    128 non-null    float32
+ 62  X_62    128 non-null    float32
+ 63  X_63    128 non-null    float32
+ 64  X_64    128 non-null    float32
+ 65  X_65    128 non-null    float32
+ 66  X_66    128 non-null    float32
+ 67  X_67    128 non-null    float32
+ 68  X_68    128 non-null    float32
+ 69  X_69    128 non-null    float32
+ 70  X_70    128 non-null    float32
+ 71  X_71    128 non-null    float32
+ 72  X_72    128 non-null    float32
+ 73  X_73    128 non-null    float32
+ 74  X_74    128 non-null    float32
+ 75  X_75    128 non-null    float32
+ 76  X_76    128 non-null    float32
+ 77  X_77    128 non-null    float32
+ 78  X_78    128 non-null    float32
+ 79  X_79    128 non-null    float32
+ 80  X_80    128 non-null    float32
+ 81  X_81    128 non-null    float32
+ 82  X_82    128 non-null    float32
+ 83  X_83    128 non-null    float32
+ 84  X_84    128 non-null    float32
+ 85  X_85    128 non-null    float32
+ 86  X_86    128 non-null    float32
+ 87  X_87    128 non-null    float32
+ 88  X_88    128 non-null    float32
+ 89  X_89    128 non-null    float32
+ 90  X_90    128 non-null    float32
+ 91  X_91    128 non-null    float32
+ 92  X_92    128 non-null    float32
+ 93  X_93    128 non-null    float32
+ 94  X_94    128 non-null    float32
+ 95  X_95    128 non-null    float32
+ 96  X_96    128 non-null    float32
+ 97  X_97    128 non-null    float32
+ 98  X_98    128 non-null    float32
+ 99  X_99    128 non-null    float32
+dtypes: float32(100)
+memory usage: 51.0 KB
+            X_0       X_1       X_2  ...      X_97      X_98      X_99
+index                                ...                              
+0     -0.301125  1.387725  1.263659  ... -1.981716 -0.345798  0.839573
+1     -0.155583 -1.181091  2.934304  ... -0.649000 -1.884572 -0.938959
+2      1.079390 -0.496549 -1.240677  ...  0.679748 -0.569426  0.970424
+3     -1.027789 -0.022726  0.110301  ...  0.799355  2.721471 -0.697773
+4      0.155319  0.126152  0.905780  ... -0.735563  1.218228  0.672223
+...         ...       ...       ...  ...       ...       ...       ...
+123   -0.630035  1.213869  1.052461  ...  0.097717  0.517329  1.067193
+124    1.216598 -1.012178  1.188642  ... -0.635184  0.291912  0.169619
+125    1.081204  0.991612 -2.290299  ...  0.217300  1.216256  1.870381
+126   -0.144516 -2.153383  0.687067  ...  2.031300  1.596720 -0.118417
+127   -0.133814 -1.941873  0.255980  ... -0.255939  1.019502  0.667771
+
+[128 rows x 100 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 128 entries, 0 to 127
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      128 non-null    int64  
+ 1   Estimator  128 non-null    float64
+dtypes: float64(1), int64(1)
+memory usage: 2.1 KB
+     index   Estimator
+0        0  -54.424435
+1        1 -240.945007
+2        2   50.467381
+3        3  198.737106
+4        4 -136.549866
+..     ...         ...
+123    123  -69.852638
+124    124  121.296532
+125    125   62.676582
+126    126   62.848278
+127    127   73.694069
+
+[128 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('RandomReg_100_sampled', 'RidgeRegressor') Estimator 8.171424269676208e-06
+     index  SQL_Estimator  Py_Estimator  SQL_Error
+112    112      33.221321     33.221306   0.000015
+113    113     221.384766    221.384750   0.000015
+114    114     111.912010    111.912003   0.000008
+115    115    -252.517334   -252.517349   0.000015
+116    116     382.104034    382.104034   0.000000
+117    117    -107.228210   -107.228210   0.000000
+118    118    -254.335159   -254.335159   0.000000
+119    119    -138.739349   -138.739349   0.000000
+120    120      69.224030     69.224037  -0.000008
+121    121    -285.522400   -285.522400   0.000000
+122    122     -77.040863    -77.040863   0.000000
+123    123     -69.852638    -69.852654   0.000015
+124    124     121.296532    121.296532   0.000000
+125    125      62.676582     62.676571   0.000011
+126    126      62.848278     62.848289  -0.000011
+127    127      73.694069     73.694069   0.000000
+MLLITE_REG_SQL_EXECUTION_STATUS ('RandomReg_100_sampled', 'RidgeRegressor', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_RandomReg_100_sampled_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_100_sampled', 'RidgeRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_100_sampled', 'RidgeRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_100_sampled', 'RidgeRegressor', 'sqlite')
+3 * t."X_61" + 1.116437 * t."X_62" + 0.987225 * t."X_63" + -1.832241 * t."X_64" + -0.314059 * t."X_65" + 0.033474 * t."X_66" + 0.646711 * t."X_67" + -0.033377 * t."X_68" + 0.477688 * t."X_69" + 0.186164 * t."X_70" + 0.670128 * t."X_71" + -0.218455 * t."X_72" + 1.151254 * t."X_73" + 0.629816 * t."X_74" + -0.681191 * t."X_75" + 1.062782 * t."X_76" + 64.371201 * t."X_77" + 0.645222 * t."X_78" + -0.596891 * t."X_79" + -0.817211 * t."X_80" + 0.493784 * t."X_81" + 0.663202 * t."X_82" + 0.021065 * t."X_83" + -0.154125 * t."X_84" + 0.060545 * t."X_85" + -1.028077 * t."X_86" + -2.529538 * t."X_87" + 0.705998 * t."X_88" + 0.530682 * t."X_89" + 17.932276 * t."X_90" + 1.034203 * t."X_91" + -1.701234 * t."X_92" + -1.452242 * t."X_93" + 0.019902 * t."X_94" + 29.950190 * t."X_95" + -0.448817 * t."X_96" + -0.930368 * t."X_97" + 0.199898 * t."X_98" + -0.714913 * t."X_99" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_100_sampled', 'RidgeRegressor', 'sqlite') 
 
 
 
@@ -431,21 +629,47 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-     index  SQL_Estimator  Py_Estimator
-112    112      33.221317     33.221306
-113    113     221.384767    221.384750
-114    114     111.912001    111.912003
-115    115    -252.517383   -252.517349
-116    116     382.104003    382.104034
-117    117    -107.228217   -107.228210
-118    118    -254.335115   -254.335159
-119    119    -138.739240   -138.739349
-120    120      69.224028     69.224037
-121    121    -285.522355   -285.522400
-122    122     -77.040888    -77.040863
-123    123     -69.852654    -69.852654
-124    124     121.296522    121.296532
-125    125      62.676575     62.676571
-126    126      62.848285     62.848289
-127    127      73.694076     73.694069
+MLLITE_REG_SQL_L1_ERROR ('RandomReg_100_sampled', 'RidgeRegressor') Estimator 2.1761245427919657e-05
+     index  SQL_Estimator  Py_Estimator     SQL_Error
+112    112      33.221317     33.221306  1.136342e-05
+113    113     221.384767    221.384750  1.662433e-05
+114    114     111.912001    111.912003 -1.512448e-06
+115    115    -252.517383   -252.517349 -3.355784e-05
+116    116     382.104003    382.104034 -3.138098e-05
+117    117    -107.228217   -107.228210 -6.728757e-06
+118    118    -254.335115   -254.335159  4.467232e-05
+119    119    -138.739240   -138.739349  1.090934e-04
+120    120      69.224028     69.224037 -8.793180e-06
+121    121    -285.522355   -285.522400  4.537151e-05
+122    122     -77.040888    -77.040863 -2.513379e-05
+123    123     -69.852654    -69.852654 -3.984212e-07
+124    124     121.296522    121.296532 -9.479276e-06
+125    125      62.676575     62.676571  3.728348e-06
+126    126      62.848285     62.848289 -4.220657e-06
+127    127      73.694076     73.694069  7.362546e-06
+MLLITE_REG_SQL_EXECUTION_STATUS ('RandomReg_100_sampled', 'RidgeRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_RandomReg_100_sampled_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_100_sampled', 'RidgeRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_100_sampled', 'RidgeRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_100_sampled', 'RidgeRegressor', 'pgsql')
+3 * t."X_61" + 1.116437 * t."X_62" + 0.987225 * t."X_63" + -1.832241 * t."X_64" + -0.314059 * t."X_65" + 0.033474 * t."X_66" + 0.646711 * t."X_67" + -0.033377 * t."X_68" + 0.477688 * t."X_69" + 0.186164 * t."X_70" + 0.670128 * t."X_71" + -0.218455 * t."X_72" + 1.151254 * t."X_73" + 0.629816 * t."X_74" + -0.681191 * t."X_75" + 1.062782 * t."X_76" + 64.371201 * t."X_77" + 0.645222 * t."X_78" + -0.596891 * t."X_79" + -0.817211 * t."X_80" + 0.493784 * t."X_81" + 0.663202 * t."X_82" + 0.021065 * t."X_83" + -0.154125 * t."X_84" + 0.060545 * t."X_85" + -1.028077 * t."X_86" + -2.529538 * t."X_87" + 0.705998 * t."X_88" + 0.530682 * t."X_89" + 17.932276 * t."X_90" + 1.034203 * t."X_91" + -1.701234 * t."X_92" + -1.452242 * t."X_93" + 0.019902 * t."X_94" + 29.950190 * t."X_95" + -0.448817 * t."X_96" + -0.930368 * t."X_97" + 0.199898 * t."X_98" + -0.714913 * t."X_99" AS "Estimator"
+  FROM model_input AS t
+ )
+SELECT
+  model_scores_cte."index" as "index",
+  model_scores_cte."Estimator" as "Estimator"
+FROM  model_scores_cte
+
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_100_sampled', 'RidgeRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

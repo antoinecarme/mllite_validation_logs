@@ -166,7 +166,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 , }
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 , }
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {  "hidden_layer_sizes" : [ 4, 8, 6 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 100 },
 	"layers" : {
@@ -328,7 +328,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING MLPRegressor { "hidden_layer_sizes" : [4, 8, 
 MLLITE_MODEL_JSON_AFTER_SETTING MLPRegressor None
 MLLITE_RELOADING_MODEL mllite_mlp_reg.MLPRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : {  "hidden_layer_sizes" : [ 4, 8, 6 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 100 },
 	"layers" : {
@@ -638,7 +638,7 @@ BEAUTIFIED_JSON_START
 		},
 		"sizes" : [ 100, 4, 8, 6, 1 ]
 	},
-	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "activation" : "relu", "alpha" : 0.0001, "batch_size" : null, "beta_1" : 0.9, "beta_2" : 0.999, "early_stopping" : 0, "epsilon" : 0.0, "hidden_layer_sizes" : [ 4, 8, 6 ], "learning_rate" : "constant", "learning_rate_init" : 0.001, "max_fun" : 15000, "max_iter" : 32, "momentum" : 0.9, "n_iter_no_change" : 10, "nesterovs_momentum" : 1, "power_t" : 0.5, "random_state" : 1789, "shuffle" : 1, "solver" : "adam", "tol" : 0.0001, "validation_fraction" : 0.1, "verbose" : 0, "warm_start" : 0 }
 }
 BEAUTIFIED_JSON_END
@@ -656,42 +656,265 @@ MODEL_PERFS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 
 WRITING_PERF_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_RandomReg_100_tiny_option_1.perf'
 
 MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPRegressor', 'model_name': 'MLPRegressor', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'RandomReg_100_tiny', 'training_time_in_sec': 0.014, 'prediction_time_in_sec': 0.0}
-WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_RandomReg_100_tiny_option_1.sql'
+WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_RandomReg_100_tiny_option_1_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_100_tiny', 'MLPRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
- 0.111827 * t.OUT_0  + 0.509688 * t.OUT_1  + 0.036397 * t.OUT_2  + -0.219756 * t.OUT_3  + -0.214850 * t.OUT_4  + 0.060161 * t.OUT_5  + 0.188269 * t.OUT_6  + -0.559185 * t.OUT_7 AS OUT_5
-   FROM Hidden_Layer_2_Activation AS t
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_100_tiny', 'MLPRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_100_tiny', 'MLPRegressor', 'duckdb')
+-0.214850 * t."OUT_4"  + 0.060161 * t."OUT_5"  + 0.188269 * t."OUT_6"  + -0.559185 * t."OUT_7" AS "OUT_5"
+   FROM "Hidden_Layer_2_Activation" AS t
  ),
 "Hidden_Layer_3_Activation" AS
  ( SELECT
     t."index" as "index",
-    CASE WHEN (OUT_0 > 0) THEN OUT_0 ELSE 0 END AS OUT_0,
-    CASE WHEN (OUT_1 > 0) THEN OUT_1 ELSE 0 END AS OUT_1,
-    CASE WHEN (OUT_2 > 0) THEN OUT_2 ELSE 0 END AS OUT_2,
-    CASE WHEN (OUT_3 > 0) THEN OUT_3 ELSE 0 END AS OUT_3,
-    CASE WHEN (OUT_4 > 0) THEN OUT_4 ELSE 0 END AS OUT_4,
-    CASE WHEN (OUT_5 > 0) THEN OUT_5 ELSE 0 END AS OUT_5
-   FROM Hidden_Layer_3_BA AS t
+    CASE WHEN (t."OUT_0" > 0) THEN t."OUT_0" ELSE 0 END AS "OUT_0",
+    CASE WHEN (t."OUT_1" > 0) THEN t."OUT_1" ELSE 0 END AS "OUT_1",
+    CASE WHEN (t."OUT_2" > 0) THEN t."OUT_2" ELSE 0 END AS "OUT_2",
+    CASE WHEN (t."OUT_3" > 0) THEN t."OUT_3" ELSE 0 END AS "OUT_3",
+    CASE WHEN (t."OUT_4" > 0) THEN t."OUT_4" ELSE 0 END AS "OUT_4",
+    CASE WHEN (t."OUT_5" > 0) THEN t."OUT_5" ELSE 0 END AS "OUT_5"
+   FROM "Hidden_Layer_3_BA" AS t
  ),
 "Output_Layer_BA" AS
  ( SELECT
     t."index" as "index",
-    -0.686766 + -0.488683 * t.OUT_0  + 0.828776 * t.OUT_1  + 0.377069 * t.OUT_2  + 0.803539 * t.OUT_3  + -0.639210 * t.OUT_4  + 0.569085 * t.OUT_5 AS OUT_0
-   FROM Hidden_Layer_3_Activation AS t
+    -0.686766 + -0.488683 * t."OUT_0"  + 0.828776 * t."OUT_1"  + 0.377069 * t."OUT_2"  + 0.803539 * t."OUT_3"  + -0.639210 * t."OUT_4"  + 0.569085 * t."OUT_5" AS "OUT_0"
+   FROM "Hidden_Layer_3_Activation" AS t
  )
  SELECT
     t."index" AS "index",
     t.OUT_0 AS "Estimator"
   FROM "Output_Layer_BA" AS t
 
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_100_tiny', 'MLPRegressor', 'duckdb') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 16 entries, 0 to 15
+Data columns (total 100 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     16 non-null     float32
+ 1   X_1     16 non-null     float32
+ 2   X_2     16 non-null     float32
+ 3   X_3     16 non-null     float32
+ 4   X_4     16 non-null     float32
+ 5   X_5     16 non-null     float32
+ 6   X_6     16 non-null     float32
+ 7   X_7     16 non-null     float32
+ 8   X_8     16 non-null     float32
+ 9   X_9     16 non-null     float32
+ 10  X_10    16 non-null     float32
+ 11  X_11    16 non-null     float32
+ 12  X_12    16 non-null     float32
+ 13  X_13    16 non-null     float32
+ 14  X_14    16 non-null     float32
+ 15  X_15    16 non-null     float32
+ 16  X_16    16 non-null     float32
+ 17  X_17    16 non-null     float32
+ 18  X_18    16 non-null     float32
+ 19  X_19    16 non-null     float32
+ 20  X_20    16 non-null     float32
+ 21  X_21    16 non-null     float32
+ 22  X_22    16 non-null     float32
+ 23  X_23    16 non-null     float32
+ 24  X_24    16 non-null     float32
+ 25  X_25    16 non-null     float32
+ 26  X_26    16 non-null     float32
+ 27  X_27    16 non-null     float32
+ 28  X_28    16 non-null     float32
+ 29  X_29    16 non-null     float32
+ 30  X_30    16 non-null     float32
+ 31  X_31    16 non-null     float32
+ 32  X_32    16 non-null     float32
+ 33  X_33    16 non-null     float32
+ 34  X_34    16 non-null     float32
+ 35  X_35    16 non-null     float32
+ 36  X_36    16 non-null     float32
+ 37  X_37    16 non-null     float32
+ 38  X_38    16 non-null     float32
+ 39  X_39    16 non-null     float32
+ 40  X_40    16 non-null     float32
+ 41  X_41    16 non-null     float32
+ 42  X_42    16 non-null     float32
+ 43  X_43    16 non-null     float32
+ 44  X_44    16 non-null     float32
+ 45  X_45    16 non-null     float32
+ 46  X_46    16 non-null     float32
+ 47  X_47    16 non-null     float32
+ 48  X_48    16 non-null     float32
+ 49  X_49    16 non-null     float32
+ 50  X_50    16 non-null     float32
+ 51  X_51    16 non-null     float32
+ 52  X_52    16 non-null     float32
+ 53  X_53    16 non-null     float32
+ 54  X_54    16 non-null     float32
+ 55  X_55    16 non-null     float32
+ 56  X_56    16 non-null     float32
+ 57  X_57    16 non-null     float32
+ 58  X_58    16 non-null     float32
+ 59  X_59    16 non-null     float32
+ 60  X_60    16 non-null     float32
+ 61  X_61    16 non-null     float32
+ 62  X_62    16 non-null     float32
+ 63  X_63    16 non-null     float32
+ 64  X_64    16 non-null     float32
+ 65  X_65    16 non-null     float32
+ 66  X_66    16 non-null     float32
+ 67  X_67    16 non-null     float32
+ 68  X_68    16 non-null     float32
+ 69  X_69    16 non-null     float32
+ 70  X_70    16 non-null     float32
+ 71  X_71    16 non-null     float32
+ 72  X_72    16 non-null     float32
+ 73  X_73    16 non-null     float32
+ 74  X_74    16 non-null     float32
+ 75  X_75    16 non-null     float32
+ 76  X_76    16 non-null     float32
+ 77  X_77    16 non-null     float32
+ 78  X_78    16 non-null     float32
+ 79  X_79    16 non-null     float32
+ 80  X_80    16 non-null     float32
+ 81  X_81    16 non-null     float32
+ 82  X_82    16 non-null     float32
+ 83  X_83    16 non-null     float32
+ 84  X_84    16 non-null     float32
+ 85  X_85    16 non-null     float32
+ 86  X_86    16 non-null     float32
+ 87  X_87    16 non-null     float32
+ 88  X_88    16 non-null     float32
+ 89  X_89    16 non-null     float32
+ 90  X_90    16 non-null     float32
+ 91  X_91    16 non-null     float32
+ 92  X_92    16 non-null     float32
+ 93  X_93    16 non-null     float32
+ 94  X_94    16 non-null     float32
+ 95  X_95    16 non-null     float32
+ 96  X_96    16 non-null     float32
+ 97  X_97    16 non-null     float32
+ 98  X_98    16 non-null     float32
+ 99  X_99    16 non-null     float32
+dtypes: float32(100)
+memory usage: 6.4 KB
+            X_0       X_1       X_2  ...      X_97      X_98      X_99
+index                                ...                              
+0     -0.301125  1.387725  1.263659  ... -1.981716 -0.345798  0.839573
+1     -0.155583 -1.181091  2.934304  ... -0.649000 -1.884572 -0.938959
+2      1.079390 -0.496549 -1.240677  ...  0.679748 -0.569426  0.970424
+3     -1.027789 -0.022726  0.110301  ...  0.799355  2.721471 -0.697773
+4      0.155319  0.126152  0.905780  ... -0.735563  1.218228  0.672223
+5     -1.133144 -1.651195 -0.342055  ... -0.719715 -2.102751  0.912526
+6      0.019270 -1.217387 -0.758529  ...  1.549164  2.781903  1.876952
+7      0.158980 -1.225813 -1.678237  ...  1.280589  0.246019  0.614807
+8      0.064271 -2.410517 -0.576757  ...  0.825493 -0.795053 -0.008973
+9      0.652203  0.436045 -0.138883  ...  0.620222 -0.172713  0.919309
+10     1.188539 -1.250136 -1.027288  ... -1.316489  0.531235 -1.526836
+11    -0.757753 -0.757876 -1.128427  ... -0.162581 -1.704143 -1.010355
+12     1.469914  1.519842  0.957997  ...  0.126134 -1.215914 -0.053610
+13     0.414327 -1.399507 -0.741872  ...  0.253458  0.767883 -0.178207
+14     0.348487 -1.384055  1.225923  ...  0.871362  0.239461 -0.572437
+15     0.227229  0.619283 -1.530483  ... -0.827112 -1.305061  0.904966
+
+[16 rows x 100 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 16 entries, 0 to 15
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      16 non-null     int64  
+ 1   Estimator  16 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 388.0 bytes
+    index  Estimator
+0       0  -0.128899
+1       1  -0.588064
+2       2  -0.071139
+3       3  -0.593459
+4       4  -0.756634
+5       5  -0.262541
+6       6  -0.160653
+7       7  -0.015192
+8       8  -1.068124
+9       9  -0.061568
+10     10  -0.008834
+11     11  -0.076807
+12     12  -0.518486
+13     13  -0.076177
+14     14  -0.049716
+15     15  -0.696207
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('RandomReg_100_tiny', 'MLPRegressor') Estimator 7.133930921554565e-07
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+0       0      -0.128899     -0.128899  1.192093e-07
+1       1      -0.588064     -0.588063 -1.072884e-06
+2       2      -0.071139     -0.071140  2.980232e-07
+3       3      -0.593459     -0.593460  9.536743e-07
+4       4      -0.756634     -0.756632 -1.609325e-06
+5       5      -0.262541     -0.262539 -1.609325e-06
+6       6      -0.160653     -0.160652 -8.642673e-07
+7       7      -0.015192     -0.015191 -1.490116e-07
+8       8      -1.068124     -1.068122 -2.145767e-06
+9       9      -0.061568     -0.061569  5.662441e-07
+10     10      -0.008834     -0.008834  3.874302e-07
+11     11      -0.076807     -0.076808  3.874302e-07
+12     12      -0.518486     -0.518486 -5.960464e-08
+13     13      -0.076177     -0.076177 -8.940697e-08
+14     14      -0.049716     -0.049717  8.046627e-07
+15     15      -0.696207     -0.696207 -2.980232e-07
+MLLITE_REG_SQL_EXECUTION_STATUS ('RandomReg_100_tiny', 'MLPRegressor', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_RandomReg_100_tiny_option_1_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_100_tiny', 'MLPRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_100_tiny', 'MLPRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_100_tiny', 'MLPRegressor', 'sqlite')
+-0.214850 * t."OUT_4"  + 0.060161 * t."OUT_5"  + 0.188269 * t."OUT_6"  + -0.559185 * t."OUT_7" AS "OUT_5"
+   FROM "Hidden_Layer_2_Activation" AS t
+ ),
+"Hidden_Layer_3_Activation" AS
+ ( SELECT
+    t."index" as "index",
+    CASE WHEN (t."OUT_0" > 0) THEN t."OUT_0" ELSE 0 END AS "OUT_0",
+    CASE WHEN (t."OUT_1" > 0) THEN t."OUT_1" ELSE 0 END AS "OUT_1",
+    CASE WHEN (t."OUT_2" > 0) THEN t."OUT_2" ELSE 0 END AS "OUT_2",
+    CASE WHEN (t."OUT_3" > 0) THEN t."OUT_3" ELSE 0 END AS "OUT_3",
+    CASE WHEN (t."OUT_4" > 0) THEN t."OUT_4" ELSE 0 END AS "OUT_4",
+    CASE WHEN (t."OUT_5" > 0) THEN t."OUT_5" ELSE 0 END AS "OUT_5"
+   FROM "Hidden_Layer_3_BA" AS t
+ ),
+"Output_Layer_BA" AS
+ ( SELECT
+    t."index" as "index",
+    -0.686766 + -0.488683 * t."OUT_0"  + 0.828776 * t."OUT_1"  + 0.377069 * t."OUT_2"  + 0.803539 * t."OUT_3"  + -0.639210 * t."OUT_4"  + 0.569085 * t."OUT_5" AS "OUT_0"
+   FROM "Hidden_Layer_3_Activation" AS t
+ )
+ SELECT
+    t."index" AS "index",
+    t.OUT_0 AS "Estimator"
+  FROM "Output_Layer_BA" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_100_tiny', 'MLPRegressor', 'sqlite') 
 
 
 
@@ -859,21 +1082,64 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-    index  SQL_Estimator  Py_Estimator
-0       0      -0.128899     -0.128899
-1       1      -0.588064     -0.588063
-2       2      -0.071139     -0.071140
-3       3      -0.593459     -0.593460
-4       4      -0.756633     -0.756632
-5       5      -0.262541     -0.262539
-6       6      -0.160653     -0.160652
-7       7      -0.015192     -0.015191
-8       8      -1.068124     -1.068122
-9       9      -0.061568     -0.061569
-10     10      -0.008834     -0.008834
-11     11      -0.076807     -0.076808
-12     12      -0.518486     -0.518486
-13     13      -0.076177     -0.076177
-14     14      -0.049716     -0.049717
-15     15      -0.696207     -0.696207
+MLLITE_REG_SQL_L1_ERROR ('RandomReg_100_tiny', 'MLPRegressor') Estimator 6.916459328425162e-07
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+0       0      -0.128899     -0.128899  6.252380e-08
+1       1      -0.588064     -0.588063 -1.081253e-06
+2       2      -0.071139     -0.071140  2.854102e-07
+3       3      -0.593459     -0.593460  9.086990e-07
+4       4      -0.756633     -0.756632 -1.577000e-06
+5       5      -0.262541     -0.262539 -1.542018e-06
+6       6      -0.160653     -0.160652 -8.254369e-07
+7       7      -0.015192     -0.015191 -1.069137e-07
+8       8      -1.068124     -1.068122 -2.140625e-06
+9       9      -0.061568     -0.061569  5.061001e-07
+10     10      -0.008834     -0.008834  2.750533e-07
+11     11      -0.076807     -0.076808  4.565769e-07
+12     12      -0.518486     -0.518486  1.418921e-07
+13     13      -0.076177     -0.076177 -1.114178e-07
+14     14      -0.049716     -0.049717  7.446446e-07
+15     15      -0.696207     -0.696207 -3.007705e-07
+MLLITE_REG_SQL_EXECUTION_STATUS ('RandomReg_100_tiny', 'MLPRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/MLPRegressor/mllite.MLPRegressor_RandomReg_100_tiny_option_1_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_100_tiny', 'MLPRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
+SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_100_tiny', 'MLPRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('RandomReg_100_tiny', 'MLPRegressor', 'pgsql')
+-0.214850 * t."OUT_4"  + 0.060161 * t."OUT_5"  + 0.188269 * t."OUT_6"  + -0.559185 * t."OUT_7" AS "OUT_5"
+   FROM "Hidden_Layer_2_Activation" AS t
+ ),
+"Hidden_Layer_3_Activation" AS
+ ( SELECT
+    t."index" as "index",
+    CASE WHEN (t."OUT_0" > 0) THEN t."OUT_0" ELSE 0 END AS "OUT_0",
+    CASE WHEN (t."OUT_1" > 0) THEN t."OUT_1" ELSE 0 END AS "OUT_1",
+    CASE WHEN (t."OUT_2" > 0) THEN t."OUT_2" ELSE 0 END AS "OUT_2",
+    CASE WHEN (t."OUT_3" > 0) THEN t."OUT_3" ELSE 0 END AS "OUT_3",
+    CASE WHEN (t."OUT_4" > 0) THEN t."OUT_4" ELSE 0 END AS "OUT_4",
+    CASE WHEN (t."OUT_5" > 0) THEN t."OUT_5" ELSE 0 END AS "OUT_5"
+   FROM "Hidden_Layer_3_BA" AS t
+ ),
+"Output_Layer_BA" AS
+ ( SELECT
+    t."index" as "index",
+    -0.686766 + -0.488683 * t."OUT_0"  + 0.828776 * t."OUT_1"  + 0.377069 * t."OUT_2"  + 0.803539 * t."OUT_3"  + -0.639210 * t."OUT_4"  + 0.569085 * t."OUT_5" AS "OUT_0"
+   FROM "Hidden_Layer_3_Activation" AS t
+ )
+ SELECT
+    t."index" AS "index",
+    t.OUT_0 AS "Estimator"
+  FROM "Output_Layer_BA" AS t
+
+SQL_OUT_PUT_LAST_LINES_END ('RandomReg_100_tiny', 'MLPRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

@@ -81,11 +81,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 2 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.006, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.007, 'TRAINING')
 { "max_depth" : 6, "max_leaf_nodes" : 32,  "max_leaf_nodes" : 64 , }
 { "max_depth" : 6, "max_leaf_nodes" : 32,  "max_leaf_nodes" : 64 , }
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : 6, "max_features" : null, "max_leaf_nodes" : 32, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 55, "dataset_features" : 10 },
 	"tree" : {
@@ -168,7 +168,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING DecisionTreeRegressor { "max_depth" : 6, "max
 MLLITE_MODEL_JSON_AFTER_SETTING DecisionTreeRegressor None
 MLLITE_RELOADING_MODEL mllite_decision_tree_reg.DecisionTreeRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : 6, "max_features" : null, "max_leaf_nodes" : 32, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 55, "dataset_features" : 10 },
 	"tree" : {
@@ -249,7 +249,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 10,
 		"dataset_rows" : 55
 	},
-	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "ccp_alpha" : 0.0, "criterion" : "", "max_depth" : 6, "max_features" : null, "max_leaf_nodes" : 32, "min_impurity_decrease" : 0.0, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.0, "random_state" : 1789, "splitter" : "best" },
 	"tree" : 	{
 		"features" : 10,
@@ -343,12 +343,12 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': '{"max_depth" : 6, "max_leaf_nodes" : 32}', 'dataset': 'diabetes_sampled', 'size': 55, 'mse': 48.58273, 'mae': 3.9345455, 'mape': 0.03506074, 'r2': 0.9926986713318768}
 WRITING_PERF_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_diabetes_sampled_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': '{"max_depth" : 6, "max_leaf_nodes" : 32}', 'dataset': 'diabetes_sampled', 'training_time_in_sec': 0.006, 'prediction_time_in_sec': 0.001}
-WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_diabetes_sampled_option_1.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': '{"max_depth" : 6, "max_leaf_nodes" : 32}', 'dataset': 'diabetes_sampled', 'training_time_in_sec': 0.007, 'prediction_time_in_sec': 0.001}
+WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_diabetes_sampled_option_1_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_sampled', 'DecisionTreeRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
@@ -358,8 +358,8 @@ WITH model_input AS
  (SELECT
     model_input."index" AS "index",
     CASE WHEN (model_input."X_8" <= -0.002877) THEN CASE WHEN (model_input."X_3" <= 0.037365) THEN CASE WHEN (model_input."X_6" <= 0.046799) THEN CASE WHEN (model_input."X_9" <= -0.019717) THEN CASE WHEN (model_input."X_1" <= 0.003019) THEN CASE WHEN (model_input."X_6" <= 0.026550) THEN 33 ELSE 34 END ELSE CASE WHEN (model_input."X_8" <= -0.037913) THEN 37 ELSE 38 END END ELSE CASE WHEN (model_input."X_5" <= 0.042683) THEN CASE WHEN (model_input."X_5" <= 0.003227) THEN 45 ELSE 46 EN
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_sampled', 'DecisionTreeRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_sampled', 'DecisionTreeRegressor', 'duckdb')
     UNION ALL
     SELECT 50 AS nid, 124.000000 AS "E"
     UNION ALL
@@ -388,7 +388,7 @@ SQL_OUT_PUT_LAST_LINES_START
     SELECT 62 AS nid, 124.000000 AS "E"
   ) AS "Values"
  ),
-"DT_output" AS 
+"DT_Output" AS 
  (SELECT
    t1."index" AS "index",
    t1.node_id AS node_id,
@@ -404,7 +404,7 @@ SELECT
    "DT_Output"."index" AS "index",
    "DT_Output"."E" AS "Estimator"
 FROM "DT_Output"
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_sampled', 'DecisionTreeRegressor', 'duckdb') 
 
 
 
@@ -560,21 +560,325 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-    index  SQL_Estimator  Py_Estimator
-39     39     295.000000    295.000000
-40     40     276.000000    276.000000
-41     41     108.000000    108.000000
-42     42      62.000000     62.000000
-43     43     146.800003    146.800003
-44     44      62.000000     62.000000
-45     45     292.000000    292.000000
-46     46     101.500000    101.500000
-47     47     210.250000    210.250000
-48     48     122.500000    122.500000
-49     49     219.000000    219.000000
-50     50      97.000000     97.000000
-51     51     210.250000    210.250000
-52     52      55.000000     55.000000
-53     53     146.800003    146.800003
-54     54     346.000000    346.000000
+MLLITE_REG_SQL_L1_ERROR ('diabetes_sampled', 'DecisionTreeRegressor') Estimator 4.705255336871646e-09
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+39     39     295.000000    295.000000  0.000000e+00
+40     40     276.000000    276.000000  0.000000e+00
+41     41     108.000000    108.000000  0.000000e+00
+42     42      62.000000     62.000000  0.000000e+00
+43     43     146.800003    146.800003 -5.175781e-08
+44     44      62.000000     62.000000  0.000000e+00
+45     45     292.000000    292.000000  0.000000e+00
+46     46     101.500000    101.500000  0.000000e+00
+47     47     210.250000    210.250000  0.000000e+00
+48     48     122.500000    122.500000  0.000000e+00
+49     49     219.000000    219.000000  0.000000e+00
+50     50      97.000000     97.000000  0.000000e+00
+51     51     210.250000    210.250000  0.000000e+00
+52     52      55.000000     55.000000  0.000000e+00
+53     53     146.800003    146.800003 -5.175781e-08
+54     54     346.000000    346.000000  0.000000e+00
+MLLITE_REG_SQL_EXECUTION_STATUS ('diabetes_sampled', 'DecisionTreeRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_diabetes_sampled_option_1_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_sampled', 'DecisionTreeRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup" AS 
+ (SELECT
+    model_input."index" AS "index",
+    CASE WHEN (model_input."X_8" <= -0.002877) THEN CASE WHEN (model_input."X_3" <= 0.037365) THEN CASE WHEN (model_input."X_6" <= 0.046799) THEN CASE WHEN (model_input."X_9" <= -0.019717) THEN CASE WHEN (model_input."X_1" <= 0.003019) THEN CASE WHEN (model_input."X_6" <= 0.026550) THEN 33 ELSE 34 END ELSE CASE WHEN (model_input."X_8" <= -0.037913) THEN 37 ELSE 38 END END ELSE CASE WHEN (model_input."X_5" <= 0.042683) THEN CASE WHEN (model_input."X_5" <= 0.003227) THEN 45 ELSE 46 EN
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_sampled', 'DecisionTreeRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_sampled', 'DecisionTreeRegressor', 'sqlite')
+    UNION ALL
+    SELECT 50 AS nid, 124.000000 AS "E"
+    UNION ALL
+    SELECT 51 AS nid, 292.000000 AS "E"
+    UNION ALL
+    SELECT 52 AS nid, 275.500000 AS "E"
+    UNION ALL
+    SELECT 53 AS nid, 109.000000 AS "E"
+    UNION ALL
+    SELECT 54 AS nid, 96.000000 AS "E"
+    UNION ALL
+    SELECT 55 AS nid, 62.000000 AS "E"
+    UNION ALL
+    SELECT 56 AS nid, 49.000000 AS "E"
+    UNION ALL
+    SELECT 57 AS nid, 97.000000 AS "E"
+    UNION ALL
+    SELECT 58 AS nid, 84.000000 AS "E"
+    UNION ALL
+    SELECT 59 AS nid, 86.500000 AS "E"
+    UNION ALL
+    SELECT 60 AS nid, 95.000000 AS "E"
+    UNION ALL
+    SELECT 61 AS nid, 131.000000 AS "E"
+    UNION ALL
+    SELECT 62 AS nid, 124.000000 AS "E"
+  ) AS "Values"
+ ),
+"DT_Output" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data" AS t2
+   ON t1.node_id = t2.nid
+ )
+SELECT
+   "DT_Output"."index" AS "index",
+   "DT_Output"."E" AS "Estimator"
+FROM "DT_Output"
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_sampled', 'DecisionTreeRegressor', 'sqlite') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 55 entries, 0 to 54
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     55 non-null     float32
+ 1   X_1     55 non-null     float32
+ 2   X_2     55 non-null     float32
+ 3   X_3     55 non-null     float32
+ 4   X_4     55 non-null     float32
+ 5   X_5     55 non-null     float32
+ 6   X_6     55 non-null     float32
+ 7   X_7     55 non-null     float32
+ 8   X_8     55 non-null     float32
+ 9   X_9     55 non-null     float32
+dtypes: float32(10)
+memory usage: 2.6 KB
+            X_0       X_1       X_2  ...       X_7       X_8       X_9
+index                                ...                              
+0      0.038076  0.050680 -0.009439  ...  0.050176 -0.025953  0.106617
+1      0.081666  0.050680  0.001339  ...  0.034309  0.084492 -0.030072
+2      0.041708 -0.044642 -0.008362  ... -0.039493 -0.048359 -0.030072
+3     -0.041840 -0.044642  0.128521  ... -0.039493 -0.015999 -0.050783
+4      0.023546  0.050680 -0.030996  ... -0.002592 -0.074093 -0.034215
+5      0.016281  0.050680  0.014272  ...  0.034309  0.074966  0.040343
+6     -0.009147  0.050680 -0.039618  ...  0.071210  0.017765 -0.067351
+7     -0.085430 -0.044642 -0.004050  ... -0.039493 -0.061176 -0.013504
+8     -0.001882 -0.044642  0.033673  ... -0.002592  0.026717  0.061054
+9     -0.070900  0.050680 -0.089197  ... -0.002592 -0.012909 -0.054925
+10    -0.052738 -0.044642  0.071397  ... -0.021412 -0.046883  0.003064
+11    -0.060003  0.050680  0.015350  ... -0.002592 -0.030748 -0.001078
+12     0.009016  0.050680  0.069241  ...  0.034309  0.103297  0.073480
+13    -0.096328 -0.044642 -0.076264  ... -0.039493 -0.059471 -0.083920
+14    -0.060003  0.050680 -0.047163  ... -0.039493 -0.062917 -0.054925
+15     0.045341 -0.044642  0.071397  ... -0.039493 -0.041176 -0.071494
+16     0.027178 -0.044642 -0.007284  ... -0.002592  0.043444  0.015491
+17     0.067136 -0.044642 -0.061174  ... -0.039493 -0.056153 -0.059067
+18     0.030811 -0.044642 -0.033151  ... -0.076395 -0.039809 -0.054925
+19     0.074401 -0.044642  0.114509  ... -0.002592 -0.000612 -0.005220
+20     0.016281  0.050680 -0.021295  ... -0.002592 -0.012909  0.023775
+21     0.001751  0.050680 -0.005128  ... -0.039493 -0.006081 -0.067351
+22    -0.103593  0.050680 -0.023451  ... -0.039493 -0.078140 -0.071494
+23     0.023546  0.050680 -0.020218  ... -0.039493 -0.096435 -0.017646
+24    -0.016412  0.050680  0.002417  ...  0.034309  0.085531  0.081764
+25     0.056239  0.050680  0.009961  ...  0.034309  0.060791  0.032059
+26     0.067136 -0.044642  0.036907  ... -0.039493 -0.025953 -0.038357
+27    -0.052738  0.050680  0.039062  ... -0.039493  0.016307  0.003064
+28     0.067136  0.050680 -0.014828  ...  0.012906 -0.005142  0.048628
+29     0.038076  0.050680 -0.029918  ... -0.002592  0.003709 -0.030072
+30    -0.070900 -0.044642 -0.004050  ... -0.076395 -0.051404 -0.034215
+31     0.019913  0.050680  0.104809  ... -0.002592  0.003709  0.040343
+32    -0.016412 -0.044642 -0.052552  ... -0.039493 -0.068332 -0.030072
+33    -0.005515  0.050680  0.001339  ... -0.039493 -0.041176 -0.088062
+34     0.045341  0.050680 -0.008362  ...  0.034309  0.029935  0.027917
+35    -0.001882  0.050680  0.030440  ...  0.071210  0.025395  0.027917
+36     0.012648  0.050680 -0.020218  ...  0.034309 -0.005142 -0.009362
+37     0.009016 -0.044642 -0.032073  ... -0.076395 -0.011897 -0.038357
+38     0.016281 -0.044642  0.020739  ... -0.002592  0.013317  0.040343
+39     0.041708  0.050680  0.071397  ...  0.034309  0.073407  0.085907
+40     0.048974  0.050680  0.074630  ...  0.034309  0.033654  0.019633
+41     0.067136  0.050680 -0.029918  ... -0.050564 -0.038460  0.007207
+42    -0.027310  0.050680 -0.055785  ... -0.039493 -0.005142 -0.050783
+43    -0.052738 -0.044642  0.054152  ... -0.039493 -0.074093 -0.059067
+44    -0.041840 -0.044642 -0.066563  ... -0.039493 -0.056153 -0.013504
+45     0.009016 -0.044642 -0.012673  ...  0.034309  0.023371 -0.005220
+46     0.001751 -0.044642 -0.046085  ... -0.069383 -0.061176 -0.079778
+47     0.045341 -0.044642 -0.006206  ...  0.034309  0.032432 -0.005220
+48    -0.023677 -0.044642  0.030440  ...  0.071210  0.033043  0.003064
+49     0.023546  0.050680 -0.019140  ... -0.039493 -0.025953 -0.013504
+50     0.009016 -0.044642 -0.020218  ... -0.039493 -0.010903 -0.001078
+51     0.034443 -0.044642 -0.038540  ... -0.002592  0.031193  0.098333
+52    -0.099961 -0.044642 -0.067641  ... -0.039493 -0.049872 -0.009362
+53     0.005383 -0.044642  0.058463  ... -0.076395 -0.051404 -0.025930
+54    -0.049105 -0.044642  0.160855  ...  0.034309  0.028020  0.011349
+
+[55 rows x 10 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 55 entries, 0 to 54
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      55 non-null     int64  
+ 1   Estimator  55 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 1012.0 bytes
+    index   Estimator
+0       0   74.500000
+1       1  210.250000
+2       2   84.000000
+3       3  259.000000
+4       4   66.000000
+5       5  210.250000
+6       6  124.000000
+7       7   74.500000
+8       8  275.500000
+9       9   98.000000
+10     10   55.000000
+11     11   96.000000
+12     12  276.000000
+13     13  146.800003
+14     14   66.000000
+15     15  146.800003
+16     16   95.000000
+17     17  101.500000
+18     18   62.000000
+19     19  237.000000
+20     20  109.000000
+21     21   98.000000
+22     22   66.000000
+23     23   49.000000
+24     24  122.500000
+25     25  150.000000
+26     26   90.000000
+27     27   86.500000
+28     28  124.000000
+29     29   86.500000
+30     30   62.000000
+31     31  321.000000
+32     32  146.800003
+33     33   49.000000
+34     34  131.000000
+35     35  222.000000
+36     36  109.000000
+37     37   84.000000
+38     38  275.500000
+39     39  295.000000
+40     40  276.000000
+41     41  108.000000
+42     42   62.000000
+43     43  146.800003
+44     44   62.000000
+45     45  292.000000
+46     46  101.500000
+47     47  210.250000
+48     48  122.500000
+49     49  219.000000
+50     50   97.000000
+51     51  210.250000
+52     52   55.000000
+53     53  146.800003
+54     54  346.000000
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('diabetes_sampled', 'DecisionTreeRegressor') Estimator 4.705255336871646e-09
+    index  SQL_Estimator  Py_Estimator     SQL_Error
+39     39     295.000000    295.000000  0.000000e+00
+40     40     276.000000    276.000000  0.000000e+00
+41     41     108.000000    108.000000  0.000000e+00
+42     42      62.000000     62.000000  0.000000e+00
+43     43     146.800003    146.800003 -5.175781e-08
+44     44      62.000000     62.000000  0.000000e+00
+45     45     292.000000    292.000000  0.000000e+00
+46     46     101.500000    101.500000  0.000000e+00
+47     47     210.250000    210.250000  0.000000e+00
+48     48     122.500000    122.500000  0.000000e+00
+49     49     219.000000    219.000000  0.000000e+00
+50     50      97.000000     97.000000  0.000000e+00
+51     51     210.250000    210.250000  0.000000e+00
+52     52      55.000000     55.000000  0.000000e+00
+53     53     146.800003    146.800003 -5.175781e-08
+54     54     346.000000    346.000000  0.000000e+00
+MLLITE_REG_SQL_EXECUTION_STATUS ('diabetes_sampled', 'DecisionTreeRegressor', 'Success')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_diabetes_sampled_option_1_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('diabetes_sampled', 'DecisionTreeRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup" AS 
+ (SELECT
+    model_input."index" AS "index",
+    CASE WHEN (model_input."X_8" <= -0.002877) THEN CASE WHEN (model_input."X_3" <= 0.037365) THEN CASE WHEN (model_input."X_6" <= 0.046799) THEN CASE WHEN (model_input."X_9" <= -0.019717) THEN CASE WHEN (model_input."X_1" <= 0.003019) THEN CASE WHEN (model_input."X_6" <= 0.026550) THEN 33 ELSE 34 END ELSE CASE WHEN (model_input."X_8" <= -0.037913) THEN 37 ELSE 38 END END ELSE CASE WHEN (model_input."X_5" <= 0.042683) THEN CASE WHEN (model_input."X_5" <= 0.003227) THEN 45 ELSE 46 EN
+SQL_OUT_PUT_FIRST_LINES_END ('diabetes_sampled', 'DecisionTreeRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('diabetes_sampled', 'DecisionTreeRegressor', 'pgsql')
+    UNION ALL
+    SELECT 50 AS nid, 124.000000 AS "E"
+    UNION ALL
+    SELECT 51 AS nid, 292.000000 AS "E"
+    UNION ALL
+    SELECT 52 AS nid, 275.500000 AS "E"
+    UNION ALL
+    SELECT 53 AS nid, 109.000000 AS "E"
+    UNION ALL
+    SELECT 54 AS nid, 96.000000 AS "E"
+    UNION ALL
+    SELECT 55 AS nid, 62.000000 AS "E"
+    UNION ALL
+    SELECT 56 AS nid, 49.000000 AS "E"
+    UNION ALL
+    SELECT 57 AS nid, 97.000000 AS "E"
+    UNION ALL
+    SELECT 58 AS nid, 84.000000 AS "E"
+    UNION ALL
+    SELECT 59 AS nid, 86.500000 AS "E"
+    UNION ALL
+    SELECT 60 AS nid, 95.000000 AS "E"
+    UNION ALL
+    SELECT 61 AS nid, 131.000000 AS "E"
+    UNION ALL
+    SELECT 62 AS nid, 124.000000 AS "E"
+  ) AS "Values"
+ ),
+"DT_Output" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data" AS t2
+   ON t1.node_id = t2.nid
+ )
+SELECT
+   "DT_Output"."index" AS "index",
+   "DT_Output"."E" AS "Estimator"
+FROM "DT_Output"
+SQL_OUT_PUT_LAST_LINES_END ('diabetes_sampled', 'DecisionTreeRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START

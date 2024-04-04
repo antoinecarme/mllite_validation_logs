@@ -62,11 +62,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 31 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 32 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 33 34
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 34 34
-('OPERATION_END_ELAPSED', 0.148, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.101, 'TRAINING')
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 { ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.000000, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 9 },
 	"booster" : {
@@ -1784,7 +1784,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING XGBRegressor { ,  "nthread" : 1, "max_bin" : 
 MLLITE_MODEL_JSON_AFTER_SETTING XGBRegressor None
 MLLITE_RELOADING_MODEL mllite_xgb_reg.XGBRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W12", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_ff4"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.000000, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 9 },
 	"booster" : {
@@ -16672,7 +16672,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 9,
 		"dataset_rows" : 64
 	},
-	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_ff4", "version" : "2024-W12" },
+	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_ff4", "version" : "2024-W13" },
 	"options" :  { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.0, "grow_policy" : 0, "learning_rate" : 0.3, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "min_child_weight" : 1.0, "n_estimators" : 32, "objective" : "reg:squarederror", "reg_alpha" : 0.0, "reg_lambda" : 1.0, "tree_method" : "auto" }
 }
 BEAUTIFIED_JSON_END
@@ -16705,12 +16705,12 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'california_housing_small', 'size': 64, 'mse': 364151.8, 'mae': 392.5028, 'mape': 0.0023552082, 'r2': 0.9999696485757296}
 WRITING_PERF_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_california_housing_small.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'california_housing_small', 'training_time_in_sec': 0.148, 'prediction_time_in_sec': 0.002}
-WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_california_housing_small.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': None, 'dataset': 'california_housing_small', 'training_time_in_sec': 0.101, 'prediction_time_in_sec': 0.002}
+WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_california_housing_small_duckdb.sql'
 
 
 
-SQL_OUT_PUT_FIRST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_START ('california_housing_small', 'XGBRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
@@ -16720,8 +16720,8 @@ WITH model_input AS
  (SELECT
     t."index" AS "index",
     CASE WHEN (t."X_7" < 3.899200) THEN CASE WHEN (t."X_5" < 569.000000) THEN CASE WHEN (t."X_0" < -121.440002) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_4" < 973.000000) THEN CASE WHEN (t."X_7" < 3.611800) THEN CASE WHEN (t."X_3" < 1126.000000) THEN 23 ELSE 24 END ELSE CASE WHEN (t."X_2" < 36.000000) THEN CASE WHEN (t."X_3" < 3114.000000) THEN 35 ELSE 36 END ELSE 26 END END ELSE CASE WHEN (t."X_2" < 22.000000) THEN CASE WHEN (t."X_0" < -121.440002) THEN 27 ELSE 28 END ELSE CASE WHEN (t."X_3" < 3459.000000) THEN 29 ELSE 30 END EN
-SQL_OUT_PUT_FIRST_LINES_END
-SQL_OUT_PUT_LAST_LINES_START
+SQL_OUT_PUT_FIRST_LINES_END ('california_housing_small', 'XGBRegressor', 'duckdb')
+SQL_OUT_PUT_LAST_LINES_START ('california_housing_small', 'XGBRegressor', 'duckdb')
 DT_output_21" AS t
     UNION ALL
     SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_22" AS t
@@ -16750,7 +16750,140 @@ SELECT
    203459.406250 + SUM(t."E") AS "Estimator"
 FROM "union_of_trees" AS t
 GROUP BY t."index"
-SQL_OUT_PUT_LAST_LINES_END
+SQL_OUT_PUT_LAST_LINES_END ('california_housing_small', 'XGBRegressor', 'duckdb') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+Index: 64 entries, 0 to 63
+Data columns (total 9 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   X_0     64 non-null     float32
+ 1   X_1     64 non-null     float32
+ 2   X_2     64 non-null     float32
+ 3   X_3     64 non-null     float32
+ 4   X_4     64 non-null     float32
+ 5   X_5     64 non-null     float32
+ 6   X_6     64 non-null     float32
+ 7   X_7     64 non-null     float32
+ 8   X_8     64 non-null     float32
+dtypes: float32(9)
+memory usage: 2.8 KB
+              X_0        X_1   X_2     X_3    X_4     X_5    X_6     X_7  X_8
+index                                                                        
+0     -121.910004  36.630001  42.0   817.0  194.0   391.0  193.0  2.1776  0.0
+1     -121.430000  38.660000  35.0  1814.0  367.0  1076.0  372.0  2.7179  0.0
+2     -121.580002  39.500000  29.0  1947.0  383.0   925.0  337.0  2.1658  0.0
+3     -120.239998  39.349998   8.0  4195.0  725.0   291.0  115.0  3.4792  0.0
+4     -122.019997  38.369999  16.0  2495.0  331.0  1118.0  338.0  6.4894  0.0
+...           ...        ...   ...     ...    ...     ...    ...     ...  ...
+59    -118.209999  34.099998  36.0  2000.0  533.0  1234.0  535.0  3.7437  0.0
+60    -117.139999  32.700001  43.0  1126.0  289.0  1132.0  294.0  2.1875  0.0
+61    -117.940002  33.889999  30.0  2577.0  404.0  1076.0  374.0  6.7528  0.0
+62    -118.419998  33.959999  44.0  1282.0  216.0   494.0  209.0  5.6180  0.0
+63    -117.949997  34.040001  27.0  2610.0  846.0  2296.0  750.0  2.2740  0.0
+
+[64 rows x 9 columns]
+COPY_TRAINING_DATA_TO_SQLITE_END
+
+
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 64 entries, 0 to 63
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   index      64 non-null     int64  
+ 1   Estimator  64 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 1.1 KB
+    index      Estimator
+0       0  279180.053539
+1       1   81108.429165
+2       2   58122.954401
+3       3  180885.005963
+4       4  197986.323203
+..    ...            ...
+59     59  239519.158344
+60     60   87823.165808
+61     61  457974.041684
+62     62  365835.933902
+63     63  149504.712827
+
+[64 rows x 2 columns]
+PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
+
+
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
+Index(['index', 'Estimator'], dtype='object')
+MLLITE_REG_SQL_L1_ERROR ('california_housing_small', 'XGBRegressor') Estimator 0.025416382813773453
+    index  SQL_Estimator   Py_Estimator  SQL_Error
+48     48  295243.041169  295243.062500  -0.021331
+49     49  133449.359013  133449.343750   0.015263
+50     50  189115.061519  189115.062500  -0.000981
+51     51   96589.403137   96589.398438   0.004700
+52     52   69910.865329   69910.898438  -0.033109
+53     53  499632.392609  499632.343750   0.048859
+54     54  136300.567716  136300.546875   0.020841
+55     55   89506.457733   89506.437500   0.020233
+56     56  383794.424925  383794.375000   0.049925
+57     57   94595.041754   94595.031250   0.010504
+58     58  230836.911284  230836.937500  -0.026216
+59     59  239519.158344  239519.156250   0.002094
+60     60   87823.165808   87823.171875  -0.006067
+61     61  457974.041684  457973.968750   0.072934
+62     62  365835.933902  365835.906250   0.027652
+63     63  149504.712827  149504.687500   0.025327
+MLLITE_REG_SQL_EXECUTION_STATUS ('california_housing_small', 'XGBRegressor', 'Failure')
+COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_california_housing_small_sqlite.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('california_housing_small', 'XGBRegressor', 'sqlite')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup_0" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_7" < 3.899200) THEN CASE WHEN (t."X_5" < 569.000000) THEN CASE WHEN (t."X_0" < -121.440002) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_4" < 973.000000) THEN CASE WHEN (t."X_7" < 3.611800) THEN CASE WHEN (t."X_3" < 1126.000000) THEN 23 ELSE 24 END ELSE CASE WHEN (t."X_2" < 36.000000) THEN CASE WHEN (t."X_3" < 3114.000000) THEN 35 ELSE 36 END ELSE 26 END END ELSE CASE WHEN (t."X_2" < 22.000000) THEN CASE WHEN (t."X_0" < -121.440002) THEN 27 ELSE 28 END ELSE CASE WHEN (t."X_3" < 3459.000000) THEN 29 ELSE 30 END EN
+SQL_OUT_PUT_FIRST_LINES_END ('california_housing_small', 'XGBRegressor', 'sqlite')
+SQL_OUT_PUT_LAST_LINES_START ('california_housing_small', 'XGBRegressor', 'sqlite')
+DT_output_21" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_22" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_23" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_24" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_25" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_26" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_27" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_28" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_29" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_30" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_31" AS t
+  ) AS scu
+)
+SELECT
+   t."index" AS "index",
+   203459.406250 + SUM(t."E") AS "Estimator"
+FROM "union_of_trees" AS t
+GROUP BY t."index"
+SQL_OUT_PUT_LAST_LINES_END ('california_housing_small', 'XGBRegressor', 'sqlite') 
 
 
 
@@ -16819,21 +16952,73 @@ PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
 
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
 Index(['index', 'Estimator'], dtype='object')
-    index  SQL_Estimator   Py_Estimator
-48     48  295243.041169  295243.062500
-49     49  133449.359013  133449.343750
-50     50  189115.061519  189115.062500
-51     51   96916.211716   96589.398438
-52     52   70099.835645   69910.898438
-53     53  499632.392609  499632.343750
-54     54  136300.567716  136300.546875
-55     55   89506.457733   89506.437500
-56     56  383794.424925  383794.375000
-57     57   94595.041754   94595.031250
-58     58  230836.911284  230836.937500
-59     59  239519.158344  239519.156250
-60     60   87823.165808   87823.171875
-61     61  409348.340756  457973.968750
-62     62  365835.933902  365835.906250
-63     63  149504.712827  149504.687500
+MLLITE_REG_SQL_L1_ERROR ('california_housing_small', 'XGBRegressor') Estimator 7568.773543210935
+    index  SQL_Estimator   Py_Estimator     SQL_Error
+48     48  295243.041169  295243.062500     -0.021331
+49     49  133449.359013  133449.343750      0.015263
+50     50  189115.061519  189115.062500     -0.000981
+51     51   96916.211716   96589.398438    326.813279
+52     52   70099.835645   69910.898438    188.937207
+53     53  499632.392609  499632.343750      0.048859
+54     54  136300.567716  136300.546875      0.020841
+55     55   89506.457733   89506.437500      0.020233
+56     56  383794.424925  383794.375000      0.049925
+57     57   94595.041754   94595.031250      0.010504
+58     58  230836.911284  230836.937500     -0.026216
+59     59  239519.158344  239519.156250      0.002094
+60     60   87823.165808   87823.171875     -0.006067
+61     61  409348.340756  457973.968750 -48625.627994
+62     62  365835.933902  365835.906250      0.027652
+63     63  149504.712827  149504.687500      0.025327
+MLLITE_REG_SQL_EXECUTION_STATUS ('california_housing_small', 'XGBRegressor', 'Failure')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
+WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_california_housing_small_pgsql.sql'
+
+
+
+SQL_OUT_PUT_FIRST_LINES_START ('california_housing_small', 'XGBRegressor', 'pgsql')
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup_0" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_7" < 3.899200) THEN CASE WHEN (t."X_5" < 569.000000) THEN CASE WHEN (t."X_0" < -121.440002) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_4" < 973.000000) THEN CASE WHEN (t."X_7" < 3.611800) THEN CASE WHEN (t."X_3" < 1126.000000) THEN 23 ELSE 24 END ELSE CASE WHEN (t."X_2" < 36.000000) THEN CASE WHEN (t."X_3" < 3114.000000) THEN 35 ELSE 36 END ELSE 26 END END ELSE CASE WHEN (t."X_2" < 22.000000) THEN CASE WHEN (t."X_0" < -121.440002) THEN 27 ELSE 28 END ELSE CASE WHEN (t."X_3" < 3459.000000) THEN 29 ELSE 30 END EN
+SQL_OUT_PUT_FIRST_LINES_END ('california_housing_small', 'XGBRegressor', 'pgsql')
+SQL_OUT_PUT_LAST_LINES_START ('california_housing_small', 'XGBRegressor', 'pgsql')
+DT_output_21" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_22" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_23" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_24" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_25" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_26" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_27" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_28" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_29" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_30" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_31" AS t
+  ) AS scu
+)
+SELECT
+   t."index" AS "index",
+   203459.406250 + SUM(t."E") AS "Estimator"
+FROM "union_of_trees" AS t
+GROUP BY t."index"
+SQL_OUT_PUT_LAST_LINES_END ('california_housing_small', 'XGBRegressor', 'pgsql') 
+
+
+
+
+COPY_TRAINING_DATA_TO_SQLITE_START
