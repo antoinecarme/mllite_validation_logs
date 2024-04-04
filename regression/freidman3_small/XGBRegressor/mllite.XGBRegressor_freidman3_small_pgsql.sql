@@ -1,0 +1,2264 @@
+WITH model_input AS 
+ (SELECT "ADS"."index" AS "index",
+    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
+  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+ ),
+"DT_node_lookup_0" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 13 ELSE 14 END ELSE 8 END ELSE 4 END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_2" < 0.428596) THEN 9 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 15 ELSE 16 END END ELSE CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_2" < 0.287537) THEN CASE WHEN (t."X_0" < 34.347893) THEN 21 ELSE 22 END ELSE 18 END ELSE CASE WHEN (t."X_2" < 0.287537) THEN CASE WHEN (t."X_1" < 715.890503) THEN CASE WHEN (t."X_0" < 50.992905) THEN 27 ELSE 28 END ELSE CASE WHEN (t."X_0" < 74.577126) THEN 29 ELSE 30 END END ELSE CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_0" < 78.244774) THEN 31 ELSE 32 END ELSE CASE WHEN (t."X_2" < 0.588332) THEN 33 ELSE 34 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_0" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 4 AS nid,  -0.246822 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.037388 AS "E"
+    UNION ALL
+    SELECT 9 AS nid,  -0.128222 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000460 AS "E"
+    UNION ALL
+    SELECT 14 AS nid,  -0.007694 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.003258 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.026356 AS "E"
+    UNION ALL
+    SELECT 18 AS nid,  0.060978 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  0.038242 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  0.004672 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  -0.016810 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  -0.069165 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.011480 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  -0.010970 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.018162 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  -0.007510 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  0.020713 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.042049 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_0" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_0" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_0" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_1" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 13 ELSE 14 END ELSE 8 END ELSE 4 END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_2" < 0.428596) THEN 9 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 15 ELSE 16 END END ELSE CASE WHEN (t."X_0" < 39.873802) THEN 11 ELSE CASE WHEN (t."X_2" < 0.287537) THEN CASE WHEN (t."X_1" < 715.890503) THEN CASE WHEN (t."X_0" < 50.992905) THEN 23 ELSE 24 END ELSE CASE WHEN (t."X_1" < 1575.160400) THEN 25 ELSE 26 END END ELSE CASE WHEN (t."X_1" < 472.756287) THEN CASE WHEN (t."X_0" < 50.992905) THEN 27 ELSE 28 END ELSE CASE WHEN (t."X_1" < 889.292297) THEN 29 ELSE 30 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_1" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 4 AS nid,  -0.191287 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.031780 AS "E"
+    UNION ALL
+    SELECT 9 AS nid,  -0.102578 AS "E"
+    UNION ALL
+    SELECT 11 AS nid,  0.040781 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000391 AS "E"
+    UNION ALL
+    SELECT 14 AS nid,  -0.006540 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.002769 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.020426 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  -0.013448 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  -0.053603 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  -0.006282 AS "E"
+    UNION ALL
+    SELECT 26 AS nid,  0.013875 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  0.006771 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  -0.015593 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.013682 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.031911 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_1" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_1" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_1" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_2" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 13 ELSE 14 END ELSE 8 END ELSE 4 END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_2" < 0.428596) THEN 9 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 15 ELSE 16 END END ELSE CASE WHEN (t."X_2" < 0.287537) THEN CASE WHEN (t."X_0" < 34.347893) THEN 17 ELSE CASE WHEN (t."X_1" < 715.890503) THEN CASE WHEN (t."X_0" < 50.992905) THEN 27 ELSE 28 END ELSE CASE WHEN (t."X_1" < 1575.160400) THEN 29 ELSE 30 END END END ELSE CASE WHEN (t."X_0" < 78.244774) THEN CASE WHEN (t."X_0" < 34.347893) THEN 23 ELSE CASE WHEN (t."X_1" < 635.121277) THEN 31 ELSE 32 END END ELSE CASE WHEN (t."X_1" < 472.756287) THEN 25 ELSE CASE WHEN (t."X_2" < 0.674758) THEN 33 ELSE 34 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_2" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 4 AS nid,  -0.148247 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.027013 AS "E"
+    UNION ALL
+    SELECT 9 AS nid,  -0.082062 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000333 AS "E"
+    UNION ALL
+    SELECT 14 AS nid,  -0.005559 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.002354 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.015830 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  0.019276 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.033896 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  -0.012474 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  -0.009142 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  -0.041542 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.005026 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.011794 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.010546 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  0.025212 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.003878 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.014871 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_2" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_2" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_2" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_3" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 13 ELSE 14 END ELSE 8 END ELSE 4 END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_3" < 4.842079) THEN 15 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 21 ELSE 22 END END ELSE 10 END ELSE CASE WHEN (t."X_2" < 0.287537) THEN CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_1" < 472.756287) THEN 23 ELSE 24 END ELSE CASE WHEN (t."X_1" < 715.890503) THEN CASE WHEN (t."X_0" < 50.992905) THEN 31 ELSE 32 END ELSE CASE WHEN (t."X_0" < 74.577126) THEN 33 ELSE 34 END END END ELSE CASE WHEN (t."X_0" < 78.244774) THEN CASE WHEN (t."X_0" < 34.347893) THEN 27 ELSE CASE WHEN (t."X_1" < 635.121277) THEN 35 ELSE 36 END END ELSE CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_2" < 0.732761) THEN 37 ELSE 38 END ELSE CASE WHEN (t."X_0" < 88.010742) THEN 39 ELSE 40 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_3" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 4 AS nid,  -0.114892 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.022961 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.083188 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000283 AS "E"
+    UNION ALL
+    SELECT 14 AS nid,  -0.004725 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  -0.018097 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  0.002001 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.003630 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.004087 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  0.016269 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  0.024454 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  -0.007085 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  -0.032195 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  0.007748 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  -0.007628 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  0.007910 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.018231 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  -0.009687 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  0.001769 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  0.002253 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  0.013906 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_3" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_3" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_3" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_4" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN 3 ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 13 ELSE 14 END ELSE 8 END END ELSE CASE WHEN (t."X_1" < 472.756287) THEN CASE WHEN (t."X_0" < 88.010742) THEN CASE WHEN (t."X_3" < 4.842079) THEN CASE WHEN (t."X_2" < 0.732761) THEN 21 ELSE 22 END ELSE CASE WHEN (t."X_0" < 50.992905) THEN 23 ELSE 24 END END ELSE 10 END ELSE CASE WHEN (t."X_2" < 0.287537) THEN CASE WHEN (t."X_0" < 50.992905) THEN CASE WHEN (t."X_0" < 34.347893) THEN 25 ELSE 26 END ELSE CASE WHEN (t."X_1" < 715.890503) THEN 27 ELSE CASE WHEN (t."X_1" < 1575.160400) THEN 33 ELSE 34 END END END ELSE CASE WHEN (t."X_0" < 78.244774) THEN CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_0" < 74.577126) THEN 35 ELSE 36 END ELSE 30 END ELSE CASE WHEN (t."X_2" < 0.674758) THEN CASE WHEN (t."X_0" < 88.010742) THEN 37 ELSE 38 END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN 39 ELSE 40 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_4" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 3 AS nid,  -0.101640 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.030093 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.070710 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000240 AS "E"
+    UNION ALL
+    SELECT 14 AS nid,  -0.004016 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  -0.018632 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.003278 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.004081 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  -0.004806 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  0.012609 AS "E"
+    UNION ALL
+    SELECT 26 AS nid,  0.000778 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  -0.024951 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.016990 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.004033 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.008863 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  0.012206 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.002627 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.001915 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  -0.003571 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  0.005072 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  0.013410 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_4" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_4" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_4" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_5" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN 3 ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 13 ELSE 14 END ELSE 8 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 15 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 21 ELSE 22 END END ELSE 10 END ELSE CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_2" < 0.287537) THEN CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_0" < 13.280704) THEN 29 ELSE 30 END ELSE CASE WHEN (t."X_1" < 715.890503) THEN 31 ELSE 32 END END ELSE CASE WHEN (t."X_0" < 78.244774) THEN CASE WHEN (t."X_2" < 0.943330) THEN 33 ELSE 34 END ELSE CASE WHEN (t."X_0" < 88.010742) THEN 35 ELSE 36 END END END ELSE CASE WHEN (t."X_0" < 78.244774) THEN 19 ELSE CASE WHEN (t."X_2" < 0.233546) THEN 27 ELSE CASE WHEN (t."X_1" < 1575.160400) THEN 37 ELSE 38 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_5" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 3 AS nid,  -0.081312 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.024074 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.060103 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000204 AS "E"
+    UNION ALL
+    SELECT 14 AS nid,  -0.003414 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  -0.012789 AS "E"
+    UNION ALL
+    SELECT 19 AS nid,  0.012715 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  0.001089 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.003434 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  -0.005879 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.004009 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.000171 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  -0.015755 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  0.001040 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  0.005035 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.013331 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  -0.006844 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.000423 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.002763 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  0.011398 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_5" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_5" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_5" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_6" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN 3 ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 13 ELSE 14 END ELSE 8 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 15 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 21 ELSE 22 END END ELSE 10 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_1" < 472.756287) THEN 17 ELSE 18 END ELSE CASE WHEN (t."X_2" < 0.287537) THEN CASE WHEN (t."X_1" < 635.121277) THEN 23 ELSE CASE WHEN (t."X_0" < 74.577126) THEN 27 ELSE 28 END END ELSE CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_0" < 78.244774) THEN 29 ELSE 30 END ELSE CASE WHEN (t."X_3" < 4.842079) THEN 31 ELSE 32 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_6" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 3 AS nid,  -0.065049 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.019260 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.051088 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000174 AS "E"
+    UNION ALL
+    SELECT 14 AS nid,  -0.002902 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  -0.010231 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  0.002260 AS "E"
+    UNION ALL
+    SELECT 18 AS nid,  0.010300 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  0.000925 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.002747 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  -0.014800 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  0.003913 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  -0.009316 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.003192 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  -0.002117 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.008280 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  0.001389 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_6" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_6" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_6" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_7" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_0" < 17.373148) THEN 7 ELSE 8 END ELSE 4 END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 13 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 19 ELSE 20 END END ELSE 10 END ELSE CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_0" < 50.992905) THEN CASE WHEN (t."X_0" < 34.347893) THEN 27 ELSE 28 END ELSE CASE WHEN (t."X_2" < 0.588332) THEN 29 ELSE 30 END END ELSE CASE WHEN (t."X_1" < 472.756287) THEN 23 ELSE 24 END END ELSE CASE WHEN (t."X_2" < 0.720020) THEN CASE WHEN (t."X_0" < 78.244774) THEN CASE WHEN (t."X_1" < 1049.026855) THEN 31 ELSE 32 END ELSE CASE WHEN (t."X_2" < 0.233546) THEN 33 ELSE 34 END END ELSE 18 END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_7" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 4 AS nid,  -0.046334 AS "E"
+    UNION ALL
+    SELECT 7 AS nid,  0.000148 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.007313 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.043425 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  -0.008185 AS "E"
+    UNION ALL
+    SELECT 18 AS nid,  0.009551 AS "E"
+    UNION ALL
+    SELECT 19 AS nid,  0.000787 AS "E"
+    UNION ALL
+    SELECT 20 AS nid,  -0.002198 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  -0.002059 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  0.007214 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  0.003228 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  -0.000570 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.009797 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  -0.001062 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.000942 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  0.006429 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.003600 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.001243 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_7" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_7" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_7" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_8" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN 3 ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 13 ELSE 14 END ELSE 8 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 15 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 21 ELSE 22 END END ELSE 10 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_3" < 2.754247) THEN 23 ELSE 24 END ELSE 18 END ELSE CASE WHEN (t."X_2" < 0.287537) THEN CASE WHEN (t."X_1" < 635.121277) THEN 25 ELSE CASE WHEN (t."X_0" < 74.577126) THEN 29 ELSE 30 END END ELSE CASE WHEN (t."X_1" < 472.756287) THEN CASE WHEN (t."X_0" < 50.992905) THEN 31 ELSE 32 END ELSE CASE WHEN (t."X_2" < 0.588332) THEN 33 ELSE 34 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_8" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 3 AS nid,  -0.042773 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.010043 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.036911 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000125 AS "E"
+    UNION ALL
+    SELECT 14 AS nid,  -0.001369 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  -0.006548 AS "E"
+    UNION ALL
+    SELECT 18 AS nid,  0.008184 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  0.000669 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.001758 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.000959 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  0.004270 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  -0.009957 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.003244 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  -0.006113 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.001226 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  -0.004740 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.000117 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.003813 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_8" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_8" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_8" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_9" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN 3 ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 13 ELSE 14 END ELSE 8 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 15 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 21 ELSE 22 END END ELSE 10 END ELSE CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_1" < 1049.026855) THEN CASE WHEN (t."X_0" < 50.992905) THEN CASE WHEN (t."X_2" < 0.428596) THEN 29 ELSE 30 END ELSE CASE WHEN (t."X_2" < 0.588332) THEN 31 ELSE 32 END END ELSE CASE WHEN (t."X_0" < 74.577126) THEN 25 ELSE CASE WHEN (t."X_2" < 0.428596) THEN 33 ELSE 34 END END END ELSE CASE WHEN (t."X_3" < 8.628964) THEN 19 ELSE CASE WHEN (t."X_0" < 78.244774) THEN 27 ELSE 28 END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_9" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 3 AS nid,  -0.034218 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.008034 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.031374 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000107 AS "E"
+    UNION ALL
+    SELECT 14 AS nid,  -0.001164 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  -0.005238 AS "E"
+    UNION ALL
+    SELECT 19 AS nid,  0.005859 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  0.000568 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.001406 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  0.004436 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  0.000649 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  -0.001039 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.000219 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.001401 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  -0.006203 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  -0.001247 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.001189 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.002054 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_9" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_9" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_9" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_10" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 15 ELSE 16 END ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 17 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 23 ELSE 24 END END ELSE 12 END ELSE CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_2" < 0.943330) THEN CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_3" < 2.754247) THEN 29 ELSE 30 END ELSE CASE WHEN (t."X_2" < 0.287537) THEN 31 ELSE 32 END END ELSE 20 END ELSE CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_0" < 78.244774) THEN CASE WHEN (t."X_1" < 1049.026855) THEN 33 ELSE 34 END ELSE CASE WHEN (t."X_2" < 0.233546) THEN 35 ELSE 36 END END ELSE 22 END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_10" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.006934 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.034128 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.006428 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.026668 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000091 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000989 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  -0.004191 AS "E"
+    UNION ALL
+    SELECT 20 AS nid,  0.004092 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  0.004821 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.000483 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  -0.001125 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.000649 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.001758 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  -0.003557 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  -0.000512 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  0.000253 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.002876 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  -0.001965 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.000539 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_10" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_10" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_10" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_11" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 15 ELSE 16 END ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_3" < 4.842079) THEN CASE WHEN (t."X_0" < 65.455681) THEN 23 ELSE 24 END ELSE CASE WHEN (t."X_0" < 39.873802) THEN 25 ELSE 26 END END ELSE 12 END ELSE CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_0" < 78.244774) THEN CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_2" < 0.287537) THEN 35 ELSE 36 END ELSE CASE WHEN (t."X_2" < 0.287537) THEN 37 ELSE 38 END END ELSE CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_0" < 88.010742) THEN 39 ELSE 40 END ELSE CASE WHEN (t."X_2" < 0.233546) THEN 41 ELSE 42 END END END ELSE CASE WHEN (t."X_3" < 8.628964) THEN CASE WHEN (t."X_3" < 5.897234) THEN 31 ELSE CASE WHEN (t."X_0" < 17.373148) THEN 43 ELSE 44 END END ELSE CASE WHEN (t."X_0" < 78.244774) THEN 33 ELSE 34 END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_11" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.005894 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.029009 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.005142 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.022668 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000077 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000841 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  -0.003352 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  -0.000886 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  0.000411 AS "E"
+    UNION ALL
+    SELECT 26 AS nid,  -0.000464 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.003887 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  0.000629 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  -0.000806 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  -0.004549 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.001361 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.003015 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  0.000884 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  -0.005409 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  -0.000955 AS "E"
+    UNION ALL
+    SELECT 41 AS nid,  -0.001670 AS "E"
+    UNION ALL
+    SELECT 42 AS nid,  0.000431 AS "E"
+    UNION ALL
+    SELECT 43 AS nid,  0.002392 AS "E"
+    UNION ALL
+    SELECT 44 AS nid,  0.000627 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_11" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_11" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_11" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_12" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 15 ELSE 16 END ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_3" < 4.842079) THEN 17 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 23 ELSE 24 END END ELSE 12 END ELSE CASE WHEN (t."X_1" < 1049.026855) THEN CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_3" < 8.628964) THEN CASE WHEN (t."X_0" < 17.373148) THEN 33 ELSE 34 END ELSE CASE WHEN (t."X_0" < 17.373148) THEN 35 ELSE 36 END END ELSE CASE WHEN (t."X_2" < 0.674758) THEN CASE WHEN (t."X_3" < 7.396835) THEN 37 ELSE 38 END ELSE CASE WHEN (t."X_0" < 74.577126) THEN 39 ELSE 40 END END END ELSE CASE WHEN (t."X_3" < 2.754247) THEN CASE WHEN (t."X_0" < 65.455681) THEN 29 ELSE 30 END ELSE CASE WHEN (t."X_1" < 1575.160400) THEN CASE WHEN (t."X_0" < 78.244774) THEN 41 ELSE 42 END ELSE CASE WHEN (t."X_3" < 3.411072) THEN 43 ELSE 44 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_12" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.005010 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.024657 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.004114 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.019268 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000065 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000715 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  -0.002388 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.000349 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  -0.000394 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.000615 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  -0.001456 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  0.002281 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.000261 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  -0.000183 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.000236 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  -0.000519 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  -0.004404 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  0.002128 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  -0.001413 AS "E"
+    UNION ALL
+    SELECT 41 AS nid,  0.002028 AS "E"
+    UNION ALL
+    SELECT 42 AS nid,  -0.000451 AS "E"
+    UNION ALL
+    SELECT 43 AS nid,  0.000349 AS "E"
+    UNION ALL
+    SELECT 44 AS nid,  0.003491 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_12" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_12" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_12" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_13" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 15 ELSE 16 END ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 17 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 23 ELSE 24 END END ELSE 12 END ELSE CASE WHEN (t."X_1" < 526.791992) THEN CASE WHEN (t."X_0" < 50.992905) THEN CASE WHEN (t."X_3" < 1.961987) THEN 25 ELSE CASE WHEN (t."X_3" < 2.754247) THEN 33 ELSE 34 END END ELSE CASE WHEN (t."X_2" < 0.732761) THEN 27 ELSE 28 END END ELSE CASE WHEN (t."X_3" < 4.842079) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_0" < 39.873802) THEN 35 ELSE 36 END ELSE CASE WHEN (t."X_2" < 0.720020) THEN 37 ELSE 38 END END ELSE CASE WHEN (t."X_2" < 0.233546) THEN CASE WHEN (t."X_0" < 17.373148) THEN 39 ELSE 40 END ELSE CASE WHEN (t."X_2" < 0.720020) THEN 41 ELSE 42 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_13" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.004258 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.020959 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.003291 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.016378 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000056 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000608 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  -0.002204 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.000297 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  -0.000487 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  0.002111 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  -0.004950 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  -0.000473 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.001390 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.001155 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  0.000817 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.002889 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  -0.000173 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  0.003733 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  0.001430 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  -0.003378 AS "E"
+    UNION ALL
+    SELECT 41 AS nid,  0.000005 AS "E"
+    UNION ALL
+    SELECT 42 AS nid,  0.001233 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_13" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_13" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_13" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_14" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 15 ELSE 16 END ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 17 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 23 ELSE 24 END END ELSE 12 END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_2" < 0.428596) THEN CASE WHEN (t."X_3" < 7.396835) THEN 31 ELSE 32 END ELSE CASE WHEN (t."X_0" < 17.373148) THEN 33 ELSE 34 END END ELSE CASE WHEN (t."X_1" < 526.791992) THEN CASE WHEN (t."X_0" < 50.992905) THEN 35 ELSE 36 END ELSE CASE WHEN (t."X_3" < 7.396835) THEN 37 ELSE 38 END END END ELSE CASE WHEN (t."X_3" < 2.754247) THEN 21 ELSE CASE WHEN (t."X_2" < 0.233546) THEN 29 ELSE CASE WHEN (t."X_0" < 34.347893) THEN 39 ELSE 40 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_14" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.003620 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.017815 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.002633 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.013921 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000047 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000517 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  -0.001763 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  -0.001212 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.000252 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  -0.000389 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.000845 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  -0.001257 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  0.000896 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  0.001987 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.000298 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  -0.000231 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  -0.003171 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.000554 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  -0.001621 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  0.001093 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  0.002489 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_14" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_14" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_14" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_15" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 15 ELSE 16 END ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 17 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 23 ELSE 24 END END ELSE 12 END ELSE CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN CASE WHEN (t."X_1" < 635.121277) THEN 33 ELSE 34 END ELSE CASE WHEN (t."X_0" < 65.455681) THEN 35 ELSE 36 END END ELSE CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_0" < 88.010742) THEN 37 ELSE 38 END ELSE CASE WHEN (t."X_3" < 4.121809) THEN 39 ELSE 40 END END END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_0" < 13.280704) THEN 29 ELSE CASE WHEN (t."X_1" < 635.121277) THEN 41 ELSE 42 END END ELSE CASE WHEN (t."X_0" < 17.373148) THEN 31 ELSE 32 END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_15" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.003077 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.015143 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.002106 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.011833 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000040 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000439 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  -0.001411 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.000214 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  -0.000312 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.001411 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.000631 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  0.002800 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.001523 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.000570 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  0.000548 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.003129 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  -0.002747 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  -0.000736 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  -0.000711 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  0.000553 AS "E"
+    UNION ALL
+    SELECT 41 AS nid,  0.001426 AS "E"
+    UNION ALL
+    SELECT 42 AS nid,  -0.000568 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_15" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_15" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_15" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_16" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 15 ELSE 16 END ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 17 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 23 ELSE 24 END END ELSE 12 END ELSE CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_0" < 65.455681) THEN CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_3" < 1.961987) THEN 33 ELSE 34 END ELSE CASE WHEN (t."X_0" < 39.873802) THEN 35 ELSE 36 END END ELSE CASE WHEN (t."X_1" < 526.791992) THEN 27 ELSE CASE WHEN (t."X_3" < 4.842079) THEN 37 ELSE 38 END END END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_0" < 13.280704) THEN CASE WHEN (t."X_3" < 2.754247) THEN 39 ELSE 40 END ELSE CASE WHEN (t."X_0" < 39.873802) THEN 41 ELSE 42 END END ELSE CASE WHEN (t."X_0" < 17.373148) THEN 31 ELSE 32 END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_16" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.002615 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.012871 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.001685 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.010058 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000034 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000373 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  -0.001129 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.000182 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  -0.000249 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  -0.002899 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.000537 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  0.002380 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  0.002058 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  -0.000761 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  0.000057 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.001603 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.000550 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  -0.001371 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  0.001319 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  0.000468 AS "E"
+    UNION ALL
+    SELECT 41 AS nid,  -0.001288 AS "E"
+    UNION ALL
+    SELECT 42 AS nid,  0.000640 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_16" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_16" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_16" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_17" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 17.373148) THEN 15 ELSE 16 END ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 17 ELSE CASE WHEN (t."X_0" < 39.873802) THEN 23 ELSE 24 END END ELSE 12 END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_2" < 0.674758) THEN CASE WHEN (t."X_0" < 65.455681) THEN CASE WHEN (t."X_3" < 8.628964) THEN 31 ELSE 32 END ELSE CASE WHEN (t."X_2" < 0.588332) THEN 33 ELSE 34 END END ELSE CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.720020) THEN 35 ELSE 36 END ELSE CASE WHEN (t."X_2" < 0.732761) THEN 37 ELSE 38 END END END ELSE CASE WHEN (t."X_3" < 2.754247) THEN 21 ELSE CASE WHEN (t."X_2" < 0.233546) THEN 29 ELSE CASE WHEN (t."X_0" < 34.347893) THEN 39 ELSE 40 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_17" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.002223 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.010941 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.001348 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.008549 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000029 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000317 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  -0.000903 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  -0.001006 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.000155 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  -0.000199 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.000596 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.000178 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  -0.001184 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.002163 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  -0.000569 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  0.002134 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.000302 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  -0.001420 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  0.000350 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  0.000638 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  0.001480 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_17" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_17" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_17" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_18" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN 9 ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 15 ELSE 16 END ELSE 12 END ELSE CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_0" < 50.992905) THEN CASE WHEN (t."X_2" < 0.233546) THEN CASE WHEN (t."X_3" < 1.961987) THEN 29 ELSE 30 END ELSE CASE WHEN (t."X_2" < 0.428596) THEN 31 ELSE 32 END END ELSE CASE WHEN (t."X_1" < 526.791992) THEN 23 ELSE CASE WHEN (t."X_2" < 0.233546) THEN 33 ELSE 34 END END END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_0" < 13.280704) THEN CASE WHEN (t."X_3" < 2.754247) THEN 35 ELSE 36 END ELSE CASE WHEN (t."X_1" < 635.121277) THEN 37 ELSE 38 END END ELSE CASE WHEN (t."X_0" < 17.373148) THEN 27 ELSE 28 END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_18" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.001889 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.009300 AS "E"
+    UNION ALL
+    SELECT 9 AS nid,  -0.000163 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.001078 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.007267 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  -0.000722 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000054 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  -0.001961 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  0.000360 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  0.001801 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.000536 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.001668 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  -0.000932 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  0.000450 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.001576 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.000165 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  0.000994 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.000314 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.000943 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  -0.000548 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_18" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_18" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_18" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_19" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN 9 ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_0" < 39.873802) THEN 15 ELSE CASE WHEN (t."X_2" < 0.674758) THEN 21 ELSE 22 END END ELSE 12 END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_2" < 0.674758) THEN CASE WHEN (t."X_0" < 65.455681) THEN CASE WHEN (t."X_3" < 1.961987) THEN 29 ELSE 30 END ELSE CASE WHEN (t."X_0" < 74.577126) THEN 31 ELSE 32 END END ELSE CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_0" < 65.455681) THEN 33 ELSE 34 END ELSE CASE WHEN (t."X_2" < 0.732761) THEN 35 ELSE 36 END END END ELSE CASE WHEN (t."X_3" < 2.754247) THEN 19 ELSE CASE WHEN (t."X_0" < 88.010742) THEN CASE WHEN (t."X_2" < 0.588332) THEN 37 ELSE 38 END ELSE 28 END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_19" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.001606 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.007905 AS "E"
+    UNION ALL
+    SELECT 9 AS nid,  -0.000131 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.000863 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.006177 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000140 AS "E"
+    UNION ALL
+    SELECT 19 AS nid,  -0.000880 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  -0.000578 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.000149 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  0.001531 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.000799 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  -0.000274 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  -0.001709 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  -0.000508 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  0.000188 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.001889 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  -0.000978 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.000219 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.000729 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  0.000126 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_19" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_19" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_19" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_20" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 17.373148) THEN 9 ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_0" < 39.873802) THEN 15 ELSE 16 END ELSE 12 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_3" < 7.396835) THEN CASE WHEN (t."X_2" < 0.428596) THEN 21 ELSE CASE WHEN (t."X_0" < 17.373148) THEN 29 ELSE 30 END END ELSE CASE WHEN (t."X_2" < 0.287537) THEN 23 ELSE CASE WHEN (t."X_1" < 1049.026855) THEN 31 ELSE 32 END END END ELSE CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_1" < 889.292297) THEN 25 ELSE CASE WHEN (t."X_2" < 0.720020) THEN 33 ELSE 34 END END ELSE CASE WHEN (t."X_1" < 526.791992) THEN CASE WHEN (t."X_3" < 1.961987) THEN 35 ELSE 36 END ELSE CASE WHEN (t."X_3" < 7.396835) THEN 37 ELSE 38 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_20" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.001365 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.006719 AS "E"
+    UNION ALL
+    SELECT 9 AS nid,  0.000069 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.000630 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.005250 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000119 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000349 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  -0.001072 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  0.001136 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  -0.001276 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.000703 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  -0.000272 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  -0.000109 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  0.000289 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  0.000858 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  -0.001086 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  0.000595 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  -0.001120 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.000534 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  -0.000588 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_20" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_20" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_20" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_21" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN 9 ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 15 ELSE 16 END ELSE 12 END ELSE CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_0" < 50.992905) THEN CASE WHEN (t."X_2" < 0.233546) THEN CASE WHEN (t."X_3" < 1.961987) THEN 29 ELSE 30 END ELSE CASE WHEN (t."X_3" < 1.961987) THEN 31 ELSE 32 END END ELSE CASE WHEN (t."X_1" < 526.791992) THEN 23 ELSE CASE WHEN (t."X_2" < 0.233546) THEN 33 ELSE 34 END END END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_0" < 88.010742) THEN 35 ELSE 36 END ELSE CASE WHEN (t."X_0" < 78.244774) THEN 37 ELSE 38 END END ELSE CASE WHEN (t."X_0" < 17.373148) THEN 27 ELSE 28 END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_21" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.001160 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.005711 AS "E"
+    UNION ALL
+    SELECT 9 AS nid,  -0.000048 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.000564 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.004463 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  -0.000393 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  0.000014 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  -0.001247 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  0.000244 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  0.001221 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.000415 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.001144 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.001446 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  -0.000142 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.001085 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.000048 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  -0.000171 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.001449 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.000340 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  -0.001521 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_21" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_21" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_21" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_22" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN 9 ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_0" < 39.873802) THEN 15 ELSE CASE WHEN (t."X_0" < 50.992905) THEN 21 ELSE 22 END END ELSE 12 END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_2" < 0.674758) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 13.280704) THEN 29 ELSE 30 END ELSE CASE WHEN (t."X_1" < 635.121277) THEN 31 ELSE 32 END END ELSE CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.720020) THEN 33 ELSE 34 END ELSE CASE WHEN (t."X_1" < 715.890503) THEN 35 ELSE 36 END END END ELSE CASE WHEN (t."X_3" < 2.754247) THEN 19 ELSE CASE WHEN (t."X_0" < 88.010742) THEN CASE WHEN (t."X_2" < 0.588332) THEN 37 ELSE 38 END ELSE 28 END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_22" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.000986 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.004854 AS "E"
+    UNION ALL
+    SELECT 9 AS nid,  -0.000039 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.000451 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.003793 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000099 AS "E"
+    UNION ALL
+    SELECT 19 AS nid,  -0.000835 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  -0.000421 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.000064 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  0.001038 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.000352 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.001229 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  -0.000924 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  -0.000060 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  0.001338 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  -0.000044 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  -0.000618 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.000505 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.000520 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  0.000033 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_22" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_22" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_22" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_23" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_3" < 2.754247) THEN 9 ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_2" < 0.674758) THEN 15 ELSE 16 END ELSE 12 END ELSE CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_3" < 2.754247) THEN CASE WHEN (t."X_3" < 1.961987) THEN 27 ELSE 28 END ELSE CASE WHEN (t."X_3" < 3.411072) THEN 29 ELSE 30 END END ELSE CASE WHEN (t."X_3" < 5.897234) THEN CASE WHEN (t."X_1" < 889.292297) THEN 31 ELSE 32 END ELSE CASE WHEN (t."X_2" < 0.233546) THEN 33 ELSE 34 END END END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_0" < 88.010742) THEN 35 ELSE 36 END ELSE CASE WHEN (t."X_0" < 78.244774) THEN 37 ELSE 38 END END ELSE 20 END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_23" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.000838 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.004126 AS "E"
+    UNION ALL
+    SELECT 9 AS nid,  0.000072 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.000330 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.003224 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  -0.000265 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  0.000013 AS "E"
+    UNION ALL
+    SELECT 20 AS nid,  0.000723 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  0.000497 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  -0.000647 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.000999 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.000059 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  -0.000760 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  -0.000266 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.000132 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.000332 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  -0.000071 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.001325 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.000240 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  -0.001200 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_23" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_23" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_23" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_24" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE 4 END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN 9 ELSE 10 END ELSE CASE WHEN (t."X_3" < 10.136035) THEN CASE WHEN (t."X_0" < 17.373148) THEN CASE WHEN (t."X_1" < 1049.026855) THEN CASE WHEN (t."X_3" < 1.961987) THEN 23 ELSE 24 END ELSE CASE WHEN (t."X_3" < 7.396835) THEN 25 ELSE 26 END END ELSE CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_2" < 0.588332) THEN 27 ELSE 28 END ELSE CASE WHEN (t."X_3" < 7.396835) THEN 29 ELSE 30 END END END ELSE CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_0" < 50.992905) THEN CASE WHEN (t."X_0" < 34.347893) THEN 31 ELSE 32 END ELSE 22 END ELSE 16 END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_24" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 4 AS nid,  -0.000180 AS "E"
+    UNION ALL
+    SELECT 7 AS nid,  -0.000713 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.003507 AS "E"
+    UNION ALL
+    SELECT 9 AS nid,  -0.000100 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.002741 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  0.000864 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.000166 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  -0.000087 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  0.000607 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  -0.000414 AS "E"
+    UNION ALL
+    SELECT 26 AS nid,  0.000335 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  -0.000992 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  -0.000251 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  0.000183 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  -0.000654 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  -0.000102 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  0.000325 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_24" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_24" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_24" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_25" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.155164) THEN CASE WHEN (t."X_3" < 1.961987) THEN CASE WHEN (t."X_0" < 78.244774) THEN 7 ELSE 8 END ELSE CASE WHEN (t."X_0" < 39.873802) THEN 9 ELSE 10 END END ELSE CASE WHEN (t."X_1" < 294.009796) THEN CASE WHEN (t."X_0" < 74.577126) THEN 11 ELSE 12 END ELSE CASE WHEN (t."X_3" < 10.136035) THEN CASE WHEN (t."X_0" < 17.373148) THEN CASE WHEN (t."X_2" < 0.428596) THEN CASE WHEN (t."X_3" < 7.396835) THEN 23 ELSE 24 END ELSE CASE WHEN (t."X_1" < 1049.026855) THEN 25 ELSE 26 END END ELSE CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_2" < 0.732761) THEN 27 ELSE 28 END ELSE CASE WHEN (t."X_1" < 472.756287) THEN 29 ELSE 30 END END END ELSE CASE WHEN (t."X_1" < 635.121277) THEN 17 ELSE 18 END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_25" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 7 AS nid,  -0.000606 AS "E"
+    UNION ALL
+    SELECT 8 AS nid,  -0.002981 AS "E"
+    UNION ALL
+    SELECT 9 AS nid,  -0.000011 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.000321 AS "E"
+    UNION ALL
+    SELECT 11 AS nid,  -0.000075 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.002330 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  0.000024 AS "E"
+    UNION ALL
+    SELECT 18 AS nid,  0.000691 AS "E"
+    UNION ALL
+    SELECT 23 AS nid,  -0.000766 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  0.000341 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  0.000520 AS "E"
+    UNION ALL
+    SELECT 26 AS nid,  0.000095 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  -0.000226 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  -0.000966 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.000729 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.000088 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_25" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_25" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_25" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_26" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_3" < 7.396835) THEN CASE WHEN (t."X_1" < 526.791992) THEN CASE WHEN (t."X_3" < 1.961987) THEN 31 ELSE CASE WHEN (t."X_2" < 0.588332) THEN 51 ELSE 52 END END ELSE CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_2" < 0.287537) THEN 53 ELSE 54 END ELSE CASE WHEN (t."X_2" < 0.720020) THEN 55 ELSE 56 END END END ELSE CASE WHEN (t."X_1" < 472.756287) THEN CASE WHEN (t."X_2" < 0.155164) THEN 35 ELSE 36 END ELSE CASE WHEN (t."X_0" < 34.347893) THEN 37 ELSE 38 END END END ELSE CASE WHEN (t."X_0" < 50.992905) THEN CASE WHEN (t."X_3" < 7.396835) THEN CASE WHEN (t."X_0" < 13.280704) THEN 39 ELSE CASE WHEN (t."X_1" < 1162.774048) THEN 57 ELSE 58 END END ELSE CASE WHEN (t."X_0" < 17.373148) THEN CASE WHEN (t."X_1" < 1049.026855) THEN 59 ELSE 60 END ELSE CASE WHEN (t."X_2" < 0.155164) THEN 61 ELSE 62 END END END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN 21 ELSE 22 END END END ELSE CASE WHEN (t."X_2" < 0.428596) THEN CASE WHEN (t."X_3" < 5.897234) THEN CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_0" < 78.244774) THEN 43 ELSE 44 END ELSE 24 END ELSE CASE WHEN (t."X_2" < 0.233546) THEN 25 ELSE 26 END END ELSE CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_3" < 4.121809) THEN CASE WHEN (t."X_2" < 0.674758) THEN 63 ELSE 64 END ELSE 46 END ELSE CASE WHEN (t."X_1" < 1575.160400) THEN 47 ELSE 48 END END ELSE CASE WHEN (t."X_1" < 715.890503) THEN CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_0" < 88.010742) THEN 65 ELSE 66 END ELSE 50 END ELSE 30 END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_26" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 21 AS nid,  -0.000770 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.000030 AS "E"
+    UNION ALL
+    SELECT 24 AS nid,  -0.000656 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  0.000008 AS "E"
+    UNION ALL
+    SELECT 26 AS nid,  0.000367 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.000810 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.000929 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  -0.000040 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  0.000366 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  -0.000091 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  -0.001456 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  0.000261 AS "E"
+    UNION ALL
+    SELECT 43 AS nid,  -0.000515 AS "E"
+    UNION ALL
+    SELECT 44 AS nid,  -0.003009 AS "E"
+    UNION ALL
+    SELECT 46 AS nid,  -0.001132 AS "E"
+    UNION ALL
+    SELECT 47 AS nid,  0.000575 AS "E"
+    UNION ALL
+    SELECT 48 AS nid,  -0.000385 AS "E"
+    UNION ALL
+    SELECT 50 AS nid,  -0.001061 AS "E"
+    UNION ALL
+    SELECT 51 AS nid,  -0.000634 AS "E"
+    UNION ALL
+    SELECT 52 AS nid,  -0.000013 AS "E"
+    UNION ALL
+    SELECT 53 AS nid,  -0.000350 AS "E"
+    UNION ALL
+    SELECT 54 AS nid,  0.000483 AS "E"
+    UNION ALL
+    SELECT 55 AS nid,  0.002126 AS "E"
+    UNION ALL
+    SELECT 56 AS nid,  0.000116 AS "E"
+    UNION ALL
+    SELECT 57 AS nid,  -0.000997 AS "E"
+    UNION ALL
+    SELECT 58 AS nid,  0.000044 AS "E"
+    UNION ALL
+    SELECT 59 AS nid,  -0.000131 AS "E"
+    UNION ALL
+    SELECT 60 AS nid,  0.000225 AS "E"
+    UNION ALL
+    SELECT 61 AS nid,  -0.000066 AS "E"
+    UNION ALL
+    SELECT 62 AS nid,  0.000571 AS "E"
+    UNION ALL
+    SELECT 63 AS nid,  0.000469 AS "E"
+    UNION ALL
+    SELECT 64 AS nid,  -0.000268 AS "E"
+    UNION ALL
+    SELECT 65 AS nid,  -0.000145 AS "E"
+    UNION ALL
+    SELECT 66 AS nid,  0.001085 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_26" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_26" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_26" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_27" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_3" < 7.396835) THEN CASE WHEN (t."X_1" < 526.791992) THEN CASE WHEN (t."X_3" < 1.961987) THEN 25 ELSE CASE WHEN (t."X_0" < 34.347893) THEN 39 ELSE 40 END END ELSE CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_2" < 0.287537) THEN 41 ELSE 42 END ELSE CASE WHEN (t."X_2" < 0.720020) THEN 43 ELSE 44 END END END ELSE CASE WHEN (t."X_1" < 472.756287) THEN 17 ELSE CASE WHEN (t."X_0" < 34.347893) THEN 29 ELSE 30 END END END ELSE CASE WHEN (t."X_0" < 50.992905) THEN CASE WHEN (t."X_2" < 0.943330) THEN CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_2" < 0.287537) THEN 45 ELSE 46 END ELSE CASE WHEN (t."X_2" < 0.155164) THEN 47 ELSE 48 END END ELSE CASE WHEN (t."X_0" < 17.373148) THEN 33 ELSE 34 END END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN 21 ELSE 22 END END END ELSE CASE WHEN (t."X_3" < 2.754247) THEN CASE WHEN (t."X_1" < 472.756287) THEN 11 ELSE 12 END ELSE CASE WHEN (t."X_1" < 294.009796) THEN 13 ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_0" < 88.010742) THEN 49 ELSE 50 END ELSE CASE WHEN (t."X_3" < 7.396835) THEN 51 ELSE 52 END END ELSE CASE WHEN (t."X_3" < 3.411072) THEN 37 ELSE CASE WHEN (t."X_2" < 0.233546) THEN 53 ELSE 54 END END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_27" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 11 AS nid,  -0.000436 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.001797 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  -0.001529 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  0.000213 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  -0.000597 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.000026 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  0.000790 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.000077 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  -0.001165 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.000004 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  -0.000672 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  -0.000328 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  0.000067 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  -0.000398 AS "E"
+    UNION ALL
+    SELECT 41 AS nid,  -0.000280 AS "E"
+    UNION ALL
+    SELECT 42 AS nid,  0.000386 AS "E"
+    UNION ALL
+    SELECT 43 AS nid,  0.001648 AS "E"
+    UNION ALL
+    SELECT 44 AS nid,  0.000099 AS "E"
+    UNION ALL
+    SELECT 45 AS nid,  0.000357 AS "E"
+    UNION ALL
+    SELECT 46 AS nid,  -0.000112 AS "E"
+    UNION ALL
+    SELECT 47 AS nid,  -0.000056 AS "E"
+    UNION ALL
+    SELECT 48 AS nid,  0.000546 AS "E"
+    UNION ALL
+    SELECT 49 AS nid,  -0.000511 AS "E"
+    UNION ALL
+    SELECT 50 AS nid,  0.000881 AS "E"
+    UNION ALL
+    SELECT 51 AS nid,  -0.000759 AS "E"
+    UNION ALL
+    SELECT 52 AS nid,  0.000315 AS "E"
+    UNION ALL
+    SELECT 53 AS nid,  -0.000103 AS "E"
+    UNION ALL
+    SELECT 54 AS nid,  0.000706 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_27" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_27" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_27" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_28" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.428596) THEN CASE WHEN (t."X_3" < 5.897234) THEN CASE WHEN (t."X_0" < 78.244774) THEN CASE WHEN (t."X_2" < 0.233546) THEN CASE WHEN (t."X_3" < 1.961987) THEN 29 ELSE 30 END ELSE 16 END ELSE CASE WHEN (t."X_1" < 889.292297) THEN 17 ELSE 18 END END ELSE CASE WHEN (t."X_1" < 715.890503) THEN CASE WHEN (t."X_0" < 34.347893) THEN CASE WHEN (t."X_0" < 13.280704) THEN 31 ELSE 32 END ELSE CASE WHEN (t."X_1" < 635.121277) THEN 33 ELSE 34 END END ELSE CASE WHEN (t."X_1" < 889.292297) THEN 21 ELSE CASE WHEN (t."X_3" < 7.396835) THEN 35 ELSE CASE WHEN (t."X_1" < 1049.026855) THEN 47 ELSE 48 END END END END END ELSE CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_0" < 88.010742) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_0" < 39.873802) THEN 37 ELSE CASE WHEN (t."X_1" < 472.756287) THEN 49 ELSE 50 END END ELSE CASE WHEN (t."X_0" < 78.244774) THEN 39 ELSE 40 END END ELSE 12 END ELSE CASE WHEN (t."X_0" < 17.373148) THEN CASE WHEN (t."X_1" < 1049.026855) THEN CASE WHEN (t."X_2" < 0.943330) THEN 41 ELSE 42 END ELSE 26 END ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_3" < 10.136035) THEN CASE WHEN (t."X_1" < 1049.026855) THEN 51 ELSE 52 END ELSE 44 END ELSE CASE WHEN (t."X_0" < 78.244774) THEN CASE WHEN (t."X_2" < 0.588332) THEN 53 ELSE 54 END ELSE 46 END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_28" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 12 AS nid,  0.000705 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000558 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  -0.002075 AS "E"
+    UNION ALL
+    SELECT 18 AS nid,  -0.000060 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  0.001256 AS "E"
+    UNION ALL
+    SELECT 26 AS nid,  0.000051 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.000349 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.000285 AS "E"
+    UNION ALL
+    SELECT 31 AS nid,  0.000264 AS "E"
+    UNION ALL
+    SELECT 32 AS nid,  -0.000066 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.000946 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  -0.000080 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  -0.000507 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  -0.000046 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  -0.000566 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  -0.000132 AS "E"
+    UNION ALL
+    SELECT 41 AS nid,  0.000497 AS "E"
+    UNION ALL
+    SELECT 42 AS nid,  0.000048 AS "E"
+    UNION ALL
+    SELECT 44 AS nid,  0.000314 AS "E"
+    UNION ALL
+    SELECT 46 AS nid,  0.000506 AS "E"
+    UNION ALL
+    SELECT 47 AS nid,  -0.000094 AS "E"
+    UNION ALL
+    SELECT 48 AS nid,  0.000167 AS "E"
+    UNION ALL
+    SELECT 49 AS nid,  0.000155 AS "E"
+    UNION ALL
+    SELECT 50 AS nid,  0.000826 AS "E"
+    UNION ALL
+    SELECT 51 AS nid,  -0.000592 AS "E"
+    UNION ALL
+    SELECT 52 AS nid,  -0.000093 AS "E"
+    UNION ALL
+    SELECT 53 AS nid,  0.000383 AS "E"
+    UNION ALL
+    SELECT 54 AS nid,  -0.000094 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_28" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_28" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_28" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_29" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.428596) THEN CASE WHEN (t."X_0" < 65.455681) THEN CASE WHEN (t."X_1" < 715.890503) THEN CASE WHEN (t."X_0" < 50.992905) THEN CASE WHEN (t."X_2" < 0.233546) THEN 25 ELSE 26 END ELSE 16 END ELSE CASE WHEN (t."X_0" < 39.873802) THEN CASE WHEN (t."X_2" < 0.287537) THEN CASE WHEN (t."X_0" < 34.347893) THEN 35 ELSE 36 END ELSE 28 END ELSE 18 END END ELSE CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_3" < 5.897234) THEN 19 ELSE 20 END ELSE 10 END END ELSE CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_0" < 88.010742) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_0" < 65.455681) THEN CASE WHEN (t."X_3" < 1.961987) THEN 37 ELSE 38 END ELSE CASE WHEN (t."X_1" < 294.009796) THEN 39 ELSE 40 END END ELSE 22 END ELSE 12 END ELSE CASE WHEN (t."X_0" < 17.373148) THEN 13 ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_3" < 7.396835) THEN CASE WHEN (t."X_3" < 4.121809) THEN 41 ELSE 42 END ELSE CASE WHEN (t."X_2" < 0.674758) THEN 43 ELSE 44 END END ELSE CASE WHEN (t."X_0" < 78.244774) THEN CASE WHEN (t."X_2" < 0.588332) THEN 45 ELSE 46 END ELSE 34 END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_29" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 10 AS nid,  -0.000060 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  0.000564 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000205 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000804 AS "E"
+    UNION ALL
+    SELECT 18 AS nid,  0.001067 AS "E"
+    UNION ALL
+    SELECT 19 AS nid,  -0.001374 AS "E"
+    UNION ALL
+    SELECT 20 AS nid,  0.000077 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  -0.000320 AS "E"
+    UNION ALL
+    SELECT 25 AS nid,  0.000137 AS "E"
+    UNION ALL
+    SELECT 26 AS nid,  -0.000303 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  -0.000341 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  0.000430 AS "E"
+    UNION ALL
+    SELECT 35 AS nid,  0.000252 AS "E"
+    UNION ALL
+    SELECT 36 AS nid,  -0.000073 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.000547 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  0.000003 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  0.000003 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  0.000922 AS "E"
+    UNION ALL
+    SELECT 41 AS nid,  -0.000168 AS "E"
+    UNION ALL
+    SELECT 42 AS nid,  -0.000765 AS "E"
+    UNION ALL
+    SELECT 43 AS nid,  -0.000431 AS "E"
+    UNION ALL
+    SELECT 44 AS nid,  0.000533 AS "E"
+    UNION ALL
+    SELECT 45 AS nid,  0.000325 AS "E"
+    UNION ALL
+    SELECT 46 AS nid,  -0.000071 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_29" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_29" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_29" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_30" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_0" < 74.577126) THEN 1 ELSE CASE WHEN (t."X_2" < 0.732761) THEN CASE WHEN (t."X_1" < 889.292297) THEN CASE WHEN (t."X_1" < 715.890503) THEN CASE WHEN (t."X_1" < 294.009796) THEN 17 ELSE CASE WHEN (t."X_0" < 78.244774) THEN 21 ELSE 22 END END ELSE 10 END ELSE CASE WHEN (t."X_1" < 1575.160400) THEN CASE WHEN (t."X_2" < 0.233546) THEN 19 ELSE 20 END ELSE 12 END END ELSE CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_0" < 88.010742) THEN 13 ELSE 14 END ELSE CASE WHEN (t."X_1" < 715.890503) THEN 15 ELSE 16 END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_30" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 1 AS nid,  0.000037 AS "E"
+    UNION ALL
+    SELECT 10 AS nid,  -0.001129 AS "E"
+    UNION ALL
+    SELECT 12 AS nid,  -0.000336 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000021 AS "E"
+    UNION ALL
+    SELECT 14 AS nid,  0.000600 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  -0.000584 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  0.000368 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  -0.000782 AS "E"
+    UNION ALL
+    SELECT 19 AS nid,  -0.000097 AS "E"
+    UNION ALL
+    SELECT 20 AS nid,  0.000257 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  -0.000365 AS "E"
+    UNION ALL
+    SELECT 22 AS nid,  0.000029 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_30" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_30" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_30" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"DT_node_lookup_31" AS 
+ (SELECT
+    t."index" AS "index",
+    CASE WHEN (t."X_2" < 0.428596) THEN CASE WHEN (t."X_3" < 5.897234) THEN CASE WHEN (t."X_0" < 78.244774) THEN CASE WHEN (t."X_2" < 0.233546) THEN 15 ELSE 16 END ELSE CASE WHEN (t."X_1" < 889.292297) THEN 17 ELSE 18 END END ELSE CASE WHEN (t."X_1" < 715.890503) THEN CASE WHEN (t."X_0" < 34.347893) THEN 19 ELSE CASE WHEN (t."X_0" < 65.455681) THEN 27 ELSE 28 END END ELSE CASE WHEN (t."X_1" < 889.292297) THEN 21 ELSE CASE WHEN (t."X_3" < 7.396835) THEN 29 ELSE 30 END END END END ELSE CASE WHEN (t."X_1" < 635.121277) THEN CASE WHEN (t."X_0" < 88.010742) THEN CASE WHEN (t."X_0" < 74.577126) THEN CASE WHEN (t."X_0" < 65.455681) THEN CASE WHEN (t."X_3" < 1.961987) THEN 39 ELSE 40 END ELSE CASE WHEN (t."X_1" < 294.009796) THEN 41 ELSE 42 END END ELSE CASE WHEN (t."X_0" < 78.244774) THEN 33 ELSE 34 END END ELSE 12 END ELSE CASE WHEN (t."X_0" < 17.373148) THEN 13 ELSE CASE WHEN (t."X_1" < 1162.774048) THEN CASE WHEN (t."X_3" < 7.396835) THEN CASE WHEN (t."X_1" < 1049.026855) THEN 43 ELSE 44 END ELSE CASE WHEN (t."X_2" < 0.674758) THEN 45 ELSE 46 END END ELSE CASE WHEN (t."X_0" < 78.244774) THEN 37 ELSE 38 END END END END END AS node_id
+  FROM model_input AS t
+ )
+,
+"DT_node_data_31" AS 
+ (SELECT
+    "Values".nid AS nid,
+    "Values"."E" AS "E"
+  FROM (
+    SELECT 12 AS nid,  0.000388 AS "E"
+    UNION ALL
+    SELECT 13 AS nid,  0.000143 AS "E"
+    UNION ALL
+    SELECT 15 AS nid,  0.000042 AS "E"
+    UNION ALL
+    SELECT 16 AS nid,  -0.000304 AS "E"
+    UNION ALL
+    SELECT 17 AS nid,  -0.001194 AS "E"
+    UNION ALL
+    SELECT 18 AS nid,  -0.000028 AS "E"
+    UNION ALL
+    SELECT 19 AS nid,  0.000078 AS "E"
+    UNION ALL
+    SELECT 21 AS nid,  0.000902 AS "E"
+    UNION ALL
+    SELECT 27 AS nid,  -0.000547 AS "E"
+    UNION ALL
+    SELECT 28 AS nid,  0.000061 AS "E"
+    UNION ALL
+    SELECT 29 AS nid,  -0.000386 AS "E"
+    UNION ALL
+    SELECT 30 AS nid,  0.000072 AS "E"
+    UNION ALL
+    SELECT 33 AS nid,  -0.000378 AS "E"
+    UNION ALL
+    SELECT 34 AS nid,  -0.000046 AS "E"
+    UNION ALL
+    SELECT 37 AS nid,  0.000045 AS "E"
+    UNION ALL
+    SELECT 38 AS nid,  0.000310 AS "E"
+    UNION ALL
+    SELECT 39 AS nid,  0.000460 AS "E"
+    UNION ALL
+    SELECT 40 AS nid,  -0.000007 AS "E"
+    UNION ALL
+    SELECT 41 AS nid,  -0.000003 AS "E"
+    UNION ALL
+    SELECT 42 AS nid,  0.000778 AS "E"
+    UNION ALL
+    SELECT 43 AS nid,  -0.000401 AS "E"
+    UNION ALL
+    SELECT 44 AS nid,  -0.000070 AS "E"
+    UNION ALL
+    SELECT 45 AS nid,  -0.000352 AS "E"
+    UNION ALL
+    SELECT 46 AS nid,  0.000386 AS "E"
+  ) AS "Values"
+ )
+,
+"DT_output_31" AS 
+ (SELECT
+   t1."index" AS "index",
+   t1.node_id AS node_id,
+   t2.nid AS nid,
+   t2."E" AS "E"
+  FROM
+   "DT_node_lookup_31" AS t1
+   LEFT OUTER JOIN
+   "DT_node_data_31" AS t2
+   ON t1.node_id = t2.nid
+ )
+,
+"union_of_trees" AS
+ (SELECT scu."index_u" AS "index", scu."E" AS "E"
+ FROM (
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_0" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_1" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_2" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_3" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_4" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_5" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_6" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_7" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_8" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_9" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_10" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_11" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_12" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_13" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_14" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_15" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_16" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_17" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_18" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_19" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_20" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_21" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_22" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_23" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_24" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_25" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_26" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_27" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_28" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_29" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_30" AS t
+    UNION ALL
+    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_31" AS t
+  ) AS scu
+)
+SELECT
+   t."index" AS "index",
+   1.321436 + SUM(t."E") AS "Estimator"
+FROM "union_of_trees" AS t
+GROUP BY t."index"
