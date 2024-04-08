@@ -1,3 +1,4 @@
+READING_CSV iris_quantized ['data/quantized/iris_quantized.csv']
      sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target
 0                    2                 8  ...                 1       0
 1                    1                 4  ...                 1       0
@@ -50,7 +51,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 5 5
 { ,   }
 { ,   }
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 150, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -71,13 +72,14 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 5 5
 }
 WRITING_JSON_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_quantized.json'
 
+RELOADING_MODEL_FROM_JSON_START ('iris_quantized', 'RidgeClassifier')
 MLLITE_MODEL_SET_OPTIONS RidgeClassifier None
 MLLITE_MODEL_OPTIONS_DEFAULT RidgeClassifier { }
 MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeClassifier { ,   }
 MLLITE_MODEL_JSON_AFTER_SETTING RidgeClassifier None
 MLLITE_RELOADING_MODEL mllite_ridge_class.RidgeClassifier_ff4_il8
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 150, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -117,10 +119,11 @@ BEAUTIFIED_JSON_START
 			"intercept" : -1.887829
 		}
 	},
-	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_il8", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_il8", "version" : "2024-W14" },
 	"options" :  { "alpha" : 1.0, "random_state" : 1789 }
 }
 BEAUTIFIED_JSON_END
+RELOADING_MODEL_FROM_JSON_END ('iris_quantized', 'RidgeClassifier')
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
@@ -281,6 +284,28 @@ MODEL_PERFS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassif
 WRITING_PERF_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_quantized.perf'
 
 MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'iris_quantized', 'training_time_in_sec': 0.013, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 0 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 1 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 2 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 3 4
+{
+   "Contributions" : {
+      "X_0" : [ -0.014245, 0.024853, -0.010608 ],
+      "X_1" : [ 0.012687, -0.013837, 0.001150 ],
+      "X_2" : [ 0.012899, -0.017306, 0.004407 ],
+      "X_3" : [ 0.003174, 0.001293, -0.004466 ]   
+   },
+   "Most_Contributive_Features_By_Class" : {
+      "class_0" : [ 0, 2, 1, 3 ],
+      "class_1" : [ 0, 2, 1, 3 ],
+      "class_2" : [ 0, 3, 2, 1 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_quantized_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_quantized_duckdb.sql'
 
 
@@ -289,7 +314,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('iris_quantized', 'RidgeClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "iris_quantized" AS "ADS" 
  ),
 model_scores_cte AS 
  (SELECT t."index" AS "index",
@@ -308,7 +333,7 @@ soft_max_orig_cte AS
 ( SELECT t."index" AS "index", 
    t."Score_0" AS "Score_0",
    t."Proba_0" AS "Proba_0",
-   t."LogProba_
+   t."LogProba_0" A
 SQL_OUT_PUT_FIRST_LINES_END ('iris_quantized', 'RidgeClassifier', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('iris_quantized', 'RidgeClassifier', 'duckdb')
 roba",
@@ -507,7 +532,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('iris_quantized', 'RidgeClassifier', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "iris_quantized" AS "ADS" 
  ),
 model_scores_cte AS 
  (SELECT t."index" AS "index",
@@ -526,7 +551,7 @@ soft_max_orig_cte AS
 ( SELECT t."index" AS "index", 
    t."Score_0" AS "Score_0",
    t."Proba_0" AS "Proba_0",
-   t."LogProba_
+   t."LogProba_0" A
 SQL_OUT_PUT_FIRST_LINES_END ('iris_quantized', 'RidgeClassifier', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('iris_quantized', 'RidgeClassifier', 'sqlite')
 roba",
@@ -717,58 +742,3 @@ MLLITE_CLASS_SQL_EXECUTION_STATUS ('iris_quantized', 'RidgeClassifier', 'sqlite'
 148            2             2
 149            2             2
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_quantized_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('iris_quantized', 'RidgeClassifier', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-model_scores_cte AS 
- (SELECT t."index" AS "index",
-   0.096068 + -0.102039 * t."X_0" + 0.150494 * t."X_1" + -0.016461 * t."X_2" + -0.124419 * t."X_3" AS "Score_0",
-   CAST(NULL AS FLOAT) AS "Proba_0",
-   CAST(NULL AS FLOAT) AS "LogProba_0",
-   0.791755 + 0.239021 * t."X_0" + -0.209804 * t."X_1" + -0.239825 * t."X_2" + -0.032952 * t."X_3" AS "Score_1",
-   CAST(NULL AS FLOAT) AS "Proba_1",
-   CAST(NULL AS FLOAT) AS "LogProba_1",
-   -1.887829 + -0.136984 * t."X_0" + 0.059310 * t."X_1" + 0.256289 * t."X_2" + 0.157370 * t."X_3" AS "Score_2",
-   CAST(NULL AS FLOAT) AS "Proba_2",
-   CAST(NULL AS FLOAT) AS "LogProba_2"
-  FROM model_input AS t
- ),
-soft_max_orig_cte AS 
-( SELECT t."index" AS "index", 
-   t."Score_0" AS "Score_0",
-   t."Proba_0" AS "Proba_0",
-   t."LogProba_
-SQL_OUT_PUT_FIRST_LINES_END ('iris_quantized', 'RidgeClassifier', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('iris_quantized', 'RidgeClassifier', 'pgsql')
-roba",
-     t."Max_Score" AS "Max_Score",
-     COALESCE(  t."max_idx_0", t."max_idx_1", t."max_idx_2" ) AS argmax_class_idx
-   FROM
-     "arg_max_cte_with_max_proba_idx" AS t
-)
-SELECT arg_max_cte."index" AS "index",
-  arg_max_cte."Score_0" AS "Score_0",
-  arg_max_cte."Proba_0" AS "Proba_0",
-  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
-  arg_max_cte."Score_1" AS "Score_1",
-  arg_max_cte."Proba_1" AS "Proba_1",
-  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."Score_2" AS "Score_2",
-  arg_max_cte."Proba_2" AS "Proba_2",
-  CASE WHEN (arg_max_cte."Proba_2" IS NULL OR arg_max_cte."Proba_2" > 0.0) THEN LN( arg_max_cte."Proba_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
-  arg_max_cte."argmax_class_idx" AS "Decision",
-  arg_max_cte."Max_Proba" AS "DecisionProba"
-FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END ('iris_quantized', 'RidgeClassifier', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

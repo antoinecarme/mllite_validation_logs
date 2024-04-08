@@ -1,3 +1,4 @@
+READING_CSV iris_original ['data/original/iris.csv']
      sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target
 0                  5.1               3.5  ...               0.2       0
 1                  4.9               3.0  ...               0.2       0
@@ -33,11 +34,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 5 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 6 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 7 7
 PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_CLASSIFIER_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.01, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.017, 'TRAINING')
 { "max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  }
 { "max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  }
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 32, "min_child_weight" : 5.000000, "n_estimators" : 5, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 150, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -101,13 +102,14 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_CLASSIFIER_FIT' 3 3
 }
 WRITING_JSON_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_iris_original_option_1.json'
 
+RELOADING_MODEL_FROM_JSON_START ('iris_original', 'XGBClassifier')
 MLLITE_MODEL_SET_OPTIONS XGBClassifier {"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }
 MLLITE_MODEL_OPTIONS_DEFAULT XGBClassifier { "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32 }
 MLLITE_MODEL_OPTIONS_AFTER_SETTING XGBClassifier { "max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  }
 MLLITE_MODEL_JSON_AFTER_SETTING XGBClassifier None
 MLLITE_RELOADING_MODEL mllite_xgb_class.XGBClassifier_ff4_il8
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 32, "min_child_weight" : 5.000000, "n_estimators" : 5, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 150, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -534,10 +536,11 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 4,
 		"dataset_rows" : 150
 	},
-	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_il8", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_il8", "version" : "2024-W14" },
 	"options" :  { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.0, "grow_policy" : 0, "learning_rate" : 0.3, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 32, "min_child_weight" : 5.0, "n_estimators" : 5, "objective" : "reg:squarederror", "reg_alpha" : 0.0, "reg_lambda" : 1.0, "tree_method" : "auto" }
 }
 BEAUTIFIED_JSON_END
+RELOADING_MODEL_FROM_JSON_END ('iris_original', 'XGBClassifier')
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
@@ -697,7 +700,29 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'iris_original', 'size': 150, 'accuracy': 0.9666666666666667, 'auc': 0.9959333333333333}
 WRITING_PERF_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_iris_original_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'iris_original', 'training_time_in_sec': 0.01, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBClassifier', 'model_name': 'XGBClassifier', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'iris_original', 'training_time_in_sec': 0.017, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 0 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 1 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 2 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 3 4
+{
+   "Contributions" : {
+      "X_0" : [ 0.000000, 0.000000, 0.000000 ],
+      "X_1" : [ 0.004876, -0.006008, 0.001132 ],
+      "X_2" : [ -0.028610, 0.020667, 0.007943 ],
+      "X_3" : [ -0.000729, 0.020772, -0.020043 ]   
+   },
+   "Most_Contributive_Features_By_Class" : {
+      "class_0" : [ 2, 1, 3 ],
+      "class_1" : [ 3, 2, 1 ],
+      "class_2" : [ 3, 2, 1 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_iris_original_option_1_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_iris_original_option_1_duckdb.sql'
 
 
@@ -706,7 +731,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('iris_original', 'XGBClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "iris_original" AS "ADS" 
  ),
 "DT_node_lookup_0" AS 
  (SELECT
@@ -726,7 +751,7 @@ WITH model_input AS
     UNION ALL
     SELECT 6 AS nid,  0.073770 AS "P_0", 0.118033 AS "P_1", -0.191803 AS "P_2"
     UNION ALL
-    SELECT 7 AS nid,  -0.211034 AS "P_0", 0.403448 AS "P_1", -0
+    SELECT 7 AS nid,  -0.211034 AS "P_0", 0.403448 AS "P_1", -0.1924
 SQL_OUT_PUT_FIRST_LINES_END ('iris_original', 'XGBClassifier', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('iris_original', 'XGBClassifier', 'duckdb')
 roba",
@@ -925,7 +950,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('iris_original', 'XGBClassifier', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "iris_original" AS "ADS" 
  ),
 "DT_node_lookup_0" AS 
  (SELECT
@@ -945,7 +970,7 @@ WITH model_input AS
     UNION ALL
     SELECT 6 AS nid,  0.073770 AS "P_0", 0.118033 AS "P_1", -0.191803 AS "P_2"
     UNION ALL
-    SELECT 7 AS nid,  -0.211034 AS "P_0", 0.403448 AS "P_1", -0
+    SELECT 7 AS nid,  -0.211034 AS "P_0", 0.403448 AS "P_1", -0.1924
 SQL_OUT_PUT_FIRST_LINES_END ('iris_original', 'XGBClassifier', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('iris_original', 'XGBClassifier', 'sqlite')
 roba",
@@ -1136,59 +1161,3 @@ MLLITE_CLASS_SQL_EXECUTION_STATUS ('iris_original', 'XGBClassifier', 'sqlite', '
 148            2             2
 149            2             2
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/classification/XGBClassifier/mllite.XGBClassifier_iris_original_option_1_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('iris_original', 'XGBClassifier', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-"DT_node_lookup_0" AS 
- (SELECT
-    t."index" AS "index",
-    CASE WHEN (t."X_2" < 1.700000) THEN 1 ELSE CASE WHEN (t."X_3" < 1.800000) THEN CASE WHEN (t."X_1" < 3.100000) THEN CASE WHEN (t."X_2" < 4.600000) THEN 7 ELSE 8 END ELSE 6 END ELSE 4 END END AS node_id
-  FROM model_input t
- )
-,
-"DT_node_data_0" AS 
- (SELECT
-    "Values".nid AS nid,
-    "Values"."P_0" AS "P_0", "Values"."P_1" AS "P_1", "Values"."P_2" AS "P_2"
-  FROM (
-    SELECT 1 AS nid,  0.428108 AS "P_0", -0.214054 AS "P_1", -0.214054 AS "P_2"
-    UNION ALL
-    SELECT 4 AS nid,  -0.214508 AS "P_0", -0.200518 AS "P_1", 0.415026 AS "P_2"
-    UNION ALL
-    SELECT 6 AS nid,  0.073770 AS "P_0", 0.118033 AS "P_1", -0.191803 AS "P_2"
-    UNION ALL
-    SELECT 7 AS nid,  -0.211034 AS "P_0", 0.403448 AS "P_1", -0
-SQL_OUT_PUT_FIRST_LINES_END ('iris_original', 'XGBClassifier', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('iris_original', 'XGBClassifier', 'pgsql')
-roba",
-     t."Max_Score" AS "Max_Score",
-     COALESCE(  t."max_idx_0", t."max_idx_1", t."max_idx_2" ) AS argmax_class_idx
-   FROM
-     "arg_max_cte_with_max_proba_idx" AS t
-)
-SELECT arg_max_cte."index" AS "index",
-  arg_max_cte."Score_0" AS "Score_0",
-  arg_max_cte."Proba_0" AS "Proba_0",
-  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
-  arg_max_cte."Score_1" AS "Score_1",
-  arg_max_cte."Proba_1" AS "Proba_1",
-  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."Score_2" AS "Score_2",
-  arg_max_cte."Proba_2" AS "Proba_2",
-  CASE WHEN (arg_max_cte."Proba_2" IS NULL OR arg_max_cte."Proba_2" > 0.0) THEN LN( arg_max_cte."Proba_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
-  arg_max_cte."argmax_class_idx" AS "Decision",
-  arg_max_cte."Max_Proba" AS "DecisionProba"
-FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END ('iris_original', 'XGBClassifier', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

@@ -1,3 +1,4 @@
+READING_CSV census_tiny ['data/tiny/census_tiny.csv']
     age  workclass     fnlwgt  ...  hoursperweek  native-country  target
 0   2.0        0.0   188950.0  ...           3.0             0.0    >50K
 1   1.0        0.0  1033222.0  ...           2.0             0.0   <=50K
@@ -86,11 +87,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global' 48 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global' 60 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global' 72 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.027, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.03, 'TRAINING')
 { ,  "max_iter" : 128  }
 { ,  "max_iter" : 128  }
 {
-	"metadata" : { "model" : "Vapnik_NuSVC_RBF", "version" : "2024-W13", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Vapnik_NuSVC_RBF", "version" : "2024-W14", "signature" : "ff4_OO8"},
 	"options" : {"svm_type" : "nu_svc", "kernel" : "rbf", "degree" : 3, "gamma" : 0.000000, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 1, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 14 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -124,13 +125,14 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_CLASSIFIER_FIT' 5 5
 }
 WRITING_JSON_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_census_tiny.json'
 
+RELOADING_MODEL_FROM_JSON_START ('census_tiny', 'NuSVC')
 MLLITE_MODEL_SET_OPTIONS NuSVC None
 MLLITE_MODEL_OPTIONS_DEFAULT NuSVC { "max_iter" : 128 }
 MLLITE_MODEL_OPTIONS_AFTER_SETTING NuSVC { ,  "max_iter" : 128  }
 MLLITE_MODEL_JSON_AFTER_SETTING NuSVC None
 MLLITE_RELOADING_MODEL mllite_nu_svm_class.NuSVC_ff4_OO8
 {
-	"metadata" : { "model" : "Vapnik_NuSVC_RBF", "version" : "2024-W13", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Vapnik_NuSVC_RBF", "version" : "2024-W14", "signature" : "ff4_OO8"},
 	"options" : {"svm_type" : "nu_svc", "kernel" : "rbf", "degree" : 3, "gamma" : 0.000000, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 1, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 14 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -169,7 +171,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 14,
 		"dataset_rows" : 16
 	},
-	"metadata" :  { "model" : "Vapnik_NuSVC_RBF", "signature" : "ff4_OO8", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Vapnik_NuSVC_RBF", "signature" : "ff4_OO8", "version" : "2024-W14" },
 	"options" :  { "C" : 1.0, "cache_size" : 300, "coef0" : 0.0, "degree" : 3, "epsilon" : 0.0, "gamma" : 0.0, "kernel" : "rbf", "max_iter" : 128, "nu" : 0.5, "probability" : 1, "random_state" : 1789, "shrinking" : 0, "svm_type" : "nu_svc", "tol" : 0.001 },
 	"svm_model" : 	{
 		"L" : 13,
@@ -200,6 +202,7 @@ BEAUTIFIED_JSON_START
 	}
 }
 BEAUTIFIED_JSON_END
+RELOADING_MODEL_FROM_JSON_END ('census_tiny', 'NuSVC')
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
@@ -225,7 +228,48 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': None, 'dataset': 'census_tiny', 'size': 16, 'accuracy': 0.375, 'auc': 0.45454545454545453}
 WRITING_PERF_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_census_tiny.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': None, 'dataset': 'census_tiny', 'training_time_in_sec': 0.027, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': None, 'dataset': 'census_tiny', 'training_time_in_sec': 0.03, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 0 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 1 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 2 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 3 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 4 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 5 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 6 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 7 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 8 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 9 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 10 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 11 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 12 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 13 14
+{
+   "Contributions" : {
+      "X_0" : [ 0.000000, 0.000000 ],
+      "X_1" : [ 0.000000, 0.000000 ],
+      "X_2" : [ 0.031250, -0.031250 ],
+      "X_3" : [ 0.000000, 0.000000 ],
+      "X_4" : [ 0.000000, 0.000000 ],
+      "X_5" : [ 0.000000, 0.000000 ],
+      "X_6" : [ 0.000000, 0.000000 ],
+      "X_7" : [ 0.000000, 0.000000 ],
+      "X_8" : [ 0.000000, 0.000000 ],
+      "X_9" : [ 0.000000, 0.000000 ],
+      "X_10" : [ 0.000000, 0.000000 ],
+      "X_11" : [ 0.000000, 0.000000 ],
+      "X_12" : [ 0.000000, 0.000000 ],
+      "X_13" : [ 0.000000, 0.000000 ]   
+   },
+   "Most_Contributive_Features_By_Class" : {
+      "class_0" : [ 2 ],
+      "class_1" : [ 2 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_census_tiny_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_census_tiny_duckdb.sql'
 
 
@@ -234,7 +278,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('census_tiny', 'NuSVC', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "census_tiny" AS "ADS" 
  ),
 "SV_data" AS
  ( SELECT 
@@ -246,7 +290,7 @@ WITH model_input AS
    CAST("Values"."sv_4" AS FLOAT) AS "sv_4",
    CAST("Values"."sv_5" AS FLOAT) AS "sv_5",
    CAST("Values"."sv_6" AS FLOAT) AS "sv_6",
-   CAST("Values"."sv_7" 
+   CAST("Values"."sv_7" AS FLOA
 SQL_OUT_PUT_FIRST_LINES_END ('census_tiny', 'NuSVC', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('census_tiny', 'NuSVC', 'duckdb')
 "
@@ -450,7 +494,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('census_tiny', 'NuSVC', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "census_tiny" AS "ADS" 
  ),
 "SV_data" AS
  ( SELECT 
@@ -462,7 +506,7 @@ WITH model_input AS
    CAST("Values"."sv_4" AS FLOAT) AS "sv_4",
    CAST("Values"."sv_5" AS FLOAT) AS "sv_5",
    CAST("Values"."sv_6" AS FLOAT) AS "sv_6",
-   CAST("Values"."sv_7" 
+   CAST("Values"."sv_7" AS FLOA
 SQL_OUT_PUT_FIRST_LINES_END ('census_tiny', 'NuSVC', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('census_tiny', 'NuSVC', 'sqlite')
 "
@@ -543,58 +587,4 @@ COPY_TRAINING_DATA_TO_SQLITE_END
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
 MODEL_SQL_EXECUTION_FAILED ('census_tiny', 'NuSVC', 'sqlite', '(sqlite3.OperationalError) no such function: ANY_VALUE')
-WRITING_SQL_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_census_tiny_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('census_tiny', 'NuSVC', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-"SV_data" AS
- ( SELECT 
-   "Values"."sv_idx" AS "sv_idx",
-   CAST("Values"."sv_0" AS FLOAT) AS "sv_0",
-   CAST("Values"."sv_1" AS FLOAT) AS "sv_1",
-   CAST("Values"."sv_2" AS FLOAT) AS "sv_2",
-   CAST("Values"."sv_3" AS FLOAT) AS "sv_3",
-   CAST("Values"."sv_4" AS FLOAT) AS "sv_4",
-   CAST("Values"."sv_5" AS FLOAT) AS "sv_5",
-   CAST("Values"."sv_6" AS FLOAT) AS "sv_6",
-   CAST("Values"."sv_7" 
-SQL_OUT_PUT_FIRST_LINES_END ('census_tiny', 'NuSVC', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('census_tiny', 'NuSVC', 'pgsql')
-"
-  FROM
-   "arg_max_cte_with_max_proba" AS t
-),
-arg_max_cte AS 
-( SELECT t."index" as "index",
-     t."Proba_0" AS "Proba_0",
-     t."Score_0" AS "Score_0",
-     t."Proba_1" AS "Proba_1",
-     t."Score_1" AS "Score_1",
-     t."Max_Proba" AS "Max_Proba",
-     t."Max_Score" AS "Max_Score",
-     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
-   FROM
-     "arg_max_cte_with_max_proba_idx" AS t
-)
-SELECT arg_max_cte."index" AS "index",
-  arg_max_cte."Score_0" AS "Score_0",
-  arg_max_cte."Proba_0" AS "Proba_0",
-  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
-  arg_max_cte."Score_1" AS "Score_1",
-  arg_max_cte."Proba_1" AS "Proba_1",
-  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."argmax_class_idx" AS "Decision",
-  arg_max_cte."Max_Proba" AS "DecisionProba"
-FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END ('census_tiny', 'NuSVC', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('census_tiny', 'NuSVC', 'sqlite', 'sql_execution_failed')

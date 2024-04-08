@@ -1,3 +1,4 @@
+READING_CSV iris_sampled ['data/sampled/iris_sampled.csv']
     sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target
 0                 6.4               3.2  ...               2.3       2
 1                 6.3               3.3  ...               1.6       1
@@ -53,11 +54,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_TRAIN_CLASS_PROBA_CROSS_VALIDATION' 3 5
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_TRAIN_CLASS_PROBA_CROSS_VALIDATION' 4 5
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_TRAIN_CLASS_PROBA_CROSS_VALIDATION' 5 5
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.009, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.013, 'TRAINING')
 { ,  "max_iter" : 128  }
 { ,  "max_iter" : 128  }
 {
-	"metadata" : { "model" : "Vapnik_SVC_RBF", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Vapnik_SVC_RBF", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : {"svm_type" : "c_svc", "kernel" : "rbf", "degree" : 3, "gamma" : 0.067644, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 1, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 18, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -94,13 +95,14 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_CLASSIFIER_FIT' 5 5
 }
 WRITING_JSON_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_iris_sampled.json'
 
+RELOADING_MODEL_FROM_JSON_START ('iris_sampled', 'SVC')
 MLLITE_MODEL_SET_OPTIONS SVC None
 MLLITE_MODEL_OPTIONS_DEFAULT SVC { "max_iter" : 128 }
 MLLITE_MODEL_OPTIONS_AFTER_SETTING SVC { ,  "max_iter" : 128  }
 MLLITE_MODEL_JSON_AFTER_SETTING SVC None
 MLLITE_RELOADING_MODEL mllite_svm_class.SVC_ff4_il8
 {
-	"metadata" : { "model" : "Vapnik_SVC_RBF", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Vapnik_SVC_RBF", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : {"svm_type" : "c_svc", "kernel" : "rbf", "degree" : 3, "gamma" : 0.067644, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 1, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 18, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -142,7 +144,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 4,
 		"dataset_rows" : 18
 	},
-	"metadata" :  { "model" : "Vapnik_SVC_RBF", "signature" : "ff4_il8", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Vapnik_SVC_RBF", "signature" : "ff4_il8", "version" : "2024-W14" },
 	"options" :  { "C" : 1.0, "cache_size" : 300, "coef0" : 0.0, "degree" : 3, "epsilon" : 0.0, "gamma" : 0.067644, "kernel" : "rbf", "max_iter" : 128, "nu" : 0.5, "probability" : 1, "random_state" : 1789, "shrinking" : 0, "svm_type" : "c_svc", "tol" : 0.001 },
 	"svm_model" : 	{
 		"L" : 15,
@@ -176,6 +178,7 @@ BEAUTIFIED_JSON_START
 	}
 }
 BEAUTIFIED_JSON_END
+RELOADING_MODEL_FROM_JSON_END ('iris_sampled', 'SVC')
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
@@ -203,7 +206,29 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': None, 'dataset': 'iris_sampled', 'size': 18, 'accuracy': 1.0, 'auc': 0.4679487179487179}
 WRITING_PERF_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_iris_sampled.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': None, 'dataset': 'iris_sampled', 'training_time_in_sec': 0.009, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVC', 'model_name': 'SVC', 'options': None, 'dataset': 'iris_sampled', 'training_time_in_sec': 0.013, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 0 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 1 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 2 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 3 4
+{
+   "Contributions" : {
+      "X_0" : [ -0.003828, -0.005938, 0.009766 ],
+      "X_1" : [ -0.000319, -0.001924, 0.002243 ],
+      "X_2" : [ 0.004693, -0.030538, 0.025845 ],
+      "X_3" : [ -0.011493, 0.020569, -0.009076 ]   
+   },
+   "Most_Contributive_Features_By_Class" : {
+      "class_0" : [ 3, 2, 0, 1 ],
+      "class_1" : [ 2, 3, 0, 1 ],
+      "class_2" : [ 2, 0, 3, 1 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_iris_sampled_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_iris_sampled_duckdb.sql'
 
 
@@ -212,7 +237,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('iris_sampled', 'SVC', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "iris_sampled" AS "ADS" 
  ),
 "SV_data" AS
  ( SELECT 
@@ -231,7 +256,7 @@ WITH model_input AS
      UNION ALL
      SELECT 3 AS "sv_idx", 6.300000 AS "sv_0", 3.300000 AS "sv_1", 4.700000 AS "sv_2", 1.600000 AS "sv_3"
      UNION ALL
-     SELECT 4 AS "sv_idx", 5.800000 AS "sv_
+     SELECT 4 AS "sv_idx", 5.800000 AS "sv_0", 2.
 SQL_OUT_PUT_FIRST_LINES_END ('iris_sampled', 'SVC', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('iris_sampled', 'SVC', 'duckdb')
 roba",
@@ -442,7 +467,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('iris_sampled', 'SVC', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "iris_sampled" AS "ADS" 
  ),
 "SV_data" AS
  ( SELECT 
@@ -461,7 +486,7 @@ WITH model_input AS
      UNION ALL
      SELECT 3 AS "sv_idx", 6.300000 AS "sv_0", 3.300000 AS "sv_1", 4.700000 AS "sv_2", 1.600000 AS "sv_3"
      UNION ALL
-     SELECT 4 AS "sv_idx", 5.800000 AS "sv_
+     SELECT 4 AS "sv_idx", 5.800000 AS "sv_0", 2.
 SQL_OUT_PUT_FIRST_LINES_END ('iris_sampled', 'SVC', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('iris_sampled', 'SVC', 'sqlite')
 roba",
@@ -525,58 +550,4 @@ COPY_TRAINING_DATA_TO_SQLITE_END
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
 MODEL_SQL_EXECUTION_FAILED ('iris_sampled', 'SVC', 'sqlite', '(sqlite3.OperationalError) no such function: ANY_VALUE')
-WRITING_SQL_CODE 'logs/auto_tests/classification/SVC/mllite.SVC_iris_sampled_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('iris_sampled', 'SVC', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-"SV_data" AS
- ( SELECT 
-   "Values"."sv_idx" AS "sv_idx",
-   CAST("Values"."sv_0" AS FLOAT) AS "sv_0",
-   CAST("Values"."sv_1" AS FLOAT) AS "sv_1",
-   CAST("Values"."sv_2" AS FLOAT) AS "sv_2",
-   CAST("Values"."sv_3" AS FLOAT) AS "sv_3"
-  FROM
-  (
-     SELECT 0 AS "sv_idx", 5.400000 AS "sv_0", 3.700000 AS "sv_1", 1.500000 AS "sv_2", 0.200000 AS "sv_3"
-     UNION ALL
-     SELECT 1 AS "sv_idx", 4.800000 AS "sv_0", 3.400000 AS "sv_1", 1.600000 AS "sv_2", 0.200000 AS "sv_3"
-     UNION ALL
-     SELECT 2 AS "sv_idx", 5.400000 AS "sv_0", 3.400000 AS "sv_1", 1.500000 AS "sv_2", 0.400000 AS "sv_3"
-     UNION ALL
-     SELECT 3 AS "sv_idx", 6.300000 AS "sv_0", 3.300000 AS "sv_1", 4.700000 AS "sv_2", 1.600000 AS "sv_3"
-     UNION ALL
-     SELECT 4 AS "sv_idx", 5.800000 AS "sv_
-SQL_OUT_PUT_FIRST_LINES_END ('iris_sampled', 'SVC', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('iris_sampled', 'SVC', 'pgsql')
-roba",
-     t."Max_Score" AS "Max_Score",
-     COALESCE(  t."max_idx_0", t."max_idx_1", t."max_idx_2" ) AS argmax_class_idx
-   FROM
-     "arg_max_cte_with_max_proba_idx" AS t
-)
-SELECT arg_max_cte."index" AS "index",
-  arg_max_cte."Score_0" AS "Score_0",
-  arg_max_cte."Proba_0" AS "Proba_0",
-  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
-  arg_max_cte."Score_1" AS "Score_1",
-  arg_max_cte."Proba_1" AS "Proba_1",
-  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."Score_2" AS "Score_2",
-  arg_max_cte."Proba_2" AS "Proba_2",
-  CASE WHEN (arg_max_cte."Proba_2" IS NULL OR arg_max_cte."Proba_2" > 0.0) THEN LN( arg_max_cte."Proba_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
-  arg_max_cte."argmax_class_idx" AS "Decision",
-  arg_max_cte."Max_Proba" AS "DecisionProba"
-FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END ('iris_sampled', 'SVC', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('iris_sampled', 'SVC', 'sqlite', 'sql_execution_failed')

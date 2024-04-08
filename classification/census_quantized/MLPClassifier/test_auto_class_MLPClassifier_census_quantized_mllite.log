@@ -1,3 +1,4 @@
+READING_CSV census_quantized ['data/quantized/census_quantized.csv']
        age  workclass  fnlwgt  ...  hoursperweek  native-country  target
 0        6          0       1  ...             4               0   <=50K
 1        7          0       1  ...             0               0   <=50K
@@ -37,11 +38,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 27 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 30 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 32 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
-('OPERATION_END_ELAPSED', 15.937, 'TRAINING')
+('OPERATION_END_ELAPSED', 19.831, 'TRAINING')
 { ,  "max_iter" : 32 }
 { ,  "max_iter" : 32 }
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W14", "signature" : "ff4_OO8"},
 	"options" : {  "hidden_layer_sizes" : [ 100 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 48842, "dataset_features" : 14 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -182,13 +183,14 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
 }
 WRITING_JSON_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_quantized.json'
 
+RELOADING_MODEL_FROM_JSON_START ('census_quantized', 'MLPClassifier')
 MLLITE_MODEL_SET_OPTIONS MLPClassifier None
 MLLITE_MODEL_OPTIONS_DEFAULT MLPClassifier { "max_iter" : 32}
 MLLITE_MODEL_OPTIONS_AFTER_SETTING MLPClassifier { ,  "max_iter" : 32 }
 MLLITE_MODEL_JSON_AFTER_SETTING MLPClassifier None
 MLLITE_RELOADING_MODEL mllite_mlp_class.MLPClassifier_ff4_OO8
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W14", "signature" : "ff4_OO8"},
 	"options" : {  "hidden_layer_sizes" : [ 100 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 48842, "dataset_features" : 14 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -468,14 +470,15 @@ BEAUTIFIED_JSON_START
 		},
 		"sizes" : [ 14, 100, 1 ]
 	},
-	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_OO8", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_OO8", "version" : "2024-W14" },
 	"options" :  { "activation" : "relu", "alpha" : 0.0001, "batch_size" : null, "beta_1" : 0.9, "beta_2" : 0.999, "early_stopping" : 0, "epsilon" : 0.0, "hidden_layer_sizes" : [ 100 ], "learning_rate" : "constant", "learning_rate_init" : 0.001, "max_fun" : 15000, "max_iter" : 32, "momentum" : 0.9, "n_iter_no_change" : 10, "nesterovs_momentum" : 1, "power_t" : 0.5, "random_state" : 1789, "shuffle" : 1, "solver" : "adam", "tol" : 0.0001, "validation_fraction" : 0.1, "verbose" : 0, "warm_start" : 0 }
 }
 BEAUTIFIED_JSON_END
+RELOADING_MODEL_FROM_JSON_END ('census_quantized', 'MLPClassifier')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.135, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.259, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.2, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.26, 'PREDICT')
 [[0.3509 0.6491]
  [0.8298 0.1702]
  [0.8607 0.1393]
@@ -488,7 +491,48 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': None, 'dataset': 'census_quantized', 'size': 48842, 'accuracy': 0.8086482945006347, 'auc': 0.836471294731875}
 WRITING_PERF_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': None, 'dataset': 'census_quantized', 'training_time_in_sec': 15.936, 'prediction_time_in_sec': 0.2}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': None, 'dataset': 'census_quantized', 'training_time_in_sec': 19.831, 'prediction_time_in_sec': 0.26}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 0 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 1 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 2 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 3 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 4 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 5 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 6 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 7 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 8 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 9 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 10 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 11 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 12 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 13 14
+{
+   "Contributions" : {
+      "X_0" : [ -0.007465, 0.007465 ],
+      "X_1" : [ 0.000000, 0.000000 ],
+      "X_2" : [ 0.000228, -0.000228 ],
+      "X_3" : [ 0.000000, 0.000000 ],
+      "X_4" : [ -0.020313, 0.020313 ],
+      "X_5" : [ 0.000000, 0.000000 ],
+      "X_6" : [ 0.000000, 0.000000 ],
+      "X_7" : [ 0.000000, 0.000000 ],
+      "X_8" : [ 0.000000, 0.000000 ],
+      "X_9" : [ 0.000000, 0.000000 ],
+      "X_10" : [ 0.018176, -0.018176 ],
+      "X_11" : [ -0.008032, 0.008032 ],
+      "X_12" : [ 0.001552, -0.001552 ],
+      "X_13" : [ 0.000000, 0.000000 ]   
+   },
+   "Most_Contributive_Features_By_Class" : {
+      "class_0" : [ 4, 10, 11, 0, 12, 2 ],
+      "class_1" : [ 4, 10, 11, 0, 12, 2 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_quantized_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_quantized_duckdb.sql'
 
 
@@ -497,7 +541,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('census_quantized', 'MLPClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "census_quantized" AS "ADS" 
  ),
 "Input_Layer_BA" AS
  ( SELECT t."index" as "index",
@@ -515,7 +559,7 @@ WITH model_input AS
     t."X_11" AS "OUT_11",
     t."X_12" AS "OUT_12",
     t."X_13" AS "OUT_13"
- F
+ FRO
 SQL_OUT_PUT_FIRST_LINES_END ('census_quantized', 'MLPClassifier', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('census_quantized', 'MLPClassifier', 'duckdb')
 "
@@ -709,7 +753,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('census_quantized', 'MLPClassifier', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "census_quantized" AS "ADS" 
  ),
 "Input_Layer_BA" AS
  ( SELECT t."index" as "index",
@@ -727,7 +771,7 @@ WITH model_input AS
     t."X_11" AS "OUT_11",
     t."X_12" AS "OUT_12",
     t."X_13" AS "OUT_13"
- F
+ FRO
 SQL_OUT_PUT_FIRST_LINES_END ('census_quantized', 'MLPClassifier', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('census_quantized', 'MLPClassifier', 'sqlite')
 "

@@ -1,3 +1,4 @@
+READING_CSV iris_sampled ['data/sampled/iris_sampled.csv']
     sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target
 0                 6.4               3.2  ...               2.3       2
 1                 6.3               3.3  ...               1.6       1
@@ -44,11 +45,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 27 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 30 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 32 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.017, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.011, 'TRAINING')
 { ,  "max_iter" : 32 }
 { ,  "max_iter" : 32 }
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : {  "hidden_layer_sizes" : [ 100 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 18, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -179,13 +180,14 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
 }
 WRITING_JSON_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_iris_sampled.json'
 
+RELOADING_MODEL_FROM_JSON_START ('iris_sampled', 'MLPClassifier')
 MLLITE_MODEL_SET_OPTIONS MLPClassifier None
 MLLITE_MODEL_OPTIONS_DEFAULT MLPClassifier { "max_iter" : 32}
 MLLITE_MODEL_OPTIONS_AFTER_SETTING MLPClassifier { ,  "max_iter" : 32 }
 MLLITE_MODEL_JSON_AFTER_SETTING MLPClassifier None
 MLLITE_RELOADING_MODEL mllite_mlp_class.MLPClassifier_ff4_il8
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : {  "hidden_layer_sizes" : [ 100 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 18, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -445,10 +447,11 @@ BEAUTIFIED_JSON_START
 		},
 		"sizes" : [ 4, 100, 3 ]
 	},
-	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_il8", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_il8", "version" : "2024-W14" },
 	"options" :  { "activation" : "relu", "alpha" : 0.0001, "batch_size" : null, "beta_1" : 0.9, "beta_2" : 0.999, "early_stopping" : 0, "epsilon" : 0.0, "hidden_layer_sizes" : [ 100 ], "learning_rate" : "constant", "learning_rate_init" : 0.001, "max_fun" : 15000, "max_iter" : 32, "momentum" : 0.9, "n_iter_no_change" : 10, "nesterovs_momentum" : 1, "power_t" : 0.5, "random_state" : 1789, "shuffle" : 1, "solver" : "adam", "tol" : 0.0001, "validation_fraction" : 0.1, "verbose" : 0, "warm_start" : 0 }
 }
 BEAUTIFIED_JSON_END
+RELOADING_MODEL_FROM_JSON_END ('iris_sampled', 'MLPClassifier')
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
@@ -476,7 +479,29 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': None, 'dataset': 'iris_sampled', 'size': 18, 'accuracy': 0.7222222222222222, 'auc': 0.8875000000000001}
 WRITING_PERF_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_iris_sampled.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': None, 'dataset': 'iris_sampled', 'training_time_in_sec': 0.017, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': None, 'dataset': 'iris_sampled', 'training_time_in_sec': 0.011, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 0 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 1 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 2 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 3 4
+{
+   "Contributions" : {
+      "X_0" : [ 0.000063, 0.000256, -0.000319 ],
+      "X_1" : [ 0.000167, -0.000425, 0.000259 ],
+      "X_2" : [ -0.002069, -0.001436, 0.003506 ],
+      "X_3" : [ -0.000450, 0.000285, 0.000165 ]   
+   },
+   "Most_Contributive_Features_By_Class" : {
+      "class_0" : [ 2, 3, 1, 0 ],
+      "class_1" : [ 2, 1, 3, 0 ],
+      "class_2" : [ 2, 0, 1, 3 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_iris_sampled_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_iris_sampled_duckdb.sql'
 
 
@@ -485,7 +510,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('iris_sampled', 'MLPClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "iris_sampled" AS "ADS" 
  ),
 "Input_Layer_BA" AS
  ( SELECT t."index" as "index",
@@ -501,7 +526,7 @@ WITH model_input AS
     0.021627 + 0.113077 * t."OUT_0"  + -0.181137 * t."OUT_1"  + -0.015338 * t."OUT_2"  + -0.222234 * t."OUT_3" AS "OUT_1",
     0.122204 + -0.098035 * t."OUT_0"  + -0.078942 * t."OUT_1"  + -0.196642 * t."OUT_2"  + -0.166419 * t."OUT_3" AS "OUT_2",
     0.218485 + -0.008064 * t."OUT_0"  + 0.133811 * t."OUT_1"  + 0.172386 * t."OUT_2"  + -0.044942 * t."OUT_3" AS "OUT_3",
-    -0.101992 + 0.055435 * t."OUT_0"  + 0.166121 * t.
+    -0.101992 + 0.055435 * t."OUT_0"  + 0.166121 * t."OUT_1
 SQL_OUT_PUT_FIRST_LINES_END ('iris_sampled', 'MLPClassifier', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('iris_sampled', 'MLPClassifier', 'duckdb')
 roba",
@@ -712,7 +737,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('iris_sampled', 'MLPClassifier', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "iris_sampled" AS "ADS" 
  ),
 "Input_Layer_BA" AS
  ( SELECT t."index" as "index",
@@ -728,7 +753,7 @@ WITH model_input AS
     0.021627 + 0.113077 * t."OUT_0"  + -0.181137 * t."OUT_1"  + -0.015338 * t."OUT_2"  + -0.222234 * t."OUT_3" AS "OUT_1",
     0.122204 + -0.098035 * t."OUT_0"  + -0.078942 * t."OUT_1"  + -0.196642 * t."OUT_2"  + -0.166419 * t."OUT_3" AS "OUT_2",
     0.218485 + -0.008064 * t."OUT_0"  + 0.133811 * t."OUT_1"  + 0.172386 * t."OUT_2"  + -0.044942 * t."OUT_3" AS "OUT_3",
-    -0.101992 + 0.055435 * t."OUT_0"  + 0.166121 * t.
+    -0.101992 + 0.055435 * t."OUT_0"  + 0.166121 * t."OUT_1
 SQL_OUT_PUT_FIRST_LINES_END ('iris_sampled', 'MLPClassifier', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('iris_sampled', 'MLPClassifier', 'sqlite')
 roba",
@@ -931,55 +956,3 @@ MLLITE_CLASS_SQL_EXECUTION_STATUS ('iris_sampled', 'MLPClassifier', 'sqlite', 'S
 16            1             1
 17            1             1
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_iris_sampled_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('iris_sampled', 'MLPClassifier', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-"Input_Layer_BA" AS
- ( SELECT t."index" as "index",
-    t."X_0" AS "OUT_0",
-    t."X_1" AS "OUT_1",
-    t."X_2" AS "OUT_2",
-    t."X_3" AS "OUT_3"
- FROM "model_input" AS t
-),
-"Hidden_Layer_1_BA" AS
- ( SELECT t."index" as "index",
-    -0.098329 + -0.000659 * t."OUT_0"  + 0.121147 * t."OUT_1"  + -0.086826 * t."OUT_2"  + 0.116799 * t."OUT_3" AS "OUT_0",
-    0.021627 + 0.113077 * t."OUT_0"  + -0.181137 * t."OUT_1"  + -0.015338 * t."OUT_2"  + -0.222234 * t."OUT_3" AS "OUT_1",
-    0.122204 + -0.098035 * t."OUT_0"  + -0.078942 * t."OUT_1"  + -0.196642 * t."OUT_2"  + -0.166419 * t."OUT_3" AS "OUT_2",
-    0.218485 + -0.008064 * t."OUT_0"  + 0.133811 * t."OUT_1"  + 0.172386 * t."OUT_2"  + -0.044942 * t."OUT_3" AS "OUT_3",
-    -0.101992 + 0.055435 * t."OUT_0"  + 0.166121 * t.
-SQL_OUT_PUT_FIRST_LINES_END ('iris_sampled', 'MLPClassifier', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('iris_sampled', 'MLPClassifier', 'pgsql')
-roba",
-     t."Max_Score" AS "Max_Score",
-     COALESCE(  t."max_idx_0", t."max_idx_1", t."max_idx_2" ) AS argmax_class_idx
-   FROM
-     "arg_max_cte_with_max_proba_idx" AS t
-)
-SELECT arg_max_cte."index" AS "index",
-  arg_max_cte."Score_0" AS "Score_0",
-  arg_max_cte."Proba_0" AS "Proba_0",
-  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
-  arg_max_cte."Score_1" AS "Score_1",
-  arg_max_cte."Proba_1" AS "Proba_1",
-  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."Score_2" AS "Score_2",
-  arg_max_cte."Proba_2" AS "Proba_2",
-  CASE WHEN (arg_max_cte."Proba_2" IS NULL OR arg_max_cte."Proba_2" > 0.0) THEN LN( arg_max_cte."Proba_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
-  arg_max_cte."argmax_class_idx" AS "Decision",
-  arg_max_cte."Max_Proba" AS "DecisionProba"
-FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END ('iris_sampled', 'MLPClassifier', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

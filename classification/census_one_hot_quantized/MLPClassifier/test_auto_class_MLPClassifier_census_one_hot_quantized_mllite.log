@@ -1,3 +1,4 @@
+READING_CSV census_one_hot_quantized ['data/quantized/census_one_hot_quantized.csv']
        age  workclass_Local-gov  ...  native-country_infrequent_sklearn  target
 0        6                    0  ...                                  0   <=50K
 1        7                    0  ...                                  0   <=50K
@@ -47,11 +48,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 27 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 30 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 32 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
-('OPERATION_END_ELAPSED', 31.284, 'TRAINING')
+('OPERATION_END_ELAPSED', 31.888, 'TRAINING')
 { ,  "max_iter" : 32 }
 { ,  "max_iter" : 32 }
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W14", "signature" : "ff4_OO8"},
 	"options" : {  "hidden_layer_sizes" : [ 100 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 48842, "dataset_features" : 53 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -231,13 +232,14 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
 }
 WRITING_JSON_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_one_hot_quantized.json'
 
+RELOADING_MODEL_FROM_JSON_START ('census_one_hot_quantized', 'MLPClassifier')
 MLLITE_MODEL_SET_OPTIONS MLPClassifier None
 MLLITE_MODEL_OPTIONS_DEFAULT MLPClassifier { "max_iter" : 32}
 MLLITE_MODEL_OPTIONS_AFTER_SETTING MLPClassifier { ,  "max_iter" : 32 }
 MLLITE_MODEL_JSON_AFTER_SETTING MLPClassifier None
 MLLITE_RELOADING_MODEL mllite_mlp_class.MLPClassifier_ff4_OO8
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W14", "signature" : "ff4_OO8"},
 	"options" : {  "hidden_layer_sizes" : [ 100 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 48842, "dataset_features" : 53 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -595,14 +597,15 @@ BEAUTIFIED_JSON_START
 		},
 		"sizes" : [ 53, 100, 1 ]
 	},
-	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_OO8", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_OO8", "version" : "2024-W14" },
 	"options" :  { "activation" : "relu", "alpha" : 0.0001, "batch_size" : null, "beta_1" : 0.9, "beta_2" : 0.999, "early_stopping" : 0, "epsilon" : 0.0, "hidden_layer_sizes" : [ 100 ], "learning_rate" : "constant", "learning_rate_init" : 0.001, "max_fun" : 15000, "max_iter" : 32, "momentum" : 0.9, "n_iter_no_change" : 10, "nesterovs_momentum" : 1, "power_t" : 0.5, "random_state" : 1789, "shuffle" : 1, "solver" : "adam", "tol" : 0.0001, "validation_fraction" : 0.1, "verbose" : 0, "warm_start" : 0 }
 }
 BEAUTIFIED_JSON_END
+RELOADING_MODEL_FROM_JSON_END ('census_one_hot_quantized', 'MLPClassifier')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.512, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.402, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.546, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.425, 'PREDICT')
 [[0.8145 0.1855]
  [0.7124 0.2876]
  [0.9792 0.0208]
@@ -615,357 +618,14 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': None, 'dataset': 'census_one_hot_quantized', 'size': 48842, 'accuracy': 0.8581753408951313, 'auc': 0.9204847685901187}
 WRITING_PERF_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_one_hot_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': None, 'dataset': 'census_one_hot_quantized', 'training_time_in_sec': 31.284, 'prediction_time_in_sec': 0.546}
-WRITING_SQL_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_one_hot_quantized_duckdb.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': None, 'dataset': 'census_one_hot_quantized', 'training_time_in_sec': 31.888, 'prediction_time_in_sec': 0.425}
 
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('census_one_hot_quantized', 'MLPClassifier', 'duckdb')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
-SQL_OUT_PUT_FIRST_LINES_END ('census_one_hot_quantized', 'MLPClassifier', 'duckdb')
-SQL_OUT_PUT_LAST_LINES_START ('census_one_hot_quantized', 'MLPClassifier', 'duckdb')
-"
-  FROM
-   "arg_max_cte_with_max_proba" AS t
-),
-arg_max_cte AS 
-( SELECT t."index" as "index",
-     t."Proba_0" AS "Proba_0",
-     t."Score_0" AS "Score_0",
-     t."Proba_1" AS "Proba_1",
-     t."Score_1" AS "Score_1",
-     t."Max_Proba" AS "Max_Proba",
-     t."Max_Score" AS "Max_Score",
-     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
-   FROM
-     "arg_max_cte_with_max_proba_idx" AS t
-)
-SELECT arg_max_cte."index" AS "index",
-  arg_max_cte."Score_0" AS "Score_0",
-  arg_max_cte."Proba_0" AS "Proba_0",
-  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
-  arg_max_cte."Score_1" AS "Score_1",
-  arg_max_cte."Proba_1" AS "Proba_1",
-  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."argmax_class_idx" AS "Decision",
-  arg_max_cte."Max_Proba" AS "DecisionProba"
-FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END ('census_one_hot_quantized', 'MLPClassifier', 'duckdb') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START
-<class 'pandas.core.frame.DataFrame'>
-Index: 48842 entries, 0 to 48841
-Data columns (total 53 columns):
- #   Column  Non-Null Count  Dtype  
----  ------  --------------  -----  
- 0   X_0     48842 non-null  float32
- 1   X_1     48842 non-null  float32
- 2   X_2     48842 non-null  float32
- 3   X_3     48842 non-null  float32
- 4   X_4     48842 non-null  float32
- 5   X_5     48842 non-null  float32
- 6   X_6     48842 non-null  float32
- 7   X_7     48842 non-null  float32
- 8   X_8     48842 non-null  float32
- 9   X_9     48842 non-null  float32
- 10  X_10    48842 non-null  float32
- 11  X_11    48842 non-null  float32
- 12  X_12    48842 non-null  float32
- 13  X_13    48842 non-null  float32
- 14  X_14    48842 non-null  float32
- 15  X_15    48842 non-null  float32
- 16  X_16    48842 non-null  float32
- 17  X_17    48842 non-null  float32
- 18  X_18    48842 non-null  float32
- 19  X_19    48842 non-null  float32
- 20  X_20    48842 non-null  float32
- 21  X_21    48842 non-null  float32
- 22  X_22    48842 non-null  float32
- 23  X_23    48842 non-null  float32
- 24  X_24    48842 non-null  float32
- 25  X_25    48842 non-null  float32
- 26  X_26    48842 non-null  float32
- 27  X_27    48842 non-null  float32
- 28  X_28    48842 non-null  float32
- 29  X_29    48842 non-null  float32
- 30  X_30    48842 non-null  float32
- 31  X_31    48842 non-null  float32
- 32  X_32    48842 non-null  float32
- 33  X_33    48842 non-null  float32
- 34  X_34    48842 non-null  float32
- 35  X_35    48842 non-null  float32
- 36  X_36    48842 non-null  float32
- 37  X_37    48842 non-null  float32
- 38  X_38    48842 non-null  float32
- 39  X_39    48842 non-null  float32
- 40  X_40    48842 non-null  float32
- 41  X_41    48842 non-null  float32
- 42  X_42    48842 non-null  float32
- 43  X_43    48842 non-null  float32
- 44  X_44    48842 non-null  float32
- 45  X_45    48842 non-null  float32
- 46  X_46    48842 non-null  float32
- 47  X_47    48842 non-null  float32
- 48  X_48    48842 non-null  float32
- 49  X_49    48842 non-null  float32
- 50  X_50    48842 non-null  float32
- 51  X_51    48842 non-null  float32
- 52  X_52    48842 non-null  float32
-dtypes: float32(53)
-memory usage: 10.2 MB
-        X_0  X_1   X_2   X_3   X_4   X_5  ...  X_47  X_48  X_49  X_50  X_51  X_52
-index                                     ...                                    
-0       6.0  0.0   0.0   0.0   0.0  10.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-1       7.0  0.0   0.0   0.0  10.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-2       6.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-3       7.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-4       3.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0   0.0   0.0  10.0
-...     ...  ...   ...   ...   ...   ...  ...   ...   ...   ...   ...   ...   ...
-48837   6.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-48838  10.0  0.0   0.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-48839   6.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-48840   6.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-48841   3.0  0.0   0.0  10.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-
-[48842 rows x 53 columns]
-COPY_TRAINING_DATA_TO_SQLITE_END
-
-
-PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 48842 entries, 0 to 48841
-Data columns (total 9 columns):
- #   Column         Non-Null Count  Dtype  
----  ------         --------------  -----  
- 0   index          48842 non-null  int64  
- 1   Score_0        48842 non-null  float64
- 2   Proba_0        48842 non-null  float64
- 3   LogProba_0     48842 non-null  float64
- 4   Score_1        48842 non-null  float64
- 5   Proba_1        48842 non-null  float64
- 6   LogProba_1     48842 non-null  float64
- 7   Decision       48842 non-null  int64  
- 8   DecisionProba  48842 non-null  float64
-dtypes: float64(7), int64(2)
-memory usage: 3.4 MB
-       index   Score_0   Proba_0  ...  LogProba_1  Decision  DecisionProba
-0          0  0.739897  0.814542  ...   -1.684925         0       0.814542
-1          1  0.453462  0.712370  ...   -1.246081         0       0.712370
-2          2  1.925697  0.979192  ...   -3.872422         0       0.979192
-3          3  1.837351  0.975270  ...   -3.699742         0       0.975270
-4          4 -0.209403  0.396803  ...   -0.505511         1       0.603197
-...      ...       ...       ...  ...         ...       ...            ...
-48837  48837  0.840189  0.842954  ...   -1.851220         0       0.842954
-48838  48838  4.491070  0.999874  ...   -8.982265         0       0.999874
-48839  48839 -0.575868  0.240172  ...   -0.274663         1       0.759828
-48840  48840  1.107567  0.901600  ...   -2.318718         0       0.901600
-48841  48841 -0.333856  0.339009  ...   -0.414015         1       0.660991
-
-[48842 rows x 9 columns]
-PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
-
-
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
-Index(['index', 'Score_0', 'Proba_0', 'LogProba_0', 'Score_1', 'Proba_1',
-       'LogProba_1', 'Decision', 'DecisionProba'],
-      dtype='object')
-       index   Score_0  SQL_Proba_0  ...  Py_Proba_0  Py_Proba_1  Py_Decision
-48826  48826 -1.306300     0.068332  ...    0.068331    0.931669         >50K
-48827  48827  4.085523     0.999717  ...    0.999717    0.000283        <=50K
-48828  48828  3.573329     0.999213  ...    0.999213    0.000787        <=50K
-48829  48829  0.949274     0.869727  ...    0.869726    0.130274        <=50K
-48830  48830  0.887962     0.855193  ...    0.855192    0.144808        <=50K
-48831  48831  0.496462     0.729665  ...    0.729663    0.270337        <=50K
-48832  48832  0.234490     0.615142  ...    0.615140    0.384860        <=50K
-48833  48833  0.823086     0.838373  ...    0.838371    0.161629        <=50K
-48834  48834  4.279775     0.999808  ...    0.999808    0.000192        <=50K
-48835  48835  1.002429     0.881306  ...    0.881306    0.118694        <=50K
-48836  48836  1.202430     0.917197  ...    0.917197    0.082803        <=50K
-48837  48837  0.840189     0.842954  ...    0.842954    0.157046        <=50K
-48838  48838  4.491070     0.999874  ...    0.999874    0.000126        <=50K
-48839  48839 -0.575868     0.240172  ...    0.240170    0.759830         >50K
-48840  48840  1.107567     0.901600  ...    0.901599    0.098401        <=50K
-48841  48841 -0.333856     0.339009  ...    0.339008    0.660992         >50K
-
-[16 rows x 12 columns]
-MLLITE_CLASS_SQL_ERROR ('census_one_hot_quantized', 'MLPClassifier', 'duckdb') ('Py_Proba_0', 'SQL_Proba_0') 7.166214185430396e-07
-       Py_Proba_0  SQL_Proba_0   SQL_Error_0
-48826    0.068331     0.068332 -3.941396e-07
-48827    0.999717     0.999717 -2.803517e-09
-48828    0.999213     0.999213 -2.902084e-08
-48829    0.869726     0.869727 -1.079112e-06
-48830    0.855192     0.855193 -1.136094e-06
-48831    0.729663     0.729665 -1.880280e-06
-48832    0.615140     0.615142 -1.752310e-06
-48833    0.838371     0.838373 -1.694895e-06
-48834    0.999808     0.999808 -1.961177e-08
-48835    0.881306     0.881306 -4.069200e-07
-48836    0.917197     0.917197  1.199243e-07
-48837    0.842954     0.842954 -9.668176e-08
-48838    0.999874     0.999874 -2.861771e-08
-48839    0.240170     0.240172 -2.132604e-06
-48840    0.901599     0.901600 -1.623160e-06
-48841    0.339008     0.339009 -8.134384e-07
-MLLITE_CLASS_SQL_ERROR ('census_one_hot_quantized', 'MLPClassifier', 'duckdb') ('Py_Proba_1', 'SQL_Proba_1') 7.13561509579853e-07
-       Py_Proba_1  SQL_Proba_1   SQL_Error_1
-48826    0.931669     0.931668  3.941396e-07
-48827    0.000283     0.000283 -3.773949e-09
-48828    0.000787     0.000787  4.515417e-09
-48829    0.130274     0.130273  1.108915e-06
-48830    0.144808     0.144807  1.121193e-06
-48831    0.270337     0.270335  1.880280e-06
-48832    0.384860     0.384858  1.782112e-06
-48833    0.161629     0.161627  1.724697e-06
-48834    0.000192     0.000192 -1.933897e-10
-48835    0.118694     0.118694  3.994695e-07
-48836    0.082803     0.082803 -1.273749e-07
-48837    0.157046     0.157046  6.687944e-08
-48838    0.000126     0.000126 -9.663304e-10
-48839    0.759830     0.759828  2.132604e-06
-48840    0.098401     0.098400  1.600808e-06
-48841    0.660992     0.660991  8.134384e-07
-MLLITE_CLASS_SQL_EXECUTION_STATUS ('census_one_hot_quantized', 'MLPClassifier', 'duckdb', 'Success')
-      Py_Decision  SQL_Decision
-48826        >50K             1
-48827       <=50K             0
-48828       <=50K             0
-48829       <=50K             0
-48830       <=50K             0
-48831       <=50K             0
-48832       <=50K             0
-48833       <=50K             0
-48834       <=50K             0
-48835       <=50K             0
-48836       <=50K             0
-48837       <=50K             0
-48838       <=50K             0
-48839        >50K             1
-48840       <=50K             0
-48841        >50K             1
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_one_hot_quantized_sqlite.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('census_one_hot_quantized', 'MLPClassifier', 'sqlite')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
-SQL_OUT_PUT_FIRST_LINES_END ('census_one_hot_quantized', 'MLPClassifier', 'sqlite')
-SQL_OUT_PUT_LAST_LINES_START ('census_one_hot_quantized', 'MLPClassifier', 'sqlite')
-"
-  FROM
-   "arg_max_cte_with_max_proba" AS t
-),
-arg_max_cte AS 
-( SELECT t."index" as "index",
-     t."Proba_0" AS "Proba_0",
-     t."Score_0" AS "Score_0",
-     t."Proba_1" AS "Proba_1",
-     t."Score_1" AS "Score_1",
-     t."Max_Proba" AS "Max_Proba",
-     t."Max_Score" AS "Max_Score",
-     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
-   FROM
-     "arg_max_cte_with_max_proba_idx" AS t
-)
-SELECT arg_max_cte."index" AS "index",
-  arg_max_cte."Score_0" AS "Score_0",
-  arg_max_cte."Proba_0" AS "Proba_0",
-  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
-  arg_max_cte."Score_1" AS "Score_1",
-  arg_max_cte."Proba_1" AS "Proba_1",
-  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."argmax_class_idx" AS "Decision",
-  arg_max_cte."Max_Proba" AS "DecisionProba"
-FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END ('census_one_hot_quantized', 'MLPClassifier', 'sqlite') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START
-<class 'pandas.core.frame.DataFrame'>
-Index: 48842 entries, 0 to 48841
-Data columns (total 53 columns):
- #   Column  Non-Null Count  Dtype  
----  ------  --------------  -----  
- 0   X_0     48842 non-null  float32
- 1   X_1     48842 non-null  float32
- 2   X_2     48842 non-null  float32
- 3   X_3     48842 non-null  float32
- 4   X_4     48842 non-null  float32
- 5   X_5     48842 non-null  float32
- 6   X_6     48842 non-null  float32
- 7   X_7     48842 non-null  float32
- 8   X_8     48842 non-null  float32
- 9   X_9     48842 non-null  float32
- 10  X_10    48842 non-null  float32
- 11  X_11    48842 non-null  float32
- 12  X_12    48842 non-null  float32
- 13  X_13    48842 non-null  float32
- 14  X_14    48842 non-null  float32
- 15  X_15    48842 non-null  float32
- 16  X_16    48842 non-null  float32
- 17  X_17    48842 non-null  float32
- 18  X_18    48842 non-null  float32
- 19  X_19    48842 non-null  float32
- 20  X_20    48842 non-null  float32
- 21  X_21    48842 non-null  float32
- 22  X_22    48842 non-null  float32
- 23  X_23    48842 non-null  float32
- 24  X_24    48842 non-null  float32
- 25  X_25    48842 non-null  float32
- 26  X_26    48842 non-null  float32
- 27  X_27    48842 non-null  float32
- 28  X_28    48842 non-null  float32
- 29  X_29    48842 non-null  float32
- 30  X_30    48842 non-null  float32
- 31  X_31    48842 non-null  float32
- 32  X_32    48842 non-null  float32
- 33  X_33    48842 non-null  float32
- 34  X_34    48842 non-null  float32
- 35  X_35    48842 non-null  float32
- 36  X_36    48842 non-null  float32
- 37  X_37    48842 non-null  float32
- 38  X_38    48842 non-null  float32
- 39  X_39    48842 non-null  float32
- 40  X_40    48842 non-null  float32
- 41  X_41    48842 non-null  float32
- 42  X_42    48842 non-null  float32
- 43  X_43    48842 non-null  float32
- 44  X_44    48842 non-null  float32
- 45  X_45    48842 non-null  float32
- 46  X_46    48842 non-null  float32
- 47  X_47    48842 non-null  float32
- 48  X_48    48842 non-null  float32
- 49  X_49    48842 non-null  float32
- 50  X_50    48842 non-null  float32
- 51  X_51    48842 non-null  float32
- 52  X_52    48842 non-null  float32
-dtypes: float32(53)
-memory usage: 10.2 MB
-        X_0  X_1   X_2   X_3   X_4   X_5  ...  X_47  X_48  X_49  X_50  X_51  X_52
-index                                     ...                                    
-0       6.0  0.0   0.0   0.0   0.0  10.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-1       7.0  0.0   0.0   0.0  10.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-2       6.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-3       7.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-4       3.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0   0.0   0.0  10.0
-...     ...  ...   ...   ...   ...   ...  ...   ...   ...   ...   ...   ...   ...
-48837   6.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-48838  10.0  0.0   0.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-48839   6.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-48840   6.0  0.0  10.0   0.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-48841   3.0  0.0   0.0  10.0   0.0   0.0  ...   0.0   0.0   0.0  10.0   0.0   0.0
-
-[48842 rows x 53 columns]
-COPY_TRAINING_DATA_TO_SQLITE_END
-
-
-PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 0 53
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 1 53
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 2 53
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 3 53
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 4 53
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 5 53
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 6 53
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 7 53

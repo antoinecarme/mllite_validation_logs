@@ -1,3 +1,4 @@
+READING_CSV census_small ['data/small/census_small.csv']
     age  workclass     fnlwgt  ...  hoursperweek  native-country  target
 0   2.0        0.0   188950.0  ...           3.0             0.0    >50K
 1   1.0        0.0  1033222.0  ...           2.0             0.0   <=50K
@@ -47,11 +48,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 27 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 30 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT_BACK_PROP_ITERATION' 32 32
 PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.018, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.02, 'TRAINING')
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 }
 { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 }
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W14", "signature" : "ff4_OO8"},
 	"options" : {  "hidden_layer_sizes" : [ 4, 8, 6 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 14 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -122,13 +123,14 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'MLP_MODEL_FIT' 3 3
 }
 WRITING_JSON_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_small_option_1.json'
 
+RELOADING_MODEL_FROM_JSON_START ('census_small', 'MLPClassifier')
 MLLITE_MODEL_SET_OPTIONS MLPClassifier {"hidden_layer_sizes" : [4, 8, 6]}
 MLLITE_MODEL_OPTIONS_DEFAULT MLPClassifier { "max_iter" : 32}
 MLLITE_MODEL_OPTIONS_AFTER_SETTING MLPClassifier { "hidden_layer_sizes" : [4, 8, 6],  "max_iter" : 32 }
 MLLITE_MODEL_JSON_AFTER_SETTING MLPClassifier None
 MLLITE_RELOADING_MODEL mllite_mlp_class.MLPClassifier_ff4_OO8
 {
-	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W13", "signature" : "ff4_OO8"},
+	"metadata" : { "model" : "Rosenblatt_MLP", "version" : "2024-W14", "signature" : "ff4_OO8"},
 	"options" : {  "hidden_layer_sizes" : [ 4, 8, 6 ], "activation" : "relu", "solver" : "adam", "alpha" : 0.000100, "batch_size" : null, "learning_rate" : "constant", "learning_rate_init" : 0.001000, "power_t" : 0.500000, "max_iter" : 32, "shuffle" : 1, "random_state" : 1789, "tol" : 0.000100, "verbose" : 0, "warm_start" : 0, "momentum" : 0.900000, "nesterovs_momentum" : 1, "early_stopping" : 0, "validation_fraction" : 0.100000, "beta_1" : 0.900000, "beta_2" : 0.999000, "epsilon" : 0.000000, "n_iter_no_change" : 10, "max_fun" : 15000 },
 	"dataset" : { "dataset_rows" : 64, "dataset_features" : 14 },
 	"classes" : [ "<=50K", ">50K" ],
@@ -268,10 +270,11 @@ BEAUTIFIED_JSON_START
 		},
 		"sizes" : [ 14, 4, 8, 6, 1 ]
 	},
-	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_OO8", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Rosenblatt_MLP", "signature" : "ff4_OO8", "version" : "2024-W14" },
 	"options" :  { "activation" : "relu", "alpha" : 0.0001, "batch_size" : null, "beta_1" : 0.9, "beta_2" : 0.999, "early_stopping" : 0, "epsilon" : 0.0, "hidden_layer_sizes" : [ 4, 8, 6 ], "learning_rate" : "constant", "learning_rate_init" : 0.001, "max_fun" : 15000, "max_iter" : 32, "momentum" : 0.9, "n_iter_no_change" : 10, "nesterovs_momentum" : 1, "power_t" : 0.5, "random_state" : 1789, "shuffle" : 1, "solver" : "adam", "tol" : 0.0001, "validation_fraction" : 0.1, "verbose" : 0, "warm_start" : 0 }
 }
 BEAUTIFIED_JSON_END
+RELOADING_MODEL_FROM_JSON_END ('census_small', 'MLPClassifier')
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
@@ -345,7 +348,48 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'census_small', 'size': 64, 'accuracy': 0.78125, 'auc': 0.5}
 WRITING_PERF_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_small_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'census_small', 'training_time_in_sec': 0.018, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.MLPClassifier', 'model_name': 'MLPClassifier', 'options': '{"hidden_layer_sizes" : [4, 8, 6]}', 'dataset': 'census_small', 'training_time_in_sec': 0.019, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 0 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 1 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 2 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 3 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 4 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 5 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 6 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 7 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 8 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 9 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 10 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 11 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 12 14
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 13 14
+{
+   "Contributions" : {
+      "X_0" : [ 0.000000, 0.000000 ],
+      "X_1" : [ 0.000000, 0.000000 ],
+      "X_2" : [ 0.000000, 0.000000 ],
+      "X_3" : [ 0.000000, 0.000000 ],
+      "X_4" : [ 0.000000, 0.000000 ],
+      "X_5" : [ 0.000000, 0.000000 ],
+      "X_6" : [ 0.000000, 0.000000 ],
+      "X_7" : [ 0.000000, 0.000000 ],
+      "X_8" : [ 0.000000, 0.000000 ],
+      "X_9" : [ 0.000000, 0.000000 ],
+      "X_10" : [ 0.000000, 0.000000 ],
+      "X_11" : [ 0.000000, 0.000000 ],
+      "X_12" : [ 0.000000, 0.000000 ],
+      "X_13" : [ 0.000000, 0.000000 ]   
+   },
+   "Most_Contributive_Features_By_Class" : {
+      "class_0" : [ ],
+      "class_1" : [ ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_small_option_1_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_small_option_1_duckdb.sql'
 
 
@@ -354,7 +398,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('census_small', 'MLPClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "census_small" AS "ADS" 
  ),
 "Input_Layer_BA" AS
  ( SELECT t."index" as "index",
@@ -372,7 +416,7 @@ WITH model_input AS
     t."X_11" AS "OUT_11",
     t."X_12" AS "OUT_12",
     t."X_13" AS "OUT_13"
- F
+ FROM "m
 SQL_OUT_PUT_FIRST_LINES_END ('census_small', 'MLPClassifier', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('census_small', 'MLPClassifier', 'duckdb')
 "
@@ -566,7 +610,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('census_small', 'MLPClassifier', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "census_small" AS "ADS" 
  ),
 "Input_Layer_BA" AS
  ( SELECT t."index" as "index",
@@ -584,7 +628,7 @@ WITH model_input AS
     t."X_11" AS "OUT_11",
     t."X_12" AS "OUT_12",
     t."X_13" AS "OUT_13"
- F
+ FROM "m
 SQL_OUT_PUT_FIRST_LINES_END ('census_small', 'MLPClassifier', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('census_small', 'MLPClassifier', 'sqlite')
 "
@@ -660,64 +704,4 @@ COPY_TRAINING_DATA_TO_SQLITE_END
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
 MODEL_SQL_EXECUTION_FAILED ('census_small', 'MLPClassifier', 'sqlite', '')
-WRITING_SQL_CODE 'logs/auto_tests/classification/MLPClassifier/mllite.MLPClassifier_census_small_option_1_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('census_small', 'MLPClassifier', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-"Input_Layer_BA" AS
- ( SELECT t."index" as "index",
-    t."X_0" AS "OUT_0",
-    t."X_1" AS "OUT_1",
-    t."X_2" AS "OUT_2",
-    t."X_3" AS "OUT_3",
-    t."X_4" AS "OUT_4",
-    t."X_5" AS "OUT_5",
-    t."X_6" AS "OUT_6",
-    t."X_7" AS "OUT_7",
-    t."X_8" AS "OUT_8",
-    t."X_9" AS "OUT_9",
-    t."X_10" AS "OUT_10",
-    t."X_11" AS "OUT_11",
-    t."X_12" AS "OUT_12",
-    t."X_13" AS "OUT_13"
- F
-SQL_OUT_PUT_FIRST_LINES_END ('census_small', 'MLPClassifier', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('census_small', 'MLPClassifier', 'pgsql')
-"
-  FROM
-   "arg_max_cte_with_max_proba" AS t
-),
-arg_max_cte AS 
-( SELECT t."index" as "index",
-     t."Proba_0" AS "Proba_0",
-     t."Score_0" AS "Score_0",
-     t."Proba_1" AS "Proba_1",
-     t."Score_1" AS "Score_1",
-     t."Max_Proba" AS "Max_Proba",
-     t."Max_Score" AS "Max_Score",
-     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
-   FROM
-     "arg_max_cte_with_max_proba_idx" AS t
-)
-SELECT arg_max_cte."index" AS "index",
-  arg_max_cte."Score_0" AS "Score_0",
-  arg_max_cte."Proba_0" AS "Proba_0",
-  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
-  arg_max_cte."Score_1" AS "Score_1",
-  arg_max_cte."Proba_1" AS "Proba_1",
-  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."argmax_class_idx" AS "Decision",
-  arg_max_cte."Max_Proba" AS "DecisionProba"
-FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END ('census_small', 'MLPClassifier', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('census_small', 'MLPClassifier', 'sqlite', 'sql_execution_failed')

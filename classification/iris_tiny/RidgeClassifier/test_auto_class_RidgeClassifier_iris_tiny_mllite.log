@@ -1,3 +1,4 @@
+READING_CSV iris_tiny ['data/tiny/iris_tiny.csv']
     sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target
 0                 6.4               3.2  ...               2.3       2
 1                 6.3               3.3  ...               1.6       1
@@ -51,11 +52,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.012, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.013, 'TRAINING')
 { ,   }
 { ,   }
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -76,13 +77,14 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 5 5
 }
 WRITING_JSON_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_tiny.json'
 
+RELOADING_MODEL_FROM_JSON_START ('iris_tiny', 'RidgeClassifier')
 MLLITE_MODEL_SET_OPTIONS RidgeClassifier None
 MLLITE_MODEL_OPTIONS_DEFAULT RidgeClassifier { }
 MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeClassifier { ,   }
 MLLITE_MODEL_JSON_AFTER_SETTING RidgeClassifier None
 MLLITE_RELOADING_MODEL mllite_ridge_class.RidgeClassifier_ff4_il8
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : { "alpha" : 1.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 4 },
 	"classes" : [ 0, 1, 2 ],
@@ -122,10 +124,11 @@ BEAUTIFIED_JSON_START
 			"intercept" : -4.612794
 		}
 	},
-	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_il8", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_il8", "version" : "2024-W14" },
 	"options" :  { "alpha" : 1.0, "random_state" : 1789 }
 }
 BEAUTIFIED_JSON_END
+RELOADING_MODEL_FROM_JSON_END ('iris_tiny', 'RidgeClassifier')
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
@@ -151,7 +154,29 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'iris_tiny', 'size': 16, 'accuracy': 0.8125, 'auc': 0.9561327561327561}
 WRITING_PERF_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_tiny.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'iris_tiny', 'training_time_in_sec': 0.012, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': None, 'dataset': 'iris_tiny', 'training_time_in_sec': 0.013, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 0 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 1 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 2 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 3 4
+{
+   "Contributions" : {
+      "X_0" : [ 0.000728, -0.012215, 0.011487 ],
+      "X_1" : [ 0.001553, -0.005217, 0.003664 ],
+      "X_2" : [ -0.007351, -0.003227, 0.010578 ],
+      "X_3" : [ -0.010717, 0.007174, 0.003543 ]   
+   },
+   "Most_Contributive_Features_By_Class" : {
+      "class_0" : [ 3, 2, 1, 0 ],
+      "class_1" : [ 0, 3, 1, 2 ],
+      "class_2" : [ 0, 2, 1, 3 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_tiny_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_tiny_duckdb.sql'
 
 
@@ -160,7 +185,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('iris_tiny', 'RidgeClassifier', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "iris_tiny" AS "ADS" 
  ),
 model_scores_cte AS 
  (SELECT t."index" AS "index",
@@ -179,7 +204,7 @@ soft_max_orig_cte AS
 ( SELECT t."index" AS "index", 
    t."Score_0" AS "Score_0",
    t."Proba_0" AS "Proba_0",
-   t."LogProba_0
+   t."LogProba_0" AS "Log
 SQL_OUT_PUT_FIRST_LINES_END ('iris_tiny', 'RidgeClassifier', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('iris_tiny', 'RidgeClassifier', 'duckdb')
 roba",
@@ -386,7 +411,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('iris_tiny', 'RidgeClassifier', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "iris_tiny" AS "ADS" 
  ),
 model_scores_cte AS 
  (SELECT t."index" AS "index",
@@ -405,7 +430,7 @@ soft_max_orig_cte AS
 ( SELECT t."index" AS "index", 
    t."Score_0" AS "Score_0",
    t."Proba_0" AS "Proba_0",
-   t."LogProba_0
+   t."LogProba_0" AS "Log
 SQL_OUT_PUT_FIRST_LINES_END ('iris_tiny', 'RidgeClassifier', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('iris_tiny', 'RidgeClassifier', 'sqlite')
 roba",
@@ -604,58 +629,3 @@ MLLITE_CLASS_SQL_EXECUTION_STATUS ('iris_tiny', 'RidgeClassifier', 'sqlite', 'Su
 14            2             2
 15            0             0
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_iris_tiny_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('iris_tiny', 'RidgeClassifier', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-model_scores_cte AS 
- (SELECT t."index" AS "index",
-   -2.370631 + 0.071604 * t."X_0" + 0.937354 * t."X_1" + -0.194516 * t."X_2" + -0.532735 * t."X_3" AS "Score_0",
-   CAST(NULL AS FLOAT) AS "Proba_0",
-   CAST(NULL AS FLOAT) AS "LogProba_0",
-   5.983428 + -0.424803 * t."X_0" + -1.264203 * t."X_1" + -0.036332 * t."X_2" + 0.352726 * t."X_3" AS "Score_1",
-   CAST(NULL AS FLOAT) AS "Proba_1",
-   CAST(NULL AS FLOAT) AS "LogProba_1",
-   -4.612794 + 0.353199 * t."X_0" + 0.326849 * t."X_1" + 0.230847 * t."X_2" + 0.180010 * t."X_3" AS "Score_2",
-   CAST(NULL AS FLOAT) AS "Proba_2",
-   CAST(NULL AS FLOAT) AS "LogProba_2"
-  FROM model_input AS t
- ),
-soft_max_orig_cte AS 
-( SELECT t."index" AS "index", 
-   t."Score_0" AS "Score_0",
-   t."Proba_0" AS "Proba_0",
-   t."LogProba_0
-SQL_OUT_PUT_FIRST_LINES_END ('iris_tiny', 'RidgeClassifier', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('iris_tiny', 'RidgeClassifier', 'pgsql')
-roba",
-     t."Max_Score" AS "Max_Score",
-     COALESCE(  t."max_idx_0", t."max_idx_1", t."max_idx_2" ) AS argmax_class_idx
-   FROM
-     "arg_max_cte_with_max_proba_idx" AS t
-)
-SELECT arg_max_cte."index" AS "index",
-  arg_max_cte."Score_0" AS "Score_0",
-  arg_max_cte."Proba_0" AS "Proba_0",
-  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
-  arg_max_cte."Score_1" AS "Score_1",
-  arg_max_cte."Proba_1" AS "Proba_1",
-  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."Score_2" AS "Score_2",
-  arg_max_cte."Proba_2" AS "Proba_2",
-  CASE WHEN (arg_max_cte."Proba_2" IS NULL OR arg_max_cte."Proba_2" > 0.0) THEN LN( arg_max_cte."Proba_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
-  arg_max_cte."argmax_class_idx" AS "Decision",
-  arg_max_cte."Max_Proba" AS "DecisionProba"
-FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END ('iris_tiny', 'RidgeClassifier', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

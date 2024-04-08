@@ -1,3 +1,4 @@
+READING_CSV FourClass_10_original ['data/original/FourClass_10.csv']
            X_0       X_1       X_2  ...       X_8       X_9  target
 0    -1.104915  0.852920  0.507679  ... -1.472978 -1.793182       0
 1     1.845877 -1.230132  0.868872  ...  0.362403 -0.619445       3
@@ -67,7 +68,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 6 6
 { "alpha" : 0.0000001,   }
 { "alpha" : 0.0000001,   }
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : { "alpha" : 0.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 1024, "dataset_features" : 10 },
 	"classes" : [ 0, 1, 2, 3 ],
@@ -92,13 +93,14 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_CLASSIFIER_FIT' 6 6
 }
 WRITING_JSON_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_FourClass_10_original_option_1.json'
 
+RELOADING_MODEL_FROM_JSON_START ('FourClass_10_original', 'RidgeClassifier')
 MLLITE_MODEL_SET_OPTIONS RidgeClassifier {"alpha" : 0.0000001}
 MLLITE_MODEL_OPTIONS_DEFAULT RidgeClassifier { }
 MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeClassifier { "alpha" : 0.0000001,   }
 MLLITE_MODEL_JSON_AFTER_SETTING RidgeClassifier None
 MLLITE_RELOADING_MODEL mllite_ridge_class.RidgeClassifier_ff4_il8
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : { "alpha" : 0.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 1024, "dataset_features" : 10 },
 	"classes" : [ 0, 1, 2, 3 ],
@@ -146,10 +148,11 @@ BEAUTIFIED_JSON_START
 			"intercept" : -0.503822
 		}
 	},
-	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_il8", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_il8", "version" : "2024-W14" },
 	"options" :  { "alpha" : 0.0, "random_state" : 1789 }
 }
 BEAUTIFIED_JSON_END
+RELOADING_MODEL_FROM_JSON_END ('FourClass_10_original', 'RidgeClassifier')
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
@@ -167,6 +170,41 @@ MODEL_PERFS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassif
 WRITING_PERF_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_FourClass_10_original_option_1.perf'
 
 MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeClassifier', 'model_name': 'RidgeClassifier', 'options': '{"alpha" : 0.0000001}', 'dataset': 'FourClass_10_original', 'training_time_in_sec': 0.015, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 0 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 1 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 2 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 3 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 4 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 5 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 6 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 7 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 8 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 9 10
+{
+   "Contributions" : {
+      "X_0" : [ -0.000312, 0.000990, -0.000484, -0.000195 ],
+      "X_1" : [ -0.000902, 0.002006, -0.001670, 0.000566 ],
+      "X_2" : [ 0.000410, -0.000053, 0.000010, -0.000367 ],
+      "X_3" : [ 0.006775, -0.000796, -0.010758, 0.004779 ],
+      "X_4" : [ 0.000023, -0.000273, 0.000682, -0.000432 ],
+      "X_5" : [ -0.002179, -0.000658, -0.000263, 0.003100 ],
+      "X_6" : [ -0.000282, -0.003558, 0.005558, -0.001719 ],
+      "X_7" : [ -0.013647, 0.030615, 0.000679, -0.017647 ],
+      "X_8" : [ 0.000700, 0.004904, -0.005926, 0.000322 ],
+      "X_9" : [ 0.000233, -0.000273, 0.000060, -0.000021 ]   
+   },
+   "Most_Contributive_Features_By_Class" : {
+      "class_0" : [ 7, 3, 5, 1, 8, 2, 0, 6, 9, 4 ],
+      "class_1" : [ 7, 8, 6, 1, 0, 3, 5, 4, 9, 2 ],
+      "class_2" : [ 3, 8, 6, 1, 4, 7, 0, 5, 9, 2 ],
+      "class_3" : [ 7, 3, 5, 6, 1, 4, 2, 8, 0, 9 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_FourClass_10_original_option_1_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_FourClass_10_original_option_1_duckdb.sql'
 
 
@@ -175,14 +213,14 @@ SQL_OUT_PUT_FIRST_LINES_START ('FourClass_10_original', 'RidgeClassifier', 'duck
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "FourClass_10_original" AS "ADS" 
  ),
 model_scores_cte AS 
  (SELECT t."index" AS "index",
    -0.475811 + -0.031904 * t."X_0" + 0.049522 * t."X_1" + 0.019165 * t."X_2" + 0.142353 * t."X_3" + -0.023408 * t."X_4" + -0.024416 * t."X_5" + 0.010535 * t."X_6" + -0.144843 * t."X_7" + 0.025051 * t."X_8" + -0.034964 * t."X_9" AS "Score_0",
    CAST(NULL AS FLOAT) AS "Proba_0",
    CAST(NULL AS FLOAT) AS "LogProba_0",
-   -0.468902 + 0.020781 * t."X_0" + -0.058350 * t."X_1" + 0.001574 * t."X_2" + -0.045984 * t."X_3" + 0.027666 * t."X_4" + -0.010326 * t."X_5" + -0.071169 * t."X_6" + 0.307737 * t."X_
+   -0.468902 + 0.020781 * t."X_0" + -0.058350 * t."X_1" + 0.001574 * t."X_2" + -0.045984 * t."X_3" + 0.027666 * t."X_4" + -0.010326 * t."X_5" + -0.071169 * t."X_6" + 0.307737 * t.
 SQL_OUT_PUT_FIRST_LINES_END ('FourClass_10_original', 'RidgeClassifier', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('FourClass_10_original', 'RidgeClassifier', 'duckdb')
 ore_0" AS "Score_0",
@@ -404,14 +442,14 @@ SQL_OUT_PUT_FIRST_LINES_START ('FourClass_10_original', 'RidgeClassifier', 'sqli
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "FourClass_10_original" AS "ADS" 
  ),
 model_scores_cte AS 
  (SELECT t."index" AS "index",
    -0.475811 + -0.031904 * t."X_0" + 0.049522 * t."X_1" + 0.019165 * t."X_2" + 0.142353 * t."X_3" + -0.023408 * t."X_4" + -0.024416 * t."X_5" + 0.010535 * t."X_6" + -0.144843 * t."X_7" + 0.025051 * t."X_8" + -0.034964 * t."X_9" AS "Score_0",
    CAST(NULL AS FLOAT) AS "Proba_0",
    CAST(NULL AS FLOAT) AS "LogProba_0",
-   -0.468902 + 0.020781 * t."X_0" + -0.058350 * t."X_1" + 0.001574 * t."X_2" + -0.045984 * t."X_3" + 0.027666 * t."X_4" + -0.010326 * t."X_5" + -0.071169 * t."X_6" + 0.307737 * t."X_
+   -0.468902 + 0.020781 * t."X_0" + -0.058350 * t."X_1" + 0.001574 * t."X_2" + -0.045984 * t."X_3" + 0.027666 * t."X_4" + -0.010326 * t."X_5" + -0.071169 * t."X_6" + 0.307737 * t.
 SQL_OUT_PUT_FIRST_LINES_END ('FourClass_10_original', 'RidgeClassifier', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('FourClass_10_original', 'RidgeClassifier', 'sqlite')
 ore_0" AS "Score_0",
@@ -625,42 +663,3 @@ MLLITE_CLASS_SQL_EXECUTION_STATUS ('FourClass_10_original', 'RidgeClassifier', '
 1022            1             1
 1023            2             2
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/classification/RidgeClassifier/mllite.RidgeClassifier_FourClass_10_original_option_1_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('FourClass_10_original', 'RidgeClassifier', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-model_scores_cte AS 
- (SELECT t."index" AS "index",
-   -0.475811 + -0.031904 * t."X_0" + 0.049522 * t."X_1" + 0.019165 * t."X_2" + 0.142353 * t."X_3" + -0.023408 * t."X_4" + -0.024416 * t."X_5" + 0.010535 * t."X_6" + -0.144843 * t."X_7" + 0.025051 * t."X_8" + -0.034964 * t."X_9" AS "Score_0",
-   CAST(NULL AS FLOAT) AS "Proba_0",
-   CAST(NULL AS FLOAT) AS "LogProba_0",
-   -0.468902 + 0.020781 * t."X_0" + -0.058350 * t."X_1" + 0.001574 * t."X_2" + -0.045984 * t."X_3" + 0.027666 * t."X_4" + -0.010326 * t."X_5" + -0.071169 * t."X_6" + 0.307737 * t."X_
-SQL_OUT_PUT_FIRST_LINES_END ('FourClass_10_original', 'RidgeClassifier', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('FourClass_10_original', 'RidgeClassifier', 'pgsql')
-ore_0" AS "Score_0",
-  arg_max_cte."Proba_0" AS "Proba_0",
-  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
-  arg_max_cte."Score_1" AS "Score_1",
-  arg_max_cte."Proba_1" AS "Proba_1",
-  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."Score_2" AS "Score_2",
-  arg_max_cte."Proba_2" AS "Proba_2",
-  CASE WHEN (arg_max_cte."Proba_2" IS NULL OR arg_max_cte."Proba_2" > 0.0) THEN LN( arg_max_cte."Proba_2" ) ELSE -1.79769313486231e+308 END AS "LogProba_2",
-  arg_max_cte."Score_3" AS "Score_3",
-  arg_max_cte."Proba_3" AS "Proba_3",
-  CASE WHEN (arg_max_cte."Proba_3" IS NULL OR arg_max_cte."Proba_3" > 0.0) THEN LN( arg_max_cte."Proba_3" ) ELSE -1.79769313486231e+308 END AS "LogProba_3",
-  arg_max_cte."argmax_class_idx" AS "Decision",
-  arg_max_cte."Max_Proba" AS "DecisionProba"
-FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END ('FourClass_10_original', 'RidgeClassifier', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

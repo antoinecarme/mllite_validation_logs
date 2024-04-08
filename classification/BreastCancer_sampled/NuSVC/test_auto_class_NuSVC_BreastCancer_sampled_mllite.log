@@ -1,3 +1,4 @@
+READING_CSV BreastCancer_sampled ['data/sampled/BreastCancer_sampled.csv']
     mean radius  mean texture  ...  worst fractal dimension  target
 0        19.730         19.82  ...                  0.12970       0
 1        21.370         15.10  ...                  0.08666       0
@@ -61,11 +62,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global_CV_FOLD_5' 12 1
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global' 12 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVC_Global' 24 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_CLASSIFIER_FIT' 5 5
-('OPERATION_END_ELAPSED', 0.033, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.031, 'TRAINING')
 { ,  "max_iter" : 128  }
 { ,  "max_iter" : 128  }
 {
-	"metadata" : { "model" : "Vapnik_NuSVC_RBF", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Vapnik_NuSVC_RBF", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : {"svm_type" : "nu_svc", "kernel" : "rbf", "degree" : 3, "gamma" : 0.000001, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 1, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 71, "dataset_features" : 30 },
 	"classes" : [ 0, 1 ],
@@ -122,13 +123,14 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_CLASSIFIER_FIT' 5 5
 }
 WRITING_JSON_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_BreastCancer_sampled.json'
 
+RELOADING_MODEL_FROM_JSON_START ('BreastCancer_sampled', 'NuSVC')
 MLLITE_MODEL_SET_OPTIONS NuSVC None
 MLLITE_MODEL_OPTIONS_DEFAULT NuSVC { "max_iter" : 128 }
 MLLITE_MODEL_OPTIONS_AFTER_SETTING NuSVC { ,  "max_iter" : 128  }
 MLLITE_MODEL_JSON_AFTER_SETTING NuSVC None
 MLLITE_RELOADING_MODEL mllite_nu_svm_class.NuSVC_ff4_il8
 {
-	"metadata" : { "model" : "Vapnik_NuSVC_RBF", "version" : "2024-W13", "signature" : "ff4_il8"},
+	"metadata" : { "model" : "Vapnik_NuSVC_RBF", "version" : "2024-W14", "signature" : "ff4_il8"},
 	"options" : {"svm_type" : "nu_svc", "kernel" : "rbf", "degree" : 3, "gamma" : 0.000001, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 1, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 71, "dataset_features" : 30 },
 	"classes" : [ 0, 1 ],
@@ -190,7 +192,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 30,
 		"dataset_rows" : 71
 	},
-	"metadata" :  { "model" : "Vapnik_NuSVC_RBF", "signature" : "ff4_il8", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Vapnik_NuSVC_RBF", "signature" : "ff4_il8", "version" : "2024-W14" },
 	"options" :  { "C" : 1.0, "cache_size" : 300, "coef0" : 0.0, "degree" : 3, "epsilon" : 0.0, "gamma" : 1e-06, "kernel" : "rbf", "max_iter" : 128, "nu" : 0.5, "probability" : 1, "random_state" : 1789, "shrinking" : 0, "svm_type" : "nu_svc", "tol" : 0.001 },
 	"svm_model" : 	{
 		"L" : 36,
@@ -244,10 +246,11 @@ BEAUTIFIED_JSON_START
 	}
 }
 BEAUTIFIED_JSON_END
+RELOADING_MODEL_FROM_JSON_END ('BreastCancer_sampled', 'NuSVC')
 ('OPERATION_START', 'PREDICT')
 ('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
-('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
 [[0.     1.    ]
  [0.     1.    ]
  [0.     1.    ]
@@ -324,7 +327,80 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': None, 'dataset': 'BreastCancer_sampled', 'size': 71, 'accuracy': 0.8169014084507042, 'auc': 0.3092209856915739}
 WRITING_PERF_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_BreastCancer_sampled.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': None, 'dataset': 'BreastCancer_sampled', 'training_time_in_sec': 0.033, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVC', 'model_name': 'NuSVC', 'options': None, 'dataset': 'BreastCancer_sampled', 'training_time_in_sec': 0.031, 'prediction_time_in_sec': 0.001}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 0 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 1 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 2 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 3 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 4 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 5 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 6 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 7 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 8 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 9 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 10 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 11 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 12 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 13 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 14 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 15 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 16 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 17 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 18 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 19 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 20 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 21 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 22 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 23 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 24 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 25 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 26 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 27 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 28 30
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_CLASSIFICATION_EXPLAINER' 29 30
+{
+   "Contributions" : {
+      "X_0" : [ -0.000003, 0.000003 ],
+      "X_1" : [ 0.000007, -0.000007 ],
+      "X_2" : [ 0.000210, -0.000210 ],
+      "X_3" : [ 0.010713, -0.010713 ],
+      "X_4" : [ 0.000000, -0.000000 ],
+      "X_5" : [ -0.000000, 0.000000 ],
+      "X_6" : [ -0.000000, 0.000000 ],
+      "X_7" : [ 0.000000, -0.000000 ],
+      "X_8" : [ 0.000000, -0.000000 ],
+      "X_9" : [ -0.000000, 0.000000 ],
+      "X_10" : [ 0.000000, 0.000000 ],
+      "X_11" : [ -0.000000, 0.000000 ],
+      "X_12" : [ 0.000000, -0.000000 ],
+      "X_13" : [ -0.002037, 0.002037 ],
+      "X_14" : [ -0.000000, 0.000000 ],
+      "X_15" : [ 0.000000, -0.000000 ],
+      "X_16" : [ 0.000000, -0.000000 ],
+      "X_17" : [ -0.000000, 0.000000 ],
+      "X_18" : [ 0.000000, -0.000000 ],
+      "X_19" : [ 0.000000, -0.000000 ],
+      "X_20" : [ -0.000003, 0.000003 ],
+      "X_21" : [ 0.000008, -0.000008 ],
+      "X_22" : [ 0.000417, -0.000417 ],
+      "X_23" : [ -0.027775, 0.027775 ],
+      "X_24" : [ -0.000000, 0.000000 ],
+      "X_25" : [ -0.000000, 0.000000 ],
+      "X_26" : [ -0.000000, 0.000000 ],
+      "X_27" : [ -0.000000, 0.000000 ],
+      "X_28" : [ -0.000000, 0.000000 ],
+      "X_29" : [ -0.000000, 0.000000 ]   
+   },
+   "Most_Contributive_Features_By_Class" : {
+      "class_0" : [ 23, 3, 13, 22, 2, 21, 1, 20, 0, 12 ],
+      "class_1" : [ 23, 3, 13, 22, 2, 21, 1, 20, 0, 12 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_BreastCancer_sampled_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_BreastCancer_sampled_duckdb.sql'
 
 
@@ -633,45 +709,4 @@ COPY_TRAINING_DATA_TO_SQLITE_END
 
 PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
 MODEL_SQL_EXECUTION_FAILED ('BreastCancer_sampled', 'NuSVC', 'sqlite', '(sqlite3.OperationalError) no such function: ANY_VALUE')
-WRITING_SQL_CODE 'logs/auto_tests/classification/NuSVC/mllite.NuSVC_BreastCancer_sampled_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('BreastCancer_sampled', 'NuSVC', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
-SQL_OUT_PUT_FIRST_LINES_END ('BreastCancer_sampled', 'NuSVC', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('BreastCancer_sampled', 'NuSVC', 'pgsql')
-"
-  FROM
-   "arg_max_cte_with_max_proba" AS t
-),
-arg_max_cte AS 
-( SELECT t."index" as "index",
-     t."Proba_0" AS "Proba_0",
-     t."Score_0" AS "Score_0",
-     t."Proba_1" AS "Proba_1",
-     t."Score_1" AS "Score_1",
-     t."Max_Proba" AS "Max_Proba",
-     t."Max_Score" AS "Max_Score",
-     COALESCE(  t."max_idx_0", t."max_idx_1" ) AS argmax_class_idx
-   FROM
-     "arg_max_cte_with_max_proba_idx" AS t
-)
-SELECT arg_max_cte."index" AS "index",
-  arg_max_cte."Score_0" AS "Score_0",
-  arg_max_cte."Proba_0" AS "Proba_0",
-  CASE WHEN (arg_max_cte."Proba_0" IS NULL OR arg_max_cte."Proba_0" > 0.0) THEN LN( arg_max_cte."Proba_0" ) ELSE -1.79769313486231e+308 END AS "LogProba_0",
-  arg_max_cte."Score_1" AS "Score_1",
-  arg_max_cte."Proba_1" AS "Proba_1",
-  CASE WHEN (arg_max_cte."Proba_1" IS NULL OR arg_max_cte."Proba_1" > 0.0) THEN LN( arg_max_cte."Proba_1" ) ELSE -1.79769313486231e+308 END AS "LogProba_1",
-  arg_max_cte."argmax_class_idx" AS "Decision",
-  arg_max_cte."Max_Proba" AS "DecisionProba"
-FROM arg_max_cte
-SQL_OUT_PUT_LAST_LINES_END ('BreastCancer_sampled', 'NuSVC', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START
+MLLITE_CLASS_SQL_EXECUTION_STATUS ('BreastCancer_sampled', 'NuSVC', 'sqlite', 'sql_execution_failed')
