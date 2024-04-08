@@ -41,11 +41,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 4 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 5 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'CHOLESKY_SOLVER' 6 6
 PROGRESS_REPORT_ELAPSED_TOTAL 'RIDGE_REGRESSOR_FIT' 2 2
-('OPERATION_END_ELAPSED', 0.01, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.009, 'TRAINING')
 { "alpha" : 0.0000001,   , }
 { "alpha" : 0.0000001,   , }
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : { "alpha" : 0.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 9 },
 	"equations" : {
@@ -61,7 +61,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING RidgeRegressor { "alpha" : 0.0000001,   , }
 MLLITE_MODEL_JSON_AFTER_SETTING RidgeRegressor None
 MLLITE_RELOADING_MODEL mllite_ridge_reg.RidgeRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Tikhonov_Ridge", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : { "alpha" : 0.000000, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 9 },
 	"equations" : {
@@ -79,7 +79,7 @@ BEAUTIFIED_JSON_START
 		"coeffs" : [ -62646.570312, -67465.765625, 2350.610107, 75.704346, -82.839996, -146.247528, -8.188899, 12813.508789, 0.0 ],
 		"intercept" : -4976790.0
 	},
-	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_ff4", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Tikhonov_Ridge", "signature" : "ff4_ff4", "version" : "2024-W14" },
 	"options" :  { "alpha" : 0.0, "random_state" : 1789 }
 }
 BEAUTIFIED_JSON_END
@@ -96,7 +96,37 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': '{"alpha" : 0.0000001}', 'dataset': 'california_housing_tiny', 'size': 16, 'mse': 749909760.0, 'mae': 21279.133, 'mape': 0.1382851, 'r2': 0.906406617595179}
 WRITING_PERF_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_california_housing_tiny_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': '{"alpha" : 0.0000001}', 'dataset': 'california_housing_tiny', 'training_time_in_sec': 0.01, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.RidgeRegressor', 'model_name': 'RidgeRegressor', 'options': '{"alpha" : 0.0000001}', 'dataset': 'california_housing_tiny', 'training_time_in_sec': 0.009, 'prediction_time_in_sec': 0.001}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 0 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 1 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 2 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 3 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 4 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 5 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 6 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 7 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 8 9
+{
+   "Contributions" : {
+      "X_0" : [ -4052.421387 ],
+      "X_1" : [ -10351.765625 ],
+      "X_2" : [ -14397.482422 ],
+      "X_3" : [ 21180.658203 ],
+      "X_4" : [ -2824.324707 ],
+      "X_5" : [ -7417.495117 ],
+      "X_6" : [ 34.034641 ],
+      "X_7" : [ 5490.869141 ],
+      "X_8" : [ 0.000000 ]   
+   },
+   "Most_Contributive_Features" : {
+      "y" : [ 3, 2, 1, 5, 7, 0, 4, 6 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_california_housing_tiny_option_1_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_california_housing_tiny_option_1_duckdb.sql'
 
 
@@ -105,7 +135,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('california_housing_tiny', 'RidgeRegressor', 'duc
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "california_housing_tiny" AS "ADS" 
  ),
 model_scores_cte AS 
  (SELECT
@@ -123,7 +153,7 @@ SQL_OUT_PUT_LAST_LINES_START ('california_housing_tiny', 'RidgeRegressor', 'duck
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "california_housing_tiny" AS "ADS" 
  ),
 model_scores_cte AS 
  (SELECT
@@ -239,7 +269,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('california_housing_tiny', 'RidgeRegressor', 'sql
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "california_housing_tiny" AS "ADS" 
  ),
 model_scores_cte AS 
  (SELECT
@@ -257,7 +287,7 @@ SQL_OUT_PUT_LAST_LINES_START ('california_housing_tiny', 'RidgeRegressor', 'sqli
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "california_housing_tiny" AS "ADS" 
  ),
 model_scores_cte AS 
  (SELECT
@@ -365,48 +395,3 @@ MLLITE_REG_SQL_L1_ERROR ('california_housing_tiny', 'RidgeRegressor') Estimator 
 15     15   68109.515694   68109.796875  -0.281181
 MLLITE_REG_SQL_EXECUTION_STATUS ('california_housing_tiny', 'RidgeRegressor', 'Failure')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/regression/RidgeRegressor/mllite.RidgeRegressor_california_housing_tiny_option_1_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('california_housing_tiny', 'RidgeRegressor', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-model_scores_cte AS 
- (SELECT
-  t."index" AS "index",
-   -4976790.000000 + -62646.570312 * t."X_0" + -67465.765625 * t."X_1" + 2350.610107 * t."X_2" + 75.704346 * t."X_3" + -82.839996 * t."X_4" + -146.247528 * t."X_5" + -8.188899 * t."X_6" + 12813.508789 * t."X_7" + 0.000000 * t."X_8" AS "Estimator"
-  FROM model_input AS t
- )
-SELECT
-  model_scores_cte."index" as "index",
-  model_scores_cte."Estimator" as "Estimator"
-FROM  model_scores_cte
-
-SQL_OUT_PUT_FIRST_LINES_END ('california_housing_tiny', 'RidgeRegressor', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('california_housing_tiny', 'RidgeRegressor', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-model_scores_cte AS 
- (SELECT
-  t."index" AS "index",
-   -4976790.000000 + -62646.570312 * t."X_0" + -67465.765625 * t."X_1" + 2350.610107 * t."X_2" + 75.704346 * t."X_3" + -82.839996 * t."X_4" + -146.247528 * t."X_5" + -8.188899 * t."X_6" + 12813.508789 * t."X_7" + 0.000000 * t."X_8" AS "Estimator"
-  FROM model_input AS t
- )
-SELECT
-  model_scores_cte."index" as "index",
-  model_scores_cte."Estimator" as "Estimator"
-FROM  model_scores_cte
-
-SQL_OUT_PUT_LAST_LINES_END ('california_housing_tiny', 'RidgeRegressor', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

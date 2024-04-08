@@ -41,7 +41,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_REGRESSOR_FIT' 4 4
 { "C" : 2,  "max_iter" : 128  , }
 { "C" : 2,  "max_iter" : 128  , }
 {
-	"metadata" : { "model" : "Vapnik_SVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_SVR_RBF", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "epsilon_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 0.088583, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.100000, "shrinking" : 0, "probability" : 0, "C" : 2.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 10 },
 	"svm_model" : {
@@ -83,7 +83,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING SVR { "C" : 2,  "max_iter" : 128  , }
 MLLITE_MODEL_JSON_AFTER_SETTING SVR None
 MLLITE_RELOADING_MODEL mllite_svm_reg.SVR_ff4_ff4
 {
-	"metadata" : { "model" : "Vapnik_SVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_SVR_RBF", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "epsilon_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 0.088583, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.100000, "shrinking" : 0, "probability" : 0, "C" : 2.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 10 },
 	"svm_model" : {
@@ -123,7 +123,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 10,
 		"dataset_rows" : 16
 	},
-	"metadata" :  { "model" : "Vapnik_SVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Vapnik_SVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W14" },
 	"options" :  { "C" : 2.0, "cache_size" : 300, "coef0" : 0.0, "degree" : 3, "epsilon" : 0.1, "gamma" : 0.088583, "kernel" : "rbf", "max_iter" : 128, "nu" : 0.5, "probability" : 0, "random_state" : 1789, "shrinking" : 0, "svm_type" : "epsilon_svr", "tol" : 0.001 },
 	"svm_model" : 	{
 		"L" : 16,
@@ -170,7 +170,39 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'RandomReg_10_tiny', 'size': 16, 'mse': 17952.889, 'mae': 91.76767, 'mape': 3.9627123, 'r2': 0.005209317043116779}
 WRITING_PERF_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_RandomReg_10_tiny_option_1.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'RandomReg_10_tiny', 'training_time_in_sec': 0.011, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': '{"C" : 2}', 'dataset': 'RandomReg_10_tiny', 'training_time_in_sec': 0.01, 'prediction_time_in_sec': 0.001}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 0 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 1 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 2 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 3 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 4 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 5 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 6 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 7 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 8 10
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 9 10
+{
+   "Contributions" : {
+      "X_0" : [ 0.022266 ],
+      "X_1" : [ 0.026968 ],
+      "X_2" : [ -0.011030 ],
+      "X_3" : [ 0.008958 ],
+      "X_4" : [ 0.071732 ],
+      "X_5" : [ -0.060467 ],
+      "X_6" : [ -0.002333 ],
+      "X_7" : [ 0.018800 ],
+      "X_8" : [ 0.051698 ],
+      "X_9" : [ 0.008870 ]   
+   },
+   "Most_Contributive_Features" : {
+      "y" : [ 4, 5, 8, 1, 0, 7, 2, 3, 9, 6 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_RandomReg_10_tiny_option_1_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_RandomReg_10_tiny_option_1_duckdb.sql'
 
 
@@ -179,7 +211,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_10_tiny', 'SVR', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "RandomReg_10_tiny" AS "ADS" 
  )
 ,"SV_data" AS
  ( SELECT 
@@ -197,7 +229,7 @@ WITH model_input AS
    "Values"."sv_9" AS "sv_9"
   FROM
   (
-     SELECT 0 AS "sv_idx", 2.000000 AS "coeff", -0.478793 AS "sv_0", 2.502870 AS "sv_1", -0.103623 AS "sv_2", -1.067979 AS "sv_3", 0.855982 AS "sv_4", -2
+     SELECT 0 AS "sv_idx", 2.000000 AS "coeff", -0.478793 AS "sv_0", 2.502870 AS "sv_1", -0.103623 AS "sv_2", -1.067979 AS "sv_3", 0.855982 AS "sv_4", -2.
 SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_10_tiny', 'SVR', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('RandomReg_10_tiny', 'SVR', 'duckdb')
 
@@ -324,7 +356,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_10_tiny', 'SVR', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "RandomReg_10_tiny" AS "ADS" 
  )
 ,"SV_data" AS
  ( SELECT 
@@ -342,7 +374,7 @@ WITH model_input AS
    "Values"."sv_9" AS "sv_9"
   FROM
   (
-     SELECT 0 AS "sv_idx", 2.000000 AS "coeff", -0.478793 AS "sv_0", 2.502870 AS "sv_1", -0.103623 AS "sv_2", -1.067979 AS "sv_3", 0.855982 AS "sv_4", -2
+     SELECT 0 AS "sv_idx", 2.000000 AS "coeff", -0.478793 AS "sv_0", 2.502870 AS "sv_1", -0.103623 AS "sv_2", -1.067979 AS "sv_3", 0.855982 AS "sv_4", -2.
 SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_10_tiny', 'SVR', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('RandomReg_10_tiny', 'SVR', 'sqlite')
    FROM
@@ -461,56 +493,3 @@ MLLITE_REG_SQL_L1_ERROR ('RandomReg_10_tiny', 'SVR') Estimator 3.002709653254776
 15     15      13.844540     13.844542 -1.504961e-06
 MLLITE_REG_SQL_EXECUTION_STATUS ('RandomReg_10_tiny', 'SVR', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_RandomReg_10_tiny_option_1_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_10_tiny', 'SVR', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- )
-,"SV_data" AS
- ( SELECT 
-   "Values"."sv_idx" AS "sv_idx",
-   "Values"."coeff" AS "coeff",
-   "Values"."sv_0" AS "sv_0",
-   "Values"."sv_1" AS "sv_1",
-   "Values"."sv_2" AS "sv_2",
-   "Values"."sv_3" AS "sv_3",
-   "Values"."sv_4" AS "sv_4",
-   "Values"."sv_5" AS "sv_5",
-   "Values"."sv_6" AS "sv_6",
-   "Values"."sv_7" AS "sv_7",
-   "Values"."sv_8" AS "sv_8",
-   "Values"."sv_9" AS "sv_9"
-  FROM
-  (
-     SELECT 0 AS "sv_idx", 2.000000 AS "coeff", -0.478793 AS "sv_0", 2.502870 AS "sv_1", -0.103623 AS "sv_2", -1.067979 AS "sv_3", 0.855982 AS "sv_4", -2
-SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_10_tiny', 'SVR', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('RandomReg_10_tiny', 'SVR', 'pgsql')
-
-    (SELECT
-      full_join_data_sv."index" AS "index",
-      sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -14.877691 AS dot_product
-     FROM
-       (SELECT
-          model_input."index" AS "index",
-          "SV_data"."coeff" *  EXP( LEAST( GREATEST( CAST(-32.0 AS FLOAT), -0.088583 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2) + power(model_input."X_4" - "SV_data".sv_4, 2) + power(model_input."X_5" - "SV_data".sv_5, 2) + power(model_input."X_6" - "SV_data".sv_6, 2) + power(model_input."X_7" - "SV_data".sv_7, 2) + power(model_input."X_8" - "SV_data".sv_8, 2) + power(model_input."X_9" - "SV_data".sv_9, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
-        FROM
-          model_input, "SV_data"
-       ) AS full_join_data_sv
-     GROUP BY full_join_data_sv."index"
-    ) AS dp )
-SELECT
-  t."index" as "index",
-  t."Estimator" as "Estimator"
-FROM "Kernel_DotProd" AS t
-
-SQL_OUT_PUT_LAST_LINES_END ('RandomReg_10_tiny', 'SVR', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

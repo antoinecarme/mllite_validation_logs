@@ -40,7 +40,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_REGRESSOR_FIT' 4 4
 { ,  "max_iter" : 128  , }
 { ,  "max_iter" : 128  , }
 {
-	"metadata" : { "model" : "Vapnik_SVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_SVR_RBF", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "epsilon_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 0.030193, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.100000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 100, "dataset_features" : 4 },
 	"svm_model" : {
@@ -100,7 +100,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING SVR { ,  "max_iter" : 128  , }
 MLLITE_MODEL_JSON_AFTER_SETTING SVR None
 MLLITE_RELOADING_MODEL mllite_svm_reg.SVR_ff4_ff4
 {
-	"metadata" : { "model" : "Vapnik_SVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_SVR_RBF", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "epsilon_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 0.030193, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.100000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 100, "dataset_features" : 4 },
 	"svm_model" : {
@@ -158,7 +158,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 4,
 		"dataset_rows" : 100
 	},
-	"metadata" :  { "model" : "Vapnik_SVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Vapnik_SVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W14" },
 	"options" :  { "C" : 1.0, "cache_size" : 300, "coef0" : 0.0, "degree" : 3, "epsilon" : 0.1, "gamma" : 0.030193, "kernel" : "rbf", "max_iter" : 128, "nu" : 0.5, "probability" : 0, "random_state" : 1789, "shrinking" : 0, "svm_type" : "epsilon_svr", "tol" : 0.001 },
 	"svm_model" : 	{
 		"L" : 34,
@@ -228,7 +228,7 @@ BEAUTIFIED_JSON_END
  1.1810628  0.60592115 1.3379108  1.2687284  1.5732635  1.0214499
  1.2914236  0.44157267 1.2318641  1.2575936  1.4589968  1.6076658
  1.5780528  1.354646   1.0568154  1.4661916 ]
-('OPERATION_END_ELAPSED', 0.002, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.003, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [1.4325473  1.4132221  1.295145   1.3074882  1.2523069  1.4038829
  1.5319755  0.97885543 1.4854081  1.3596678  0.98286283 1.5172014
@@ -252,6 +252,26 @@ MODEL_PERFS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': None, '
 WRITING_PERF_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_freidman3_quantized.perf'
 
 MODEL_PERFS_TIMINGS {'class_name': 'mllite.SVR', 'model_name': 'SVR', 'options': None, 'dataset': 'freidman3_quantized', 'training_time_in_sec': 0.036, 'prediction_time_in_sec': 0.002}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 0 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 1 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 2 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 3 4
+{
+   "Contributions" : {
+      "X_0" : [ -0.002703 ],
+      "X_1" : [ 0.013469 ],
+      "X_2" : [ 0.014544 ],
+      "X_3" : [ 0.005387 ]   
+   },
+   "Most_Contributive_Features" : {
+      "y" : [ 2, 1, 3, 0 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_freidman3_quantized_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_freidman3_quantized_duckdb.sql'
 
 
@@ -260,7 +280,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('freidman3_quantized', 'SVR', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "freidman3_quantized" AS "ADS" 
  )
 ,"SV_data" AS
  ( SELECT 
@@ -279,7 +299,6 @@ WITH model_input AS
      SELECT 2 AS "sv_idx", 0.246034 AS "coeff", 1.000000 AS "sv_0", 6.000000 AS "sv_1", 1.000000 AS "sv_2", 7.000000 AS "sv_3"
      UNION ALL
      SELECT 3 AS "sv_idx", -1.000000 AS "coeff", 6.000000 AS "sv_0", 6.000000 AS "sv_1", 0.000000 AS "sv_2", 7.000000 AS "sv_3"
-
 SQL_OUT_PUT_FIRST_LINES_END ('freidman3_quantized', 'SVR', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('freidman3_quantized', 'SVR', 'duckdb')
 0.000000 AS "sv_3"
@@ -401,7 +420,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('freidman3_quantized', 'SVR', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "freidman3_quantized" AS "ADS" 
  )
 ,"SV_data" AS
  ( SELECT 
@@ -420,7 +439,6 @@ WITH model_input AS
      SELECT 2 AS "sv_idx", 0.246034 AS "coeff", 1.000000 AS "sv_0", 6.000000 AS "sv_1", 1.000000 AS "sv_2", 7.000000 AS "sv_3"
      UNION ALL
      SELECT 3 AS "sv_idx", -1.000000 AS "coeff", 6.000000 AS "sv_0", 6.000000 AS "sv_1", 0.000000 AS "sv_2", 7.000000 AS "sv_3"
-
 SQL_OUT_PUT_FIRST_LINES_END ('freidman3_quantized', 'SVR', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('freidman3_quantized', 'SVR', 'sqlite')
 sv_2", 0.000000 AS "sv_3"
@@ -534,66 +552,3 @@ MLLITE_REG_SQL_L1_ERROR ('freidman3_quantized', 'SVR') Estimator 1.3853577393430
 99     99       1.466192      1.466192  6.775711e-07
 MLLITE_REG_SQL_EXECUTION_STATUS ('freidman3_quantized', 'SVR', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/regression/SVR/mllite.SVR_freidman3_quantized_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('freidman3_quantized', 'SVR', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- )
-,"SV_data" AS
- ( SELECT 
-   "Values"."sv_idx" AS "sv_idx",
-   "Values"."coeff" AS "coeff",
-   "Values"."sv_0" AS "sv_0",
-   "Values"."sv_1" AS "sv_1",
-   "Values"."sv_2" AS "sv_2",
-   "Values"."sv_3" AS "sv_3"
-  FROM
-  (
-     SELECT 0 AS "sv_idx", 0.112189 AS "coeff", 9.000000 AS "sv_0", 9.000000 AS "sv_1", 10.000000 AS "sv_2", 3.000000 AS "sv_3"
-     UNION ALL
-     SELECT 1 AS "sv_idx", 0.046555 AS "coeff", 3.000000 AS "sv_0", 2.000000 AS "sv_1", 4.000000 AS "sv_2", 0.000000 AS "sv_3"
-     UNION ALL
-     SELECT 2 AS "sv_idx", 0.246034 AS "coeff", 1.000000 AS "sv_0", 6.000000 AS "sv_1", 1.000000 AS "sv_2", 7.000000 AS "sv_3"
-     UNION ALL
-     SELECT 3 AS "sv_idx", -1.000000 AS "coeff", 6.000000 AS "sv_0", 6.000000 AS "sv_1", 0.000000 AS "sv_2", 7.000000 AS "sv_3"
-
-SQL_OUT_PUT_FIRST_LINES_END ('freidman3_quantized', 'SVR', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('freidman3_quantized', 'SVR', 'pgsql')
-0.000000 AS "sv_3"
-     UNION ALL
-     SELECT 33 AS "sv_idx", 0.213470 AS "coeff", 0.000000 AS "sv_0", 0.000000 AS "sv_1", 9.000000 AS "sv_2", 9.000000 AS "sv_3"
-   ) AS "Values"
- )
-,"Kernel_DotProd" AS
- ( SELECT
-    dp."index" as "index",
-    dp."dot_product" AS "Estimator"
-   FROM
-    (SELECT
-      full_join_data_sv."index" AS "index",
-      sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -1.187776 AS dot_product
-     FROM
-       (SELECT
-          model_input."index" AS "index",
-          "SV_data"."coeff" *  EXP( LEAST( GREATEST( CAST(-32.0 AS FLOAT), -0.030193 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
-        FROM
-          model_input, "SV_data"
-       ) AS full_join_data_sv
-     GROUP BY full_join_data_sv."index"
-    ) AS dp )
-SELECT
-  t."index" as "index",
-  t."Estimator" as "Estimator"
-FROM "Kernel_DotProd" AS t
-
-SQL_OUT_PUT_LAST_LINES_END ('freidman3_quantized', 'SVR', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

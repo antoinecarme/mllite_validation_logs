@@ -30,7 +30,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 4 4
 { ,  "max_iter" : 128  , }
 { ,  "max_iter" : 128  , }
 {
-	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "nu_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 0.000002, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 12, "dataset_features" : 4 },
 	"svm_model" : {
@@ -62,7 +62,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING NuSVR { ,  "max_iter" : 128  , }
 MLLITE_MODEL_JSON_AFTER_SETTING NuSVR None
 MLLITE_RELOADING_MODEL mllite_nu_svm_reg.NuSVR_ff4_ff4
 {
-	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "nu_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 0.000002, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 12, "dataset_features" : 4 },
 	"svm_model" : {
@@ -92,7 +92,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 4,
 		"dataset_rows" : 12
 	},
-	"metadata" :  { "model" : "Vapnik_NuSVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Vapnik_NuSVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W14" },
 	"options" :  { "C" : 1.0, "cache_size" : 300, "coef0" : 0.0, "degree" : 3, "epsilon" : 0.0, "gamma" : 2e-06, "kernel" : "rbf", "max_iter" : 128, "nu" : 0.5, "probability" : 0, "random_state" : 1789, "shrinking" : 0, "svm_type" : "nu_svr", "tol" : 0.001 },
 	"svm_model" : 	{
 		"L" : 6,
@@ -119,7 +119,7 @@ BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
 [392.1857  391.86844 392.34903 394.7216  395.03735 392.58405 394.04605
  391.86176 391.8664  395.9076  393.10553 395.50293]
-('OPERATION_END_ELAPSED', 0.001, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.0, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [392.16385 391.85654 392.3283  394.73593 395.05502 392.5658  394.05093
  391.84702 391.85074 395.89893 393.09497 395.52295]
@@ -128,6 +128,26 @@ MODEL_PERFS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': Non
 WRITING_PERF_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman2_sampled.perf'
 
 MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'freidman2_sampled', 'training_time_in_sec': 0.006, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 0 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 1 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 2 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 3 4
+{
+   "Contributions" : {
+      "X_0" : [ -0.000077 ],
+      "X_1" : [ 0.206848 ],
+      "X_2" : [ 0.000001 ],
+      "X_3" : [ 0.000001 ]   
+   },
+   "Most_Contributive_Features" : {
+      "y" : [ 1, 0, 3, 2 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman2_sampled_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman2_sampled_duckdb.sql'
 
 
@@ -136,7 +156,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('freidman2_sampled', 'NuSVR', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "freidman2_sampled" AS "ADS" 
  )
 ,"SV_data" AS
  ( SELECT 
@@ -154,7 +174,7 @@ WITH model_input AS
      UNION ALL
      SELECT 2 AS "sv_idx", 1.000000 AS "coeff", 55.118420 AS "sv_0", 1002.086060 AS "sv_1", 0.726658 AS "sv_2", 4.570618 AS "sv_3"
      UNION ALL
-     SELECT 3 AS "sv_idx", -1.000000 AS "coeff", 52.067585 AS "sv_0", 534.256165 AS "sv_1", 0.155164 AS "sv_2", 8.52
+     SELECT 3 AS "sv_idx", -1.000000 AS "coeff", 52.067585 AS "sv_0", 534.256165 AS "sv_1", 0.155164 AS "sv_2", 8.526
 SQL_OUT_PUT_FIRST_LINES_END ('freidman2_sampled', 'NuSVR', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('freidman2_sampled', 'NuSVR', 'duckdb')
 4556 AS "sv_3"
@@ -270,7 +290,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('freidman2_sampled', 'NuSVR', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "freidman2_sampled" AS "ADS" 
  )
 ,"SV_data" AS
  ( SELECT 
@@ -288,7 +308,7 @@ WITH model_input AS
      UNION ALL
      SELECT 2 AS "sv_idx", 1.000000 AS "coeff", 55.118420 AS "sv_0", 1002.086060 AS "sv_1", 0.726658 AS "sv_2", 4.570618 AS "sv_3"
      UNION ALL
-     SELECT 3 AS "sv_idx", -1.000000 AS "coeff", 52.067585 AS "sv_0", 534.256165 AS "sv_1", 0.155164 AS "sv_2", 8.52
+     SELECT 3 AS "sv_idx", -1.000000 AS "coeff", 52.067585 AS "sv_0", 534.256165 AS "sv_1", 0.155164 AS "sv_2", 8.526
 SQL_OUT_PUT_FIRST_LINES_END ('freidman2_sampled', 'NuSVR', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('freidman2_sampled', 'NuSVR', 'sqlite')
 ", 9.374556 AS "sv_3"
@@ -396,65 +416,3 @@ MLLITE_REG_SQL_L1_ERROR ('freidman2_sampled', 'NuSVR') Estimator 0.0149388975069
 11     11     395.522941    395.502930   0.020011
 MLLITE_REG_SQL_EXECUTION_STATUS ('freidman2_sampled', 'NuSVR', 'Failure')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_freidman2_sampled_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('freidman2_sampled', 'NuSVR', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- )
-,"SV_data" AS
- ( SELECT 
-   "Values"."sv_idx" AS "sv_idx",
-   "Values"."coeff" AS "coeff",
-   "Values"."sv_0" AS "sv_0",
-   "Values"."sv_1" AS "sv_1",
-   "Values"."sv_2" AS "sv_2",
-   "Values"."sv_3" AS "sv_3"
-  FROM
-  (
-     SELECT 0 AS "sv_idx", -1.000000 AS "coeff", 17.761709 AS "sv_0", 423.498322 AS "sv_1", 0.135270 AS "sv_2", 10.148129 AS "sv_3"
-     UNION ALL
-     SELECT 1 AS "sv_idx", -1.000000 AS "coeff", 45.437614 AS "sv_0", 168.841202 AS "sv_1", 0.343817 AS "sv_2", 3.279963 AS "sv_3"
-     UNION ALL
-     SELECT 2 AS "sv_idx", 1.000000 AS "coeff", 55.118420 AS "sv_0", 1002.086060 AS "sv_1", 0.726658 AS "sv_2", 4.570618 AS "sv_3"
-     UNION ALL
-     SELECT 3 AS "sv_idx", -1.000000 AS "coeff", 52.067585 AS "sv_0", 534.256165 AS "sv_1", 0.155164 AS "sv_2", 8.52
-SQL_OUT_PUT_FIRST_LINES_END ('freidman2_sampled', 'NuSVR', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('freidman2_sampled', 'NuSVR', 'pgsql')
-4556 AS "sv_3"
-     UNION ALL
-     SELECT 5 AS "sv_idx", 1.000000 AS "coeff", 7.606344 AS "sv_0", 1112.226562 AS "sv_1", 0.732761 AS "sv_2", 6.140375 AS "sv_3"
-   ) AS "Values"
- )
-,"Kernel_DotProd" AS
- ( SELECT
-    dp."index" as "index",
-    dp."dot_product" AS "Estimator"
-   FROM
-    (SELECT
-      full_join_data_sv."index" AS "index",
-      sum(CAST(full_join_data_sv.dot_prod AS FLOAT)) - -394.069794 AS dot_product
-     FROM
-       (SELECT
-          model_input."index" AS "index",
-          "SV_data"."coeff" *  EXP( LEAST( GREATEST( CAST(-32.0 AS FLOAT), -0.000002 * (power(model_input."X_0" - "SV_data".sv_0, 2) + power(model_input."X_1" - "SV_data".sv_1, 2) + power(model_input."X_2" - "SV_data".sv_2, 2) + power(model_input."X_3" - "SV_data".sv_3, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
-        FROM
-          model_input, "SV_data"
-       ) AS full_join_data_sv
-     GROUP BY full_join_data_sv."index"
-    ) AS dp )
-SELECT
-  t."index" as "index",
-  t."Estimator" as "Estimator"
-FROM "Kernel_DotProd" AS t
-
-SQL_OUT_PUT_LAST_LINES_END ('freidman2_sampled', 'NuSVR', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

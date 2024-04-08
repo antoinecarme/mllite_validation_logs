@@ -37,7 +37,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'XGB_MODEL_FIT' 7 7
 { "max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 { "max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 ,  "nthread" : 1, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 64, "n_estimators" : 32  , }
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 32, "min_child_weight" : 5.000000, "n_estimators" : 5, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 4 },
 	"booster" : {
@@ -84,7 +84,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING XGBRegressor { "max_depth" : 6, "n_estimators
 MLLITE_MODEL_JSON_AFTER_SETTING XGBRegressor None
 MLLITE_RELOADING_MODEL mllite_xgb_reg.XGBRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Friedman_XGB", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.000000, "grow_policy" : 0, "learning_rate" : 0.300000, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 32, "min_child_weight" : 5.000000, "n_estimators" : 5, "objective" : "reg:squarederror", "reg_alpha" : 0.000000, "reg_lambda" : 1.000000, "tree_method" : "auto" },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 4 },
 	"booster" : {
@@ -311,7 +311,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 4,
 		"dataset_rows" : 16
 	},
-	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_ff4", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Friedman_XGB", "signature" : "ff4_ff4", "version" : "2024-W14" },
 	"options" :  { "base_score" : [ ], "early_stopping_rounds" : 0, "eval_metric" : "", "gamma" : 0.0, "grow_policy" : 0, "learning_rate" : 0.3, "max_bin" : 10, "max_depth" : 6, "max_leaves" : 32, "min_child_weight" : 5.0, "n_estimators" : 5, "objective" : "reg:squarederror", "reg_alpha" : 0.0, "reg_lambda" : 1.0, "tree_method" : "auto" }
 }
 BEAUTIFIED_JSON_END
@@ -329,6 +329,26 @@ MODEL_PERFS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 
 WRITING_PERF_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_freidman2_tiny_option_1.perf'
 
 MODEL_PERFS_TIMINGS {'class_name': 'mllite.XGBRegressor', 'model_name': 'XGBRegressor', 'options': '{"max_depth" : 6, "n_estimators" : 5, "max_bin" : 10, "min_child_weight" : 5, "max_leaves" : 32 }', 'dataset': 'freidman2_tiny', 'training_time_in_sec': 0.007, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 0 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 1 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 2 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 3 4
+{
+   "Contributions" : {
+      "X_0" : [ 0.000000 ],
+      "X_1" : [ 11.225898 ],
+      "X_2" : [ 23.980381 ],
+      "X_3" : [ 0.000000 ]   
+   },
+   "Most_Contributive_Features" : {
+      "y" : [ 2, 1 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_freidman2_tiny_option_1_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_freidman2_tiny_option_1_duckdb.sql'
 
 
@@ -337,7 +357,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('freidman2_tiny', 'XGBRegressor', 'duckdb')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "freidman2_tiny" AS "ADS" 
  ),
 "DT_node_lookup_0" AS 
  (SELECT
@@ -376,6 +396,8 @@ WITH model_input AS
     CASE WHEN (t."X_2" < 0.428596) THEN 1 ELSE CASE WHEN (t."X_2" < 0.726658) THEN 3 ELSE 4 END END AS node_id
   FROM model_input AS t
  )
+,
+"
 SQL_OUT_PUT_FIRST_LINES_END ('freidman2_tiny', 'XGBRegressor', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('freidman2_tiny', 'XGBRegressor', 'duckdb')
 
@@ -518,7 +540,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('freidman2_tiny', 'XGBRegressor', 'sqlite')
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "freidman2_tiny" AS "ADS" 
  ),
 "DT_node_lookup_0" AS 
  (SELECT
@@ -557,6 +579,8 @@ WITH model_input AS
     CASE WHEN (t."X_2" < 0.428596) THEN 1 ELSE CASE WHEN (t."X_2" < 0.726658) THEN 3 ELSE 4 END END AS node_id
   FROM model_input AS t
  )
+,
+"
 SQL_OUT_PUT_FIRST_LINES_END ('freidman2_tiny', 'XGBRegressor', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('freidman2_tiny', 'XGBRegressor', 'sqlite')
 
@@ -691,100 +715,3 @@ MLLITE_REG_SQL_L1_ERROR ('freidman2_tiny', 'XGBRegressor') Estimator 3.146351566
 15     15     406.952306    406.952301   0.000005
 MLLITE_REG_SQL_EXECUTION_STATUS ('freidman2_tiny', 'XGBRegressor', 'Failure')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/regression/XGBRegressor/mllite.XGBRegressor_freidman2_tiny_option_1_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('freidman2_tiny', 'XGBRegressor', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-"DT_node_lookup_0" AS 
- (SELECT
-    t."index" AS "index",
-    CASE WHEN (t."X_1" < 938.672607) THEN 1 ELSE 2 END AS node_id
-  FROM model_input AS t
- )
-,
-"DT_node_data_0" AS 
- (SELECT
-    "Values".nid AS nid,
-    "Values"."E" AS "E"
-  FROM (
-    SELECT 1 AS nid,  -57.835358 AS "E"
-    UNION ALL
-    SELECT 2 AS nid,  72.294197 AS "E"
-  ) AS "Values"
- )
-,
-"DT_output_0" AS 
- (SELECT
-   t1."index" AS "index",
-   t1.node_id AS node_id,
-   t2.nid AS nid,
-   t2."E" AS "E"
-  FROM
-   "DT_node_lookup_0" AS t1
-   LEFT OUTER JOIN
-   "DT_node_data_0" AS t2
-   ON t1.node_id = t2.nid
- )
-,
-"DT_node_lookup_1" AS 
- (SELECT
-    t."index" AS "index",
-    CASE WHEN (t."X_2" < 0.428596) THEN 1 ELSE CASE WHEN (t."X_2" < 0.726658) THEN 3 ELSE 4 END END AS node_id
-  FROM model_input AS t
- )
-SQL_OUT_PUT_FIRST_LINES_END ('freidman2_tiny', 'XGBRegressor', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('freidman2_tiny', 'XGBRegressor', 'pgsql')
-
-    "Values".nid AS nid,
-    "Values"."E" AS "E"
-  FROM (
-    SELECT 1 AS nid,  -25.487043 AS "E"
-    UNION ALL
-    SELECT 2 AS nid,  32.850384 AS "E"
-  ) AS "Values"
- )
-,
-"DT_output_4" AS 
- (SELECT
-   t1."index" AS "index",
-   t1.node_id AS node_id,
-   t2.nid AS nid,
-   t2."E" AS "E"
-  FROM
-   "DT_node_lookup_4" AS t1
-   LEFT OUTER JOIN
-   "DT_node_data_4" AS t2
-   ON t1.node_id = t2.nid
- )
-,
-"union_of_trees" AS
- (SELECT scu."index_u" AS "index", scu."E" AS "E"
- FROM (
-    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_0" AS t
-    UNION ALL
-    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_1" AS t
-    UNION ALL
-    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_2" AS t
-    UNION ALL
-    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_3" AS t
-    UNION ALL
-    SELECT t."index" AS "index_u", t."E" AS "E" FROM "DT_output_4" AS t
-  ) AS scu
-)
-SELECT
-   t."index" AS "index",
-   417.544525 + SUM(t."E") AS "Estimator"
-FROM "union_of_trees" AS t
-GROUP BY t."index"
-SQL_OUT_PUT_LAST_LINES_END ('freidman2_tiny', 'XGBRegressor', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

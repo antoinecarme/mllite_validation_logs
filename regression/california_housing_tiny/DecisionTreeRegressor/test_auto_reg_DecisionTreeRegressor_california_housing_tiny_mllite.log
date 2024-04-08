@@ -47,7 +47,7 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
 { ,  "max_leaf_nodes" : 64 , }
 { ,  "max_leaf_nodes" : 64 , }
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : null, "max_features" : null, "max_leaf_nodes" : 64, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 9 },
 	"tree" : {
@@ -98,7 +98,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING DecisionTreeRegressor { ,  "max_leaf_nodes" :
 MLLITE_MODEL_JSON_AFTER_SETTING DecisionTreeRegressor None
 MLLITE_RELOADING_MODEL mllite_decision_tree_reg.DecisionTreeRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : null, "max_features" : null, "max_leaf_nodes" : 64, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 16, "dataset_features" : 9 },
 	"tree" : {
@@ -147,7 +147,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 9,
 		"dataset_rows" : 16
 	},
-	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_ff4", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_ff4", "version" : "2024-W14" },
 	"options" :  { "ccp_alpha" : 0.0, "criterion" : "", "max_depth" : null, "max_features" : null, "max_leaf_nodes" : 64, "min_impurity_decrease" : 0.0, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.0, "random_state" : 1789, "splitter" : "best" },
 	"tree" : 	{
 		"features" : 9,
@@ -201,7 +201,37 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'california_housing_tiny', 'size': 16, 'mse': 0.0, 'mae': 0.0, 'mape': 0.0, 'r2': 1.0}
 WRITING_PERF_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_california_housing_tiny.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'california_housing_tiny', 'training_time_in_sec': 0.009, 'prediction_time_in_sec': 0.001}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'california_housing_tiny', 'training_time_in_sec': 0.009, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 0 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 1 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 2 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 3 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 4 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 5 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 6 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 7 9
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 8 9
+{
+   "Contributions" : {
+      "X_0" : [ -3469.335938 ],
+      "X_1" : [ 1374.218750 ],
+      "X_2" : [ -35898.437500 ],
+      "X_3" : [ 0.000000 ],
+      "X_4" : [ 1506.640625 ],
+      "X_5" : [ -1271.093750 ],
+      "X_6" : [ 1019.335938 ],
+      "X_7" : [ 4565.820312 ],
+      "X_8" : [ 0.000000 ]   
+   },
+   "Most_Contributive_Features" : {
+      "y" : [ 2, 7, 0, 4, 1, 5, 6 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_california_housing_tiny_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_california_housing_tiny_duckdb.sql'
 
 
@@ -210,12 +240,12 @@ SQL_OUT_PUT_FIRST_LINES_START ('california_housing_tiny', 'DecisionTreeRegressor
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "california_housing_tiny" AS "ADS" 
  ),
 "DT_node_lookup" AS 
  (SELECT
     model_input."index" AS "index",
-    CASE WHEN (model_input."X_2" <= 35.500000) THEN CASE WHEN (model_input."X_7" <= 4.496550) THEN CASE WHEN (model_input."X_5" <= 792.000000) THEN CASE WHEN (model_input."X_0" <= -121.485001) THEN 13 ELSE 14 END ELSE CASE WHEN (model_input."X_4" <= 407.000000) THEN CASE WHEN (model_input."X_6" <= 354.500000) THEN 19 ELSE CASE WHEN (model_input."X_1" <= 38.459999) THEN 27 ELSE 28 END END ELSE CASE WHEN (model_input."X_4" <= 783.000000) THEN CASE WHEN (model_input."X_0" <= -120.040001) THEN 25 ELSE CASE WHEN (model_inpu
+    CASE WHEN (model_input."X_2" <= 35.500000) THEN CASE WHEN (model_input."X_7" <= 4.496550) THEN CASE WHEN (model_input."X_5" <= 792.000000) THEN CASE WHEN (model_input."X_0" <= -121.485001) THEN 13 ELSE 14 END ELSE CASE WHEN (model_input."X_4" <= 407.000000) THEN CASE WHEN (model_input."X_6" <= 354.500000) THEN 19 ELSE CASE WHEN (model_input."X_1" <= 38.459999) THEN 27 ELSE 28 END END ELSE CASE WHEN (model_input."X_4" <= 783.000000) THEN CASE WHEN (model_input."X_0" <= -120.040001) THEN 25 ELSE CASE WHEN (model
 SQL_OUT_PUT_FIRST_LINES_END ('california_housing_tiny', 'DecisionTreeRegressor', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('california_housing_tiny', 'DecisionTreeRegressor', 'duckdb')
 0.000000 AS "E"
@@ -364,12 +394,12 @@ SQL_OUT_PUT_FIRST_LINES_START ('california_housing_tiny', 'DecisionTreeRegressor
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "california_housing_tiny" AS "ADS" 
  ),
 "DT_node_lookup" AS 
  (SELECT
     model_input."index" AS "index",
-    CASE WHEN (model_input."X_2" <= 35.500000) THEN CASE WHEN (model_input."X_7" <= 4.496550) THEN CASE WHEN (model_input."X_5" <= 792.000000) THEN CASE WHEN (model_input."X_0" <= -121.485001) THEN 13 ELSE 14 END ELSE CASE WHEN (model_input."X_4" <= 407.000000) THEN CASE WHEN (model_input."X_6" <= 354.500000) THEN 19 ELSE CASE WHEN (model_input."X_1" <= 38.459999) THEN 27 ELSE 28 END END ELSE CASE WHEN (model_input."X_4" <= 783.000000) THEN CASE WHEN (model_input."X_0" <= -120.040001) THEN 25 ELSE CASE WHEN (model_inpu
+    CASE WHEN (model_input."X_2" <= 35.500000) THEN CASE WHEN (model_input."X_7" <= 4.496550) THEN CASE WHEN (model_input."X_5" <= 792.000000) THEN CASE WHEN (model_input."X_0" <= -121.485001) THEN 13 ELSE 14 END ELSE CASE WHEN (model_input."X_4" <= 407.000000) THEN CASE WHEN (model_input."X_6" <= 354.500000) THEN 19 ELSE CASE WHEN (model_input."X_1" <= 38.459999) THEN 27 ELSE 28 END END ELSE CASE WHEN (model_input."X_4" <= 783.000000) THEN CASE WHEN (model_input."X_0" <= -120.040001) THEN 25 ELSE CASE WHEN (model
 SQL_OUT_PUT_FIRST_LINES_END ('california_housing_tiny', 'DecisionTreeRegressor', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('california_housing_tiny', 'DecisionTreeRegressor', 'sqlite')
 0.000000 AS "E"
@@ -510,68 +540,3 @@ MLLITE_REG_SQL_L1_ERROR ('california_housing_tiny', 'DecisionTreeRegressor') Est
 15     15        88300.0       88300.0        0.0
 MLLITE_REG_SQL_EXECUTION_STATUS ('california_housing_tiny', 'DecisionTreeRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_california_housing_tiny_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('california_housing_tiny', 'DecisionTreeRegressor', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-"DT_node_lookup" AS 
- (SELECT
-    model_input."index" AS "index",
-    CASE WHEN (model_input."X_2" <= 35.500000) THEN CASE WHEN (model_input."X_7" <= 4.496550) THEN CASE WHEN (model_input."X_5" <= 792.000000) THEN CASE WHEN (model_input."X_0" <= -121.485001) THEN 13 ELSE 14 END ELSE CASE WHEN (model_input."X_4" <= 407.000000) THEN CASE WHEN (model_input."X_6" <= 354.500000) THEN 19 ELSE CASE WHEN (model_input."X_1" <= 38.459999) THEN 27 ELSE 28 END END ELSE CASE WHEN (model_input."X_4" <= 783.000000) THEN CASE WHEN (model_input."X_0" <= -120.040001) THEN 25 ELSE CASE WHEN (model_inpu
-SQL_OUT_PUT_FIRST_LINES_END ('california_housing_tiny', 'DecisionTreeRegressor', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('california_housing_tiny', 'DecisionTreeRegressor', 'pgsql')
-0.000000 AS "E"
-    UNION ALL
-    SELECT 19 AS nid, 57600.000000 AS "E"
-    UNION ALL
-    SELECT 20 AS nid, 84700.000000 AS "E"
-    UNION ALL
-    SELECT 21 AS nid, 116200.000000 AS "E"
-    UNION ALL
-    SELECT 22 AS nid, 87000.000000 AS "E"
-    UNION ALL
-    SELECT 23 AS nid, 245400.000000 AS "E"
-    UNION ALL
-    SELECT 24 AS nid, 264400.000000 AS "E"
-    UNION ALL
-    SELECT 25 AS nid, 124700.000000 AS "E"
-    UNION ALL
-    SELECT 26 AS nid, 111950.000000 AS "E"
-    UNION ALL
-    SELECT 27 AS nid, 88300.000000 AS "E"
-    UNION ALL
-    SELECT 28 AS nid, 81100.000000 AS "E"
-    UNION ALL
-    SELECT 29 AS nid, 112700.000000 AS "E"
-    UNION ALL
-    SELECT 30 AS nid, 111200.000000 AS "E"
-  ) AS "Values"
- ),
-"DT_Output" AS 
- (SELECT
-   t1."index" AS "index",
-   t1.node_id AS node_id,
-   t2.nid AS nid,
-   t2."E" AS "E"
-  FROM
-   "DT_node_lookup" AS t1
-   LEFT OUTER JOIN
-   "DT_node_data" AS t2
-   ON t1.node_id = t2.nid
- )
-SELECT
-   "DT_Output"."index" AS "index",
-   "DT_Output"."E" AS "Estimator"
-FROM "DT_Output"
-SQL_OUT_PUT_LAST_LINES_END ('california_housing_tiny', 'DecisionTreeRegressor', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

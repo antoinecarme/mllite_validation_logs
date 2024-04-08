@@ -30,11 +30,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 4 12
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_BEST_FIRST_BUILDER' 12 12
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 2 3
 PROGRESS_REPORT_ELAPSED_TOTAL 'DECISION_TREE_REGRESSOR_FIT' 3 3
-('OPERATION_END_ELAPSED', 0.009, 'TRAINING')
+('OPERATION_END_ELAPSED', 0.006, 'TRAINING')
 { ,  "max_leaf_nodes" : 64 , }
 { ,  "max_leaf_nodes" : 64 , }
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : null, "max_features" : null, "max_leaf_nodes" : 64, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 12, "dataset_features" : 4 },
 	"tree" : {
@@ -77,7 +77,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING DecisionTreeRegressor { ,  "max_leaf_nodes" :
 MLLITE_MODEL_JSON_AFTER_SETTING DecisionTreeRegressor None
 MLLITE_RELOADING_MODEL mllite_decision_tree_reg.DecisionTreeRegressor_ff4_ff4
 {
-	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Breiman_CART", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : { "ccp_alpha" : 0.000000, "criterion" : "", "max_depth" : null, "max_features" : null, "max_leaf_nodes" : 64, "min_impurity_decrease" : 0.000000, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.000000, "random_state" : 1789, "splitter" : "best" },
 	"dataset" : { "dataset_rows" : 12, "dataset_features" : 4 },
 	"tree" : {
@@ -118,7 +118,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 4,
 		"dataset_rows" : 12
 	},
-	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_ff4", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Breiman_CART", "signature" : "ff4_ff4", "version" : "2024-W14" },
 	"options" :  { "ccp_alpha" : 0.0, "criterion" : "", "max_depth" : null, "max_features" : null, "max_leaf_nodes" : 64, "min_impurity_decrease" : 0.0, "min_samples_leaf" : 1, "min_samples_split" : 2, "min_weight_fraction_leaf" : 0.0, "random_state" : 1789, "splitter" : "best" },
 	"tree" : 	{
 		"features" : 4,
@@ -164,7 +164,27 @@ BEAUTIFIED_JSON_END
 MODEL_PERFS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'freidman3_sampled', 'size': 12, 'mse': 0.0, 'mae': 0.0, 'mape': 0.0, 'r2': 1.0}
 WRITING_PERF_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_freidman3_sampled.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'freidman3_sampled', 'training_time_in_sec': 0.009, 'prediction_time_in_sec': 0.0}
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.DecisionTreeRegressor', 'model_name': 'DecisionTreeRegressor', 'options': None, 'dataset': 'freidman3_sampled', 'training_time_in_sec': 0.006, 'prediction_time_in_sec': 0.0}
+
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 0 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 1 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 2 4
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 3 4
+{
+   "Contributions" : {
+      "X_0" : [ -0.014021 ],
+      "X_1" : [ 0.024302 ],
+      "X_2" : [ 0.005985 ],
+      "X_3" : [ -0.004369 ]   
+   },
+   "Most_Contributive_Features" : {
+      "y" : [ 1, 0, 2, 3 ]
+   }
+}
+WRITING_EXPLAIN_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_freidman3_sampled_explain.json'
+
+MODEL_EXPLANATION_END
 WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_freidman3_sampled_duckdb.sql'
 
 
@@ -173,7 +193,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('freidman3_sampled', 'DecisionTreeRegressor', 'du
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "freidman3_sampled" AS "ADS" 
  ),
 "DT_node_lookup" AS 
  (SELECT
@@ -181,7 +201,7 @@ WITH model_input AS
     CASE WHEN (model_input."X_1" <= 588.986450) THEN CASE WHEN (model_input."X_0" <= 39.892754) THEN CASE WHEN (model_input."X_1" <= 314.713226) THEN 11 ELSE 12 END ELSE CASE WHEN (model_input."X_2" <= 0.579224) THEN CASE WHEN (model_input."X_3" <= 3.345518) THEN 9 ELSE CASE WHEN (model_input."X_0" <= 60.929955) THEN 21 ELSE 22 END END ELSE 6 END END ELSE CASE WHEN (model_input."X_2" <= 0.389127) THEN 7 ELSE CASE WHEN (model_input."X_0" <= 38.861763) THEN CASE WHEN (model_input."X_3" <= 5.491227) THEN 17 ELSE CASE WHEN (model_input."X_0" <= 15.105726) THEN 19 ELSE 20 END END ELSE CASE WHEN (model_input."X_1" <= 970.379333) THEN 15 ELSE 16 END END END END AS node_id
   FROM "model_input"
  ),
-"DT_node_d
+"DT_node_da
 SQL_OUT_PUT_FIRST_LINES_END ('freidman3_sampled', 'DecisionTreeRegressor', 'duckdb')
 SQL_OUT_PUT_LAST_LINES_START ('freidman3_sampled', 'DecisionTreeRegressor', 'duckdb')
 d, 0.906663 AS "E"
@@ -315,7 +335,7 @@ SQL_OUT_PUT_FIRST_LINES_START ('freidman3_sampled', 'DecisionTreeRegressor', 'sq
 WITH model_input AS 
  (SELECT "ADS"."index" AS "index",
     CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
+  FROM "freidman3_sampled" AS "ADS" 
  ),
 "DT_node_lookup" AS 
  (SELECT
@@ -323,7 +343,7 @@ WITH model_input AS
     CASE WHEN (model_input."X_1" <= 588.986450) THEN CASE WHEN (model_input."X_0" <= 39.892754) THEN CASE WHEN (model_input."X_1" <= 314.713226) THEN 11 ELSE 12 END ELSE CASE WHEN (model_input."X_2" <= 0.579224) THEN CASE WHEN (model_input."X_3" <= 3.345518) THEN 9 ELSE CASE WHEN (model_input."X_0" <= 60.929955) THEN 21 ELSE 22 END END ELSE 6 END END ELSE CASE WHEN (model_input."X_2" <= 0.389127) THEN 7 ELSE CASE WHEN (model_input."X_0" <= 38.861763) THEN CASE WHEN (model_input."X_3" <= 5.491227) THEN 17 ELSE CASE WHEN (model_input."X_0" <= 15.105726) THEN 19 ELSE 20 END END ELSE CASE WHEN (model_input."X_1" <= 970.379333) THEN 15 ELSE 16 END END END END AS node_id
   FROM "model_input"
  ),
-"DT_node_d
+"DT_node_da
 SQL_OUT_PUT_FIRST_LINES_END ('freidman3_sampled', 'DecisionTreeRegressor', 'sqlite')
 SQL_OUT_PUT_LAST_LINES_START ('freidman3_sampled', 'DecisionTreeRegressor', 'sqlite')
 d, 0.906663 AS "E"
@@ -449,73 +469,3 @@ MLLITE_REG_SQL_L1_ERROR ('freidman3_sampled', 'DecisionTreeRegressor') Estimator
 11     11       1.561464      1.561464  4.055634e-07
 MLLITE_REG_SQL_EXECUTION_STATUS ('freidman3_sampled', 'DecisionTreeRegressor', 'Success')
 COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/regression/DecisionTreeRegressor/mllite.DecisionTreeRegressor_freidman3_sampled_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('freidman3_sampled', 'DecisionTreeRegressor', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3"
-  FROM "MLLITE_INPUT_TABLE" AS "ADS" 
- ),
-"DT_node_lookup" AS 
- (SELECT
-    model_input."index" AS "index",
-    CASE WHEN (model_input."X_1" <= 588.986450) THEN CASE WHEN (model_input."X_0" <= 39.892754) THEN CASE WHEN (model_input."X_1" <= 314.713226) THEN 11 ELSE 12 END ELSE CASE WHEN (model_input."X_2" <= 0.579224) THEN CASE WHEN (model_input."X_3" <= 3.345518) THEN 9 ELSE CASE WHEN (model_input."X_0" <= 60.929955) THEN 21 ELSE 22 END END ELSE 6 END END ELSE CASE WHEN (model_input."X_2" <= 0.389127) THEN 7 ELSE CASE WHEN (model_input."X_0" <= 38.861763) THEN CASE WHEN (model_input."X_3" <= 5.491227) THEN 17 ELSE CASE WHEN (model_input."X_0" <= 15.105726) THEN 19 ELSE 20 END END ELSE CASE WHEN (model_input."X_1" <= 970.379333) THEN 15 ELSE 16 END END END END AS node_id
-  FROM "model_input"
- ),
-"DT_node_d
-SQL_OUT_PUT_FIRST_LINES_END ('freidman3_sampled', 'DecisionTreeRegressor', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('freidman3_sampled', 'DecisionTreeRegressor', 'pgsql')
-d, 0.906663 AS "E"
-    UNION ALL
-    SELECT 10 AS nid, 1.008862 AS "E"
-    UNION ALL
-    SELECT 11 AS nid, 1.343157 AS "E"
-    UNION ALL
-    SELECT 12 AS nid, 1.270144 AS "E"
-    UNION ALL
-    SELECT 13 AS nid, 1.548283 AS "E"
-    UNION ALL
-    SELECT 14 AS nid, 1.477967 AS "E"
-    UNION ALL
-    SELECT 15 AS nid, 1.460687 AS "E"
-    UNION ALL
-    SELECT 16 AS nid, 1.495246 AS "E"
-    UNION ALL
-    SELECT 17 AS nid, 1.531204 AS "E"
-    UNION ALL
-    SELECT 18 AS nid, 1.556823 AS "E"
-    UNION ALL
-    SELECT 19 AS nid, 1.561464 AS "E"
-    UNION ALL
-    SELECT 20 AS nid, 1.552182 AS "E"
-    UNION ALL
-    SELECT 21 AS nid, 1.009971 AS "E"
-    UNION ALL
-    SELECT 22 AS nid, 1.007753 AS "E"
-  ) AS "Values"
- ),
-"DT_Output" AS 
- (SELECT
-   t1."index" AS "index",
-   t1.node_id AS node_id,
-   t2.nid AS nid,
-   t2."E" AS "E"
-  FROM
-   "DT_node_lookup" AS t1
-   LEFT OUTER JOIN
-   "DT_node_data" AS t2
-   ON t1.node_id = t2.nid
- )
-SELECT
-   "DT_Output"."index" AS "index",
-   "DT_Output"."E" AS "Estimator"
-FROM "DT_Output"
-SQL_OUT_PUT_LAST_LINES_END ('freidman3_sampled', 'DecisionTreeRegressor', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START

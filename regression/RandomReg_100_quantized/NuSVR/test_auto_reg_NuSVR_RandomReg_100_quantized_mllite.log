@@ -58,11 +58,11 @@ PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 108 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 120 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_SOLVER_ITERATION:NuSVR_Global' 128 128
 PROGRESS_REPORT_ELAPSED_TOTAL 'SVM_NU_REGRESSOR_FIT' 4 4
-('OPERATION_END_ELAPSED', 4.527, 'TRAINING')
+('OPERATION_END_ELAPSED', 6.649, 'TRAINING')
 { ,  "max_iter" : 128  , }
 { ,  "max_iter" : 128  , }
 {
-	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "nu_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 0.001275, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 1024, "dataset_features" : 100 },
 	"svm_model" : {
@@ -344,7 +344,7 @@ MLLITE_MODEL_OPTIONS_AFTER_SETTING NuSVR { ,  "max_iter" : 128  , }
 MLLITE_MODEL_JSON_AFTER_SETTING NuSVR None
 MLLITE_RELOADING_MODEL mllite_nu_svm_reg.NuSVR_ff4_ff4
 {
-	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W13", "signature" : "ff4_ff4"},
+	"metadata" : { "model" : "Vapnik_NuSVR_RBF", "version" : "2024-W14", "signature" : "ff4_ff4"},
 	"options" : {"svm_type" : "nu_svr", "kernel" : "rbf", "degree" : 3, "gamma" : 0.001275, "coef0" : 0.000000, "cache_size" : 300, "tol" : 0.001000, "nu" : 0.500000, "epsilon" : 0.000000, "shrinking" : 0, "probability" : 0, "C" : 1.000000, "max_iter" : 128, "random_state" : 1789 },
 	"dataset" : { "dataset_rows" : 1024, "dataset_features" : 100 },
 	"svm_model" : {
@@ -624,7 +624,7 @@ BEAUTIFIED_JSON_START
 		"dataset_features" : 100,
 		"dataset_rows" : 1024
 	},
-	"metadata" :  { "model" : "Vapnik_NuSVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W13" },
+	"metadata" :  { "model" : "Vapnik_NuSVR_RBF", "signature" : "ff4_ff4", "version" : "2024-W14" },
 	"options" :  { "C" : 1.0, "cache_size" : 300, "coef0" : 0.0, "degree" : 3, "epsilon" : 0.0, "gamma" : 0.001275, "kernel" : "rbf", "max_iter" : 128, "nu" : 0.5, "probability" : 0, "random_state" : 1789, "shrinking" : 0, "svm_type" : "nu_svr", "tol" : 0.001 },
 	"svm_model" : 	{
 		"L" : 256,
@@ -900,441 +900,51 @@ BEAUTIFIED_JSON_START
 BEAUTIFIED_JSON_END
 ('OPERATION_START', 'PREDICT')
 [ 0.2629608  0.5450939 -2.9037223 ... -2.2355173  1.7845984 -0.3373918]
-('OPERATION_END_ELAPSED', 0.215, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.283, 'PREDICT')
 ('OPERATION_START', 'PREDICT')
 [ 0.26288658  0.5450785  -2.9041557  ... -2.2358878   1.7848794
  -0.33760113]
-('OPERATION_END_ELAPSED', 0.214, 'PREDICT')
+('OPERATION_END_ELAPSED', 0.282, 'PREDICT')
 MODEL_PERFS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'RandomReg_100_quantized', 'size': 1024, 'mse': 23549.918, 'mae': 122.23621, 'mape': 0.9928045, 'r2': 0.01872842446387024}
 WRITING_PERF_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_RandomReg_100_quantized.perf'
 
-MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'RandomReg_100_quantized', 'training_time_in_sec': 4.526, 'prediction_time_in_sec': 0.213}
-WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_RandomReg_100_quantized_duckdb.sql'
+MODEL_PERFS_TIMINGS {'class_name': 'mllite.NuSVR', 'model_name': 'NuSVR', 'options': None, 'dataset': 'RandomReg_100_quantized', 'training_time_in_sec': 6.649, 'prediction_time_in_sec': 0.282}
 
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_100_quantized', 'NuSVR', 'duckdb')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
-SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_100_quantized', 'NuSVR', 'duckdb')
-SQL_OUT_PUT_LAST_LINES_START ('RandomReg_100_quantized', 'NuSVR', 'duckdb')
-84" - "SV_data".sv_84, 2) + power(model_input."X_85" - "SV_data".sv_85, 2) + power(model_input."X_86" - "SV_data".sv_86, 2) + power(model_input."X_87" - "SV_data".sv_87, 2) + power(model_input."X_88" - "SV_data".sv_88, 2) + power(model_input."X_89" - "SV_data".sv_89, 2) + power(model_input."X_90" - "SV_data".sv_90, 2) + power(model_input."X_91" - "SV_data".sv_91, 2) + power(model_input."X_92" - "SV_data".sv_92, 2) + power(model_input."X_93" - "SV_data".sv_93, 2) + power(model_input."X_94" - "SV_data".sv_94, 2) + power(model_input."X_95" - "SV_data".sv_95, 2) + power(model_input."X_96" - "SV_data".sv_96, 2) + power(model_input."X_97" - "SV_data".sv_97, 2) + power(model_input."X_98" - "SV_data".sv_98, 2) + power(model_input."X_99" - "SV_data".sv_99, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
-        FROM
-          model_input, "SV_data"
-       ) AS full_join_data_sv
-     GROUP BY full_join_data_sv."index"
-    ) AS dp )
-SELECT
-  t."index" as "index",
-  t."Estimator" as "Estimator"
-FROM "Kernel_DotProd" AS t
-
-SQL_OUT_PUT_LAST_LINES_END ('RandomReg_100_quantized', 'NuSVR', 'duckdb') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START
-<class 'pandas.core.frame.DataFrame'>
-Index: 1024 entries, 0 to 1023
-Data columns (total 100 columns):
- #   Column  Non-Null Count  Dtype  
----  ------  --------------  -----  
- 0   X_0     1024 non-null   float32
- 1   X_1     1024 non-null   float32
- 2   X_2     1024 non-null   float32
- 3   X_3     1024 non-null   float32
- 4   X_4     1024 non-null   float32
- 5   X_5     1024 non-null   float32
- 6   X_6     1024 non-null   float32
- 7   X_7     1024 non-null   float32
- 8   X_8     1024 non-null   float32
- 9   X_9     1024 non-null   float32
- 10  X_10    1024 non-null   float32
- 11  X_11    1024 non-null   float32
- 12  X_12    1024 non-null   float32
- 13  X_13    1024 non-null   float32
- 14  X_14    1024 non-null   float32
- 15  X_15    1024 non-null   float32
- 16  X_16    1024 non-null   float32
- 17  X_17    1024 non-null   float32
- 18  X_18    1024 non-null   float32
- 19  X_19    1024 non-null   float32
- 20  X_20    1024 non-null   float32
- 21  X_21    1024 non-null   float32
- 22  X_22    1024 non-null   float32
- 23  X_23    1024 non-null   float32
- 24  X_24    1024 non-null   float32
- 25  X_25    1024 non-null   float32
- 26  X_26    1024 non-null   float32
- 27  X_27    1024 non-null   float32
- 28  X_28    1024 non-null   float32
- 29  X_29    1024 non-null   float32
- 30  X_30    1024 non-null   float32
- 31  X_31    1024 non-null   float32
- 32  X_32    1024 non-null   float32
- 33  X_33    1024 non-null   float32
- 34  X_34    1024 non-null   float32
- 35  X_35    1024 non-null   float32
- 36  X_36    1024 non-null   float32
- 37  X_37    1024 non-null   float32
- 38  X_38    1024 non-null   float32
- 39  X_39    1024 non-null   float32
- 40  X_40    1024 non-null   float32
- 41  X_41    1024 non-null   float32
- 42  X_42    1024 non-null   float32
- 43  X_43    1024 non-null   float32
- 44  X_44    1024 non-null   float32
- 45  X_45    1024 non-null   float32
- 46  X_46    1024 non-null   float32
- 47  X_47    1024 non-null   float32
- 48  X_48    1024 non-null   float32
- 49  X_49    1024 non-null   float32
- 50  X_50    1024 non-null   float32
- 51  X_51    1024 non-null   float32
- 52  X_52    1024 non-null   float32
- 53  X_53    1024 non-null   float32
- 54  X_54    1024 non-null   float32
- 55  X_55    1024 non-null   float32
- 56  X_56    1024 non-null   float32
- 57  X_57    1024 non-null   float32
- 58  X_58    1024 non-null   float32
- 59  X_59    1024 non-null   float32
- 60  X_60    1024 non-null   float32
- 61  X_61    1024 non-null   float32
- 62  X_62    1024 non-null   float32
- 63  X_63    1024 non-null   float32
- 64  X_64    1024 non-null   float32
- 65  X_65    1024 non-null   float32
- 66  X_66    1024 non-null   float32
- 67  X_67    1024 non-null   float32
- 68  X_68    1024 non-null   float32
- 69  X_69    1024 non-null   float32
- 70  X_70    1024 non-null   float32
- 71  X_71    1024 non-null   float32
- 72  X_72    1024 non-null   float32
- 73  X_73    1024 non-null   float32
- 74  X_74    1024 non-null   float32
- 75  X_75    1024 non-null   float32
- 76  X_76    1024 non-null   float32
- 77  X_77    1024 non-null   float32
- 78  X_78    1024 non-null   float32
- 79  X_79    1024 non-null   float32
- 80  X_80    1024 non-null   float32
- 81  X_81    1024 non-null   float32
- 82  X_82    1024 non-null   float32
- 83  X_83    1024 non-null   float32
- 84  X_84    1024 non-null   float32
- 85  X_85    1024 non-null   float32
- 86  X_86    1024 non-null   float32
- 87  X_87    1024 non-null   float32
- 88  X_88    1024 non-null   float32
- 89  X_89    1024 non-null   float32
- 90  X_90    1024 non-null   float32
- 91  X_91    1024 non-null   float32
- 92  X_92    1024 non-null   float32
- 93  X_93    1024 non-null   float32
- 94  X_94    1024 non-null   float32
- 95  X_95    1024 non-null   float32
- 96  X_96    1024 non-null   float32
- 97  X_97    1024 non-null   float32
- 98  X_98    1024 non-null   float32
- 99  X_99    1024 non-null   float32
-dtypes: float32(100)
-memory usage: 408.0 KB
-       X_0  X_1  X_2  X_3  X_4  X_5  ...  X_94  X_95  X_96  X_97  X_98  X_99
-index                                ...                                    
-0      8.0  1.0  6.0  7.0  2.0  8.0  ...   7.0   1.0   6.0   5.0   1.0   8.0
-1      5.0  9.0  7.0  1.0  8.0  1.0  ...   1.0   0.0   4.0   1.0   4.0   4.0
-2      8.0  4.0  9.0  5.0  1.0  5.0  ...   0.0   0.0   3.0   4.0   1.0   6.0
-3      2.0  7.0  0.0  0.0  7.0  7.0  ...   8.0   7.0   2.0   8.0   0.0   9.0
-4      3.0  5.0  1.0  1.0  2.0  1.0  ...   5.0   1.0   8.0   5.0   3.0   3.0
-...    ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...   ...   ...
-1019   4.0  5.0  8.0  9.0  1.0  3.0  ...   7.0   5.0   0.0   6.0   7.0   6.0
-1020   7.0  6.0  2.0  6.0  9.0  5.0  ...   8.0   2.0   0.0   2.0   2.0   8.0
-1021   8.0  4.0  4.0  6.0  8.0  9.0  ...   6.0   1.0   5.0   8.0   7.0   2.0
-1022   0.0  0.0  3.0  5.0  9.0  3.0  ...   8.0   8.0   0.0   9.0   7.0   7.0
-1023   6.0  7.0  3.0  6.0  7.0  4.0  ...   0.0   8.0   6.0   3.0   9.0   9.0
-
-[1024 rows x 100 columns]
-COPY_TRAINING_DATA_TO_SQLITE_END
-
-
-PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 1024 entries, 0 to 1023
-Data columns (total 2 columns):
- #   Column     Non-Null Count  Dtype  
----  ------     --------------  -----  
- 0   index      1024 non-null   int64  
- 1   Estimator  1024 non-null   float64
-dtypes: float64(1), int64(1)
-memory usage: 16.1 KB
-      index  Estimator
-0         0   0.262887
-1         1   0.545078
-2         2  -2.904157
-3         3   0.199012
-4         4  -3.893672
-...     ...        ...
-1019   1019  -1.044394
-1020   1020   1.854473
-1021   1021  -2.235888
-1022   1022   1.784879
-1023   1023  -0.337601
-
-[1024 rows x 2 columns]
-PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
-
-
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
-Index(['index', 'Estimator'], dtype='object')
-MLLITE_REG_SQL_L1_ERROR ('RandomReg_100_quantized', 'NuSVR') Estimator 0.0002112416291777221
-      index  SQL_Estimator  Py_Estimator  SQL_Error
-1008   1008       0.110892      0.111000  -0.000108
-1009   1009       1.006379      1.006257   0.000123
-1010   1010       0.429887      0.429953  -0.000066
-1011   1011      -1.193861     -1.193533  -0.000328
-1012   1012       1.210843      1.210740   0.000103
-1013   1013       0.055735      0.055856  -0.000121
-1014   1014       0.845138      0.845088   0.000050
-1015   1015       0.066291      0.066425  -0.000134
-1016   1016      -0.304636     -0.304473  -0.000163
-1017   1017       0.726731      0.726716   0.000015
-1018   1018       2.608114      2.607932   0.000182
-1019   1019      -1.044394     -1.044032  -0.000363
-1020   1020       1.854473      1.854449   0.000024
-1021   1021      -2.235888     -2.235517  -0.000371
-1022   1022       1.784879      1.784598   0.000281
-1023   1023      -0.337601     -0.337392  -0.000209
-MLLITE_REG_SQL_EXECUTION_STATUS ('RandomReg_100_quantized', 'NuSVR', 'Success')
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_RandomReg_100_quantized_sqlite.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_100_quantized', 'NuSVR', 'sqlite')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
-SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_100_quantized', 'NuSVR', 'sqlite')
-SQL_OUT_PUT_LAST_LINES_START ('RandomReg_100_quantized', 'NuSVR', 'sqlite')
-84" - "SV_data".sv_84, 2) + power(model_input."X_85" - "SV_data".sv_85, 2) + power(model_input."X_86" - "SV_data".sv_86, 2) + power(model_input."X_87" - "SV_data".sv_87, 2) + power(model_input."X_88" - "SV_data".sv_88, 2) + power(model_input."X_89" - "SV_data".sv_89, 2) + power(model_input."X_90" - "SV_data".sv_90, 2) + power(model_input."X_91" - "SV_data".sv_91, 2) + power(model_input."X_92" - "SV_data".sv_92, 2) + power(model_input."X_93" - "SV_data".sv_93, 2) + power(model_input."X_94" - "SV_data".sv_94, 2) + power(model_input."X_95" - "SV_data".sv_95, 2) + power(model_input."X_96" - "SV_data".sv_96, 2) + power(model_input."X_97" - "SV_data".sv_97, 2) + power(model_input."X_98" - "SV_data".sv_98, 2) + power(model_input."X_99" - "SV_data".sv_99, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
-        FROM
-          model_input, "SV_data"
-       ) AS full_join_data_sv
-     GROUP BY full_join_data_sv."index"
-    ) AS dp )
-SELECT
-  t."index" as "index",
-  t."Estimator" as "Estimator"
-FROM "Kernel_DotProd" AS t
-
-SQL_OUT_PUT_LAST_LINES_END ('RandomReg_100_quantized', 'NuSVR', 'sqlite') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START
-<class 'pandas.core.frame.DataFrame'>
-Index: 1024 entries, 0 to 1023
-Data columns (total 100 columns):
- #   Column  Non-Null Count  Dtype  
----  ------  --------------  -----  
- 0   X_0     1024 non-null   float32
- 1   X_1     1024 non-null   float32
- 2   X_2     1024 non-null   float32
- 3   X_3     1024 non-null   float32
- 4   X_4     1024 non-null   float32
- 5   X_5     1024 non-null   float32
- 6   X_6     1024 non-null   float32
- 7   X_7     1024 non-null   float32
- 8   X_8     1024 non-null   float32
- 9   X_9     1024 non-null   float32
- 10  X_10    1024 non-null   float32
- 11  X_11    1024 non-null   float32
- 12  X_12    1024 non-null   float32
- 13  X_13    1024 non-null   float32
- 14  X_14    1024 non-null   float32
- 15  X_15    1024 non-null   float32
- 16  X_16    1024 non-null   float32
- 17  X_17    1024 non-null   float32
- 18  X_18    1024 non-null   float32
- 19  X_19    1024 non-null   float32
- 20  X_20    1024 non-null   float32
- 21  X_21    1024 non-null   float32
- 22  X_22    1024 non-null   float32
- 23  X_23    1024 non-null   float32
- 24  X_24    1024 non-null   float32
- 25  X_25    1024 non-null   float32
- 26  X_26    1024 non-null   float32
- 27  X_27    1024 non-null   float32
- 28  X_28    1024 non-null   float32
- 29  X_29    1024 non-null   float32
- 30  X_30    1024 non-null   float32
- 31  X_31    1024 non-null   float32
- 32  X_32    1024 non-null   float32
- 33  X_33    1024 non-null   float32
- 34  X_34    1024 non-null   float32
- 35  X_35    1024 non-null   float32
- 36  X_36    1024 non-null   float32
- 37  X_37    1024 non-null   float32
- 38  X_38    1024 non-null   float32
- 39  X_39    1024 non-null   float32
- 40  X_40    1024 non-null   float32
- 41  X_41    1024 non-null   float32
- 42  X_42    1024 non-null   float32
- 43  X_43    1024 non-null   float32
- 44  X_44    1024 non-null   float32
- 45  X_45    1024 non-null   float32
- 46  X_46    1024 non-null   float32
- 47  X_47    1024 non-null   float32
- 48  X_48    1024 non-null   float32
- 49  X_49    1024 non-null   float32
- 50  X_50    1024 non-null   float32
- 51  X_51    1024 non-null   float32
- 52  X_52    1024 non-null   float32
- 53  X_53    1024 non-null   float32
- 54  X_54    1024 non-null   float32
- 55  X_55    1024 non-null   float32
- 56  X_56    1024 non-null   float32
- 57  X_57    1024 non-null   float32
- 58  X_58    1024 non-null   float32
- 59  X_59    1024 non-null   float32
- 60  X_60    1024 non-null   float32
- 61  X_61    1024 non-null   float32
- 62  X_62    1024 non-null   float32
- 63  X_63    1024 non-null   float32
- 64  X_64    1024 non-null   float32
- 65  X_65    1024 non-null   float32
- 66  X_66    1024 non-null   float32
- 67  X_67    1024 non-null   float32
- 68  X_68    1024 non-null   float32
- 69  X_69    1024 non-null   float32
- 70  X_70    1024 non-null   float32
- 71  X_71    1024 non-null   float32
- 72  X_72    1024 non-null   float32
- 73  X_73    1024 non-null   float32
- 74  X_74    1024 non-null   float32
- 75  X_75    1024 non-null   float32
- 76  X_76    1024 non-null   float32
- 77  X_77    1024 non-null   float32
- 78  X_78    1024 non-null   float32
- 79  X_79    1024 non-null   float32
- 80  X_80    1024 non-null   float32
- 81  X_81    1024 non-null   float32
- 82  X_82    1024 non-null   float32
- 83  X_83    1024 non-null   float32
- 84  X_84    1024 non-null   float32
- 85  X_85    1024 non-null   float32
- 86  X_86    1024 non-null   float32
- 87  X_87    1024 non-null   float32
- 88  X_88    1024 non-null   float32
- 89  X_89    1024 non-null   float32
- 90  X_90    1024 non-null   float32
- 91  X_91    1024 non-null   float32
- 92  X_92    1024 non-null   float32
- 93  X_93    1024 non-null   float32
- 94  X_94    1024 non-null   float32
- 95  X_95    1024 non-null   float32
- 96  X_96    1024 non-null   float32
- 97  X_97    1024 non-null   float32
- 98  X_98    1024 non-null   float32
- 99  X_99    1024 non-null   float32
-dtypes: float32(100)
-memory usage: 408.0 KB
-       X_0  X_1  X_2  X_3  X_4  X_5  ...  X_94  X_95  X_96  X_97  X_98  X_99
-index                                ...                                    
-0      8.0  1.0  6.0  7.0  2.0  8.0  ...   7.0   1.0   6.0   5.0   1.0   8.0
-1      5.0  9.0  7.0  1.0  8.0  1.0  ...   1.0   0.0   4.0   1.0   4.0   4.0
-2      8.0  4.0  9.0  5.0  1.0  5.0  ...   0.0   0.0   3.0   4.0   1.0   6.0
-3      2.0  7.0  0.0  0.0  7.0  7.0  ...   8.0   7.0   2.0   8.0   0.0   9.0
-4      3.0  5.0  1.0  1.0  2.0  1.0  ...   5.0   1.0   8.0   5.0   3.0   3.0
-...    ...  ...  ...  ...  ...  ...  ...   ...   ...   ...   ...   ...   ...
-1019   4.0  5.0  8.0  9.0  1.0  3.0  ...   7.0   5.0   0.0   6.0   7.0   6.0
-1020   7.0  6.0  2.0  6.0  9.0  5.0  ...   8.0   2.0   0.0   2.0   2.0   8.0
-1021   8.0  4.0  4.0  6.0  8.0  9.0  ...   6.0   1.0   5.0   8.0   7.0   2.0
-1022   0.0  0.0  3.0  5.0  9.0  3.0  ...   8.0   8.0   0.0   9.0   7.0   7.0
-1023   6.0  7.0  3.0  6.0  7.0  4.0  ...   0.0   8.0   6.0   3.0   9.0   9.0
-
-[1024 rows x 100 columns]
-COPY_TRAINING_DATA_TO_SQLITE_END
-
-
-PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_START
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 1024 entries, 0 to 1023
-Data columns (total 2 columns):
- #   Column     Non-Null Count  Dtype  
----  ------     --------------  -----  
- 0   index      1024 non-null   int64  
- 1   Estimator  1024 non-null   float64
-dtypes: float64(1), int64(1)
-memory usage: 16.1 KB
-      index  Estimator
-0         0   0.262887
-1         1   0.545078
-2         2  -2.904157
-3         3   0.199012
-4         4  -3.893672
-...     ...        ...
-1019   1019  -1.044394
-1020   1020   1.854473
-1021   1021  -2.235888
-1022   1022   1.784879
-1023   1023  -0.337601
-
-[1024 rows x 2 columns]
-PREDICT_MODEL_ON_TRAINING_DATA_INSIDE_SQLITE_END
-
-
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_START
-Index(['index', 'Estimator'], dtype='object')
-MLLITE_REG_SQL_L1_ERROR ('RandomReg_100_quantized', 'NuSVR') Estimator 0.00021123720193183765
-      index  SQL_Estimator  Py_Estimator  SQL_Error
-1008   1008       0.110892      0.111000  -0.000108
-1009   1009       1.006379      1.006257   0.000123
-1010   1010       0.429887      0.429953  -0.000066
-1011   1011      -1.193861     -1.193533  -0.000328
-1012   1012       1.210843      1.210740   0.000103
-1013   1013       0.055735      0.055856  -0.000121
-1014   1014       0.845138      0.845088   0.000051
-1015   1015       0.066291      0.066425  -0.000134
-1016   1016      -0.304636     -0.304473  -0.000163
-1017   1017       0.726731      0.726716   0.000015
-1018   1018       2.608114      2.607932   0.000182
-1019   1019      -1.044394     -1.044032  -0.000363
-1020   1020       1.854473      1.854449   0.000024
-1021   1021      -2.235888     -2.235517  -0.000371
-1022   1022       1.784879      1.784598   0.000281
-1023   1023      -0.337601     -0.337392  -0.000209
-MLLITE_REG_SQL_EXECUTION_STATUS ('RandomReg_100_quantized', 'NuSVR', 'Success')
-COMPARE_SQL_OUTPUT_AND_PYTHON_OUTPUT_END
-WRITING_SQL_CODE 'logs/auto_tests/regression/NuSVR/mllite.NuSVR_RandomReg_100_quantized_pgsql.sql'
-
-
-
-SQL_OUT_PUT_FIRST_LINES_START ('RandomReg_100_quantized', 'NuSVR', 'pgsql')
-WITH model_input AS 
- (SELECT "ADS"."index" AS "index",
-    CAST("ADS"."X_0" AS FLOAT) AS "X_0", CAST("ADS"."X_1" AS FLOAT) AS "X_1", CAST("ADS"."X_2" AS FLOAT) AS "X_2", CAST("ADS"."X_3" AS FLOAT) AS "X_3", CAST("ADS"."X_4" AS FLOAT) AS "X_4", CAST("ADS"."X_5" AS FLOAT) AS "X_5", CAST("ADS"."X_6" AS FLOAT) AS "X_6", CAST("ADS"."X_7" AS FLOAT) AS "X_7", CAST("ADS"."X_8" AS FLOAT) AS "X_8", CAST("ADS"."X_9" AS FLOAT) AS "X_9", CAST("ADS"."X_10" AS FLOAT) AS "X_10", CAST("ADS"."X_11" AS FLOAT) AS "X_11", CAST("ADS"."X_12" AS FLOAT) AS "X_12", CAST("ADS"."X_13" AS FLOAT) AS "X_13", CAST("ADS"."X_14" AS FLOAT) AS "X_14", CAST("ADS"."X_15" AS FLOAT) AS "X_15", CAST("ADS"."X_16" AS FLOAT) AS "X_16", CAST("ADS"."X_17" AS FLOAT) AS "X_17", CAST("ADS"."X_18" AS FLOAT) AS "X_18", CAST("ADS"."X_19" AS FLOAT) AS "X_19", CAST("ADS"."X_20" AS FLOAT) AS "X_20", CAST("ADS"."X_21" AS FLOAT) AS "X_21", CAST("ADS"."X_22" AS FLOAT) AS "X_22", CAST("ADS"."X_23" AS FLOAT) AS "X_23", CAST("ADS"."X_24" AS FLOAT) AS "X_24", CAST("ADS
-SQL_OUT_PUT_FIRST_LINES_END ('RandomReg_100_quantized', 'NuSVR', 'pgsql')
-SQL_OUT_PUT_LAST_LINES_START ('RandomReg_100_quantized', 'NuSVR', 'pgsql')
-84" - "SV_data".sv_84, 2) + power(model_input."X_85" - "SV_data".sv_85, 2) + power(model_input."X_86" - "SV_data".sv_86, 2) + power(model_input."X_87" - "SV_data".sv_87, 2) + power(model_input."X_88" - "SV_data".sv_88, 2) + power(model_input."X_89" - "SV_data".sv_89, 2) + power(model_input."X_90" - "SV_data".sv_90, 2) + power(model_input."X_91" - "SV_data".sv_91, 2) + power(model_input."X_92" - "SV_data".sv_92, 2) + power(model_input."X_93" - "SV_data".sv_93, 2) + power(model_input."X_94" - "SV_data".sv_94, 2) + power(model_input."X_95" - "SV_data".sv_95, 2) + power(model_input."X_96" - "SV_data".sv_96, 2) + power(model_input."X_97" - "SV_data".sv_97, 2) + power(model_input."X_98" - "SV_data".sv_98, 2) + power(model_input."X_99" - "SV_data".sv_99, 2)) ), CAST(32.0 AS FLOAT) ) )  AS "dot_prod" 
-        FROM
-          model_input, "SV_data"
-       ) AS full_join_data_sv
-     GROUP BY full_join_data_sv."index"
-    ) AS dp )
-SELECT
-  t."index" as "index",
-  t."Estimator" as "Estimator"
-FROM "Kernel_DotProd" AS t
-
-SQL_OUT_PUT_LAST_LINES_END ('RandomReg_100_quantized', 'NuSVR', 'pgsql') 
-
-
-
-
-COPY_TRAINING_DATA_TO_SQLITE_START
+MODEL_EXPLANATION_START
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 0 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 1 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 2 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 3 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 4 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 5 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 6 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 7 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 8 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 9 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 10 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 11 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 12 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 13 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 14 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 15 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 16 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 17 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 18 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 19 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 20 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 21 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 22 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 23 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 24 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 25 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 26 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 27 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 28 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 29 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 30 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 31 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 32 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 33 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 34 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 35 100
+PROGRESS_REPORT_ELAPSED_TOTAL 'MONTE_CARLO_REGRESSION_EXPLAINER' 36 100
